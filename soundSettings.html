@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="staircaseStyle.css">
+   
+
+
+
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+
+   
+  
+    <div class="container" style="margin-top:1%">
+        <div class="row gx-4">
+            <div class="col">
+              <div class=" p-3 border bg-light" style="height:98%">
+    
+                <h1>Set the characteristics of the standard pure tone</h1>
+
+                <!-- Primo slot di setting -->
+                 <div class="container p-4" >
+                     <div class="row gx-4">
+                         <div class="col">
+                            <div class=" p-3 border bg-light " style="height:9rem" >
+                            <form name="soundsForm">
+                             <!-- Contenuto dello slot, qui vanno inseriti tutti i bottoni e i check box del secondo slot -->
+
+
+                             <div class="input-group flex-nowrap" style="width:32%; float:left; margin-right:10px">
+                                <span class="input-group-text" id="addon-wrapping">Amplitude of the standard tone</span>
+                                <input type="text" class="form-control"  name="amplitude" id = "amplitude" placeholder="Standard" aria-label="Username" aria-describedby="addon-wrapping" value = "20">
+                            </div>
+
+                            <div class="input-group flex-nowrap" style="width:32%; float:left; margin-right:10px">
+                                <span class="input-group-text" id="addon-wrapping">Frequency of the standard tone</span>
+                                <input type="text" class="form-control" name="frequency" id = "frequency" placeholder="Standard" aria-label="Username" aria-describedby="addon-wrapping" value="1000">
+                            </div>
+
+                            <div class="input-group flex-nowrap" style="width:32%; float:left; margin-right:10px">
+                                <span class="input-group-text" id="addon-wrapping">Duration of the standard tone</span>
+                                <input type="text" class="form-control" name="duration" id = "duration" placeholder="Standard" aria-label="Username" aria-describedby="addon-wrapping" value = "1000">
+                            </div>
+
+                            <div class="input-group flex-nowrap" style="width:32%; float:left; margin-right:10px">
+                                <span class="input-group-text" id="addon-wrapping">Starting phase of the standard tone</span>
+                                <input type="text" class="form-control" name="phase" id = "phase" placeholder="Standard" aria-label="Username" aria-describedby="addon-wrapping" value = "0">
+                            </div>
+
+                            
+
+                    
+                    
+                         </div>
+                     </div>
+                </div>
+
+                 </div>
+
+
+                 <!-- Secondo slot di setting -->
+                 <div class="container p-4" >
+                    <div class="row gx-4">
+                        <div class="col">
+                           <div class=" p-3 border bg-light " style="height:8rem" >
+                   
+                            <!-- Contenuto dello slot, qui vanno inseriti tutti i bottoni e i check box del secondo slot -->
+
+                            <div class="input-group flex-nowrap" style="width:32%; float:inline-start; margin-right:10px" >
+                               <span class="input-group-text" id="addon-wrapping" style="width:7rem">n. of blocks</span>
+                               <input type="text" class="form-control" id = "blocks" placeholder="Blocks" aria-label="Username" aria-describedby="addon-wrapping">
+                            </div>
+                   
+                            <div class="input-group flex-nowrap" style="width:32%; float:left; margin-right:10px" >
+                                <span class="input-group-text" id="addon-wrapping">Starting level</span>
+                                <input type="text" class="form-control" id = "level" placeholder="Starting " aria-label="Username" aria-describedby="addon-wrapping">
+                            </div>
+                   
+                           
+                            <div class="input-group flex-nowrap" style="width:25%; float:left; margin-right:10px">
+                                <span class="input-group-text" id="addon-wrapping">nAFC</span>
+                                <input type="text" class="form-control" id = "nAFC" placeholder="nAFC" aria-label="Username" aria-describedby="addon-wrapping" value = "2" >
+                            </div>   
+
+                            
+                            <!-- Checkbox -->
+                            <div class="form-check" style="float:inline-start; margin-top: 10px; ">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                   Feedback
+                                </label>
+                          </div>
+                   
+                   
+                        </div>
+                    </div>
+               </div>
+
+                </div>
+
+
+                 <!-- Terzo slot di setting -->
+                     <div class="container p-4" >
+                          <div class="row gx-4">
+                              <div class="col">
+                                   <div class=" p-3 border bg-light" style="height: 15rem;" >
+                   
+                    
+                                     <!-- Contenuto dello slot, qui vanno inseriti tutti i componenti del terzo slot -->
+                                    
+                                     <div class="input-group flex-nowrap" style="width:25%; float:inline-end; margin-right:10px">
+                                        <span class="input-group-text" id="addon-wrapping">Factor</span>
+                                        <input type="text" class="form-control" name="factor" id="factor" placeholder="Factor" aria-label="Username" aria-describedby="addon-wrapping" value = "2">
+                                     </div>
+
+
+                                    
+
+
+                                      <!-- Radios -->
+                                     <div class="form-check" >
+                                         <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" >
+                                         <label class="form-check-label" for="flexRadioDefault1">
+                                             Method of Limits
+                                        </label>
+                                     </div>
+
+                                   
+
+                                     <div class="form-check" >
+                                         <input class="form-check-input" type="radio" name="flexRadioDefault3" id="flexRadioDefault1">
+                                         <label class="form-check-label" for="flexRadioDefault1">
+                                             Arithmetic
+                                         </label>
+                                     </div>
+
+                                     <div class="input-group flex-nowrap" style="width:25%; float:inline-end; margin-right:10px">
+                                        <span class="input-group-text" id="addon-wrapping">Reversals</span>
+                                        <input type="text" class="form-control" id = "reversals" placeholder="Reversals" aria-label="Username" aria-describedby="addon-wrapping" value = "2">
+                                    </div>
+
+                                     <div class="form-check"  >
+                                         <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1">
+                                         <label class="form-check-label" for="flexRadioDefault1">
+                                            SimpleUpDown
+                                         </label>
+                                    </div>
+
+                                     <div class="form-check"  >
+                                         <input class="form-check-input" type="radio" name="flexRadioDefault3" id="flexRadioDefault1">
+                                         <label class="form-check-label" for="flexRadioDefault1">
+                                             Geometric
+                                         </label>
+                                    </div>
+
+                                    <div class="input-group flex-nowrap" style="width:30%; float:inline-end; margin-right:10px">
+                                        <span class="input-group-text" id="addon-wrapping">Reversal threshold</span>
+                                        <input type="text" class="form-control" id = "reversalsTh" placeholder="Threshold" aria-label="Username" aria-describedby="addon-wrapping">
+                                    </div>
+
+                                     <div class="form-check"  >
+                                         <input class="form-check-input" type="radio" name="flexRadioDefault3" id="flexRadioDefault1">
+                                         <label class="form-check-label" for="flexRadioDefault1">
+                                             Median
+                                         </label>
+                                    </div>
+
+                                    
+                  
+                                    <div class="form-check" >
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                              TwoDownOneUp
+                                        </label>
+                                    </div>
+
+                    
+
+                                    <div class="form-check" >
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                             ThreeDownOneUp
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            FourDownOneUp
+                                        </label>
+                                    </div>
+
+                                    
+
+                    
+
+
+
+
+                                 </div>
+                            </div>
+
+
+                            <button type="button" class="btn btn-primary btn-lg m-3" onclick = "redirect()">START</button> 
+                            
+                            <button type="button" class="btn btn-primary btn-lg m-3" onclick = "location.href='demographicData.html'">BACK</button> 
+
+                         </div>
+
+
+                         
+
+                    </div>
+
+                    
+
+                </div>
+            </div>
+         </div>
+
+    </div>
+  
+   
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  </body>
+</html>
+
+<script>
+// invio valori client-client
+    function send_value() {
+
+        var amplitude = document.getElementById('amplitude').value;
+        localStorage.setItem('amplitude', amplitude);
+        document.location.href = "test.html";
+        
+        var frequency = document.getElementById('frequency').value;
+        localStorage.setItem('frequency', frequency);
+        document.location.href = "test.html";
+        
+        var duration = document.getElementById('duration').value;
+        localStorage.setItem('duration', duration);
+        document.location.href = "test.html";
+
+        var factor = document.getElementById('factor').value;
+        localStorage.setItem('factor', factor);
+        document.location.href = "test.html";
+
+        var reversals = document.getElementById('reversals').value;
+        localStorage.setItem('reversals', reversals);
+        document.location.href = "test.html";
+
+        var level = document.getElementById('level').value;
+        localStorage.setItem('level', level);
+        document.location.href = "test.html";
+        
+
+    }
+// test controllo inserimento
+    function test(){
+   //Elenco campi da controllare 
+    var amp = document.getElementById("amplitude").value;
+    var freq = document.getElementById("frequency").value;
+    var dur = document.getElementById("duration").value;
+    var phase = document.getElementById("phase").value;
+    var numBlocks = document.getElementById("blocks").value;
+    var startLevel = document.getElementById("level").value;
+    var nafc = document.getElementById("nAFC").value;
+    var fact = document.getElementById("factor").value;
+    var rev = document.getElementById("reversals").value;
+    var revTh = document.getElementById("reversalsTh").value;
+
+    var sound_irreg_exp = /^([a-zA-Z])+$/;
+
+        // controlli su amplitude
+        if ((amp == "") || (amp == "undefined")) {
+            alert("Il campo Amplitude è obbligatorio.");
+            document.getElementById("amplitude").value = "";
+            document.getElementById("amplitude").focus();
+            return false;
+        }
+       /* else if ((amp <0) || (amp > 1)) {
+            alert("Il valore del campo Amplitude deve essere compreso tra 0 e 1 ");
+            document.getElementById("amplitude").value = "";
+            document.getElementById("amplitude").focus();
+            return false;
+        }*/
+        
+        else if(sound_irreg_exp.test(amp)){
+        
+            alert("Il campo Amplitude puó contenere solo numeri");
+            document.getElementById("amplitude").value = "";
+            document.getElementById("amplitude").focus();
+            return false;
+
+        }
+        
+        //Controlli su frequency
+        if ((freq == "") || (freq == "undefined")) {
+            alert("Il campo Frequency è obbligatorio.");
+            document.getElementById("frequency").value = "";
+            document.getElementById("frequency").focus();
+            return false;
+        }
+        else if (freq <0){
+            alert("Il valore del campo Frequency deve essere maggiore di 0 ");
+            document.getElementById("frequency").value = "";
+            document.getElementById("frequency").focus();
+            return false;
+        }
+        /*
+        else if(!sound_reg_exp.test(freq)){
+        
+            alert("Il campo Frequency puó contenere solo numeri");
+            document.getElementById("amplitude").value = "";
+            document.getElementById("amplitude").focus();
+            return false;
+
+        }*/
+        //Controlli su duration
+        if ((dur == "") || (dur == "undefined")) {
+            alert("Il campo Duration è obbligatorio.");
+            document.getElementById("duration").value = "";
+            document.getElementById("duration").focus();
+            return false;
+        }
+        else if (dur <0){
+            alert("Il valore del campo Duration deve essere maggiore di 0 ");
+            document.getElementById("duration").value = "";
+            document.getElementById("duration").focus();
+            return false;
+        }
+        /*
+        else if(!sound_reg_exp.test(dur)){
+        
+            alert("Il campo Frequency puó contenere solo numeri");
+            document.getElementById("duration").value = "";
+            document.getElementById("duration").focus();
+            return false;
+
+        }*/
+        //controlli su phase
+        if ((phase == "") || (phase == "undefined")) {
+            alert("Il campo Phase è obbligatorio.");
+            document.getElementById("phase").value = "";
+            document.getElementById("phase").focus();
+            return false;
+        }
+        else if (phase <0){
+            alert("Il valore del campo Phase deve essere maggiore di 0 ");
+            document.getElementById("phase").value = "";
+            document.getElementById("phase").focus();
+            return false;
+        }
+        /*
+        else if(!sound_reg_exp.test(dur)){
+        
+            alert("Il campo Frequency puó contenere solo numeri");
+            document.getElementById("duration").value = "";
+            document.getElementById("duration").focus();
+            return false;
+
+        }*/
+          //controlli su number of blocks
+          if ((numBlocks == "") || (numBlocks == "undefined")) {
+            alert("Il campo Number of Blocks è obbligatorio.");
+            document.getElementById("blocks").value = "";
+            document.getElementById("blocks").focus();
+            return false;
+        }
+        else if (numBlocks <0){
+            alert("Il valore del campo Number of Blocks deve essere maggiore di 0 ");
+            document.getElementById("blocks").value = "";
+            document.getElementById("blocks").focus();
+            return false;
+        }
+        /*
+        else if(!sound_reg_exp.test(dur)){
+        
+            alert("Il campo Frequency puó contenere solo numeri");
+            document.getElementById("duration").value = "";
+            document.getElementById("duration").focus();
+            return false;
+
+        }*/
+          //controlli su starting level
+          if ((startLevel == "") || (startLevel == "undefined")) {
+            alert("Il campo Starting level è obbligatorio.");
+            document.getElementById("level").value = "";
+            document.getElementById("level").focus();
+            return false;
+        }
+        else if (startLevel <0){
+            alert("Il valore del campo Starting level deve essere maggiore di 0 ");
+            document.getElementById("level").value = "";
+            document.getElementById("level").focus();
+            return false;
+        }
+        /*
+        else if(!sound_reg_exp.test(dur)){
+        
+            alert("Il campo Frequency puó contenere solo numeri");
+            document.getElementById("duration").value = "";
+            document.getElementById("duration").focus();
+            return false;
+
+        }*/
+          //controlli su nAFC
+          if ((nafc == "") || (nafc == "undefined")) {
+            alert("Il campo nAFC è obbligatorio.");
+            document.getElementById("nAFC").value = "";
+            document.getElementById("nAFC").focus();
+            return false;
+        }
+        else if (nafc <0){
+            alert("Il valore del campo nAFC deve essere maggiore di 0 ");
+            document.getElementById("nAFC").value = "";
+            document.getElementById("nAFC").focus();
+            return false;
+        }
+        /*
+        else if(!sound_reg_exp.test(dur)){
+        
+            alert("Il campo Frequency puó contenere solo numeri");
+            document.getElementById("duration").value = "";
+            document.getElementById("duration").focus();
+            return false;
+
+        }*/
+          //controlli su number of fact
+          if ((fact == "") || (fact == "undefined")) {
+            alert("Il campo Factor è obbligatorio.");
+            document.getElementById("factor").value = "";
+            document.getElementById("factor").focus();
+            return false;
+        }
+        else if (fact <0){
+            alert("Il valore del campo Factor deve essere maggiore di 0 ");
+            document.getElementById("factor").value = "";
+            document.getElementById("factor").focus();
+            return false;
+        }
+        /*
+        else if(!sound_reg_exp.test(dur)){
+        
+            alert("Il campo Frequency puó contenere solo numeri");
+            document.getElementById("duration").value = "";
+            document.getElementById("duration").focus();
+            return false;
+
+        }*/
+          //controlli su starting rev
+          if ((rev == "") || (rev == "undefined")) {
+            alert("Il campo Reversals è obbligatorio.");
+            document.getElementById("reversals").value = "";
+            document.getElementById("reversals").focus();
+            return false;
+        }
+        else if (rev <0){
+            alert("Il valore del campo Reversals deve essere maggiore di 0 ");
+            document.getElementById("reversals").value = "";
+            document.getElementById("reversals").focus();
+            return false;
+        }
+        /*
+        else if(!sound_reg_exp.test(dur)){
+        
+            alert("Il campo Frequency puó contenere solo numeri");
+            document.getElementById("duration").value = "";
+            document.getElementById("duration").focus();
+            return false;
+
+        }*/
+          //controlli su revTh
+          if ((revTh == "") || (revTh == "undefined")) {
+            alert("Il campo Reversals Threshold è obbligatorio.");
+            document.getElementById("reversalsTh").value = "";
+            document.getElementById("reversalsTh").focus();
+            return false;
+        }
+        else if (revTh <0){
+            alert("Il valore del campo Reversals Threshold deve essere maggiore di 0 ");
+            document.getElementById("reversalsTh").value = "";
+            document.getElementById("reversalsTh").focus();
+            return false;
+        }
+        /*
+        else if(!sound_reg_exp.test(dur)){
+        
+            alert("Il campo Frequency puó contenere solo numeri");
+            document.getElementById("duration").value = "";
+            document.getElementById("duration").focus();
+            return false;
+
+        }*/
+        return true;
+   
+    
+}
+// redirect
+    function redirect(){
+
+if(test()){
+    send_value();
+    location.href="test.html";
+}
+}
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

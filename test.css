@@ -1,0 +1,37 @@
+.btn-success{
+    
+    
+    float:left;
+    margin-top: 2rem;
+    margin-left:20rem;
+    padding: 1rem;
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
+
+}
+
+.btn-danger{
+
+   float:right;
+   margin-top: 2rem;
+   margin-right:24rem;
+   padding: 1rem;
+   
+    
+}
+
+.btn-primary{
+    
+ margin-left: -25rem;
+ margin-top:3.3rem
+    
+}
+
+form {
+    padding: 40px;
+    background: #DDD;
+    border: 2px solid #000;
+    width: 50%;
+    margin: 30px auto;
+    border-radius: 10px;
+}
