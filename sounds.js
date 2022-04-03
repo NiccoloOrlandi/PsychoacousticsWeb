@@ -1,19 +1,18 @@
 
  //Prendo i dati condivisi nella cache , dovrá essere sostituita con una ricezione dei dati dal server
  
-    var amp =  localStorage.getItem('amplitude'); 
+    var amp =  localStorage.getItem('amplitude');                   // amplitude from the previous form
   //document.getElementById('output').innerHTML = amp;
 
-    var freq =  localStorage.getItem('frequency'); 
+    var freq =  localStorage.getItem('frequency');                  // frequency from the previous form
   
-
-    var dur =  localStorage.getItem('duration'); 
+    var dur =  localStorage.getItem('duration');                    // duration from the previous form
   
-    var delta = localStorage.getItem('level');
+    var delta = localStorage.getItem('level');                      // delta from the previous form
 
-    var stdFactor =  localStorage.getItem('factor'); 
+    var stdFactor =  localStorage.getItem('factor');                // factor from the previous form
  
-    var reversals =  localStorage.getItem('reversals'); 
+    var reversals =  localStorage.getItem('reversals');             // reversals from the previous form
   
    
    
@@ -23,30 +22,32 @@ var context= new AudioContext();
 
                   // minimum initial variation 
 
-var varFreq = freq;                           // frequency of the variable 
+var varFreq = freq;                                                  // frequency of the variable 
 
-var stdFreq = freq;                           // frequency of the standard 
+var stdFreq = freq;                                                  // frequency of the standard 
 
-var stdDur = dur/1000;                        // duration of the standard 
+var stdDur = dur/1000;                                               // duration of the standard 
 
-var varDur = dur/1000;                        // duration of the variable 
+var varDur = dur/1000;                                               // duration of the variable 
 
-var intStd = 10**(amp/20);                    // intensity of the variable
+var intStd = (10**(parseInt(amp)/20))/10;                                 // intensity of the variable
 
-var intVar = 10**((-parseInt(amp)+parseInt(delta))/20);  // intensity of the standard 
+var intVar = (10**(parseInt(amp)/20) - 10**(parseInt(delta)/20) )/10      // intensity of the standard 
 
-var swap =-1;                                 // initial value of swap
+var swap =-1;                                                        // initial value of swap
 
+var factor = stdFactor;                                              // factor setted as the std Factor
 
-var factor = stdFactor;                       
+alert(intStd)
+alert(intVar)
 
 // array and variables for data storage
 
-const history = [];
+const history = [];                                                  // history of the test
 
-var i = 0;                                    // next index of the array
+var i = 0;                                                           // next index of the array
 
-var countRev = 0;                             // count of reversals 
+var countRev = 0;                                                    // count of reversals 
 
 //funzione per generare il primo suono
 function playVar(time){
@@ -103,32 +104,32 @@ function random(){
     
     if(num==0){
 
-        playStd(0);
-        playVar(2);
-        swap = 1;
-
-        console.log(swap);   
+        playStd(0);                                     // first play the std sound
+        playVar(2);                                     // then play the variable sound
+        swap = 1;                                       // save that we swapped the order of the two                        
     }
     else{
 
-       playVar(0);
-       playStd(2);
-       swap = 0;
+       playVar(0);                                      // first play the variable sound
+       playStd(2);                                      // then play the std sound
+       swap = 0;                                        // save that we did not swapped the order of the two
     }  
 
-    alert(intStd)
-    alert(intVar)
+
 }
 
 
-//funzioni per implementare l'algoritmo SimpleUpDown
+//SimpleUpdDown functions 
+
 function selectFirst(){
 
     
+
     if(swap==0)
     {
-        intVar = intVar - 10**(-parseInt(delta)*parseInt(factor)/20);
-        history[i] =1;
+        delta = intVar- intStd;                                     // calculate the difference between the amplitude of the two sounds
+        intVar = intVar - (10**(parseFloat(delta/factor)/20))/10    // sub the half of the delta so that you can never reach the intStd
+        history[i] = 1;                                                 
         if((i>0)&&(history[i]!=history[i-1]))
         {
             countRev++;
@@ -141,7 +142,8 @@ function selectFirst(){
     }
     else
     {
-        intVar = intVar + 10**(-parseInt(delta)*parseInt(factor)/20);
+        delta = intVar- intStd;
+        intVar = intVar + (10**(parseFloat(delta/factor)/20))/10 
         history[i] = 0;
         if((i>0)&&(history[i]!=history[i-1]))
         {
@@ -153,7 +155,7 @@ function selectFirst(){
         i++;
         alert(countRev)
     }
-
+    alert(intVar);
 
 /*
     selector = 1;
@@ -217,10 +219,12 @@ function selectFirst(){
 
 function selectSecond(){
 
+    
     if(swap==0)
     {
         
-        intVar =intVar + 10**(-parseInt(delta)*parseInt(factor)/20);
+        delta = intVar - intStd;
+        intVar = intVar + (10**(parseFloat(delta/factor)/20))/10 
         history[i] = 0;
         if((i>0)&&(history[i]!=history[i-1]))
         {
@@ -233,8 +237,9 @@ function selectSecond(){
         alert(countRev)
     }
     else
-    {
-        intVar =intVar - 10**(-parseInt(delta)*parseInt(factor)/20);
+    { 
+        delta = intVar- intStd;
+        intVar = intVar - (10**(parseFloat(delta/factor)/20))/10 
         history[i] =1;
         if((i>0)&&(history[i]!=history[i-1]))
         {
@@ -246,8 +251,8 @@ function selectSecond(){
         i++;
         alert(countRev)
     }
-
-
+    alert(intVar);
+    
 /*      
     selector = 2;
     if((swap ==0)&&(intVar<intStd)&&(selector == 2)){
