@@ -237,32 +237,34 @@
 </html>
 
 <script>
+var plus = ""; //modify the redirection url if needed
+
 // invio valori client-client
     function send_value() {
 
         var amplitude = document.getElementById('amplitude').value;
         localStorage.setItem('amplitude', amplitude);
-        document.location.href = "test.html";
+        document.location.href = plus+"test.html";
         
         var frequency = document.getElementById('frequency').value;
         localStorage.setItem('frequency', frequency);
-        document.location.href = "test.html";
+        document.location.href = plus+"test.html";
         
         var duration = document.getElementById('duration').value;
         localStorage.setItem('duration', duration);
-        document.location.href = "test.html";
+        document.location.href = plus+"test.html";
 
         var factor = document.getElementById('factor').value;
         localStorage.setItem('factor', factor);
-        document.location.href = "test.html";
+        document.location.href = plus+"test.html";
 
         var reversals = document.getElementById('reversals').value;
         localStorage.setItem('reversals', reversals);
-        document.location.href = "test.html";
+        document.location.href = plus+"test.html";
 
         var level = document.getElementById('level').value;
         localStorage.setItem('level', level);
-        document.location.href = "test.html";
+        document.location.href = plus+"test.html";
         
 
     }
@@ -503,35 +505,20 @@
             return false;
 
         }*/
-        return true;
-   
-    
+        return true;    
 }
-// redirect
-    function redirect(){
 
-if(test()){
-    send_value();
-    location.href="test.html";
-}
+// redirect
+function redirect(){
+	//finds the type of test in the url
+	let params = new URLSearchParams(location.search);
+	if(params.has('test') && params.get('test')=="freq")
+		plus = "freq"; //if the type of test is the frequency test, adds it to the href urls
+	
+	if(test()){
+		send_value();
+		location.href=plus+"test.html";
+	}
 }
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
