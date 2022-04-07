@@ -59,8 +59,11 @@ return true;
 }
 
 function redirect(){
-
-    if(test()){
+	//check the url for test type
+	let params = new URLSearchParams(location.search);
+	if(params.has('test') && params.get('test')=="freq" && test())
+		location.href="soundSettings.html?test=freq"; //if the test type is the frequency test it is added to the sound setting url
+	else if(test()){
         location.href="soundSettings.html";
     }
 }
