@@ -4,34 +4,30 @@ body{
 
 .btn-outline-success{
     float:right;
-    margin-top:-2.3rem ; 
-    border-color: white; 
-    color: white; 
-    
+    margin-top:-2.3rem; 
+    border-color: white;
+    color: white;
 }
+
 .btn-outline-danger{
     float:right;
-    margin-top:-2.3rem ; 
-    border-color: white; 
-    color: white; 
-    
+    margin-top:-2.3rem;
+    border-color: white;
+    color: white;
 }
+
 .btn-primary{
     background-color: darkred;
     border-color: black;
-    
 }
 
 .card{
-
-    width: 48.3%;  
-    margin-left:1rem;
-    margin-right:1rem;
-    height: auto;
-    background-color:#212529; ;
+	float: left; /*fa in modo che tutte le card vengano inpilate a sinistra finchè c'è spazio, poi si va a capo*/
+    width: 45%; /*con questa larghezza ce ne vanno sempre almeno 2 di card, finchè lo schermo è abbastanza largo*/
+    margin: 1rem; /*margine su tutti i lati*/
+    margin-top: 3px; /*solo in alto è diverso*/
+    background-color: #212529;
     border-color: darkred;
-    margin-top: 3px;
-    margin-bottom: 1rem;
     box-shadow: 10px 10px 5px gray;
-    color:white;
+    color: white;
 }
