@@ -1,9 +1,84 @@
 .input-group{
-    margin-top:10px;
-    
+    margin-top: 10px;
 }
+
+.input-group.flex-nowrap{
+	width: 23%; 
+	float: left; 
+	margin-right: 2%; /*anche il margine si adatta con la dimensione dello schermo*/
+}
+
+#notesDiv{
+	width: 98%;
+}
+
 .form-check{
-    width: 33%;
-    
-    
+    margin-top: 1.5%;
+    width: 23%;
+	float: right;
+}
+
+.btn.btn-primary.btn-lg.m-3.soundSettingsButton{
+	float: left;
+	margin: 5% !important;
+	margin-top: 0px !important;
+	width: 40%;
+}
+
+.p-3.border.bg-light.little{
+	height: 140%;
+}
+
+.p-3.border.bg-light{
+	height: 102%;
+}
+
+.right-div{
+	width: 50%;
+	float: right;
+}
+
+.right-div .input-group.flex-nowrap{
+	width: 90%; 
+	float: right;
+}
+
+.left-div{
+	width: 50%;
+	float: left;
+}
+
+.left-div .form-check{
+	width: 100%;
+}
+
+/*quando la finestra è più piccola di 991 pixel, viene usato questo css*/
+@media all and (max-width: 991px) {
+	
+	/*gli input box ora prendono tutta la riga, come le note*/
+	.input-group.flex-nowrap{
+		width: 98%; 
+		float: left; 
+		margin-right: 2%;
+	}
+	
+	.right-div{
+		width: 95%;
+		float: none;
+		margin-bottom: 5%;
+	}
+	
+	.right-div .input-group.flex-nowrap{
+		width: 95%; 
+		float: none;
+	}
+	
+	.left-div{
+		width: 95%;
+		float: none;
+	}
+	
+	.form-check{
+		float: left;
+	}
 }
