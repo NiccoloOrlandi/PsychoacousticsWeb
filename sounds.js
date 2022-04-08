@@ -32,7 +32,7 @@ var varDur = dur/1000;                                               // duration
 
 var intStd = (10**(parseInt(amp)/20))/10;                                 // intensity of the variable
 
-var intVar = (10**(parseInt(amp)/20) - 10**(parseInt(delta)/20) )/10      // intensity of the standard 
+var intVar = (10**(parseInt(amp)/20) + 10**(parseInt(delta)/20) )/10      // intensity of the standard 
 
 var swap =-1;                                                        // initial value of swap
 
