@@ -88,7 +88,8 @@ function selectFirst(){
 
 	if(swap==0){
 		//alert("sbagliato "+varFreq); //debug
-		varFreq = varFreq - (((stdFreq-varFreq)/4)*parseInt(factor));
+		delta = stdFreq-varFreq
+		varFreq = varFreq - (delta/parseInt(factor));
 		history[i] =1;
 		if((i>0)&&(history[i]!=history[i-1]))
 			countRev++;
@@ -98,7 +99,8 @@ function selectFirst(){
 		i++;
 	}else{
 		//alert("corretto "+varFreq); //debug
-		varFreq = varFreq + (((stdFreq-varFreq)/4)*parseInt(factor));
+		delta = stdFreq-varFreq
+		varFreq = varFreq + (delta/parseInt(factor));
 		history[i] = 0;
 		if((i>0)&&(history[i]!=history[i-1]))
 			countRev++;
@@ -117,7 +119,8 @@ function selectSecond(){
 
 	if(swap==0){
 		//alert("corretto "+varFreq); //debug
-		varFreq = varFreq + (((stdFreq-varFreq)/4)*parseInt(factor));
+		delta = stdFreq-varFreq
+		varFreq = varFreq + (delta/parseInt(factor));
 		history[i] = 0;
 		if((i>0)&&(history[i]!=history[i-1]))
 			countRev++;
@@ -127,7 +130,8 @@ function selectSecond(){
 		i++;
 	}else{
 		//alert("sbagliato "+varFreq); //debug
-		varFreq = varFreq - (((stdFreq-varFreq)/4)*parseInt(factor));
+		delta = stdFreq-varFreq
+		varFreq = varFreq - (delta/parseInt(factor));
 		history[i] =1;
 		if((i>0)&&(history[i]!=history[i-1]))
 			countRev++;
