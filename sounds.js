@@ -30,9 +30,9 @@ var stdDur = dur/1000;                                               // duration
 
 var varDur = dur/1000;                                               // duration of the variable 
 
-var intStd = (10**(parseInt(amp)/20))/10;                                 // intensity of the variable
+var intStd = parseInt(amp);                                                    // intensity of the variable in dB
 
-var intVar = (10**(parseInt(amp)/20) + 10**(parseInt(delta)/20) )/10      // intensity of the standard 
+var intVar = parseInt(amp) + parseInt(delta);                                            // intensity of the standard in dB
 
 var swap =-1;                                                        // initial value of swap
 
@@ -55,7 +55,7 @@ function playVar(time){
     //volume
     var volume1 = context.createGain();
     // do una valore al guadagno
-    volume1.gain.value = intVar;
+    volume1.gain.value = (10**(parseInt(intVar)/20)/10); 
     //collego all'uscita audio
     volume1.connect(context.destination);
 
@@ -78,7 +78,7 @@ function playStd(time){
 
     var volume2 = context.createGain();         
     // do una valore al guadagno
-    volume2.gain.value = intStd;
+    volume2.gain.value = (10**(parseInt(intStd)/20)/10);
     //collego all'uscita audio
     volume2.connect(context.destination);
 
@@ -127,8 +127,8 @@ function selectFirst(){
 
     if(swap==0)
     {
-        delta = intVar- intStd;                                     // calculate the difference between the amplitude of the two sounds
-        intVar = intVar - (10**(parseFloat(delta/factor)/20))/10    // sub the half of the delta so that you can never reach the intStd
+        delta = intVar - intStd;                                     // calculate the difference between the amplitude of the two sounds
+        intVar = intVar - parseInt(delta)/parseInt(factor);                               // sub the half of the delta so that you can never reach the intStd
         history[i] = 1;                                                 
         if((i>0)&&(history[i]!=history[i-1]))
         {
@@ -143,7 +143,7 @@ function selectFirst(){
     else
     {
         delta = intVar- intStd;
-        intVar = intVar + (10**(parseFloat(delta/factor)/20))/10 
+        intVar = intVar + parseInt(delta)/parseInt(factor); 
         history[i] = 0;
         if((i>0)&&(history[i]!=history[i-1]))
         {
@@ -224,7 +224,7 @@ function selectSecond(){
     {
         
         delta = intVar - intStd;
-        intVar = intVar + (10**(parseFloat(delta/factor)/20))/10 
+        intVar = intVar - parseInt(delta)/parseInt(factor);
         history[i] = 0;
         if((i>0)&&(history[i]!=history[i-1]))
         {
@@ -239,7 +239,7 @@ function selectSecond(){
     else
     { 
         delta = intVar- intStd;
-        intVar = intVar - (10**(parseFloat(delta/factor)/20))/10 
+        intVar = intVar - parseInt(delta)/parseInt(factor);
         history[i] =1;
         if((i>0)&&(history[i]!=history[i-1]))
         {
