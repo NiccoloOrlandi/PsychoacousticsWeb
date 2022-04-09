@@ -9,16 +9,19 @@
 }
 
 #notesDiv{
+	/*a differenza degli altri input box della pagina per le info anagrafiche, questo è più largo,
+	quindi ha una classe in più con una proprietà in più (la larghezza)*/
 	width: 98%;
 }
 
 .form-check{
     margin-top: 1.5%;
     width: 23%;
-	float: right;
+	float: right; /*il checkbox sta sulla destra in entrambe le pagine html*/
 }
 
 .btn.btn-primary.btn-lg.m-3.soundSettingsButton{
+	/*i pulsanti in soundsettings hanno una larghezza e dei margini diversi, quindi usano una classe in più*/
 	float: left;
 	margin: 5% !important;
 	margin-top: 0px !important;
@@ -26,6 +29,9 @@
 }
 
 .p-3.border.bg-light.little{
+	/*in soundsettings i primi due gruppi di input box (i più piccoli) contengono solo oggetti float,
+	quindi hanno bisogno di avere una dimensione maggiore di 100% per coprire tutto. Gli oggetti con
+	proprietà float non occupano spazio e quindi il div crede di essere vuoto e diventa troppo piccolo*/
 	height: 140%;
 }
 
@@ -34,21 +40,25 @@
 }
 
 .right-div{
+	/*il right div sta a destra*/
 	width: 50%;
 	float: right;
 }
 
 .right-div .input-group.flex-nowrap{
+	/*gli input box all'interno del right div stanno a destra*/
 	width: 90%; 
 	float: right;
 }
 
 .left-div{
+	/*il left div sta a sinistra*/
 	width: 50%;
 	float: left;
 }
 
 .left-div .form-check{
+	/*normalmente i checkbox hanno width 23% (vedasi sopra), ma dentro al left div devono occupare tutto lo spazio*/
 	width: 100%;
 }
 
@@ -63,6 +73,8 @@
 	}
 	
 	.right-div{
+		/*non sta più a destra, non c'è spazio per fare due colonne quindi vengono impilati verticalmente, 
+		quindi tolgo tutti i float*/
 		width: 95%;
 		float: none;
 		margin-bottom: 5%;
@@ -79,6 +91,7 @@
 	}
 	
 	.form-check{
+		/*per evitare che si sovrapponga ad altri oggetti*/
 		float: left;
 	}
 }
