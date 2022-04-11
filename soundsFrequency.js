@@ -74,13 +74,13 @@ function random(){
 	}  
 	
 	//after playing the sound, the response buttons are reactivated
-	oscillator.onended = () => {
+	oscillator.onended = () => { //quando l'oscillatore sta suonando il programma non si ferma, quindi serve questo per riattivare i pulsanti solo quando finisce
 		document.getElementById("first").disabled = false;
 		document.getElementById("second").disabled = false;
 	}
 }
 
-//funzioni per implementare l'algoritmo SimpleUpDown
+//funzione per implementare l'algoritmo SimpleUpDown
 function select(button){
 	delta = varFreq-stdFreq;
 	
@@ -112,7 +112,7 @@ function select(button){
 
 //funzione per iniziare
 function start(){
-	document.getElementById("StartingWindow").style.display="none";
-	document.getElementById("PlayForm").style.display="inherit";
-	random();
+	document.getElementById("StartingWindow").style.display="none"; //rendo invisibile la finestra iniziale
+	document.getElementById("PlayForm").style.display="inherit"; //rendo visibile l'interfaccia del test
+	random(); //comincia il test
 }
