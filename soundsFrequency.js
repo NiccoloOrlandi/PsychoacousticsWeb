@@ -11,16 +11,16 @@ var reversals =  localStorage.getItem('reversals');	// reversals from the previo
 var context= new AudioContext();
 
 // minimum initial variation
-var varFreq = freq-parseInt(delta);	// frequency of the variable 
-var stdFreq = freq;					// frequency of the standard
+var varFreq = parseInt(freq) + parseInt(delta);	// frequency of the variable 
+var stdFreq = parseInt(freq);					// frequency of the standard
  
-var stdDur = dur/1000;				// duration of the standard 
-var varDur = dur/1000;				// duration of the variable 
+var stdDur = dur/1000;					// duration of the standard 
+var varDur = dur/1000;					// duration of the variable 
 
-var intStd = parseFloat(amp/200);			// intensity of the variable
-var intVar = parseFloat(amp/200);			// intensity of the standard 
+var intStd = parseFloat(amp/200);		// intensity of the variable
+var intVar = parseFloat(amp/200);		// intensity of the standard 
 
-var swap =-1;						// initial value of swap
+var swap =-1;							// initial value of swap
 var factor = stdFactor;					   
 
 // array and variables for data storage
@@ -39,7 +39,7 @@ function playVar(time){
 	oscillator.frequency.value = varFreq;	//frequency
 	oscillator.type = "sine";				// tipo di onda
 	
-	oscillator.start(context.currentTime+time);		//Facciamo partire l'oscillatore
+	oscillator.start(context.currentTime + time);		//Facciamo partire l'oscillatore
 	oscillator.stop(context.currentTime + time + 1);//Fermiamo l'oscillatore dopo 1 secondo
 }
 
@@ -54,94 +54,65 @@ function playStd(time){
 	oscillator.frequency.value = stdFreq;	//frequency
 	oscillator.type = "sine";				//tipo di onda
 
-	oscillator.start(context.currentTime+time);		//Facciamo partire l'oscillatore
+	oscillator.start(context.currentTime + time);		//Facciamo partire l'oscillatore
 	oscillator.stop(context.currentTime + time + 1);//Fermiamo l'oscillatore dopo 1 secondo
 }
 
 //funzione per randomizzare l'output
 function random(){
-
 	var rand = Math.floor(Math.random() *2);// this random decides if the variable sound will be reproduced as the first or second heared sound
 	
 	if(rand==0){//first played: Standard sound
 		playStd(0);
 		playVar(2);
 		swap = 1;
-
-		console.log("Primo");//debug
 	}
 	else{//first played: Variable sound
 		playVar(0);
 		playStd(2);
 		swap = 0;
-
-		console.log("Secondo");//debug
 	}  
 	
 	//after playing the sound, the response buttons are reactivated
-	document.getElementById("no").disabled = false;
-	document.getElementById("yes").disabled = false;
+	oscillator.onended = () => {
+		document.getElementById("first").disabled = false;
+		document.getElementById("second").disabled = false;
+	}
 }
 
 //funzioni per implementare l'algoritmo SimpleUpDown
-function selectFirst(){
-
-	if(swap==0){
-		//alert("sbagliato "+varFreq); //debug
-		delta = stdFreq-varFreq
+function select(button){
+	delta = varFreq-stdFreq;
+	
+	if((button == 1 && swap == 0) || (button == 2 && swap == 1)){ //correct answer
 		varFreq = varFreq - (delta/parseInt(factor));
-		history[i] =1;
-		if((i>0)&&(history[i]!=history[i-1]))
-			countRev++;
-
-		if(countRev == reversals) 
-			alert("il test é finito");
-		i++;
-	}else{
-		//alert("corretto "+varFreq); //debug
-		delta = stdFreq-varFreq
-		varFreq = varFreq + (delta/parseInt(factor));
 		history[i] = 0;
-		if((i>0)&&(history[i]!=history[i-1]))
-			countRev++;
 		
-		if(countRev == reversals) 
-			alert("il test é finito");
-		i++;
+	}else{ //wrong answer
+		varFreq = varFreq + (delta/parseInt(factor));
+		history[i] = 1;
 	}
 	
-	// disable the response buttons until the new sounds are heared
-	document.getElementById("no").disabled = true;
-	document.getElementById("yes").disabled = true;
-}   
-
-function selectSecond(){
-
-	if(swap==0){
-		//alert("corretto "+varFreq); //debug
-		delta = stdFreq-varFreq
-		varFreq = varFreq + (delta/parseInt(factor));
-		history[i] = 0;
-		if((i>0)&&(history[i]!=history[i-1]))
-			countRev++;
-		
-		if(countRev == reversals) 
-			alert("il test é finito");
-		i++;
-	}else{
-		//alert("sbagliato "+varFreq); //debug
-		delta = stdFreq-varFreq
-		varFreq = varFreq - (delta/parseInt(factor));
-		history[i] =1;
-		if((i>0)&&(history[i]!=history[i-1]))
+	if((i>0)&&(history[i]!=history[i-1]))
 			countRev++;
 
-		if(countRev == reversals) 
-			alert("il test é finito");
-		i++;
+	if(countRev == reversals){
+		alert("il test é finito");
+		location.href="index.html";
 	}
 	
+	i++;
+	
 	// disable the response buttons until the new sounds are heared
-	document.getElementById("no").disabled = true;
-	document.getElementById("yes").disabled = true;
+	document.getElementById("first").disabled = true;
+	document.getElementById("second").disabled = true;
+	
+	random();
+}
+
+//funzione per iniziare
+function start(){
+	document.getElementById("StartingWindow").style.display="none";
+	document.getElementById("PlayForm").style.display="inherit";
+	random();
 }

@@ -1,0 +1,41 @@
+.btn-success{
+	margin-top: 4%;
+	padding: 2%;
+	padding-left: 3%;
+	padding-right: 3%;
+
+}
+
+.btn-danger{
+	margin-top: 4%;
+	margin-left: 20%;
+	padding: 2%;
+	padding-left: 3%;
+	padding-right: 3%;
+}
+
+form {
+    padding: 3%;
+    background: #DDD;
+    border: 2px solid #000;
+    width: 50%;
+    margin: 30px auto;
+    border-radius: 10px;
+	text-align: center;
+	display: none;
+}
+
+.window{
+	padding: 4%;
+    background: #DDD;
+    border: 2px solid #000;
+    width: 30%;
+    margin: 10% auto;
+    border-radius: 10px;
+	text-align: center;
+}
+
+.window .btn-success{
+	margin-top: 20%;
+	padding: 5%;
+}
