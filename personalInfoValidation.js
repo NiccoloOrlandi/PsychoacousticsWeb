@@ -61,9 +61,12 @@ return true;
 function redirect(){
 	//check the url for test type
 	let params = new URLSearchParams(location.search);
-	if(params.has('test') && params.get('test')=="freq" && test())
-		location.href="soundSettings.html?test=freq"; //if the test type is the frequency test it is added to the sound setting url
-	else if(test()){
-        location.href="soundSettings.html";
+	if(test()){
+		if(params.get('test')=="freq")
+			location.href="soundSettings.html?test=freq"; //if the test type is the frequency test it is added to the sound setting url
+		else if(params.get('test')=="dur")
+			location.href="soundSettings.html?test=dur"; //if the test type is the duration test it is added to the sound setting url
+		else
+			location.href="soundSettings.html?test=amp"; //if the test type is the amplitude test it is added to the sound setting url
     }
 }
