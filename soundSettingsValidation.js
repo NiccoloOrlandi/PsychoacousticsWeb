@@ -25,6 +25,10 @@ function send_value() {
 	var level = document.getElementById('level').value;
 	localStorage.setItem('level', level);
 	document.location.href = plus+"test.html";
+	
+	var algorithm = document.querySelector('input[name="algorithm"]:checked').id;
+	localStorage.setItem('algorithm', algorithm);
+	document.location.href = plus+"test.html";
 }
 
 // test controllo inserimento

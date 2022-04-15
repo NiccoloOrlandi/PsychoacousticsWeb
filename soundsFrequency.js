@@ -1,11 +1,12 @@
 
 //Prendo i dati condivisi nella cache , dovrá essere sostituita con una ricezione dei dati dal server 
-var amp =  localStorage.getItem('amplitude');		// amplitude from the previous form
-var freq =  localStorage.getItem('frequency'); 		// frequency from the previous form
-var dur =  localStorage.getItem('duration'); 		// duration from the previous form
+var amp = localStorage.getItem('amplitude');		// amplitude from the previous form
+var freq = localStorage.getItem('frequency'); 		// frequency from the previous form
+var dur = localStorage.getItem('duration'); 		// duration from the previous form
 var delta = localStorage.getItem('level');			// delta from the previous form
-var stdFactor =  localStorage.getItem('factor'); 	// factor from the previous form
-var reversals =  localStorage.getItem('reversals');	// reversals from the previous form
+var stdFactor = localStorage.getItem('factor'); 	// factor from the previous form
+var reversals = localStorage.getItem('reversals');	// reversals from the previous form
+var algorithm = localStorage.getItem('algorithm');	//algorithm from the previous form
 
 //contesto e dichiarazione variabili da cambiare durante il test, probabilmente andranno tolte molte variabili globali da qui una volta terminato l'algoritmo
 var context= new AudioContext();
@@ -21,7 +22,8 @@ var intStd = parseFloat(amp/200);		// intensity of the variable
 var intVar = parseFloat(amp/200);		// intensity of the standard 
 
 var swap =-1;							// initial value of swap
-var factor = stdFactor;					   
+var factor = stdFactor;				
+var correctAnsw = 0;	   
 
 // array and variables for data storage
 const history = [];
@@ -82,15 +84,22 @@ function random(){
 
 //funzione per implementare l'algoritmo SimpleUpDown
 function select(button){
-	delta = varFreq-stdFreq;
-	
-	if((button == 1 && swap == 0) || (button == 2 && swap == 1)){ //correct answer
-		varFreq = varFreq - (delta/parseInt(factor));
-		history[i] = 0;
-		
-	}else{ //wrong answer
-		varFreq = varFreq + (delta/parseInt(factor));
-		history[i] = 1;
+	switch(algorithm){
+		case 'SimpleUpDown':
+			nDOWNoneUP(1, button);
+			break;
+		case 'TwoDownOneUp':
+			nDOWNoneUP(2, button);
+			break;
+		case 'ThreeDownOneUp':
+			nDOWNoneUP(3, button);
+			break;
+		case 'FourDownOneUp':
+			nDOWNoneUP(4, button);
+			break;
+		default:
+			SimpleUpDown();
+			break;
 	}
 	
 	if((i>0)&&(history[i]!=history[i-1]))
@@ -108,6 +117,25 @@ function select(button){
 	document.getElementById("second").disabled = true;
 	
 	random();
+}
+
+//funzione per implementare l'algoritmo nD1U
+function nDOWNoneUP(n, button){
+	delta = varFreq-stdFreq;
+	
+	if((button == 1 && swap == 0) || (button == 2 && swap == 1)){ //correct answer
+		history[i] = 0;
+		correctAnsw += 1;
+		if(correctAnsw == n){ //if there are n consegutive correct answers
+			varFreq = varFreq - (delta/parseInt(factor));
+			correctAnsw = 0;
+		}
+		
+	}else{ //wrong answer
+		varFreq = varFreq + (delta/parseInt(factor));
+		history[i] = 1;
+		correctAnsw = 0;
+	}
 }
 
 //funzione per iniziare
