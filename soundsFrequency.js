@@ -98,7 +98,7 @@ function select(button){
 			nDOWNoneUP(4, button);
 			break;
 		default:
-			SimpleUpDown();
+			nDOWNoneUP(1, button);
 			break;
 	}
 	

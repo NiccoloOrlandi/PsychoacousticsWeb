@@ -311,3 +311,10 @@ function selectSecond(){
 */  
 }
 
+//funzione per iniziare
+function start(){
+	document.getElementById("StartingWindow").style.display="none"; //rendo invisibile la finestra iniziale
+	document.getElementById("PlayForm").style.display="inherit"; //rendo visibile l'interfaccia del test
+	random(); //comincia il test
+}
+
