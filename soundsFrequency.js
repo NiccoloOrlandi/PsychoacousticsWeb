@@ -18,8 +18,8 @@ var stdFreq = parseInt(freq);					// frequency of the standard
 var stdDur = dur/1000;					// duration of the standard 
 var varDur = dur/1000;					// duration of the variable 
 
-var intStd = parseFloat(amp/200);		// intensity of the variable
-var intVar = parseFloat(amp/200);		// intensity of the standard 
+var intStd = parseFloat(amp);		// intensity of the variable
+var intVar = parseFloat(amp);		// intensity of the standard 
 
 var swap =-1;							// initial value of swap
 var factor = stdFactor;				
@@ -33,7 +33,7 @@ var countRev = 0;			// count of reversals
 //funzione per generare il primo suono
 function playVar(time){
 	var volume1 = context.createGain();		//volume
-	volume1.gain.value = intVar;			// do una valore al guadagno
+	volume1.gain.value = (10**(parseInt(intVar)/20)/10);			// do una valore al guadagno
 	volume1.connect(context.destination);	//collego all'uscita audio
 
 	oscillator = context.createOscillator();//Creiamo il primo oscillatore
@@ -48,7 +48,7 @@ function playVar(time){
 //funzione per generare il secondo suono
 function playStd(time){
 	var volume2 = context.createGain();		//volume
-	volume2.gain.value = intStd;			//do una valore al guadagno
+	volume2.gain.value = (10**(parseInt(intStd)/20)/10)			//do una valore al guadagno
 	volume2.connect(context.destination);	//collego all'uscita audio
 
 	oscillator = context.createOscillator();//Creiamo il secondo oscillatore
