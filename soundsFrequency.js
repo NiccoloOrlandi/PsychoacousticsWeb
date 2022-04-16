@@ -1,12 +1,13 @@
 
 //Prendo i dati condivisi nella cache , dovrá essere sostituita con una ricezione dei dati dal server 
-var amp = localStorage.getItem('amplitude');		// amplitude from the previous form
-var freq = localStorage.getItem('frequency'); 		// frequency from the previous form
-var dur = localStorage.getItem('duration'); 		// duration from the previous form
-var delta = localStorage.getItem('level');			// delta from the previous form
-var stdFactor = localStorage.getItem('factor'); 	// factor from the previous form
-var reversals = localStorage.getItem('reversals');	// reversals from the previous form
-var algorithm = localStorage.getItem('algorithm');	//algorithm from the previous form
+var amp = localStorage.getItem('amplitude');			// amplitude from the previous form
+var freq = localStorage.getItem('frequency'); 			// frequency from the previous form
+var dur = localStorage.getItem('duration'); 			// duration from the previous form
+var delta = localStorage.getItem('level');				// delta from the previous form
+var stdFactor = localStorage.getItem('factor'); 		// factor from the previous form
+var secondFactor = localStorage.getItem('secondFactor');// factor from the previous form
+var reversals = localStorage.getItem('reversals');		// reversals from the previous form
+var algorithm = localStorage.getItem('algorithm');		//algorithm from the previous form
 
 //contesto e dichiarazione variabili da cambiare durante il test, probabilmente andranno tolte molte variabili globali da qui una volta terminato l'algoritmo
 var context= new AudioContext();
