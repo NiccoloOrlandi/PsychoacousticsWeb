@@ -115,6 +115,12 @@ function random(){
        swap = 0;                                        // save that we did not swapped the order of the two
     }  
 
+    //after playing the sound, the response buttons are reactivated
+	oscillator.onended = () => { //quando l'oscillatore sta suonando il programma non si ferma, quindi serve questo per riattivare i pulsanti solo quando finisce
+		document.getElementById("first").disabled = false;
+		document.getElementById("second").disabled = false;
+	}
+
 
 }
 
@@ -157,64 +163,7 @@ function selectFirst(){
     }
     alert(intVar);
 
-/*
-    selector = 1;
-    if((swap==0)&&(intVar>=intStd)&&(selector ==1)){
 
-        intVar=intVar + delta*factor
-        history[i] =1;
-        if((i>0)&&(history[i]!=history[i-1]))
-        {
-            countRev++;
-        }
-
-        if(countRev == reversals) 
-            alert("il test é finito");
-        i++;
-        alert(countRev)
-    }
-    else if((swap==1)&&(intVar<intStd)&&(selector == 1)){
-
-        intVar=intVar*factor
-        history[i] =1;
-        if((i>0)&&(history[i]!=history[i-1]))
-        {
-            countRev++;
-        }
-        if(countRev == reversals) 
-            alert("il test é finito");
-        i++;
-        alert(countRev)
-    }
-    else if((swap==1)&&(intVar>=intStd)&&(selector == 1)){
-        
-        intStd=intStd/factor
-        history[i] = 0;
-        if((i>0)&&(history[i]!=history[i-1]))
-        {
-            countRev++;
-        }
-        if(countRev == reversals) 
-            alert("il test é finito");
-        i++;
-        alert(countRev)
-    }
-    else if((swap==0)&&(intVar<intStd)&&(selector == 1)){
-        
-        intVar=intVar/factor
-        history[i] = 0;
-        if((i>0)&&(history[i]!=history[i-1]))
-        {
-            countRev++;
-        }
-        
-        if(countRev == reversals) 
-            alert("il test é finito");
-        i++;
-        alert(countRev)
-    }
-   
-*/
 }   
 
 function selectSecond(){
@@ -253,62 +202,7 @@ function selectSecond(){
     }
     alert(intVar);
     
-/*      
-    selector = 2;
-    if((swap ==0)&&(intVar<intStd)&&(selector == 2)){
 
-        intVar=intVar*factor
-        history[i] =1;
-        if((i>0)&&(history[i]!=history[i-1]))
-        {
-            countRev++;
-        }
-        if(countRev == reversals) 
-            alert("il test é finito");
-        i++;
-        alert(countRev)
-    }
-    else if((swap==1)&&(intVar>=intStd)&&(selector == 2)) {
-        
-        intStd=intStd*factor 
-        history[i] =1;
-        if((i>0)&&(history[i]!=history[i-1]))
-        {
-            countRev++;
-        }
-        if(countRev == reversals) 
-            alert("il test é finito");
-        i++;
-        alert(countRev)
-    }
-    else if((swap==1)&&(intVar<intStd)&&(selector == 2)){
-
-        intVar=intVar/factor
-        history[i] = 0;
-        if((i>0)&&(history[i]!=history[i-1]))
-        {
-            countRev++;
-        }
-        if(countRev == reversals) 
-            alert("il test é finito");
-        i++;
-        alert(countRev)
-    }
-    else if((swap==0)&&(intVar>=intStd)&&(selector == 2)){
-        
-        intStd=intStd/factor
-        history[i] = 0;
-        if((i>0)&&(history[i]!=history[i-1]))
-        {
-            countRev++;
-        }
-        if(countRev == reversals) 
-            alert("il test é finito");
-        i++;
-        alert(countRev)
-    }
-
-*/  
 }
 
 //funzione per iniziare
