@@ -11,6 +11,8 @@
     var delta = localStorage.getItem('level');                      // delta from the previous form
 
     var stdFactor =  localStorage.getItem('factor');                // factor from the previous form
+
+    var secFactor =  localStorage.getItem('secondFactor');          // second factor from the previous form
  
     var reversals =  localStorage.getItem('reversals');             // reversals from the previous form
 

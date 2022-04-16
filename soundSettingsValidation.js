@@ -18,6 +18,10 @@ function send_value() {
 	localStorage.setItem('factor', factor);
 	document.location.href = plus+"test.html";
 
+	var factor = document.getElementById('secondFactor').value;
+	localStorage.setItem('secondFactor', secondFactor);
+	document.location.href = plus+"test.html";
+
 	var reversals = document.getElementById('reversals').value;
 	localStorage.setItem('reversals', reversals);
 	document.location.href = plus+"test.html";
