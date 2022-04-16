@@ -169,7 +169,7 @@ function select(button){
 
 //funzione per implementare l'algoritmo nD1U
 function nDOWNoneUP(n, button){
-	delta = varFreq-stdFreq;
+	delta = intVar-intStd;
 	
 	if((button == 1 && swap == 0) || (button == 2 && swap == 1)){ //correct answer
 		history[i] = 0;
