@@ -13,7 +13,9 @@
     var stdFactor =  localStorage.getItem('factor');                // factor from the previous form
  
     var reversals =  localStorage.getItem('reversals');             // reversals from the previous form
-  
+
+	var algorithm = localStorage.getItem('algorithm');				//algorithm from the previous form
+
    
    
 
@@ -37,6 +39,8 @@ var intVar = parseInt(amp) + parseInt(delta);                                   
 var swap =-1;                                                        // initial value of swap
 
 var factor = stdFactor;                                              // factor setted as the std Factor
+			
+var correctAnsw = 0;												 // correct answers
 
 alert(intStd)
 alert(intVar)
@@ -124,85 +128,60 @@ function random(){
 
 }
 
+//funzione per implementare l'algoritmo SimpleUpDown
+function select(button){
+	switch(algorithm){
+		case 'SimpleUpDown':
+			nDOWNoneUP(1, button);
+			break;
+		case 'TwoDownOneUp':
+			nDOWNoneUP(2, button);
+			break;
+		case 'ThreeDownOneUp':
+			nDOWNoneUP(3, button);
+			break;
+		case 'FourDownOneUp':
+			nDOWNoneUP(4, button);
+			break;
+		default:
+			nDOWNoneUP(1, button);
+			break;
+	}
+	
+	if((i>0)&&(history[i]!=history[i-1]))
+			countRev++;
 
-//SimpleUpdDown functions 
+	if(countRev == reversals){
+		alert("il test é finito");
+		location.href="index.html";
+	}
+	
+	i++;
+	
+	// disable the response buttons until the new sounds are heared
+	document.getElementById("first").disabled = true;
+	document.getElementById("second").disabled = true;
+	
+	random();
+}
 
-function selectFirst(){
-
-    
-
-    if(swap==0)
-    {
-        delta = intVar - intStd;                                     // calculate the difference between the amplitude of the two sounds
-        intVar = intVar - parseInt(delta)/parseInt(factor);                               // sub the half of the delta so that you can never reach the intStd
-        history[i] = 1;                                                 
-        if((i>0)&&(history[i]!=history[i-1]))
-        {
-            countRev++;
-        }
-
-        if(countRev == reversals) 
-            alert("il test é finito");
-        i++;
-        alert(countRev)
-    }
-    else
-    {
-        delta = intVar- intStd;
-        intVar = intVar + parseInt(delta)/parseInt(factor); 
-        history[i] = 0;
-        if((i>0)&&(history[i]!=history[i-1]))
-        {
-            countRev++;
-        }
-        
-        if(countRev == reversals) 
-            alert("il test é finito");
-        i++;
-        alert(countRev)
-    }
-    alert(intVar);
-
-
-}   
-
-function selectSecond(){
-
-    
-    if(swap==0)
-    {
-        
-        delta = intVar - intStd;
-        intVar = intVar - parseInt(delta)/parseInt(factor);
-        history[i] = 0;
-        if((i>0)&&(history[i]!=history[i-1]))
-        {
-            countRev++;
-        }
-        
-        if(countRev == reversals) 
-            alert("il test é finito");
-        i++;
-        alert(countRev)
-    }
-    else
-    { 
-        delta = intVar- intStd;
-        intVar = intVar - parseInt(delta)/parseInt(factor);
-        history[i] =1;
-        if((i>0)&&(history[i]!=history[i-1]))
-        {
-            countRev++;
-        }
-
-        if(countRev == reversals) 
-            alert("il test é finito");
-        i++;
-        alert(countRev)
-    }
-    alert(intVar);
-    
-
+//funzione per implementare l'algoritmo nD1U
+function nDOWNoneUP(n, button){
+	delta = varFreq-stdFreq;
+	
+	if((button == 1 && swap == 0) || (button == 2 && swap == 1)){ //correct answer
+		history[i] = 0;
+		correctAnsw += 1;
+		if(correctAnsw == n){ //if there are n consegutive correct answers
+			intVar = intVar - parseInt(delta)/parseInt(factor);
+			correctAnsw = 0;
+		}
+		
+	}else{ //wrong answer
+		intVar = intVar + parseInt(delta)/parseInt(factor); 
+		history[i] = 1;
+		correctAnsw = 0;
+	}
 }
 
 //funzione per iniziare
