@@ -1,7 +1,5 @@
 .btn-success{
-	float:left;
 	margin-top: 4%;
-	margin-left: 15%;
 	padding: 2%;
 	padding-left: 3%;
 	padding-right: 3%;
@@ -9,17 +7,11 @@
 }
 
 .btn-danger{
-	float:right;
 	margin-top: 4%;
-	margin-right: 15%;
+	margin-left: 20%;
 	padding: 2%;
 	padding-left: 3%;
 	padding-right: 3%;
-}
-
-.btn-primary{
-	margin-left: -75%;
-	margin-top: 5%;
 }
 
 form {
@@ -29,4 +21,21 @@ form {
     width: 50%;
     margin: 30px auto;
     border-radius: 10px;
+	text-align: center;
+	display: none;
+}
+
+.window{
+	padding: 4%;
+    background: #DDD;
+    border: 2px solid #000;
+    width: 30%;
+    margin: 10% auto;
+    border-radius: 10px;
+	text-align: center;
+}
+
+.window .btn-success{
+	margin-top: 20%;
+	padding: 5%;
 }
