@@ -16,9 +16,10 @@ DEADLINES E TO-DO:
 
 - 15/mag db (login)
 	TODO:
-	- revisionare schema er
-	- implementare
-	- riempire
+	- revisionare schema er fatto
+	- implementare fatto
+	- riempire fatto
+	- feedback se checkbox spuntata
 	- implementare col sito (php)
 
 - poi php
