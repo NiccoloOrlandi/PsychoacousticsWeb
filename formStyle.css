@@ -11,5 +11,6 @@ form {
     border-radius: 10px;
 }
 
-
-
+.form-select{
+	margin-bottom: 3%;
+}
