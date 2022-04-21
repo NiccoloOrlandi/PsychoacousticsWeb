@@ -34,13 +34,14 @@
                 <span class="input-group-text" id="basic-addon1">Birth date</span>
                 <input type="date" class="form-control" aria-label="Date" aria-describedby="basic-addon1" name="date">
             </div> 
-			<select name="gender" class="form-select">
+			<select name='gender' class="form-select">
 				<option disabled selected>Select your gender</option>
 				<?php 
-					$conn = new mysqli("147.162.143.132", "root", "234kbnD3.23d", "Psychoacoustics_DB");
+					$conn = new mysqli("localhost", "test", "", "psychoacoustics_db");
 					
-					if ($conn->errno)
+					if ($conn->errno){
 						die("Problemi di connessione" . $conn->error);
+					}
 						
 					mysqli_set_charset($conn, "utf8");
 					
@@ -63,7 +64,7 @@
 					
 					//creo un'opzione per ogni possibile valore
 					foreach($list as $elem){
-						echo "<option value='".$elem."'>".$elem."</option>";
+						echo "<option value='".strtoupper($elem)."'>".strtoupper($elem)."</option>";
 					}
 				?>
 			</select>
