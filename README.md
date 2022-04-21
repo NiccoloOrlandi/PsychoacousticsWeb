@@ -26,15 +26,15 @@ DEADLINES E TO-DO:
 	- inviamo solo gli ultimi reversals oppure tutti e poi ci pensano gli analisti 			  -> ?
 	
 - poi php entro 30/04/2022
-	- quando un utente si registra va creato un nuovo account (e va controllato che l'username non esista già)
-	- passaggio dati in sicurezza (demographicData, soundSettings, tipo di test)
-	- salvataggio dei dati dei guest che hanno creato un account
-	- conferma password (non ancora messa prima bisogna iscriversi e forse va introdotta la email ma va chiesto al prof )
+	- quando un utente si registra va creato un nuovo account (e va controllato che l'username non esista già)   fatto
+	- passaggio dati in sicurezza (demographicData, soundSettings, tipo di test)				     fatto (per ora non problema lato client)
+	- salvataggio dei dati dei guest che hanno creato un account						     fatto
+	- conferma password (non ancora messa prima bisogna iscriversi e forse va introdotta la email ma va chiesto al prof ) -> ?
 	- informativa sulla privacy?									  -> ?
-	- quando registri va creato anche un guest, quindi vanno chieste tutte le info
-	- quando un utente registrato fa un test va aggiunto il risultato del test e va collegato al guest dell'utente
+	- quando registri va creato anche un guest, quindi vanno chieste tutte le info				     fatto
+	- quando un utente registrato fa un test va aggiunto il risultato del test e va collegato al guest dell'utente			
 	- quando un guest non registrato fa un test va creato il guest e va aggiunto il risultato del test e va collegato al guest
-	- quando un utente accede va controllato che esista e va creata una sessione (così se fa test vengono collegati al suo account)
+	- quando un utente accede va controllato che esista e va creata una sessione (così se fa test vengono collegati al suo account) fatto
 			
 - captcha	entro 15/05/2022
 	- livello intermedio
