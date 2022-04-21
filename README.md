@@ -38,6 +38,7 @@ DEADLINES E TO-DO:
 			
 - captcha	entro 15/05/2022
 	- livello intermedio
+	- come oscurare i dati di php username e psw 							  -> ?
 
 - plus se riusciamo entro il 10/06/2022
 	- Vedere se si puó modificare la fase del suono
