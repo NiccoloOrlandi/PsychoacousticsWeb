@@ -8,8 +8,8 @@ DEADLINES E TO-DO:
 
 - test amp e freq
 	- rivedere amp iniziale
-	- inserire doppio factor (sqrt(2) dopo n test) -> ?
-	- limiti factor: 1-10                        -> ?
+	- inserire doppio factor (sqrt(2) dopo n test) 
+	- limiti factor: maggiore di zero  2+                       
 
 - test durata + 2d1u
 	- rivedere distanza tra i due suoni nel test sulla durata
@@ -19,19 +19,19 @@ DEADLINES E TO-DO:
     	- implementare         		fatto
     	- riempire         		fatto
 	- cambiare l'identificativo di test: usare fk_guest + un seriale (n-esimo test di un certo guest) -> ?
-	- età in guest deve essere sostituita con data di nascita (solo quando creiamo account?)	  -> ? 
+	- età in guest deve essere sostituita con data di nascita (solo quando creiamo account?)	  non serve 
 	- feedback se checkbox spuntata 
 	- dati salvati solo se spunto la checkbox "save results"
-	- aggiungere email al db 									  -> ?
-	- inviamo solo gli ultimi reversals oppure tutti e poi ci pensano gli analisti 			  -> ?
+	- aggiungere email al db 									  va bene
+	- inviamo solo gli ultimi reversals oppure tutti e poi ci pensano gli analisti 			  a seconda di rev threshold
 	
 - poi php entro 30/04/2022
 	- quando un utente si registra va creato un nuovo account (e va controllato che l'username non esista già)   fatto
 		- controlli js sugli input (required data + sql injections)
 	- passaggio dati in sicurezza (demographicData, soundSettings, tipo di test)				     fatto (per ora non problema lato client)
 	- salvataggio dei dati dei guest che hanno creato un account						     fatto
-	- conferma password (non ancora messa prima bisogna iscriversi e forse va introdotta la email ma va chiesto al prof ) -> ?
-	- informativa sulla privacy?									  -> ?
+	- conferma password (non ancora messa prima bisogna iscriversi e forse va introdotta la email ma va chiesto al prof ) 
+	- informativa sulla privacy?									  per ora non serve
 	- quando registri va creato anche un guest, quindi vanno chieste tutte le info				     fatto
 	- quando un utente registrato fa un test va aggiunto il risultato del test e va collegato al guest dell'utente			
 	- quando un guest non registrato fa un test va creato il guest e va aggiunto il risultato del test e va collegato al guest
