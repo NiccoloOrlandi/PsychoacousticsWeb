@@ -272,3 +272,6 @@ function redirect(){
 		location.href=plus+"test.html";
 	}
 }
+
+
+

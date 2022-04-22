@@ -44,8 +44,8 @@ var factor = stdFactor;                                              // factor s
 			
 var correctAnsw = 0;												 // correct answers
 
-alert(intStd)
-alert(intVar)
+
+checkFeedback();
 
 // array and variables for data storage
 
@@ -193,3 +193,14 @@ function start(){
 	random(); //comincia il test
 }
 
+function checkFeedback(){
+
+    
+    
+    /*if()
+    {
+        alert("checked");
+    }*/
+    
+    
+}
