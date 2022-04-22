@@ -12,7 +12,7 @@
 			if(isset($_GET['err']) && $_GET['err']==1)
 				echo "<div class='alert alert-danger'>Username gi&agrave; in uso, sceglierne un altro</div>";
 		?>
-        <form method="post" action="registering.php">
+        <form method="post" action="registering.php" onsubmit="validation()">
             <h1>Registrazione</h1>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Username</span>
@@ -35,7 +35,7 @@
                 <input type="date" class="form-control" aria-label="Date" aria-describedby="basic-addon1" name="date">
             </div> 
 			<select name='gender' class="form-select">
-				<option disabled selected>Select your gender</option>
+				<option disabled="disabled" selected value="null" id="NullGender">Select your gender</option>
 				<?php 
 					$conn = new mysqli("localhost", "test", "", "psychoacoustics_db");
 					
@@ -75,4 +75,10 @@
             <button type="submit" class="btn btn-primary btn-lg m-1">Registrati</button>
         </form>
     </body>
+	
+	<script>
+		function validation(){
+			document.getElementById("NullGender").disabled=false;
+		}
+	</script>
 </html>

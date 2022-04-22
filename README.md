@@ -27,6 +27,7 @@ DEADLINES E TO-DO:
 	
 - poi php entro 30/04/2022
 	- quando un utente si registra va creato un nuovo account (e va controllato che l'username non esista già)   fatto
+		- controlli js sugli input (required data + sql injections)
 	- passaggio dati in sicurezza (demographicData, soundSettings, tipo di test)				     fatto (per ora non problema lato client)
 	- salvataggio dei dati dei guest che hanno creato un account						     fatto
 	- conferma password (non ancora messa prima bisogna iscriversi e forse va introdotta la email ma va chiesto al prof ) -> ?
