@@ -195,12 +195,7 @@ function start(){
 
 function checkFeedback(){
 
-    
-    
-    /*if()
-    {
-        alert("checked");
-    }*/
+    alert(document.Settings.checkFb.checked)
     
     
 }
