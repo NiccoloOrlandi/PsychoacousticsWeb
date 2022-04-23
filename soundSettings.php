@@ -20,7 +20,7 @@
 					<div class=" p-3 border bg-light" style="height:98%">
 		
 						<h1>Set the characteristics of the standard pure tone</h1>
-						<form action="soundSettingsValidation.php" onsubmit="redirect()" name="Settings">
+						<form action="soundSettingsValidation.php" onsubmit="redirect()" name="Settings" method="post">
 							<!-- Primo slot di setting -->
 							<div class="container p-4" >
 								<div class="row gx-4">
@@ -64,17 +64,17 @@
 											
 											<div class="input-group flex-nowrap">
 											<span class="input-group-text" id="addon-wrapping" style="width:7rem">n. of blocks</span>
-											<input type="text" class="form-control" id = "blocks" placeholder="Blocks" aria-label="Username" aria-describedby="addon-wrapping">
+											<input type="text" class="form-control" name = "blocks" id = "blocks" placeholder="Blocks" aria-label="Username" aria-describedby="addon-wrapping">
 											</div>
 											
 											<div class="input-group flex-nowrap">
-												<span class="input-group-text" id="addon-wrapping">Starting level</span>
-												<input type="text" class="form-control" id = "level" placeholder="Starting " aria-label="Username" aria-describedby="addon-wrapping">
+												<span class="input-group-text" id="addon-wrapping">Delta</span>
+												<input type="text" class="form-control" name = "delta" id = "level" placeholder="Starting " aria-label="Username" aria-describedby="addon-wrapping">
 											</div>
 											
 											<div class="input-group flex-nowrap">
 												<span class="input-group-text" id="addon-wrapping">nAFC</span>
-												<input type="text" class="form-control" id = "nAFC" placeholder="nAFC" aria-label="Username" aria-describedby="addon-wrapping" value = "2" >
+												<input type="text" class="form-control" name = "nAFC" id = "nAFC" placeholder="nAFC" aria-label="Username" aria-describedby="addon-wrapping" value = "2" >
 											</div>   
 											
 											<!-- Checkbox -->
@@ -106,15 +106,19 @@
 												</div>
 												<div class="input-group flex-nowrap">
 													<span class="input-group-text" id="addon-wrapping">Second Factor</span>
-													<input type="text" class="form-control" name="factor" id="secondFactor" placeholder="secondFactor" aria-label="Username" aria-describedby="addon-wrapping" value = "1.414">
+													<input type="text" class="form-control" name="secFactor" id="secondFactor" placeholder="secondFactor" aria-label="Username" aria-describedby="addon-wrapping" value = "1.414">
 												</div>
 												<div class="input-group flex-nowrap">
 													<span class="input-group-text" id="addon-wrapping">Reversals</span>
-													<input type="text" class="form-control" id = "reversals" placeholder="Reversals" aria-label="Username" aria-describedby="addon-wrapping" value = "2">
+													<input type="text" class="form-control" name="reversals" id = "reversals" placeholder="Reversals" aria-label="Username" aria-describedby="addon-wrapping" value = "2">
+												</div>
+												<div class="input-group flex-nowrap">
+													<span class="input-group-text" id="addon-wrapping">Second Reversals</span>
+													<input type="text" class="form-control" name="secReversals" id = "reversals" placeholder="Reversals" aria-label="Username" aria-describedby="addon-wrapping" value = "2">
 												</div>
 												<div class="input-group flex-nowrap">
 													<span class="input-group-text" id="addon-wrapping">Reversal threshold</span>
-													<input type="text" class="form-control" id = "reversalsTh" placeholder="Threshold" aria-label="Username" aria-describedby="addon-wrapping">
+													<input type="text" class="form-control" name="threshold" id = "reversalsTh" placeholder="Threshold" aria-label="Username" aria-describedby="addon-wrapping">
 												</div>
 											</div>
 
