@@ -1,6 +1,6 @@
 var plus = ""; //modify the redirection url if needed
 
-// invio valori client-client
+/*/ invio valori client-client
 function send_value() {
 	var amplitude = document.getElementById('amplitude').value;
 	localStorage.setItem('amplitude', amplitude);
@@ -34,7 +34,7 @@ function send_value() {
 	localStorage.setItem('algorithm', algorithm);
 	document.location.href = plus+"test.html";
 }
-
+//*/
 // test controllo inserimento
 function test(){
 	//Elenco campi da controllare 
@@ -267,8 +267,9 @@ function redirect(){
 		plus = "freq"; //if the type of test is the frequency test, adds it to the href urls
 	else if (params.get('test')=="dur")
 		plus = "dur"; //if the type of test is the duration test, adds it to the href urls
+	
 	if(test()){
-		send_value();
+		//send_value();
 		location.href=plus+"test.html";
 	}
 }
