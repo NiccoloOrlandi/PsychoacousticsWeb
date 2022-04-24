@@ -16,6 +16,8 @@
  
     var reversals =  localStorage.getItem('reversals');             // reversals from the previous form
 
+    var secRev
+
 	var algorithm = localStorage.getItem('algorithm');				//algorithm from the previous form
 
    
@@ -174,13 +176,24 @@ function nDOWNoneUP(n, button){
 	if((button == 1 && swap == 0) || (button == 2 && swap == 1)){ //correct answer
 		history[i] = 0;
 		correctAnsw += 1;
+
 		if(correctAnsw == n){ //if there are n consegutive correct answers
-			intVar = intVar - parseInt(delta)/parseInt(factor);
-			correctAnsw = 0;
+
+			if(reversals-countRev > secRev)// initial reversals of the test
+                intVar = intVar - parseInt(delta)/parseInt(factor);
+            else                           // ending reversals when you need a more accurate factor
+                intVar = intVar - parseInt(delta)/parseInt(secFactor);
+			
+            correctAnsw = 0;
 		}
 		
 	}else{ //wrong answer
-		intVar = intVar + parseInt(delta)/parseInt(factor); 
+
+        if(reversals-countRev > secRev)// initial reversals of the test
+		    intVar = intVar + parseInt(delta)/parseInt(factor); 
+        else                           // ending reversals when you need a more accurate factor
+            intVar = intVar + parseInt(delta)/parseInt(secFactor);
+
 		history[i] = 1;
 		correctAnsw = 0;
 	}
