@@ -43,6 +43,7 @@
 	/*il right div sta a destra*/
 	width: 50%;
 	float: right;
+	margin-bottom: 2%;
 }
 
 .right-div .input-group.flex-nowrap{

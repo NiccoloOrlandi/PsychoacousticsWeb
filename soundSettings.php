@@ -100,21 +100,25 @@
 											
 											<!-- input boxes, sono raggruppati in un div che sta sulla destra-->
 											<div class="right-div">
-												<div class="input-group flex-nowrap">
-													<span class="input-group-text" id="addon-wrapping">Factor</span>
-													<input type="text" class="form-control" name="factor" id="factor" placeholder="Factor" aria-label="Username" aria-describedby="addon-wrapping" value = "2">
+												<div class="left-div">
+													<div class="input-group flex-nowrap">
+														<span class="input-group-text" id="addon-wrapping">Factor</span>
+														<input type="text" class="form-control" name="factor" id="factor" placeholder="Factor" aria-label="Username" aria-describedby="addon-wrapping" value = "2">
+													</div>
+													<div class="input-group flex-nowrap">
+														<span class="input-group-text" id="addon-wrapping">Reversals</span>
+														<input type="text" class="form-control" name="reversals" id = "reversals" placeholder="Reversals" aria-label="Username" aria-describedby="addon-wrapping" value = "2">
+													</div>
 												</div>
-												<div class="input-group flex-nowrap">
-													<span class="input-group-text" id="addon-wrapping">Second Factor</span>
-													<input type="text" class="form-control" name="secFactor" id="secondFactor" placeholder="secondFactor" aria-label="Username" aria-describedby="addon-wrapping" value = "1.414">
-												</div>
-												<div class="input-group flex-nowrap">
-													<span class="input-group-text" id="addon-wrapping">Reversals</span>
-													<input type="text" class="form-control" name="reversals" id = "reversals" placeholder="Reversals" aria-label="Username" aria-describedby="addon-wrapping" value = "2">
-												</div>
-												<div class="input-group flex-nowrap">
-													<span class="input-group-text" id="addon-wrapping">Second Reversals</span>
-													<input type="text" class="form-control" name="secReversals" id = "reversals" placeholder="Reversals" aria-label="Username" aria-describedby="addon-wrapping" value = "2">
+												<div class="right-div">
+													<div class="input-group flex-nowrap">
+														<span class="input-group-text" id="addon-wrapping">Second factor</span>
+														<input type="text" class="form-control" name="secFactor" id="secondFactor" placeholder="secondFactor" aria-label="Username" aria-describedby="addon-wrapping" value = "1.414">
+													</div>
+													<div class="input-group flex-nowrap">
+														<span class="input-group-text" id="addon-wrapping">Second reversals</span>
+														<input type="text" class="form-control" name="secReversals" id = "reversals" placeholder="Reversals" aria-label="Username" aria-describedby="addon-wrapping" value = "2">
+													</div>
 												</div>
 												<div class="input-group flex-nowrap">
 													<span class="input-group-text" id="addon-wrapping">Reversal threshold</span>
@@ -124,61 +128,51 @@
 
 											<!-- Radios, sono raggruppati in un div che sta sulla sinistra-->
 											<div class="left-div">
-												<div class="form-check" >
-													<input class="form-check-input" type="radio" name="algorithm" id="Limits" disabled>
-													<label class="form-check-label" for="flexRadioDefault1">
-														Method of Limits
-													</label>
-												</div>
-
-												<div class="form-check" >
-													<input class="form-check-input" type="radio" name="algorithm" id="Arithmetic" disabled>
-													<label class="form-check-label" for="flexRadioDefault1">
-														Arithmetic
-													</label>
-												</div>
-
 												<div class="form-check">
 													<input class="form-check-input" type="radio" name="algorithm" id="SimpleUpDown" checked>
 													<label class="form-check-label" for="flexRadioDefault1">
 														SimpleUpDown
 													</label>
 												</div>
-
-												<div class="form-check">
-													<input class="form-check-input" type="radio" name="algorithm" id="Geometric" disabled>
-													<label class="form-check-label" for="flexRadioDefault1">
-														Geometric
-													</label>
-												</div>
-
-												<div class="form-check">
-													<input class="form-check-input" type="radio" name="algorithm" id="Median" disabled>
-													<label class="form-check-label" for="flexRadioDefault1">
-														Median
-													</label>
-												</div>
-
 												<div class="form-check">
 													<input class="form-check-input" type="radio" name="algorithm" id="TwoDownOneUp">
 													<label class="form-check-label" for="flexRadioDefault1">
 														TwoDownOneUp
 													</label>
 												</div>
-
 												<div class="form-check" >
 													<input class="form-check-input" type="radio" name="algorithm" id="ThreeDownOneUp">
 													<label class="form-check-label" for="flexRadioDefault1">
 														ThreeDownOneUp
 													</label>
 												</div>
-
+												
+												<!-- Algoritmi non implementati
 												<div class="form-check">
-													<input class="form-check-input" type="radio" name="algorithm" id="FourDownOneUp">
+													<input class="form-check-input" type="radio" name="algorithm" id="Geometric" disabled>
 													<label class="form-check-label" for="flexRadioDefault1">
-														FourDownOneUp
+														Geometric
 													</label>
 												</div>
+												<div class="form-check">
+													<input class="form-check-input" type="radio" name="algorithm" id="Median" disabled>
+													<label class="form-check-label" for="flexRadioDefault1">
+														Median
+													</label>
+												</div>
+												<div class="form-check" >
+													<input class="form-check-input" type="radio" name="algorithm" id="Limits" disabled>
+													<label class="form-check-label" for="flexRadioDefault1">
+														Method of Limits
+													</label>
+												</div>
+												<div class="form-check" >
+													<input class="form-check-input" type="radio" name="algorithm" id="Arithmetic" disabled>
+													<label class="form-check-label" for="flexRadioDefault1">
+														Arithmetic
+													</label>
+												</div>
+												-->
 											</div>
 											
 										</div>
