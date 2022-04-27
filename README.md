@@ -8,8 +8,13 @@ DEADLINES E TO-DO:
 
 - test amp e freq
 	- rivedere amp iniziale
-	- inserire doppio factor (sqrt(2) dopo n test) 
-	- limiti factor: maggiore di zero  2+                       
+	- inserire doppio factor
+		- fattore <factor> usato per i primi <reversals> reversals
+		- fattore <second factor> usato per i successivi <second reversals> reversals
+		- totale reversals = <reversals> + <second reversals>
+		- reversals da salvare nel db = <revelsals threshold>
+	- limiti factor: il primo maggiore del secondo, il secondo maggiore di uno
+		- mettiamo 2 e sqrt(2) come placeholder?                      
 
 - test durata + 2d1u
 	- rivedere distanza tra i due suoni nel test sulla durata
@@ -30,7 +35,7 @@ DEADLINES E TO-DO:
 		- controlli js sugli input (required data + sql injections)
 	- passaggio dati in sicurezza (demographicData, soundSettings, tipo di test)				     fatto (per ora non problema lato client)
 	- salvataggio dei dati dei guest che hanno creato un account						     fatto
-	- conferma password (non ancora messa prima bisogna iscriversi e forse va introdotta la email ma va chiesto al prof ) 
+	- conferma password (non ancora messa prima bisogna iscriversi e forse va introdotta la email ma va chiesto al prof) 
 	- informativa sulla privacy?									  per ora non serve
 	- quando registri va creato anche un guest, quindi vanno chieste tutte le info				     fatto
 	- quando un utente registrato fa un test va aggiunto il risultato del test e va collegato al guest dell'utente			
@@ -38,8 +43,9 @@ DEADLINES E TO-DO:
 	- quando un utente accede va controllato che esista e va creata una sessione (così se fa test vengono collegati al suo account) fatto
 			
 - captcha	entro 15/05/2022
-	- livello intermedio
-	- come oscurare i dati di php username e psw 							  -> ?
+	- captcha livello v2 o v3
+	- come oscurare i dati di php username e psw
+		- scrivi su file e i file php leggono il file
 
 - plus se riusciamo entro il 10/06/2022
 	- Vedere se si puó modificare la fase del suono
