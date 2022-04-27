@@ -20,7 +20,7 @@
 					<div class=" p-3 border bg-light" style="height:98%">
 		
 						<h1>Set the characteristics of the standard pure tone</h1>
-						<form action="soundSettingsValidation.php" onsubmit="redirect()" name="Settings" method="post">
+						<form action="soundSettingsValidation.php<?php echo "?type=".$_GET["test"]; ?>" onsubmit="redirect()" name="Settings" method="post">
 							<!-- Primo slot di setting -->
 							<div class="container p-4" >
 								<div class="row gx-4">
@@ -129,19 +129,19 @@
 											<!-- Radios, sono raggruppati in un div che sta sulla sinistra-->
 											<div class="left-div">
 												<div class="form-check">
-													<input class="form-check-input" type="radio" name="algorithm" id="SimpleUpDown" checked>
+													<input class="form-check-input" type="radio" name="algorithm" value="SimpleUpDown" checked>
 													<label class="form-check-label" for="flexRadioDefault1">
 														SimpleUpDown
 													</label>
 												</div>
 												<div class="form-check">
-													<input class="form-check-input" type="radio" name="algorithm" id="TwoDownOneUp">
+													<input class="form-check-input" type="radio" name="algorithm" value="TwoDownOneUp">
 													<label class="form-check-label" for="flexRadioDefault1">
 														TwoDownOneUp
 													</label>
 												</div>
 												<div class="form-check" >
-													<input class="form-check-input" type="radio" name="algorithm" id="ThreeDownOneUp">
+													<input class="form-check-input" type="radio" name="algorithm" value="ThreeDownOneUp">
 													<label class="form-check-label" for="flexRadioDefault1">
 														ThreeDownOneUp
 													</label>

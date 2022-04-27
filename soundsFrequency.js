@@ -1,14 +1,3 @@
-
-//Prendo i dati condivisi nella cache , dovrá essere sostituita con una ricezione dei dati dal server 
-var amp = localStorage.getItem('amplitude');			// amplitude from the previous form
-var freq = localStorage.getItem('frequency'); 			// frequency from the previous form
-var dur = localStorage.getItem('duration'); 			// duration from the previous form
-var delta = localStorage.getItem('level');				// delta from the previous form
-var stdFactor = localStorage.getItem('factor'); 		// factor from the previous form
-var secondFactor = localStorage.getItem('secondFactor');// factor from the previous form
-var reversals = localStorage.getItem('reversals');		// reversals from the previous form
-var algorithm = localStorage.getItem('algorithm');		//algorithm from the previous form
-
 //contesto e dichiarazione variabili da cambiare durante il test, probabilmente andranno tolte molte variabili globali da qui una volta terminato l'algoritmo
 var context= new AudioContext();
 
@@ -16,20 +5,25 @@ var context= new AudioContext();
 var varFreq = parseInt(freq) + parseInt(delta);	// frequency of the variable 
 var stdFreq = parseInt(freq);					// frequency of the standard
  
-var stdDur = dur/1000;					// duration of the standard 
-var varDur = dur/1000;					// duration of the variable 
+var stdDur = dur/1000;				// duration of the standard 
+var varDur = dur/1000;				// duration of the variable 
 
 var intStd = parseFloat(amp);		// intensity of the variable
 var intVar = parseFloat(amp);		// intensity of the standard 
 
-var swap =-1;							// initial value of swap
-var factor = stdFactor;				
-var correctAnsw = 0;	   
+var swap =-1;						// initial value of swap			
+var correctAnsw = 0;				// number of correct answers
+
+var currentFactor = factor;			// first or second factor, depending on the number of reversals
 
 // array and variables for data storage
-const history = [];
-var i = 0;					// next index of the array
-var countRev = 0;			// count of reversals 
+const history = [];				// will have the answers ('1' if right, '0' if wrong)
+var reversalsPositions = [];	// will have the position of the i-th reversal in the history array 
+var i = 0;						// next index of the array
+var countRev = 0;				// count of reversals 
+var results = [[], [], []];		// trial, level e reversals
+
+var timestamp = 0;				// timestamp of the starting of the test
 
 //funzione per generare il primo suono
 function playVar(time){
@@ -64,7 +58,7 @@ function playStd(time){
 //funzione per randomizzare l'output
 function random(){
 	var rand = Math.floor(Math.random() *2);// this random decides if the variable sound will be reproduced as the first or second heared sound
-	
+	rand = 1;
 	if(rand==0){//first played: Standard sound
 		playStd(0);
 		playVar(2);
@@ -95,29 +89,56 @@ function select(button){
 		case 'ThreeDownOneUp':
 			nDOWNoneUP(3, button);
 			break;
-		case 'FourDownOneUp':
-			nDOWNoneUP(4, button);
-			break;
 		default:
 			nDOWNoneUP(1, button);
 			break;
 	}
 	
-	if((i>0)&&(history[i]!=history[i-1]))
-			countRev++;
-
-	if(countRev == reversals){
-		alert("il test é finito");
-		location.href="index.html";
+	if((i>0)&&(history[i]!=history[i-1])){
+		reversalsPositions[countRev] = i;//save the position of that reversal
+		countRev++;
 	}
 	
+	//save new data
+	results[0][i] = i;					// trial
+	results[1][i] = varFreq-stdFreq; 	// level
+	results[2][i] = countRev;			// reversals
+	
+	//increment counter
 	i++;
 	
-	// disable the response buttons until the new sounds are heared
-	document.getElementById("first").disabled = true;
-	document.getElementById("second").disabled = true;
+	//use the second factor from now
+	if(countRev == reversals)
+		currentFactor = secondFactor;
 	
-	random();
+	//end of the test
+	if(countRev == reversals+secondReversals){
+		alert("il test é finito");
+		
+		//format datas as a csv file (only the last <reversalThreshold> reversals)
+		var result = "";
+		for(var j = reversalsPositions[countRev - reversalThreshold]; j < i; j++){
+			result += results[0][j] + "," + results[1][j] + "," + results[2][j] + ";";
+		}
+		
+		//format description as a csv file
+		var description = "amp,"+amp+";freq,"+freq+";dur,"+dur+";phase,"+phase+";blocks,"+blocks+";delta,"+delta;
+		description += ";nAFC,"+nAFC+";fact,"+factor+";secFact,"+secondFactor+";rev,"+reversals+";secRev,"+secondReversals;
+		description += ";threshold,"+reversalThreshold+";alg,"+algorithm;
+		
+		//pass the datas to the php file
+		location.href="salvaDati.php?result="+result+"&timestamp="+timestamp+"&type=freq&description="+description;
+	}
+	//if the test is not ended
+	else{
+	
+		// disable the response buttons until the new sounds are heared
+		document.getElementById("first").disabled = true;
+		document.getElementById("second").disabled = true;
+		
+		//randomize and play the next sounds
+		random();
+	}
 }
 
 //funzione per implementare l'algoritmo nD1U
@@ -128,12 +149,12 @@ function nDOWNoneUP(n, button){
 		history[i] = 0;
 		correctAnsw += 1;
 		if(correctAnsw == n){ //if there are n consegutive correct answers
-			varFreq = varFreq - (delta/parseInt(factor));
+			varFreq = stdFreq + (delta/parseInt(currentFactor));
 			correctAnsw = 0;
 		}
 		
 	}else{ //wrong answer
-		varFreq = varFreq + (delta/parseInt(factor));
+		varFreq = stdFreq + (delta*parseInt(currentFactor));
 		history[i] = 1;
 		correctAnsw = 0;
 	}
@@ -143,5 +164,10 @@ function nDOWNoneUP(n, button){
 function start(){
 	document.getElementById("StartingWindow").style.display="none"; //rendo invisibile la finestra iniziale
 	document.getElementById("PlayForm").style.display="inherit"; //rendo visibile l'interfaccia del test
+	
+	// take the timestamp when the test starts
+	var currentdate = new Date(); 
+	timestamp = currentdate.getFullYear()+"-"+(currentdate.getMonth()+1)+"-"+currentdate.getDate()+" "+currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
+	
 	random(); //comincia il test
 }
