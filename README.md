@@ -8,13 +8,13 @@ DEADLINES E TO-DO:
 
 - test amp e freq
 	- rivedere amp iniziale
-	- inserire doppio factor
-		- fattore <factor> usato per i primi <reversals> reversals
-		- fattore <second factor> usato per i successivi <second reversals> reversals
-		- totale reversals = <reversals> + <second reversals>
-		- reversals da salvare nel db = <revelsals threshold>
-	- limiti factor: il primo maggiore del secondo, il secondo maggiore di uno
-		- mettiamo 2 e sqrt(2) come placeholder?                      
+	- inserire doppio factor								
+		- fattore <factor> usato per i primi <reversals> reversals			fatto (per freq)
+		- fattore <second factor> usato per i successivi <second reversals> reversals	fatto (per freq)
+		- totale reversals = <reversals> + <second reversals>				fatto (per freq)
+		- reversals da salvare nel db = <revelsals threshold>				fatto (per freq)
+	- limiti factor: il primo maggiore del secondo, il secondo maggiore di uno		fatto
+		- 2 e sqrt(2) come placeholder       						fatto        
 
 - test durata + 2d1u
 	- rivedere distanza tra i due suoni nel test sulla durata
@@ -41,6 +41,7 @@ DEADLINES E TO-DO:
 	- quando un utente registrato fa un test va aggiunto il risultato del test e va collegato al guest dell'utente			
 	- quando un guest non registrato fa un test va creato il guest e va aggiunto il risultato del test e va collegato al guest
 	- quando un utente accede va controllato che esista e va creata una sessione (così se fa test vengono collegati al suo account) fatto
+	- se l'utente ha fatto il login non serve il form demographicData
 			
 - captcha	entro 15/05/2022
 	- captcha livello v2 o v3
