@@ -32,22 +32,26 @@
 											<div class="input-group flex-nowrap">
 												<span class="input-group-text" id="addon-wrapping">Amplitude</span>
 												<input type="text" class="form-control"  name="amplitude" id = "amplitude" placeholder="Standard" aria-label="Username" aria-describedby="addon-wrapping" value = "20">
+												<span class="input-group-text" id="addon-wrapping">dB</span>
 											</div>
 
 											<div class="input-group flex-nowrap">
 												<span class="input-group-text" id="addon-wrapping">Frequency</span>
 												<input type="text" class="form-control" name="frequency" id = "frequency" placeholder="Standard" aria-label="Username" aria-describedby="addon-wrapping" value="1000">
+												<span class="input-group-text" id="addon-wrapping">Hz</span>
 											</div>
 
 											<div class="input-group flex-nowrap">
 												<span class="input-group-text" id="addon-wrapping">Duration</span>
 												<input type="text" class="form-control" name="duration" id = "duration" placeholder="Standard" aria-label="Username" aria-describedby="addon-wrapping" value = "1000">
+												<span class="input-group-text" id="addon-wrapping">ms</span>
 											</div>
 
-											<div class="input-group flex-nowrap">
+											<!-- <div class="input-group flex-nowrap">
 												<span class="input-group-text" id="addon-wrapping">Starting phase</span>
 												<input type="text" class="form-control" name="phase" id = "phase" placeholder="Standard" aria-label="Username" aria-describedby="addon-wrapping" value = "0">
-											</div>
+												<span class="input-group-text" id="addon-wrapping">°</span>
+											</div> -->
 										</div>
 									</div>
 								</div>

@@ -16,11 +16,11 @@
  
     var reversals =  localStorage.getItem('reversals');             // reversals from the previous form
 
-    var secRev
+    var secRev;
 
 	var algorithm = localStorage.getItem('algorithm');				//algorithm from the previous form
 
-   
+    var feedback = $_SESSION["checkFb"];
    
 
 //contesto e dichiarazione variabili da cambiare durante il test, probabilmente andranno tolte molte variabili globali da qui una volta terminato l'algoritmo
@@ -208,7 +208,8 @@ function start(){
 
 function checkFeedback(){
 
-    alert(document.Settings.checkFb.checked)
+    if(feedback)
+        alert("é spuntato");
     
     
 }
