@@ -101,8 +101,10 @@ function select(button){
 	
 	//save new data
 	results[0][i] = i;					// trial
-	results[1][i] = varFreq-stdFreq; 	// level
+	results[1][i] = varFreq-stdFreq; 	// delta
 	results[2][i] = countRev;			// reversals
+	//dati da salvare (in orine): blocco, trial, delta, posizioneVariabile, tastoPremuto, rispostaCorretta, reversal
+	//inserire il nome delle colonne nella prima riga
 	
 	//increment counter
 	i++;
@@ -122,6 +124,7 @@ function select(button){
 		}
 		
 		//format description as a csv file
+		//prima tutti i nomi, poi tutti i dati
 		var description = "amp,"+amp+";freq,"+freq+";dur,"+dur+";phase,"+phase+";blocks,"+blocks+";delta,"+delta;
 		description += ";nAFC,"+nAFC+";fact,"+factor+";secFact,"+secondFactor+";rev,"+reversals+";secRev,"+secondReversals;
 		description += ";threshold,"+reversalThreshold+";alg,"+algorithm;

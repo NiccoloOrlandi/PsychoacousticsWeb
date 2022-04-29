@@ -29,6 +29,7 @@ DEADLINES E TO-DO:
 	- dati salvati solo se spunto la checkbox "save results"
 	- aggiungere email al db 									  		va bene
 	- inviamo solo gli ultimi reversals oppure tutti e poi ci pensano gli analisti 			  		a seconda di rev threshold
+	- salvataggio di blocco, trial, delta, posizioneVariabile, tastoPremuto, rispostaCorretta, reversal (in questo ordine)
 	
 - poi php entro 30/04/2022
 	- quando un utente si registra va creato un nuovo account (e va controllato che l'username non esista già)   	fatto
@@ -58,6 +59,9 @@ DEADLINES E TO-DO:
 	- Diagramma architetturale del sistema
 	- Recupero dati utente e psw ( difficile serve mailing list, quando ci si registra bisogna inserire email )
 	- predisporre funzionamento delle altre metriche
+	
+	- suoni suonabili componibili
+	- problema del click iniziale
 	
 - grafica entro il 10/06/2022
 	- alert di errore di inerimento dati (migliorare)
