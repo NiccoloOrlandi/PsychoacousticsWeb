@@ -14,7 +14,11 @@
   </head>
   <body>
     
-    
+    <?php
+		//se si sceglie un username già esistente verrà messo "?err=1" nell'url
+		if(isset($_GET['err']) && $_GET['err']==1)
+			echo "<div class='alert alert-danger'>The name field is required</div>";
+	?>
 
     <div class="container p-4" style="margin-top:15%" >
         <div class="row gx-4">

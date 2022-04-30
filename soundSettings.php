@@ -14,13 +14,64 @@
 		<title>Hello, world!</title>
 	</head>
 	<body>
+		<?php
+			//controllo errori
+			if(isset($_GET['err'])){
+				if($_GET['err']=="amp1")
+					echo "<div class='alert alert-danger'>The amplitude field is required</div>";
+				else if($_GET['err']=="amp2")
+					echo "<div class='alert alert-danger'>The amplitude value must be a number</div>";
+				else if($_GET['err']=="amp3")
+					echo "<div class='alert alert-danger'>The amplitude value can't be a positive value (maximum is 0)</div>";
+				else if($_GET['err']=="freq1")
+					echo "<div class='alert alert-danger'>The frequency field is required</div>";
+				else if($_GET['err']=="freq2")
+					echo "<div class='alert alert-danger'>The frequency value can't be a negative number</div>";
+				else if($_GET['err']=="dur1")
+					echo "<div class='alert alert-danger'>The duration field is required</div>";
+				else if($_GET['err']=="dur2")
+					echo "<div class='alert alert-danger'>The duration value can't be a negative number</div>";
+				else if($_GET['err']=="numblock1")
+					echo "<div class='alert alert-danger'>The n. of blocks field is required</div>";
+				else if($_GET['err']=="numblock2")
+					echo "<div class='alert alert-danger'>The n. of blocks value can't be a negative number</div>";
+				else if($_GET['err']=="delta1")
+					echo "<div class='alert alert-danger'>The delta field is required</div>";
+				else if($_GET['err']=="delta2")
+					echo "<div class='alert alert-danger'>The delta value can't be a negative number</div>";
+				else if($_GET['err']=="nAFC1")
+					echo "<div class='alert alert-danger'>The nAFC field is required</div>";
+				else if($_GET['err']=="nAFC2")
+					echo "<div class='alert alert-danger'>The nAFC value can't be a negative number</div>";
+				else if($_GET['err']=="factor1")
+					echo "<div class='alert alert-danger'>The factor field is required</div>";
+				else if($_GET['err']=="factor2")
+					echo "<div class='alert alert-danger'>The factor value must be a number grater than the second factor</div>";
+				else if($_GET['err']=="secFactor1")
+					echo "<div class='alert alert-danger'>The second factor field is required</div>";
+				else if($_GET['err']=="secFactor2")
+					echo "<div class='alert alert-danger'>The second factor value must be a number lower than the factor</div>";
+				else if($_GET['err']=="rev1")
+					echo "<div class='alert alert-danger'>The reversals field is required</div>";
+				else if($_GET['err']=="rev2")
+					echo "<div class='alert alert-danger'>The reversals value can't be a negative number</div>";
+				else if($_GET['err']=="secRev1")
+					echo "<div class='alert alert-danger'>The second reversals field is required</div>";
+				else if($_GET['err']=="secRev2")
+					echo "<div class='alert alert-danger'>The second reversals value can't be a negative number</div>";
+				else if($_GET['err']=="threshold1")
+					echo "<div class='alert alert-danger'>The reversal threshold field is required</div>";
+				else if($_GET['err']=="threshold2")
+					echo "<div class='alert alert-danger'>The reversal threshold value can't be a negative number</div>";
+			}
+		?>
 		<div class="container" style="margin-top:1%">
 			<div class="row gx-4">
 				<div class="col">
 					<div class=" p-3 border bg-light" style="height:98%">
 		
 						<h1>Set the characteristics of the standard pure tone</h1>
-						<form action="soundSettingsValidation.php<?php echo "?type=".$_GET["test"]; ?>" onsubmit="redirect()" name="Settings" method="post">
+						<form action="soundSettingsValidation.php<?php echo "?type=".$_GET["test"]; ?>" name="Settings" method="post">
 							<!-- Primo slot di setting -->
 							<div class="container p-4" >
 								<div class="row gx-4">

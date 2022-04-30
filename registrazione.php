@@ -10,7 +10,7 @@
 		<?php
 			//se si sceglie un username già esistente verrà messo "?err=1" nell'url
 			if(isset($_GET['err']) && $_GET['err']==1)
-				echo "<div class='alert alert-danger'>Username gi&agrave; in uso, sceglierne un altro</div>";
+				echo "<div class='alert alert-danger'>Username already taken</div>";
 		?>
         <form method="post" action="registering.php" onsubmit="validation()">
             <h1>Registrazione</h1>
