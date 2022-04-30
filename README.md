@@ -7,8 +7,8 @@ attualmente in sviluppo il primo test
 DEADLINES E TO-DO:
 
 - test amp e freq
-	- rivedere amp iniziale
-	- inserire doppio factor								
+	- rivedere amp iniziale												da fare
+	- inserire doppio factor											fatto (per freq)		
 		- fattore <factor> usato per i primi <reversals> reversals						fatto (per freq)
 		- fattore <second factor> usato per i successivi <second reversals> reversals				fatto (per freq)
 		- totale reversals = <reversals> + <second reversals>							fatto (per freq)
@@ -17,13 +17,13 @@ DEADLINES E TO-DO:
 		- 2 e sqrt(2) come placeholder       									fatto        
 
 - test durata + 2d1u
-	- rivedere distanza tra i due suoni nel test sulla durata
+	- rivedere distanza tra i due suoni nel test sulla durata							da fare
 
 - db (login) 30/04/2022
- 	- revisionare schema er 	fatto
-    	- implementare         		fatto
-    	- riempire         		fatto
-	- cambiare l'identificativo di test: usare fk_guest + un seriale (n-esimo test di un certo guest) 		-> ?
+ 	- revisionare schema er 											fatto
+    	- implementare         												fatto
+    	- riempire         												fatto
+	- cambiare l'identificativo di test: usare fk_guest + un seriale (n-esimo test di un certo guest) 		fatto 
 	- età in guest deve essere sostituita con data di nascita (solo quando creiamo account?)	  		non serve 
 	- feedback se checkbox spuntata 
 	- dati salvati solo se spunto la checkbox "save results"
@@ -38,18 +38,20 @@ DEADLINES E TO-DO:
 	- richiedere al professore una spiegazione specifica su cosa dovrá fare chi ha l'account ( invita gli altri in che modo e cosa ne facciamo dei dati)
 	
 	- salvataggio dei dati dei guest che hanno creato un account						     	fatto
-	- conferma password (non ancora messa prima bisogna iscriversi e forse va introdotta la email ma va chiesto al prof) 
+	 
 	- informativa sulla privacy?									  		per ora non serve
 	- quando registri va creato anche un guest, quindi vanno chieste tutte le info				     	fatto
-	- quando un utente registrato fa un test va aggiunto il risultato del test e va collegato al guest dell'utente			
-	- quando un guest non registrato fa un test va creato il guest e va aggiunto il risultato del test e va collegato al guest
+	- quando un utente registrato fa un test va aggiunto il risultato del test e va collegato al guest dell'utente	fatto 			
+	- quando un guest non registrato fa un test va creato il guest e va aggiunto il risultato del test e va collegato al guest da fare
 	- quando un utente accede va controllato che esista e va creata una sessione (così se fa test vengono collegati al suo account) fatto
-	- se l'utente ha fatto il login non serve il form demographicData
 			
 - captcha	entro 15/05/2022
 	- captcha livello v2 o v3
 	- come oscurare i dati di php username e psw									base64 dovrebbe essere sufficiente
-		- scrivi su file e i file php leggono il file					
+		- scrivi su file e i file php leggono il file	
+	- conferma password (non ancora messa prima bisogna iscriversi e forse va introdotta la email ma va chiesto al prof)
+	- implementare sturuttura a tre livelli
+	- creare la pagina per i risultati immediati del test e per lo storico dei test
 
 - plus se riusciamo entro il 10/06/2022
 	- Vedere se si puó modificare la fase del suono
