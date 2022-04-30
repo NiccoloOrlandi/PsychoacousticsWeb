@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="staircaseStyle.css">
-    <script src="personalInfoValidation.js" defer></script>
+    
 
     <title>Hello, world!</title>
   </head>
@@ -20,7 +20,7 @@
         <div class="row gx-4">
             <div class="col">
                 <div class=" p-3 border bg-light">
-                  <form name="staircase" method="post" action="personalinfoValidation.php">
+                  <form name="staircase" method="post" action="personalinfoValidation.php<?php echo "?test=".$_GET["test"];?>">
                     <!-- Contenuto dello slot, qui vanno inseriti tutti i bottoni e i check box del primo slot -->
 
                     <h1>Personal Informations</h1>

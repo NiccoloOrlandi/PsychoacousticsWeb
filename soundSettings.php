@@ -31,7 +31,7 @@
 											<!-- Contenuto dello slot, qui vanno inseriti tutti i bottoni e i check box del secondo slot -->
 											<div class="input-group flex-nowrap">
 												<span class="input-group-text" id="addon-wrapping">Amplitude</span>
-												<input type="text" class="form-control"  name="amplitude" id = "amplitude" placeholder="Standard" aria-label="Username" aria-describedby="addon-wrapping" value = "20">
+												<input type="text" class="form-control"  name="amplitude" id = "amplitude" placeholder="Standard" aria-label="Username" aria-describedby="addon-wrapping" value = "-20">
 												<span class="input-group-text" id="addon-wrapping">dB</span>
 											</div>
 
