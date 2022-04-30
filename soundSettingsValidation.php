@@ -10,6 +10,9 @@ if (($_POST["amplitude"]== "") || ($_POST["amplitude"]== "undefined"))
 else if(!is_numeric($_POST["amplitude"]))
    header("Location: soundSettings.php?test={$_GET['type']}&err=amp2");
 
+else if(intval($_POST["amplitude"])>0)
+header("Location: soundSettings.php?test={$_GET['type']}&err=amp3");
+
 //controlli su frequency
 else if (($_POST["frequency"]== "") || ($_POST["frequency"]== "undefined")) 
     header("Location: soundSettings.php?test={$_GET['type']}&err=freq1");
@@ -24,13 +27,13 @@ else if (($_POST["duration"]== "") || ($_POST["duration"]== "undefined"))
 else if ($_POST["duration"]<0) 
     header("Location: soundSettings.php?test={$_GET['type']}&err=dur2");
 
-//controlli su phase
+/*controlli su phase
 else if (($_POST["phase"]== "") || ($_POST["phase"]== "undefined")) 
     header("Location: soundSettings.php?test={$_GET['type']}&err=phase1");
 
 else if ($_POST["phase"]<0)
     header("Location: soundSettings.php?test={$_GET['type']}&err=phase2");
-
+*/
 //controlli su number of blocks
 else if (($_POST["blocks"]== "") || ($_POST["blocks"]== "undefined")) 
     header("Location: soundSettings.php?test={$_GET['type']}&err=numblock1");
@@ -97,7 +100,7 @@ else{
 	$_SESSION["amplitude"] = $_POST["amplitude"];
 	$_SESSION["frequency"] = $_POST["frequency"];
 	$_SESSION["duration"] = $_POST["duration"];
-	$_SESSION["phase"] = $_POST["phase"];
+	//$_SESSION["phase"] = $_POST["phase"];
 	$_SESSION["blocks"] = $_POST["blocks"];
 	$_SESSION["delta"] = $_POST["delta"];
 	$_SESSION["nAFC"] = $_POST["nAFC"];

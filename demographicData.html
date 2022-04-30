@@ -20,7 +20,7 @@
         <div class="row gx-4">
             <div class="col">
                 <div class=" p-3 border bg-light">
-                  <form name="staircase" method="post" action="/141/comments">
+                  <form name="staircase" method="post" action="personalinfoValidation.php">
                     <!-- Contenuto dello slot, qui vanno inseriti tutti i bottoni e i check box del primo slot -->
 
                     <h1>Personal Informations</h1>
@@ -28,32 +28,32 @@
                     <!-- Label -->
                     <div class="input-group flex-nowrap">
                       <span class="input-group-text" id="name" >Name</span>
-                      <input type="text" class="form-control" id="inputName" placeholder="Name" aria-label="Username" aria-describedby="addon-wrapping">
+                      <input type="text" class="form-control" id="inputName" placeholder="Name" aria-label="Username" aria-describedby="addon-wrapping" name="name">
                     </div>
                     
                     <div class="input-group flex-nowrap">
                       <span class="input-group-text" id="surname"  >Surname</span>
-                      <input type="text" class="form-control" id="inputSurname" placeholder="Surname" aria-label="" aria-describedby="addon-wrapping">
+                      <input type="text" class="form-control" id="inputSurname" placeholder="Surname" aria-label="" aria-describedby="addon-wrapping" name="surname">
                     </div>
                     
                     <div class="input-group flex-nowrap">
                       <span class="input-group-text" id="age" >Age</span>
-                      <input type="text" class="form-control" id="inputAge" placeholder="Age" aria-label="Username" aria-describedby="addon-wrapping">
+                      <input type="text" class="form-control" id="inputAge" placeholder="Age" aria-label="Username" aria-describedby="addon-wrapping" name="age">
                     </div>
                     
                     <div class="input-group flex-nowrap">
                       <span class="input-group-text" id="gender" >Gender</span>
-                      <input type="text" class="form-control" id="inputGender" placeholder="Gender" aria-label="Username" aria-describedby="addon-wrapping">
+                      <input type="text" class="form-control" id="inputGender" placeholder="Gender" aria-label="Username" aria-describedby="addon-wrapping" name="gender">
                     </div>
                     
                     <div class="input-group flex-nowrap" id="notesDiv">
                       <span class="input-group-text" id="notes">Notes</span>
-                      <input type="text" class="form-control" id="inputNotes" placeholder="Notes" aria-label="Username" aria-describedby="addon-wrapping">
+                      <input type="text" class="form-control" id="inputNotes" placeholder="Notes" aria-label="Username" aria-describedby="addon-wrapping" name="notes">
                     </div>
 
                     <!-- Checkbox -->
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name= "checkSave">
                         <label class="form-check-label" for="flexCheckDefault">
                           Save results
                         </label>
@@ -61,14 +61,15 @@
                     
                     
                    
-                    
-                    
+                    <button type="button" class="btn btn-primary btn-lg m-3" onclick = "location.href='index.html'">BACK</button>
+                    <button type="submit" class="btn btn-primary btn-lg m-3" >NEXT</button>
+
                   </form>   
                   
                   
                
-                <button type="button" class="btn btn-primary btn-lg m-3" onclick = "location.href='index.html'">BACK</button> 
-                <button type="button" class="btn btn-primary btn-lg m-3" onclick = "redirect()">NEXT</button> 
+                 
+                 
 
                 </div>
 

@@ -24,11 +24,11 @@ var countRev = 0;				// count of reversals
 var results = [[], [], []];		// trial, level e reversals
 
 var timestamp = 0;				// timestamp of the starting of the test
-
+var pressedButton;
 //funzione per generare il primo suono
 function playVar(time){
 	var volume1 = context.createGain();		//volume
-	volume1.gain.value = (10**(parseInt(intVar)/20)/10);			// do una valore al guadagno
+	volume1.gain.value = (10**(parseInt(intVar)/20));			// do una valore al guadagno
 	volume1.connect(context.destination);	//collego all'uscita audio
 
 	oscillator = context.createOscillator();//Creiamo il primo oscillatore
@@ -43,7 +43,7 @@ function playVar(time){
 //funzione per generare il secondo suono
 function playStd(time){
 	var volume2 = context.createGain();		//volume
-	volume2.gain.value = (10**(parseInt(intStd)/20)/10)			//do una valore al guadagno
+	volume2.gain.value = (10**(parseInt(intStd)/20))			//do una valore al guadagno
 	volume2.connect(context.destination);	//collego all'uscita audio
 
 	oscillator = context.createOscillator();//Creiamo il secondo oscillatore
@@ -100,9 +100,15 @@ function select(button){
 	}
 	
 	//save new data
-	results[0][i] = i;					// trial
-	results[1][i] = varFreq-stdFreq; 	// delta
-	results[2][i] = countRev;			// reversals
+	
+	results[0][i] = 1;					// blocco --> da implementare in futuro
+	results[1][i] = i;					// trial
+	results[2][i] = varFreq-stdFreq; 	// delta
+	results[3][i] = varFreq;			// variabile
+	results[4][i] = pressedButton; 		// pulsante premuto
+	results[5][i] = history[i]			// correttezza risposta
+	results[6][i] = countRev;			// reversals
+	
 	//dati da salvare (in orine): blocco, trial, delta, posizioneVariabile, tastoPremuto, rispostaCorretta, reversal
 	//inserire il nome delle colonne nella prima riga
 	
@@ -118,14 +124,14 @@ function select(button){
 		alert("il test é finito");
 		
 		//format datas as a csv file (only the last <reversalThreshold> reversals)
-		var result = "";
+		var result = "blocks, trials, delta, variable, button, correct, reversals ; ";
 		for(var j = reversalsPositions[countRev - reversalThreshold]; j < i; j++){
-			result += results[0][j] + "," + results[1][j] + "," + results[2][j] + ";";
+			result += results[0][j] + "," + results[1][j] + "," + results[2][j] + "," + results[3][j] + "," + results[4][j] + "," + results[5][j] + "," + results[6][j] + ";";
 		}
 		
 		//format description as a csv file
 		//prima tutti i nomi, poi tutti i dati
-		var description = "amp,"+amp+";freq,"+freq+";dur,"+dur+";phase,"+phase+";blocks,"+blocks+";delta,"+delta;
+		var description = "amp,"+amp+";freq,"+freq+";dur,"+dur+/*";phase,"+phase+*/";blocks,"+blocks+";delta,"+delta;
 		description += ";nAFC,"+nAFC+";fact,"+factor+";secFact,"+secondFactor+";rev,"+reversals+";secRev,"+secondReversals;
 		description += ";threshold,"+reversalThreshold+";alg,"+algorithm;
 		
@@ -147,19 +153,28 @@ function select(button){
 //funzione per implementare l'algoritmo nD1U
 function nDOWNoneUP(n, button){
 	delta = varFreq-stdFreq;
-	
+	pressedButton = button;
 	if((button == 1 && swap == 0) || (button == 2 && swap == 1)){ //correct answer
 		history[i] = 0;
 		correctAnsw += 1;
 		if(correctAnsw == n){ //if there are n consegutive correct answers
 			varFreq = stdFreq + (delta/parseInt(currentFactor));
 			correctAnsw = 0;
+			
+		}
+		if(feedback)
+		{
+			alert("Risposta corretta")
 		}
 		
 	}else{ //wrong answer
 		varFreq = stdFreq + (delta*parseInt(currentFactor));
 		history[i] = 1;
 		correctAnsw = 0;
+		if(feedback)
+		{
+			alert("Risposta errata")
+		}
 	}
 }
 

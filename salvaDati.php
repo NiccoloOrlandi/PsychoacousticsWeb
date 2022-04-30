@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	
-	if(isset($_SESSION['idGuest']) && isset($_GET['result']) && isset($_GET['timestamp']) && isset($_GET['type']) && isset($_GET['description'])){
+	if(isset($_SESSION['idGuest']) && isset($_GET['result']) && isset($_GET['timestamp']) && isset($_GET['type']) && isset($_GET['description'])&&($_SESSION["checkSave"])){
 		//apro la connessione con il db
 		$conn = new mysqli("localhost", "test", "", "psychoacoustics_db");
 		

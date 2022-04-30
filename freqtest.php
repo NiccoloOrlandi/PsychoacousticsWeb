@@ -18,7 +18,7 @@
 		var amp = <?php echo $_SESSION["amplitude"]; ?>;
 		var freq = <?php echo $_SESSION["frequency"]; ?>;
 		var dur = <?php echo $_SESSION["duration"]; ?>;
-		var phase = <?php echo $_SESSION["phase"]; ?>;
+		//var phase = <//?php echo $_SESSION["phase"]; ?>;
 		var blocks = <?php echo $_SESSION["blocks"]; ?>;
 		var delta = <?php echo $_SESSION["delta"]; ?>;
 		var nAFC = <?php echo $_SESSION["nAFC"]; ?>;

@@ -36,9 +36,9 @@ var stdDur = dur/1000;                                               // duration
 
 var varDur = dur/1000;                                               // duration of the variable 
 
-var intStd = parseInt(amp);                                                    // intensity of the variable in dB
+var intStd = parseInt(amp);                                          // intensity of the variable in dB
 
-var intVar = parseInt(amp) + parseInt(delta);                                            // intensity of the standard in dB
+var intVar = parseInt(amp) + parseInt(delta);                        // intensity of the standard in dB
 
 var swap =-1;                                                        // initial value of swap
 
@@ -63,7 +63,7 @@ function playVar(time){
     //volume
     var volume1 = context.createGain();
     // do una valore al guadagno
-    volume1.gain.value = (10**(parseInt(intVar)/20)/10); 
+    volume1.gain.value = (10**(parseInt(intVar)/20)); 
     //collego all'uscita audio
     volume1.connect(context.destination);
 
@@ -86,7 +86,7 @@ function playStd(time){
 
     var volume2 = context.createGain();         
     // do una valore al guadagno
-    volume2.gain.value = (10**(parseInt(intStd)/20)/10);
+    volume2.gain.value = (10**(parseInt(intStd)/20));
     //collego all'uscita audio
     volume2.connect(context.destination);
 
@@ -206,10 +206,6 @@ function start(){
 	random(); //comincia il test
 }
 
-function checkFeedback(){
 
-    if(feedback)
-        alert("é spuntato");
     
     
-}

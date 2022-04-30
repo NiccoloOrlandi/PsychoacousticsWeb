@@ -34,7 +34,7 @@ var countRev = 0;			// count of reversals
 //funzione per generare il primo suono
 function playVar(time){
 	var volume1 = context.createGain();		//volume
-	volume1.gain.value = (10**(parseInt(intVar)/20)/10);			// do una valore al guadagno
+	volume1.gain.value = 10**(intVar/20);	// do una valore al guadagno
 	volume1.connect(context.destination);	//collego all'uscita audio
 
 	oscillator = context.createOscillator();//Creiamo il primo oscillatore
@@ -43,13 +43,13 @@ function playVar(time){
 	oscillator.type = "sine";				// tipo di onda
 	
 	oscillator.start(context.currentTime + time); //Facciamo partire l'oscillatore
-	oscillator.stop(context.currentTime + time + (varDur/1000)); //Fermiamo l'oscillatore dopo varDur millisecondi
+	oscillator.stop(context.currentTime + time + 1); //Fermiamo l'oscillatore dopo varDur millisecondi
 }
 
 //funzione per generare il secondo suono
 function playStd(time){
 	var volume2 = context.createGain();		//volume
-	volume2.gain.value = (10**(parseInt(intStd)/20)/10);			//do una valore al guadagno
+	volume2.gain.value = 10**(intStd/20);	//do una valore al guadagno
 	volume2.connect(context.destination);	//collego all'uscita audio
 
 	oscillator = context.createOscillator();//Creiamo il secondo oscillatore
@@ -58,7 +58,7 @@ function playStd(time){
 	oscillator.type = "sine";				//tipo di onda
 
 	oscillator.start(context.currentTime + time); //Facciamo partire l'oscillatore
-	oscillator.stop(context.currentTime + time + (stdDur/1000)); //Fermiamo l'oscillatore dopo stdDur millisecondi
+	oscillator.stop(context.currentTime + time + 1); //Fermiamo l'oscillatore dopo stdDur millisecondi
 }
 
 //funzione per randomizzare l'output

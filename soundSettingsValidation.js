@@ -41,7 +41,7 @@ function test(){
 	var amp = document.getElementById("amplitude").value;
 	var freq = document.getElementById("frequency").value;
 	var dur = document.getElementById("duration").value;
-	var phase = document.getElementById("phase").value;
+	//var phase = document.getElementById("phase").value;
 	var numBlocks = document.getElementById("blocks").value;
 	var startLevel = document.getElementById("level").value;
 	var nafc = document.getElementById("nAFC").value;
@@ -112,7 +112,7 @@ function test(){
 		return false;
 	}*/
 	
-	//controlli su phase
+	/*controlli su phase
 	if ((phase == "") || (phase == "undefined")) {
 		alert("Il campo Phase è obbligatorio.");
 		document.getElementById("phase").value = "";
@@ -125,6 +125,7 @@ function test(){
 		document.getElementById("phase").focus();
 		return false;
 	}
+	*/
 	/*else if(!sound_reg_exp.test(dur)){
 	
 		alert("Il campo Frequency puó contenere solo numeri");
