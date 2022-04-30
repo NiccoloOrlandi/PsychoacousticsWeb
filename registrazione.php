@@ -49,7 +49,7 @@
 						
 					mysqli_set_charset($conn, "utf8");
 					
-					$sql="SELECT COLUMN_TYPE AS ct FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'test' AND TABLE_NAME = 'guest' AND COLUMN_NAME = 'gender';";
+					$sql="SELECT COLUMN_TYPE AS ct FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'psychoacoustics_db' AND TABLE_NAME = 'guest' AND COLUMN_NAME = 'gender';";
 					$result=$conn->query($sql);
 					$row=$result->fetch_assoc();//questa query da un risultato di tipo enum('Male','Female','Unspecified')
 					
@@ -68,7 +68,8 @@
 					
 					//creo un'opzione per ogni possibile valore
 					foreach($list as $elem){
-						echo "<option value='".strtoupper($elem)."'>".strtoupper($elem)."</option>";
+						if($elem!="")
+							echo "<option value='".strtoupper($elem)."'>".strtoupper($elem)."</option>";
 					}
 				?>
 			</select>
