@@ -43,7 +43,41 @@
                     
                     <div class="input-group flex-nowrap">
                       <span class="input-group-text" id="gender" >Gender</span>
-                      <input type="text" class="form-control" id="inputGender" placeholder="Gender" aria-label="Username" aria-describedby="addon-wrapping" name="gender">
+                      <select name='gender' class="form-select">
+                        <option disabled="disabled" selected value="null" id="NullGender">Select your gender</option>
+                        <?php 
+                          $conn = new mysqli("localhost", "test", "", "psychoacoustics_db");
+                          
+                          if ($conn->errno){
+                            die("Problemi di connessione" . $conn->error);
+                          }
+                            
+                          mysqli_set_charset($conn, "utf8");
+                          
+                          $sql="SELECT COLUMN_TYPE AS ct FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'psychoacoustics_db' AND TABLE_NAME = 'guest' AND COLUMN_NAME = 'gender';";
+                          $result=$conn->query($sql);
+                          $row=$result->fetch_assoc();//questa query da un risultato di tipo enum('Male','Female','Unspecified')
+                          
+                          //metto i valori in un array
+                          $values = substr($row['ct'], 5);
+                          $list = array();
+                          $initialPos = -1;
+                          for($i=0;str_split($values)[$i]!=')';$i++){
+                            if(str_split($values)[$i]=="'" and $initialPos==-1)
+                              $initialPos = $i+1;
+                            else if(str_split($values)[$i]=="'"){
+                              $list[] = substr($values, $initialPos, $i-$initialPos);
+                              $initialPos = -1;
+                            }
+                          }
+                          
+                          //creo un'opzione per ogni possibile valore
+                          foreach($list as $elem){
+                            if($elem!="")
+                              echo "<option value='".strtoupper($elem)."'>".strtoupper($elem)."</option>";
+                          }
+                        ?>
+                      </select>
                     </div>
                     
                     <div class="input-group flex-nowrap" id="notesDiv">
