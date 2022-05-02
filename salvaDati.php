@@ -1,8 +1,13 @@
 <?php
-	php include "config.php"; 
+	include "config.php";
 	session_start();
 	$delta = "UNDEFINED";
 	if(isset($_SESSION['idGuest']) && isset($_GET['result']) && isset($_GET['timestamp']) && isset($_GET['type']) && isset($_GET['description']) && ($_SESSION["checkSave"])){
+		$_SESSION["results"] = $_GET['result'];
+		$_SESSION["timestamp"] = $_GET['timestamp'];
+		$_SESSION["type"] = $_GET['type'];
+		$_SESSION["description"] = $_GET['description'];
+		
 		//apro la connessione con il db
 		$conn = new mysqli($host, $user, $password, $dbname);
 		

@@ -19,7 +19,7 @@
 				<div class="col">
 					<div class=" p-3 border bg-light" style="text-align:center;">
 						<h2 style="margin:5%;">Il tuo risultato è <?php echo $_SESSION["result"]; ?></h2>
-						<button type="button" class="btn btn-primary btn-lg m-3" id="download" onclick = "alert('download dati in CSV')">Download datas</button>
+						<button type="button" class="btn btn-primary btn-lg m-3" id="download" onclick = "location.href='download.php'">Download datas</button>
 						<button type="button" class="btn btn-primary btn-lg m-3" id="home" onclick = "location.href='index.html'">Home</button>
 						<p style="margin-bottom:5%;"></p>
 					</div>
