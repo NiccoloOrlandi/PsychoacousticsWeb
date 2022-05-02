@@ -21,7 +21,7 @@ const history = [];				// will have the answers ('1' if right, '0' if wrong)
 var reversalsPositions = [];	// will have the position of the i-th reversal in the history array 
 var i = 0;						// next index of the array
 var countRev = 0;				// count of reversals 
-var results = [[], [], []];		// trial, level e reversals
+var results = [[], [], [], [], [], [], []];		// trial, level e reversals
 
 var timestamp = 0;				// timestamp of the starting of the test
 var pressedButton;
