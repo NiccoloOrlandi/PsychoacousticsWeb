@@ -48,8 +48,8 @@ DEADLINES E TO-DO:
 - captcha	entro 15/05/2022
 	- inserire controllo login o sign in per non mettere il nome 							fatto
 	- captcha livello v2 o v3											da fare dopo aver parlato con tecnici
-	- come oscurare i dati di php username e psw									non serve
-	- scrivi su file e i file php leggono il file	
+	- come oscurare i dati di php username e psw									fatto
+	- scrivi su file e i file php leggono il file									fatto	
 	- conferma password (non ancora messa prima bisogna iscriversi e forse va introdotta la email ma va chiesto al prof)
 	- implementare sturuttura a tre livelli
 	- creare la pagina per i risultati immediati del test								fatto
