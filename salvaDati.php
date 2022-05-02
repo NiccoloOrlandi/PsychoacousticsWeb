@@ -1,9 +1,10 @@
 <?php
+	php include "config.php"; 
 	session_start();
 	$delta = "UNDEFINED";
 	if(isset($_SESSION['idGuest']) && isset($_GET['result']) && isset($_GET['timestamp']) && isset($_GET['type']) && isset($_GET['description']) && ($_SESSION["checkSave"])){
 		//apro la connessione con il db
-		$conn = new mysqli("localhost", "test", "", "psychoacoustics_db");
+		$conn = new mysqli($host, $user, $password, $dbname);
 		
 		//exec('ssh -f -L 3307:147.162.143.132:3306 username sleep 10 > /dev/null');
 		//$conn = new mysqli('147.162.143.132', 'root', '234kbnD3.23d', 'Psychoacoustics_DB', '3307');

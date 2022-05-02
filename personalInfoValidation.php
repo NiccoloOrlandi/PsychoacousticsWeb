@@ -1,9 +1,10 @@
 <?php
+	 include "config.php"; 
 	//accesso alla sessione
 	session_start();
 
 	//connessione al db
-	$conn = new mysqli("localhost", "test", "", "psychoacoustics_db");
+	$conn = new mysqli($host, $user, $password, $dbname);
 						
 	if ($conn->errno){
 		die("Problemi di connessione" . $conn->error);

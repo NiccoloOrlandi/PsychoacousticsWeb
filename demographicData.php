@@ -11,6 +11,8 @@
     
 
     <title>Hello, world!</title>
+
+    <?php include "config.php"; ?>
   </head>
   <body>
     
@@ -50,7 +52,7 @@
                       <select name='gender' class="form-select">
                         <option disabled="disabled" selected value="null" id="NullGender">Select your gender</option>
                         <?php 
-                          $conn = new mysqli("localhost", "test", "", "psychoacoustics_db");
+                          $conn = new mysqli($host, $user, $password, $dbname);
                           
                           if ($conn->errno){
                             die("Problemi di connessione" . $conn->error);
