@@ -46,9 +46,10 @@ DEADLINES E TO-DO:
 	- quando un utente accede va controllato che esista e va creata una sessione (così se fa test vengono collegati al suo account) fatto
 			
 - captcha	entro 15/05/2022
+	- inserire controllo login o sign in per non mettere il nome
 	- captcha livello v2 o v3
 	- come oscurare i dati di php username e psw									base64 dovrebbe essere sufficiente
-		- scrivi su file e i file php leggono il file	
+	- scrivi su file e i file php leggono il file	
 	- conferma password (non ancora messa prima bisogna iscriversi e forse va introdotta la email ma va chiesto al prof)
 	- implementare sturuttura a tre livelli
 	- creare la pagina per i risultati immediati del test e per lo storico dei test
@@ -73,4 +74,11 @@ DEADLINES E TO-DO:
 - documentazione entro il 10/06/2022
 	- documento dei requisiti
 	- tesi
+
+- domande tecnici:
+	- non funziona forticlient
+	- come cambiare la landing page, ora quando entro nel sito vengo portato all'albero delle cartelle
+	- come inviare i file 
+	- é possibile fare in modo che le modifiche che faccio nella repository github vengano fatte anche sul server?
+	- dati per recapchta : email futuro proprietario, nome dominio, non posso farlo ora perché servono questi dati e un collegamento https
 	
