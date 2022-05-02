@@ -52,7 +52,9 @@ DEADLINES E TO-DO:
 	- scrivi su file e i file php leggono il file	
 	- conferma password (non ancora messa prima bisogna iscriversi e forse va introdotta la email ma va chiesto al prof)
 	- implementare sturuttura a tre livelli
-	- creare la pagina per i risultati immediati del test e per lo storico dei test
+	- creare la pagina per i risultati immediati del test								fatto
+		- implementare download dati come CSV
+	- creare pagina per lo storico dei test
 
 - plus se riusciamo entro il 10/06/2022
 	- Vedere se si puó modificare la fase del suono

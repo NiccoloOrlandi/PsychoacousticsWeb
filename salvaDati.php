@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	
+	$delta = "UNDEFINED";
 	if(isset($_SESSION['idGuest']) && isset($_GET['result']) && isset($_GET['timestamp']) && isset($_GET['type']) && isset($_GET['description']) && ($_SESSION["checkSave"])){
 		//apro la connessione con il db
 		$conn = new mysqli("localhost", "test", "", "psychoacoustics_db");
@@ -35,6 +35,25 @@
 		//inserisci i dati del nuovo test
 		$sql = "INSERT INTO test(Timestamp, Type, Description, Result, Guest_ID, Test_count) VALUES ('{$_GET['timestamp']}','$type','{$_GET['description']}','{$_GET['result']}','{$_SESSION['idGuest']}', '$count')";
 		$conn->query($sql);
+		
+		//calcolo risultati
+		$results = $_GET['result'];
+		$posSemicolon = 0;
+		for($i=0;$i<strlen($results)-1;$i++){//trovo l'ultima riga di risultati
+			if($results[$i]==';')
+				$posSemicolon = $i;
+		}
+		$results = substr($results, $posSemicolon, strlen($results)-$posSemicolon);
+		$posComma = 0;
+		$delta = "";
+		for($i=0, $j=0;$j<3;$i++){//trovo il valore di delta in quella riga
+			if($results[$i]==','){
+				$delta = substr($results, $posComma+1, $i-$posComma-1);
+				$posComma = $i;
+				$j++;
+			}
+		}
 	}
-	header("Location: index.html");
+	$_SESSION["result"] = $delta;
+	header("Location: results.php");
 ?>
