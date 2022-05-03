@@ -12,9 +12,14 @@
 	$result = $conn->query($sql);
 	$row = $result->fetch_assoc();
 	
-	//creo il file
-	$file = "results.csv";
-	$txt = fopen($file, "w") or die("Unable to open file!");
+	//creo una cartella con i permessi di scrittura
+	$dir = 'csvFiles';
+	if (!file_exists($dir))
+		mkdir ($dir, 0744);
+
+	//creo e apro il file csv
+	$path = $dir."/results.csv";
+	$txt = fopen($path, "w") or die("Unable to open file!");
 	
 	//scrivo il nome delle colonne
 	$line = "Name;Surname;Age;Gender;Test Type;Timestamp;Amplitude;Frequency;Duration;nAFC;First factor;First reversals;Second factor;Second reversals;reversal threshold;algorithm;blocks;trials;delta;variable;button;correct;reversals\n";
@@ -102,13 +107,13 @@
 	fclose($txt);
 	//*scrittura su file (per disattivare togliere uno slash da questo commento)
 	header('Content-Description: File Transfer');
-	header('Content-Disposition: attachment; filename='.basename($file));
+	header('Content-Disposition: attachment; filename='.basename($path));
 	header('Expires: 0');
 	header('Cache-Control: must-revalidate');
 	header('Pragma: public');
-	header('Content-Length: ' . filesize($file));
+	header('Content-Length: ' . filesize($path));
 	header("Content-Type: text/plain");
-	readfile($file);
+	readfile($path);
 	//*/
-	unlink($file);//elimino il file dal server
+	unlink($path);//elimino il file dal server
 ?>
