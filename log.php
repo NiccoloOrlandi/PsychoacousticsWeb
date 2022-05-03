@@ -11,9 +11,9 @@
 		echo "Errore di connessione";
 	    die("Problemi di connessione" . $conn->error);
 	}
-
+	echo "connessione eseguita"
 	//uso codifica utf8 per comunicare col db
-	mysqli_set_charset($conn, "utf8");
+	/*mysqli_set_charset($conn, "utf8");
 	
 	//recupero username e password dal form di registrazione
     $usr = $_POST['usr'];
@@ -36,5 +36,5 @@
 		$conn->close();
 		header('Location: login.php?err=1');
 	}
-	
+	*/
 ?>
