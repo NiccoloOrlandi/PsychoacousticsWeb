@@ -7,9 +7,11 @@
 	$conn = new mysqli($host, $user, $password, $dbname);
 	
 	//controllo se è andata a buon fine
-	if ($conn->errno)
+	if ($conn->errno){
+		echo "Errore di connessione";
 	    die("Problemi di connessione" . $conn->error);
-
+	}
+	echo "connessione eseguita";
 	//uso codifica utf8 per comunicare col db
 	mysqli_set_charset($conn, "utf8");
 	
@@ -19,6 +21,7 @@
     
 	//controllo se esiste
     $sql = "SELECT Guest_ID FROM account WHERE username='$usr' AND password=SHA2('$psw', 256)";
+	
     $result=$conn->query($sql);
 	
     if($result->num_rows>0){
