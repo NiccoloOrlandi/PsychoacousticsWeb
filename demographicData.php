@@ -26,7 +26,7 @@
         <div class="row gx-4">
             <div class="col">
                 <div class=" p-3 border bg-light">
-                  <form name="staircase" method="post" action="personalinfoValidation.php<?php echo "?test=".$_GET["test"];?>">
+                  <form name="staircase" method="post" action="personalInfoValidation.php<?php echo "?test=".$_GET["test"];?>">
                     <!-- Contenuto dello slot, qui vanno inseriti tutti i bottoni e i check box del primo slot -->
 
                     <h1>Personal Informations</h1>
