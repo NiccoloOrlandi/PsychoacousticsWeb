@@ -16,15 +16,15 @@
 	mysqli_set_charset($conn, "utf8");
 	
 	//recupero username e password dal form di registrazione
-   // $usr = $_POST['usr'];
-	//	$psw = $_POST['psw'];
+    $usr = $_POST['usr'];
+	$psw = $_POST['psw'];
     
 	//controllo se esiste
-    //$sql = "SELECT Guest_ID FROM account WHERE username='$usr' AND password=SHA2('$psw', 256)";
-	$sql = "SELECT * FROM Account";
+    $sql = "SELECT Guest_ID FROM account WHERE username='$usr' AND password=SHA2('$psw', 256)";
+	
     $result=$conn->query($sql);
-	echo $result->num_rows;
-    /*if($result->num_rows>0){
+	
+    if($result->num_rows>0){
 		$row=$result->fetch_assoc();
 		
 		//faccio sapere alle altre pagine quale utente è loggato
@@ -37,5 +37,5 @@
 		$conn->close();
 		header('Location: login.php?err=1');
 	}
-	*/
+	
 ?>
