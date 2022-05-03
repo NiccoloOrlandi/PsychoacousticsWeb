@@ -21,7 +21,7 @@
     
 	//controllo se esiste
     //$sql = "SELECT Guest_ID FROM account WHERE username='$usr' AND password=SHA2('$psw', 256)";
-	$sql = "SELECT * FROM account ";
+	$sql = "SELECT * FROM Account";
     $result=$conn->query($sql);
 	echo $result->num_rows;
     /*if($result->num_rows>0){
