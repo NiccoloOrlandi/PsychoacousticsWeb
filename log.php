@@ -11,7 +11,7 @@
 		echo "Errore di connessione";
 	    die("Problemi di connessione" . $conn->error);
 	}
-	echo "connessione eseguita"
+	echo "connessione eseguita";
 	//uso codifica utf8 per comunicare col db
 	mysqli_set_charset($conn, "utf8");
 	
