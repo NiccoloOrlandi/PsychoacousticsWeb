@@ -124,7 +124,7 @@ function select(button){
 		alert("il test é finito");
 		
 		//format datas as a csv file (only the last <reversalThreshold> reversals)
-		var result = "blocks, trials, delta, variable, button, correct, reversals ; ";
+		var result = "blocks, trials, delta, variable, button, correct, reversals ;";
 		for(var j = reversalsPositions[countRev - reversalThreshold]; j < i; j++){
 			result += results[0][j] + "," + results[1][j] + "," + results[2][j] + "," + results[3][j] + "," + results[4][j] + "," + results[5][j] + "," + results[6][j] + ";";
 		}
