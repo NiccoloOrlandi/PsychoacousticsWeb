@@ -7,8 +7,10 @@
 	$conn = new mysqli($host, $user, $password, $dbname);
 	
 	//controllo se è andata a buon fine
-	if ($conn->errno)
+	if ($conn->errno){
+		echo "Errore di connessione";
 	    die("Problemi di connessione" . $conn->error);
+	}
 
 	//uso codifica utf8 per comunicare col db
 	mysqli_set_charset($conn, "utf8");
