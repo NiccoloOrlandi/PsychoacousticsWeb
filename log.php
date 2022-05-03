@@ -23,7 +23,7 @@
     //$sql = "SELECT Guest_ID FROM account WHERE username='$usr' AND password=SHA2('$psw', 256)";
 	$sql = "SELECT * FROM account ";
     $result=$conn->query($sql);
-	echo results->num_rows;
+	echo $result->num_rows;
     /*if($result->num_rows>0){
 		$row=$result->fetch_assoc();
 		
