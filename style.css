@@ -4,14 +4,12 @@ body{
 
 .btn-outline-success{
     float:right;
-    margin-top:-2.3rem; 
     border-color: white;
     color: white;
 }
 
 .btn-outline-danger{
     float:right;
-    margin-top:-2.3rem;
     border-color: white;
     color: white;
 }
@@ -30,4 +28,37 @@ body{
     border-color: darkred;
     box-shadow: 10px 10px 5px gray;
     color: white;
+}
+
+.logout{
+	margin-left: 2%;
+	margin-top:0px;
+}
+
+.yourTests{
+	float: right;
+	margin-left: 2%;
+	margin-top:0px;
+	border-color: white;
+    color: white;
+}
+
+.logButtons{
+	text-align:right;
+	width: 40%;
+	margin-left: auto; 
+	margin-right: 0;
+}
+
+.welcomeMessage{
+	color:white;
+	margin-top: 7px;
+	margin-left: 0; 
+	margin-right: auto;
+	text-align:center;
+}
+
+.navbar-brand{
+	width:60%;
+	margin-right: 0;
 }

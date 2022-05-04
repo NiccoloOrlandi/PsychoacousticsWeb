@@ -101,7 +101,7 @@
                     
                     
                    
-                    <button type="button" class="btn btn-primary btn-lg m-3" onclick = "location.href='index.html'">BACK</button>
+                    <button type="button" class="btn btn-primary btn-lg m-3" onclick = "location.href='index.php'">BACK</button>
                     <button type="submit" class="btn btn-primary btn-lg m-3" >NEXT</button>
 
                   </form>   

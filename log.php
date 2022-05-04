@@ -7,11 +7,9 @@
 	$conn = new mysqli($host, $user, $password, $dbname);
 	
 	//controllo se è andata a buon fine
-	if ($conn->errno){
-		echo "Errore di connessione";
+	if ($conn->errno)
 	    die("Problemi di connessione" . $conn->error);
-	}
-	echo "connessione eseguita";
+	
 	//uso codifica utf8 per comunicare col db
 	mysqli_set_charset($conn, "utf8");
 	
@@ -32,7 +30,7 @@
 		$_SESSION['idGuest'] = $row['Guest_ID'];
 		
 		$conn->close();
-		header('Location: index.html');
+		header('Location: index.php');
 	}else{
 		$conn->close();
 		header('Location: login.php?err=1');

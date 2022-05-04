@@ -10,7 +10,9 @@
     <link rel ="stylesheet" href="style.css">
     <script type="text/javascript" src="funzioni.js"></script>
 
-    <title>Hello, world!</title>
+    <title>Psychoacoustics</title>
+	
+	<?php session_start(); ?>
   </head>
  
   <body>
@@ -23,10 +25,20 @@
             PSYCHOACOUSTICS
             
           </a>
-          <form class="container-fluid"  >
-            <button class="btn btn-outline-danger " type="button" onclick="location.href='registrazione.php'" >Sign Up</button>
-            <button class="btn btn-outline-success me-2" type="button" onclick="location.href='login.php'">Log In</button>
-          </form>
+		  <form class="container-fluid logButtons">
+			<?php 
+				if(!isset($_SESSION["usr"])){
+					if(isset($_SESSION["idGuest"]))
+						unset($_SESSION["idGuest"]);
+					echo "<button class=\"btn btn-outline-danger \" type=\"button\" onclick=\"location.href='registrazione.php'\" >Sign Up</button>";
+					echo "<button class=\"btn btn-outline-success me-2\" type=\"button\" onclick=\"location.href='login.php'\">Log In</button>";
+				}else{
+					echo "<label class='welcomeMessage'>Benvenuto ".$_SESSION['usr']."</label>";
+					echo "<button class=\"btn btn-outline-primary yourTests\" type=\"button\" onclick=\"location.href='yourTests.php'\">Your tests</button>";
+					echo "<button class=\"btn btn-outline-danger logout\" type=\"button\" onclick=\"location.href='logout.php'\">Log Out</button>";
+				}
+			?>
+		  </form>
          
         </div>
     </nav>
