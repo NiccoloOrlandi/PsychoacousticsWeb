@@ -53,7 +53,7 @@ DEADLINES E TO-DO:
 	- conferma password (non ancora messa prima bisogna iscriversi e forse va introdotta la email ma va chiesto al prof)
 	- implementare sturuttura a tre livelli
 	- creare la pagina per i risultati immediati del test								fatto
-		- implementare download dati come CSV
+		- implementare download dati come CSV									fatto
 	- creare pagina per lo storico dei test
 
 - plus se riusciamo entro il 10/06/2022
