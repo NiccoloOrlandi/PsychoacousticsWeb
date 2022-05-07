@@ -51,22 +51,23 @@ DEADLINES E TO-DO:
 	- come oscurare i dati di php username e psw									fatto
 	- scrivi su file e i file php leggono il file									fatto	
 	- conferma password (non ancora messa prima bisogna iscriversi e forse va introdotta la email ma va chiesto al prof)
-	- implementare sturuttura a tre livelli
+	- implementare struttura a tre livelli  									fatto
 	- creare la pagina per i risultati immediati del test								fatto
-		- implementare download dati come CSV									fatto
-	- creare pagina per lo storico dei test
+	- implementare download dati come CSV										fatto
+	- creare pagina per lo storico dei test										fatto
+	- modificare il php per inserimento dati
 
 - plus se riusciamo entro il 10/06/2022
-	- Vedere se si puó modificare la fase del suono
-	- Funzione (esponenziale fino a 1?) che permette di non avere brutte sensazioni a inizio e fine suono 
+	- --- Vedere se si puó modificare la fase del suono
+	- --- Funzione (esponenziale fino a 1?) che permette di non avere brutte sensazioni a inizio e fine suono 
 	- Predisporre presenza di rumori di sottofondo 
 	- Predisporre piú di due suoni alla volta ( un suono viene ripetuto piú volte e l'altro una volta sola )
 	- Diagramma architetturale del sistema
-	- Recupero dati utente e psw ( difficile serve mailing list, quando ci si registra bisogna inserire email )
+	- --- Recupero dati utente e psw ( difficile serve mailing list, quando ci si registra bisogna inserire email )
 	- predisporre funzionamento delle altre metriche
 	
-	- suoni suonabili componibili
-	- problema del click iniziale
+	- --- suoni suonabili componibili
+	- --- problema del click iniziale   
 	
 - grafica entro il 10/06/2022
 	- alert di errore di inerimento dati (migliorare)
