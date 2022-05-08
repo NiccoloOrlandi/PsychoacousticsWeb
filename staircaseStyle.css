@@ -63,13 +63,18 @@
 	width: 100%;
 }
 
+.referral{
+	float:right !important;
+	width: 35% !important;
+}
+
 /*quando la finestra è più piccola di 991 pixel, viene usato questo css*/
 @media all and (max-width: 991px) {
 	
 	/*gli input box ora prendono tutta la riga, come le note*/
 	.input-group.flex-nowrap{
 		width: 98%; 
-		float: left; 
+		float: none; 
 		margin-right: 2%;
 	}
 	
@@ -94,5 +99,11 @@
 	.form-check{
 		/*per evitare che si sovrapponga ad altri oggetti*/
 		float: left;
+	}
+	
+	.referral{
+		margin-top: 5%;
+		float: none !important;
+		width: 98% !important;
 	}
 }

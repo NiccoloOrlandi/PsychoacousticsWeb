@@ -2,17 +2,29 @@
 	include "config.php";
 	session_start();
 	$delta = "UNDEFINED";
-	if(isset($_SESSION['idGuest']) && isset($_GET['result']) && isset($_GET['timestamp']) && isset($_GET['type']) && isset($_GET['description']) && ($_SESSION["checkSave"])){
+	if(isset($_SESSION['idGuest']) && isset($_GET['result']) && isset($_GET['timestamp']) && isset($_GET['type']) && ($_SESSION["checkSave"])
+		&& isset($_GET['amp']) && isset($_GET['freq']) && isset($_GET['dur']) && isset($_GET['blocks']) && isset($_GET['delta'])
+		&& isset($_GET['nAFC']) && isset($_GET['fact']) && isset($_GET['secFact']) && isset($_GET['rev']) && isset($_GET['secRev'])
+		&& isset($_GET['threshold']) && isset($_GET['alg'])){
+		
 		$_SESSION["results"] = $_GET['result'];
 		$_SESSION["timestamp"] = $_GET['timestamp'];
 		$_SESSION["type"] = $_GET['type'];
-		$_SESSION["description"] = $_GET['description'];
+		$_SESSION["amp"] = $_GET['amp'];
+		$_SESSION["freq"] = $_GET['freq'];
+		$_SESSION["dur"] = $_GET['dur'];
+		$_SESSION["blocks"] = $_GET['blocks'];
+		$_SESSION["delta"] = $_GET['delta'];
+		$_SESSION["nAFC"] = $_GET['nAFC'];
+		$_SESSION["fact"] = $_GET['fact'];
+		$_SESSION["secFact"] = $_GET['secFact'];
+		$_SESSION["rev"] = $_GET['rev'];
+		$_SESSION["secRev"] = $_GET['secRev'];
+		$_SESSION["threshold"] = $_GET['threshold'];
+		$_SESSION["alg"] = $_GET['alg'];
 		
 		//apro la connessione con il db
 		$conn = new mysqli($host, $user, $password, $dbname);
-		
-		//exec('ssh -f -L 3307:147.162.143.132:3306 username sleep 10 > /dev/null');
-		//$conn = new mysqli('147.162.143.132', 'root', '234kbnD3.23d', 'Psychoacoustics_DB', '3307');
 		
 		//controllo se è andata a buon fine
 		if ($conn->errno)
@@ -38,8 +50,16 @@
 		//il test corrente è il numero di test già effettuati + 1
 		$count = $row['count']+1;
 		
+		//trovo l'id a cui associare il test
+		$id = $_SESSION['idGuest'];
+		if(isset($_SESSION['idGuestTest']))
+			$id = $_SESSION['idGuestTest'];
+		
 		//inserisci i dati del nuovo test
-		$sql = "INSERT INTO test(Timestamp, Type, Description, Result, Guest_ID, Test_count) VALUES ('{$_GET['timestamp']}','$type','{$_GET['description']}','{$_GET['result']}','{$_SESSION['idGuest']}', '$count')";
+		$sql = "INSERT INTO test VALUES ('$id', '$count', '{$_GET['timestamp']}', ";
+		$sql .= "'$type', '{$_GET['amp']}', '{$_GET['freq']}', '{$_GET['dur']}', '{$_GET['blocks']}', ";
+		$sql .= "'{$_GET['delta']}', '{$_GET['nAFC']}', '{$_GET['fact']}', '{$_GET['rev']}', ";
+		$sql .= "'{$_GET['secFact']}', '{$_GET['secRev']}', '{$_GET['threshold']}', '{$_GET['alg']}', '{$_GET['result']}')";
 		$conn->query($sql);
 		
 		//calcolo risultati

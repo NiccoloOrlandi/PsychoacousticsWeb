@@ -70,8 +70,7 @@
 					
 					//creo un'opzione per ogni possibile valore
 					foreach($list as $elem){
-						if($elem!="")
-							echo "<option value='".strtoupper($elem)."'>".strtoupper($elem)."</option>";
+						echo "<option value='".strtoupper($elem)."'>".strtoupper($elem)."</option>";
 					}
 				?>
 			</select>

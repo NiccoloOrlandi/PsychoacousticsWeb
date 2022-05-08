@@ -32,9 +32,17 @@
 		$gender = strtoupper($_POST['gender']);
 		$notes = $_POST['notes'];
 		
+		//trovo l'id massimo
+		$sql = "SELECT MAX(id) as maxId FROM guest";
+		$result=$conn->query($sql);
+		$row=$result->fetch_assoc();
+		
+		//uso l'id massimo + 1
+		$id = $row['maxId'] + 1;
+		
 		//inizio a creare la query inserendo i valori non NULL
-		$sql = "INSERT INTO guest (name";
-		$sqlVal = " VALUES ('$name'";
+		$sql = "INSERT INTO guest (ID, name";
+		$sqlVal = " VALUES ('$id', '$name'";
 		
 		if($surname != ""){
 			$sql .= ",surname";
@@ -65,35 +73,11 @@
 		$conn->query($sql);
 		
 		//trovo il suo id prendendo l'id massimo tra gli utenti con gli stessi dati
-		$sql = "SELECT MAX(id) as maxId FROM guest WHERE name='$name'";
 		
-		if($surname == "")
-			$sql .= " AND surname IS NULL";
-		else
-			$sql .= " AND surname='$surname'";
 		
-		if($date == "")
-			$sql .= " AND age IS NULL";
-		else
-			$sql .= " AND age=$age";
-		
-		if($gender == "NULL")
-			$sql .= " AND gender IS NULL";
-		else
-			$sql .= " AND gender='$gender'";
-		
-		if($notes == "")
-			$sql .= " AND notes IS NULL";
-		else
-			$sql .= " AND notes='$notes'";
-		
-		$result=$conn->query($sql);
-		$row=$result->fetch_assoc();
-		$id = $row['maxId'];
-		
-		//creo e collego l'account, salvo l'hash della password con sha2-256
-		$sql = "INSERT INTO account VALUES ('$usr', SHA2('$psw', 256), '$id')";
-    	$conn->query($sql);
+		//creo e collego l'account, salvo l'hash della password con sha2-256, tipo di account 0 (base)
+		$sql = "INSERT INTO account VALUES ('$usr', SHA2('$psw', 256), '$id', '0', '".base64_encode($usr)."', NULL, NULL)";
+		$conn->query($sql);
 		
 		//faccio sapere alle altre pagine quale utente è loggato
     	$_SESSION['usr'] = $usr;

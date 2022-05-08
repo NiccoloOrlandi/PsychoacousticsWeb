@@ -79,8 +79,7 @@
                           
                           //creo un'opzione per ogni possibile valore
                           foreach($list as $elem){
-                            if($elem!="")
-                              echo "<option value='".strtoupper($elem)."'>".strtoupper($elem)."</option>";
+							echo "<option value='".strtoupper($elem)."'>".strtoupper($elem)."</option>";
                           }
                         ?>
                       </select>
@@ -90,7 +89,12 @@
                       <span class="input-group-text" id="notes">Notes</span>
                       <input type="text" class="form-control" id="inputNotes" placeholder="Notes" aria-label="Username" aria-describedby="addon-wrapping" name="notes">
                     </div>
-
+                    
+					<div class="input-group flex-nowrap referral">
+                      <span class="input-group-text" id="notes">Referral code</span>
+                      <input type="text" class="form-control" id="ref" aria-label="Referral code" aria-describedby="addon-wrapping" name="ref" value="<?php if(isset($_GET['ref'])) echo $_GET['ref']; ?>">
+                    </div>
+					
                     <!-- Checkbox -->
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name= "checkSave" checked>
@@ -99,10 +103,9 @@
                         </label>
                     </div>
                     
-                    
-                   
                     <button type="button" class="btn btn-primary btn-lg m-3" onclick = "location.href='index.php'">BACK</button>
                     <button type="submit" class="btn btn-primary btn-lg m-3" >NEXT</button>
+					
 
                   </form>   
                   
