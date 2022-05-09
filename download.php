@@ -17,13 +17,14 @@
 	$result = $conn->query($sql);
 	$row = $result->fetch_assoc();
 	
-	//creo una cartella con i permessi di scrittura
+	/*/creo una cartella con i permessi di scrittura
 	$dir = 'csvFiles';
 	if (!file_exists($dir))
 		mkdir ($dir, 0744);
+	//*/
 
 	//creo e apro il file csv
-	$path = $dir."/results.csv";
+	$path = "results.csv";
 	$txt = fopen($path, "w") or die("Unable to open file!");
 	
 	//scrivo il nome delle colonne
