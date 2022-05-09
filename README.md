@@ -57,6 +57,34 @@ DEADLINES E TO-DO:
 	- creare pagina per lo storico dei test										fatto
 	- modificare il php per inserimento dati
 
+- modifiche al db (e quindi al sito)
+	- account ha un type												fatto
+		- corretto inserimento nel registering									fatto
+		- super user deve poter creare altri super user								da fare
+		- super user deve poter scaricare i dati di tutti i test nel db						da fare
+		- i guest non collegati non possono scaricare i dati come csv						da fare
+		- download di tutti i vecchi test dell'account da yourTests.php						da fare
+	- account ha un referral											fatto
+		- creazione nuovo referral										da fare
+		- creazione link (demographicData.php?ref=####)								da fare
+		- demographicData ha un input box per il referral							fatto
+		- demographicData prende il valore del referral direttamente dal link, se c'è				fatto
+	- guest ha una fk_account 											fatto
+		- se non si è fatto il log in:										
+			- se non c'è il nome: errore									fatto
+			- se c'è il nome:										
+				- se non c'è il referral: crea guest con fk_account nulla				fatto
+				- se c'è il referral: crea guest collegato all'account del referral tramite fk_account	fatto
+		-se si è fatto il log in:										
+			- se non c'è il nome:										
+				- se non c'è il referral: il test si collega al guest dell'account loggato		fatto
+				- se c'è il referral: errore								fatto
+			- se c'è il nome:
+				- se non c'è il referral: crea guest collegato all'account loggato tramite fk_account	fatto
+				- se c'è il referral: crea guest collegato all'account del referral tramite fk_account	fatto
+	- account ha un test collegato dal quale prende i settings							fatto
+		- checkbox "save settings" se è stato fatto il log in							da fare
+
 - plus se riusciamo entro il 10/06/2022
 	- --- Vedere se si puó modificare la fase del suono
 	- --- Funzione (esponenziale fino a 1?) che permette di non avere brutte sensazioni a inizio e fine suono 
@@ -65,6 +93,7 @@ DEADLINES E TO-DO:
 	- Diagramma architetturale del sistema
 	- --- Recupero dati utente e psw ( difficile serve mailing list, quando ci si registra bisogna inserire email )
 	- predisporre funzionamento delle altre metriche
+	- premi '1' e '2' da tastiera invece dei pulsanti a schermo (e da android? meglio tenerli entrambi?)
 	
 	- --- suoni suonabili componibili
 	- --- problema del click iniziale   
