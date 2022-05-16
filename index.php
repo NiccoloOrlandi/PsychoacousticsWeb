@@ -48,40 +48,65 @@
       
       <div class="container-fluid" style="background-color: #fff; ">
         
-        <h1 class="display-3" style="color:black; padding-bottom: 1rem;" > <b>Che cos'é psychoacoustics:</b></h1>  
-        <h2 class="display-8" style="color:black; padding-bottom: 6rem; margin-bottom: -2rem;" > estratto dell'articolo per presentazione</h2>
+        <h3 class="display-3 descriptionTitle"> 
+			Che cos'é psychoacoustics:
+		</h3>  
+        <h5 class="display-8 description"> 
+			PSYCHOACOUSTICS-WEB is a web developed tool to measure auditory sensory thresholds for a 
+			variety of classic tasks. You can run each test as a gues or you can create your personal 
+			account and costumize the toolbox for your own research. Please refer to the <a href="">instruction 
+			manual</a> for further info on how to use the toolbox.
+		</h5>
       </div>
       
       <!-- cards -->
      
       <div class="card">
-        <img src="..." class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title" >Pure tone intensity discrimination</h5>
-          <p class="card-text" >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary" id="test-button" onmouseover="changeColor()" onmouseleave="leave()" onclick="location.href='demographicData.php?test=amp'" >Vai al test</a>
+          <p class="card-text" >
+			  This task estimate the intensity discrimination threshold for a pure tone. 
+			  In the task you can set up the characteristics of the tone as well as 
+			  the characteristics of the adaptive staircase. The test implements the 
+			  following adaptive staircase algorithms: simple up-down, 2-down 1-up, 
+			  and 3-down 1-up. Please refer to Levitt (JASA, 1971) for more info on 
+			  these adaptive staircases.
+		  </p>
+          <a href="#" class="btn btn-primary" id="test-button" onmouseover="changeColor()" onmouseleave="leave()" onclick="location.href='demographicData.php?test=amp'" >Run the test</a>
         </div>
       </div>
       
       
       
       <div class="card">
-        <img src="..." class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Pure tone frequency discrimination</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-text">
+			  This task estimate the frequency discrimination threshold for a pure tone. 
+			  In the task you can set up the characteristics of the tone as well as 
+			  the characteristics of the adaptive staircase. The test implements the 
+			  following adaptive staircase algorithms: simple up-down, 2-down 1-up, 
+			  and 3-down 1-up. Please refer to Levitt (JASA, 1971) for more info on 
+			  these adaptive staircases.
+		  </p>
 		  <!-- passo il tipo di test come parametro nell'url -->
-          <a href="#" class="btn btn-primary" id="test-button" onmouseover="changeColor()" onmouseleave="leave()" onclick="location.href='demographicData.php?test=freq'" >Vai al test</a>
+          <a href="#" class="btn btn-primary" id="test-button" onmouseover="changeColor()" onmouseleave="leave()" onclick="location.href='demographicData.php?test=freq'" >Run the test</a>
         </div>
       </div>
 
     
       <div class="card">
-        <img src="..." class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Pure tone duration discrimination</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary" id="test-button" onmouseover="changeColor()" onmouseleave="leave()" onclick="location.href='demographicData.php?test=dur'" >Vai al test</a>
+          <p class="card-text">
+			  This task estimate the duration discrimination threshold for a pure tone. 
+			  In the task you can set up the characteristics of the tone as well as 
+			  the characteristics of the adaptive staircase. The test implements the 
+			  following adaptive staircase algorithms: simple up-down, 2-down 1-up, 
+			  and 3-down 1-up. Please refer to Levitt (JASA, 1971) for more info on 
+			  these adaptive staircases.
+		  </p>
+          <a href="#" class="btn btn-primary" id="test-button" onmouseover="changeColor()" onmouseleave="leave()" onclick="location.href='demographicData.php?test=dur'" >Run the test</a>
         </div>
       </div>
 

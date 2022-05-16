@@ -30,7 +30,7 @@
 	//scrivo il nome delle colonne
 	$line = "Name;Surname;Age;Gender;Test Type;Timestamp;Amplitude;Frequency;Duration;nAFC;First factor;";
 	$line .= "First reversals;Second factor;Second reversals;reversal threshold;algorithm;blocks;trials;";
-	$line .= "delta;variable;button;correct;reversals\n";
+	$line .= "delta;variable;Variable Position;Pressed button;correct?;reversals\n";
 	fwrite($txt, $line);
 	
 	//valore della prima parte (quella fissa che va ripetuta)
@@ -56,7 +56,7 @@
 	$results = substr($_SESSION["results"], strpos($_SESSION["results"], ";")+1); 
 	//results sarà nella forma "bl1,tr1,del1,var1,but1,cor1,rev1;bl2,tr2,del2,var2,but2,cor2,rev2;..."
 	$pos = 0;
-	$variableValues = [0, 0, 0, 0, 0, 0, 0];
+	$variableValues = [0, 0, 0, 0, 0, 0, 0, 0]; //blocks, trials, delta, variable, Variable Position, Pressed button, correct?, reversals
 	for($i = 0, $j=0;$i<strlen($results)-1;$i++){
 		if($results[$i]==";"){//quando incontro un punto e virgola sono all'ultimo dato
 			$variableValues[$j] = substr($results,$pos,$i-$pos);

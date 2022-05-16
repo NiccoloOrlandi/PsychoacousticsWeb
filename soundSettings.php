@@ -162,7 +162,7 @@
 													</div>
 													<div class="input-group flex-nowrap">
 														<span class="input-group-text" id="addon-wrapping">Reversals</span>
-														<input type="text" class="form-control" name="reversals" id = "reversals" placeholder="Reversals" aria-label="Username" aria-describedby="addon-wrapping" value = "2">
+														<input type="text" class="form-control" name="reversals" id = "reversals" placeholder="Reversals" aria-label="Username" aria-describedby="addon-wrapping" value = "4">
 													</div>
 												</div>
 												<div class="right-div">
@@ -172,12 +172,12 @@
 													</div>
 													<div class="input-group flex-nowrap">
 														<span class="input-group-text" id="addon-wrapping">Second reversals</span>
-														<input type="text" class="form-control" name="secReversals" id = "reversals" placeholder="Reversals" aria-label="Username" aria-describedby="addon-wrapping" value = "2">
+														<input type="text" class="form-control" name="secReversals" id = "reversals" placeholder="Reversals" aria-label="Username" aria-describedby="addon-wrapping" value = "8">
 													</div>
 												</div>
 												<div class="input-group flex-nowrap">
 													<span class="input-group-text" id="addon-wrapping">Reversal threshold</span>
-													<input type="text" class="form-control" name="threshold" id = "reversalsTh" placeholder="Threshold" aria-label="Username" aria-describedby="addon-wrapping">
+													<input type="text" class="form-control" name="threshold" id = "reversalsTh" placeholder="Threshold" aria-label="Username" aria-describedby="addon-wrapping" value="8">
 												</div>
 											</div>
 

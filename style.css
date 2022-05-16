@@ -28,6 +28,7 @@ body{
     border-color: darkred;
     box-shadow: 10px 10px 5px gray;
     color: white;
+	font-weight: lighter;
 }
 
 .logout{
@@ -61,4 +62,18 @@ body{
 .navbar-brand{
 	width:60%;
 	margin-right: 0;
+}
+
+.description{
+	color:black; 
+	padding-bottom: 6rem; 
+	margin-bottom: -2rem; 
+	font-weight: 400;
+}
+
+.descriptionTitle{
+	color:black; 
+	padding-bottom: 1rem; 
+	font-size:70px; 
+	font-weight: 400;
 }

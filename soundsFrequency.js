@@ -21,7 +21,7 @@ const history = [];				// will have the answers ('1' if right, '0' if wrong)
 var reversalsPositions = [];	// will have the position of the i-th reversal in the history array 
 var i = 0;						// next index of the array
 var countRev = 0;				// count of reversals 
-var results = [[], [], [], [], [], [], []];		// trial, level e reversals
+var results = [[], [], [], [], [], [], [], []];		// block, trial, delta, variable value, variable position, pressed button, correct answer?, reversals
 
 var timestamp = 0;				// timestamp of the starting of the test
 var pressedButton;
@@ -100,14 +100,15 @@ function select(button){
 	}
 	
 	//save new data
-	
+	alert(swap);
 	results[0][i] = 1;					// blocco --> da implementare in futuro
-	results[1][i] = i;					// trial
+	results[1][i] = i+1;				// trial
 	results[2][i] = varFreq-stdFreq; 	// delta
-	results[3][i] = varFreq;			// variabile
-	results[4][i] = pressedButton; 		// pulsante premuto
-	results[5][i] = history[i]			// correttezza risposta
-	results[6][i] = countRev;			// reversals
+	results[3][i] = varFreq;			// variable value
+	results[4][i] = swap+1;				// variable position
+	results[5][i] = pressedButton; 		// pulsante premuto
+	results[6][i] = history[i]			// correttezza risposta
+	results[7][i] = countRev;			// reversals
 	
 	//dati da salvare (in orine): blocco, trial, delta, posizioneVariabile, tastoPremuto, rispostaCorretta, reversal
 	//inserire il nome delle colonne nella prima riga
@@ -124,9 +125,9 @@ function select(button){
 		alert("il test é finito");
 		
 		//format datas as a csv file (only the last <reversalThreshold> reversals)
-		var result = "blocks, trials, delta, variable, button, correct, reversals ;";
+		var result = "blocks,trials,delta,variableValue,variablePosition,button,correct,reversals;";
 		for(var j = Math.min(reversalsPositions[countRev - reversalThreshold]-1,0); j < i; j++){
-			result += results[0][j] + "," + results[1][j] + "," + results[2][j] + "," + results[3][j] + "," + results[4][j] + "," + results[5][j] + "," + results[6][j] + ";";
+			result += results[0][j] + "," + results[1][j] + "," + results[2][j] + "," + results[3][j] + "," + results[4][j] + "," + results[5][j] + "," + results[6][j] + "," + results[7][j] + ";";
 		}
 		
 		//format description as a csv file
