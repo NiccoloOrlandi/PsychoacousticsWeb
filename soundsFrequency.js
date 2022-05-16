@@ -22,6 +22,8 @@ var reversalsPositions = [];	// will have the position of the i-th reversal in t
 var i = 0;						// next index of the array
 var countRev = 0;				// count of reversals 
 var results = [[], [], [], [], [], [], [], []];		// block, trial, delta, variable value, variable position, pressed button, correct answer?, reversals
+var score = 0					// final score
+var positiveStrike = -1;		// -1 = unsetted, 0 = negative strike, 1 = positive strike
 
 var timestamp = 0;				// timestamp of the starting of the test
 var pressedButton;
@@ -94,11 +96,6 @@ function select(button){
 			break;
 	}
 	
-	if((i>0)&&(history[i]!=history[i-1])){
-		reversalsPositions[countRev] = i;//save the position of that reversal
-		countRev++;
-	}
-	
 	//save new data
 	alert(swap);
 	results[0][i] = 1;					// blocco --> da implementare in futuro
@@ -109,9 +106,6 @@ function select(button){
 	results[5][i] = pressedButton; 		// pulsante premuto
 	results[6][i] = history[i]			// correttezza risposta
 	results[7][i] = countRev;			// reversals
-	
-	//dati da salvare (in orine): blocco, trial, delta, posizioneVariabile, tastoPremuto, rispostaCorretta, reversal
-	//inserire il nome delle colonne nella prima riga
 	
 	//increment counter
 	i++;
@@ -137,7 +131,7 @@ function select(button){
 		description += "&threshold="+reversalThreshold+"&alg="+algorithm;
 		
 		//pass the datas to the php file
-		location.href="salvaDati.php?result="+result+"&timestamp="+timestamp+"&type=freq"+description;
+		location.href="salvaDati.php?result="+result+"&timestamp="+timestamp+"&type=freq"+description+"&score="+(score/countRev);
 	}
 	//if the test is not ended
 	else{
@@ -161,21 +155,36 @@ function nDOWNoneUP(n, button){
 		if(correctAnsw == n){ //if there are n consegutive correct answers
 			varFreq = stdFreq + (delta/parseInt(currentFactor));
 			correctAnsw = 0;
-			
+			if(positiveStrike == 0){
+				//there was a reversal
+				reversalsPositions[countRev] = i-(n-1);//save the position of that reversal
+				countRev++;
+				
+				//calculate score
+				score += (delta + (varFreq-stdFreq))/2;
+			}
+			positiveStrike = 1;
 		}
 		if(feedback)
-		{
 			alert("Risposta corretta")
-		}
 		
 	}else{ //wrong answer
 		varFreq = stdFreq + (delta*parseInt(currentFactor));
 		history[i] = 1;
 		correctAnsw = 0;
-		if(feedback)
-		{
-			alert("Risposta errata")
+		
+		if(positiveStrike == 1){
+			//there was a reversal
+			reversalsPositions[countRev] = i;//save the position of that reversal
+			countRev++;
+			
+			//calculate score
+			score += (delta + (varFreq-stdFreq))/2;
 		}
+		positiveStrike = 0;
+		
+		if(feedback)
+			alert("Risposta errata")
 	}
 }
 

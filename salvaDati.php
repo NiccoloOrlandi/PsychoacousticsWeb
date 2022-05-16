@@ -1,12 +1,15 @@
 <?php
 	include "config.php";
 	session_start();
-	$delta = "UNDEFINED";
 	if(isset($_SESSION['idGuest']) && isset($_GET['result']) && isset($_GET['timestamp']) && isset($_GET['type']) && ($_SESSION["checkSave"])
 		&& isset($_GET['amp']) && isset($_GET['freq']) && isset($_GET['dur']) && isset($_GET['blocks']) && isset($_GET['delta'])
 		&& isset($_GET['nAFC']) && isset($_GET['fact']) && isset($_GET['secFact']) && isset($_GET['rev']) && isset($_GET['secRev'])
-		&& isset($_GET['threshold']) && isset($_GET['alg'])){
+		&& isset($_GET['threshold']) && isset($_GET['alg']) && isset($_GET['score'])){
 		
+		if(isset($_SESSION["score"]))
+			$_SESSION["score"] .= $_GET['score'].";";
+		else
+			$_SESSION["score"] = $_GET['score'].";";
 		$_SESSION["results"] = $_GET['result'];
 		$_SESSION["timestamp"] = $_GET['timestamp'];
 		$_SESSION["type"] = $_GET['type'];
@@ -61,25 +64,6 @@
 		$sql .= "'{$_GET['delta']}', '{$_GET['nAFC']}', '{$_GET['fact']}', '{$_GET['rev']}', ";
 		$sql .= "'{$_GET['secFact']}', '{$_GET['secRev']}', '{$_GET['threshold']}', '{$_GET['alg']}', '{$_GET['result']}')";
 		$conn->query($sql);
-		
-		//calcolo risultati
-		$results = $_GET['result'];
-		$posSemicolon = 0;
-		for($i=0;$i<strlen($results)-1;$i++){//trovo l'ultima riga di risultati
-			if($results[$i]==';')
-				$posSemicolon = $i;
-		}
-		$results = substr($results, $posSemicolon, strlen($results)-$posSemicolon);
-		$posComma = 0;
-		$delta = "";
-		for($i=0, $j=0;$j<3;$i++){//trovo il valore di delta in quella riga
-			if($results[$i]==','){
-				$delta = substr($results, $posComma+1, $i-$posComma-1);
-				$posComma = $i;
-				$j++;
-			}
-		}
 	}
-	$_SESSION["result"] = $delta;
 	header("Location: results.php");
 ?>

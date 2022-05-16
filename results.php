@@ -11,15 +11,22 @@
 		<link rel ="stylesheet" href="test.css">
 
 		<title>Test results</title>
-		<?php session_start(); ?>
+		<?php 
+			session_start();
+			include "config.php";
+		?>
 	</head>
 	<body>
 		<div class="container p-4" style="margin-top:10%" >
 			<div class="row gx-4">
 				<div class="col">
 					<div class=" p-3 border bg-light" style="text-align:center;">
-						<h2 style="margin:5%;">Il tuo risultato è <?php echo $_SESSION["result"]; ?></h2>
-						<button type="button" class="btn btn-primary btn-lg m-3" id="download" onclick = "location.href='download.php'">Download datas</button>
+						<h2 style="margin:5%;">Your score is <?php echo substr($_SESSION['score'],0,-1); ?> (the fewer, the better)</h2>
+						<?php
+							if(isset($_SESSION['usr']))
+								echo "<button type='button' class='btn btn-primary btn-lg m-3' id='download' onclick = 'location.href=\"download.php?format=complete\"'>Download datas (complete)</button>";
+						?>
+						<button type='button' class='btn btn-primary btn-lg m-3' id='download' onclick = 'location.href="download.php?format=reduced"'>Download datas (reduced)</button>
 						<button type="button" class="btn btn-primary btn-lg m-3" id="home" onclick = "location.href='index.php'">Home</button>
 						<p style="margin-bottom:5%;"></p>
 					</div>
