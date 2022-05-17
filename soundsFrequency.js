@@ -97,7 +97,6 @@ function select(button){
 	}
 	
 	//save new data
-	alert(swap);
 	results[0][i] = 1;					// blocco --> da implementare in futuro
 	results[1][i] = i+1;				// trial
 	results[2][i] = varFreq-stdFreq; 	// delta
