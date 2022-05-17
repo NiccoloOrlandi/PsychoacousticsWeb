@@ -111,6 +111,7 @@ else{
 	$_SESSION["secReversals"] = $_POST["secReversals"];
 	$_SESSION["threshold"] = $_POST["threshold"];
 	$_SESSION["algorithm"] = $_POST["algorithm"];
+	unset($_SESSION['score']);
 	
 	header("Location: {$_GET['type']}test.php");
 }
