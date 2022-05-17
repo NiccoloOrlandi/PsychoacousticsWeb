@@ -94,24 +94,23 @@ DEADLINES E TO-DO:
 		- checkbox "save settings" se è stato fatto il log in
 
 - altro da fare 	entro 22/05/2022?
-	- nAFC funzionante (faccio nAFC-1 volte playStd e 1 playVar)
+	✓ nAFC funzionante (faccio nAFC-1 volte playStd e 1 playVar)
 	- n. of blocks funzionante (ripeto n volte il test)
 		? dopo ogni blocco escono i risultati col pulsante continua e dopo l'ultimo esce il pulsante "download data" e "home"
-	- nel risultato esce la media delle medie dei valori del delta prima e dopo gli ultimi <threshold> reversal
-	- aggiungere download di un file ridotto con solo dati anagrafici, dati del test, blocco e risultato (ossia la media delle medie) (una riga per blocco)
+	✓ nel risultato esce la media delle medie dei valori del delta prima e dopo gli ultimi <threshold> reversal
+	✓ aggiungere download di un file ridotto con solo dati anagrafici, dati del test, blocco e risultato (ossia la media delle medie) (una riga per blocco)
 
 - plus se riusciamo entro il 10/06/2022
 	✗ Vedere se si puó modificare la fase del suono
-	✗ Funzione (esponenziale fino a 1?) che permette di non avere brutte sensazioni a inizio e fine suono 
+	? Funzione (esponenziale fino a 1?) che permette di non avere brutte sensazioni a inizio e fine suono 
 	- Predisporre presenza di rumori di sottofondo 
 	- Predisporre piú di due suoni alla volta ( un suono viene ripetuto piú volte e l'altro una volta sola )
 	- Diagramma architetturale del sistema
 	✗ Recupero dati utente e psw ( difficile serve mailing list, quando ci si registra bisogna inserire email )
-	- predisporre funzionamento delle altre metriche (blocks, nAFC)
-	- premi '1' e '2' da tastiera invece dei pulsanti a schermo (meglio tenerli entrambi)
+	- premi '1' e '2' da tastiera oltre ai pulsanti a schermo
 	
 	✗ suoni suonabili componibili
-	✗ problema del click iniziale   
+	? problema del click iniziale   
 	
 - grafica entro il 10/06/2022
 	- alert di errore di inerimento dati (migliorare)
@@ -125,9 +124,9 @@ DEADLINES E TO-DO:
 
 - domande tecnici:
 	✓ non funziona forticlient
-	- come cambiare la landing page, ora quando entro nel sito vengo portato all'albero delle cartelle (impossibile crare un file html che faccia il redirect automatico)
+	? come cambiare la landing page, ora quando entro nel sito vengo portato all'albero delle cartelle (impossibile crare un file html che faccia il redirect automatico)
 	✓ come inviare i file 
 	✓ é possibile fare in modo che le modifiche che faccio nella repository github vengano fatte anche sul server?
 	✓ dati per recapchta : email futuro proprietario, nome dominio, non posso farlo ora perché servono questi dati e un collegamento https
-	- download file da server (in locale funziona)
+	✓ download file da server (in locale funziona)
 	
