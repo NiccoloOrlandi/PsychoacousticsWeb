@@ -52,9 +52,15 @@
 
 		<script></script>
 		
-		<!--button type="button" class="btn btn-primary" id='start' onclick="random()" >Play</button-->
-		<button type="button" class="btn btn-success" id="first" onclick = "select(1)" disabled>First</button>
-		<button type="button" class="btn btn-danger" id="second" onclick = "select(2)" disabled>Second</button>
+		<button type="button" class="btn btn-success" id="button1" onclick = "select(1)" disabled>1° sound</button>
+		<button type="button" class="btn btn-danger" id="button2" onclick = "select(2)" disabled>2° sound</button>
+		<?php
+			for($i = 3; $i<=intval($_SESSION['nAFC']); $i++){
+				echo "<button type='button' class='btn btn-success' style='background-color:";
+				printf( "#%06X\n", mt_rand( 0, 0xFFFFFF ));
+				echo "; border:none;' id='button{$i}' onclick = 'select({$i})' disabled>{$i}° sound</button>";
+			}
+		?>
 
 	</form>
 

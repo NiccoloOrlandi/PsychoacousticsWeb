@@ -11,7 +11,7 @@ var varDur = dur/1000;				// duration of the variable
 var intStd = parseFloat(amp);		// intensity of the variable
 var intVar = parseFloat(amp);		// intensity of the standard 
 
-var swap =-1;						// initial value of swap			
+var swap =-1;						// position of variable sound			
 var correctAnsw = 0;				// number of correct answers
 
 var currentFactor = factor;			// first or second factor, depending on the number of reversals
@@ -59,23 +59,22 @@ function playStd(time){
 
 //funzione per randomizzare l'output
 function random(){
-	var rand = Math.floor(Math.random() *2);// this random decides if the variable sound will be reproduced as the first or second heared sound
-	rand = 1;
-	if(rand==0){//first played: Standard sound
-		playStd(0);
-		playVar((dur/1000)+1);
-		swap = 1;
+	var rand = Math.floor(Math.random() * nAFC);// the variable sound will be the rand-th sound played
+	rand=0;
+	
+	for(var j=0;j<nAFC;j++){
+		if(j==rand)
+			playVar((j*(dur/1000)) + j);
+		else
+			playStd((j*(dur/1000)) + j);
 	}
-	else{//first played: Variable sound
-		playVar(0);
-		playStd((dur/1000)+1);
-		swap = 0;
-	}  
+	
+	swap = rand+1;
 	
 	//after playing the sound, the response buttons are reactivated
 	oscillator.onended = () => { //quando l'oscillatore sta suonando il programma non si ferma, quindi serve questo per riattivare i pulsanti solo quando finisce
-		document.getElementById("first").disabled = false;
-		document.getElementById("second").disabled = false;
+		for(var j=1;j<=nAFC;j++)
+			document.getElementById("button"+j).disabled = false;
 	}
 }
 
@@ -101,7 +100,7 @@ function select(button){
 	results[1][i] = i+1;				// trial
 	results[2][i] = varFreq-stdFreq; 	// delta
 	results[3][i] = varFreq;			// variable value
-	results[4][i] = swap+1;				// variable position
+	results[4][i] = swap;				// variable position
 	results[5][i] = pressedButton; 		// pulsante premuto
 	results[6][i] = history[i]			// correttezza risposta
 	results[7][i] = countRev;			// reversals
@@ -122,10 +121,8 @@ function select(button){
 			deltaAfter = results[2][reversalsPositions[j]]; //delta after the reversal
 			score += (deltaBefore + deltaAfter)/2; //average delta of the reversal
 		}
-		score /= (countRev - reversalThreshold); //average deltas of every reversal
+		score /= reversalThreshold; //average deltas of every reversal
 		score = parseFloat(parseInt(score*100)/100); //approximate to 2 decimal digits
-		
-		alert("il test é finito");
 		
 		//format datas as a csv file (only the last <reversalThreshold> reversals)
 		var result = "blocks,trials,delta,variableValue,variablePosition,button,correct,reversals;";
@@ -146,8 +143,8 @@ function select(button){
 	else{
 	
 		// disable the response buttons until the new sounds are heared
-		document.getElementById("first").disabled = true;
-		document.getElementById("second").disabled = true;
+		for(var j=1;j<=nAFC;j++)
+			document.getElementById("button"+j).disabled = true;
 		
 		//randomize and play the next sounds
 		random();
@@ -158,7 +155,7 @@ function select(button){
 function nDOWNoneUP(n, button){
 	delta = varFreq-stdFreq;
 	pressedButton = button;
-	if((button == 1 && swap == 0) || (button == 2 && swap == 1)){ //correct answer
+	if(button == swap){ //correct answer
 		history[i] = 0;
 		correctAnsw += 1;
 		if(correctAnsw == n){ //if there are n consegutive correct answers

@@ -1,14 +1,6 @@
-.btn-success{
-	margin-top: 4%;
-	padding: 2%;
-	padding-left: 3%;
-	padding-right: 3%;
-
-}
-
-.btn-danger{
-	margin-top: 4%;
-	margin-left: 20%;
+.btn{
+	margin: 4%;
+	margin-bottom: 0%;
 	padding: 2%;
 	padding-left: 3%;
 	padding-right: 3%;
