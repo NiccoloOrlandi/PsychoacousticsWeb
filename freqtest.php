@@ -15,19 +15,19 @@
 	<script>
 		// pass info from php session to js
 		<?php session_start(); ?>
-		var amp = <?php echo $_SESSION["amplitude"]; ?>;
-		var freq = <?php echo $_SESSION["frequency"]; ?>;
-		var dur = <?php echo $_SESSION["duration"]; ?>;
+		var amp = parseInt(<?php echo $_SESSION["amplitude"]; ?>);
+		var freq = parseInt(<?php echo $_SESSION["frequency"]; ?>);
+		var dur = parseInt(<?php echo $_SESSION["duration"]; ?>);
 		//var phase = <//?php echo $_SESSION["phase"]; ?>;
-		var blocks = <?php echo $_SESSION["blocks"]; ?>;
-		var delta = <?php echo $_SESSION["delta"]; ?>;
-		var nAFC = <?php echo $_SESSION["nAFC"]; ?>;
+		var blocks = parseInt(<?php echo $_SESSION["blocks"]; ?>);
+		var delta = parseInt(<?php echo $_SESSION["delta"]; ?>);
+		var nAFC = parseInt(<?php echo $_SESSION["nAFC"]; ?>);
 		var feedback = <?php echo $_SESSION["checkFb"]; ?>;
-		var factor = <?php echo $_SESSION["factor"]; ?>;
-		var secondFactor = <?php echo $_SESSION["secFactor"]; ?>;
-		var reversals = <?php echo $_SESSION["reversals"]; ?>;
-		var secondReversals = <?php echo $_SESSION["secReversals"]; ?>;
-		var reversalThreshold = <?php echo $_SESSION["threshold"]; ?>;
+		var factor = parseFloat(<?php echo $_SESSION["factor"]; ?>);
+		var secondFactor = parseFloat(<?php echo $_SESSION["secFactor"]; ?>);
+		var reversals = parseInt(<?php echo $_SESSION["reversals"]; ?>);
+		var secondReversals = parseInt(<?php echo $_SESSION["secReversals"]; ?>);
+		var reversalThreshold = parseInt(<?php echo $_SESSION["threshold"]; ?>);
 		var algorithm = <?php echo "'{$_SESSION["algorithm"]}'"; ?>;
 
 	</script>

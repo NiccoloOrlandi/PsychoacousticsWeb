@@ -19,10 +19,11 @@ DEADLINES E TO-DO:
 		✓ totale reversals = <reversals> + <second reversals> (per freq)
 		✓ reversals da salvare nel db = <revelsals threshold> (per freq)
 	✓ limiti factor: il primo maggiore del secondo, il secondo maggiore di uno
-		✓ 2 e sqrt(2) come placeholder       
+		✓ 2 e sqrt(2) come placeholder
+	✓ il parametro duration funziona (per freq)
 
 - test durata + 2d1u
-	- rivedere distanza tra i due suoni nel test sulla durata
+	✓ rivedere distanza tra i due suoni nel test sulla durata
 
 - db (login) 30/04/2022
  	✓ revisionare schema er 
@@ -106,7 +107,7 @@ DEADLINES E TO-DO:
 	- Predisporre piú di due suoni alla volta ( un suono viene ripetuto piú volte e l'altro una volta sola )
 	- Diagramma architetturale del sistema
 	✗ Recupero dati utente e psw ( difficile serve mailing list, quando ci si registra bisogna inserire email )
-	- predisporre funzionamento delle altre metriche
+	- predisporre funzionamento delle altre metriche (blocks, nAFC)
 	- premi '1' e '2' da tastiera invece dei pulsanti a schermo (meglio tenerli entrambi)
 	
 	✗ suoni suonabili componibili

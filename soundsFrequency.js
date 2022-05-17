@@ -39,7 +39,7 @@ function playVar(time){
 	oscillator.type = "sine";				// tipo di onda
 	
 	oscillator.start(context.currentTime + time);		//Facciamo partire l'oscillatore
-	oscillator.stop(context.currentTime + time + 1);//Fermiamo l'oscillatore dopo 1 secondo
+	oscillator.stop(context.currentTime + time + (dur/1000));//Fermiamo l'oscillatore dopo 1 secondo
 }
 
 //funzione per generare il secondo suono
@@ -54,7 +54,7 @@ function playStd(time){
 	oscillator.type = "sine";				//tipo di onda
 
 	oscillator.start(context.currentTime + time);		//Facciamo partire l'oscillatore
-	oscillator.stop(context.currentTime + time + 1);//Fermiamo l'oscillatore dopo 1 secondo
+	oscillator.stop(context.currentTime + time + (dur/1000));//Fermiamo l'oscillatore dopo 1 secondo
 }
 
 //funzione per randomizzare l'output
@@ -63,12 +63,12 @@ function random(){
 	rand = 1;
 	if(rand==0){//first played: Standard sound
 		playStd(0);
-		playVar(2);
+		playVar((dur/1000)+1);
 		swap = 1;
 	}
 	else{//first played: Variable sound
 		playVar(0);
-		playStd(2);
+		playStd((dur/1000)+1);
 		swap = 0;
 	}  
 	
@@ -115,6 +115,16 @@ function select(button){
 	
 	//end of the test
 	if(countRev == reversals+secondReversals){
+		
+		//calculate score 
+		for(var j = countRev - reversalThreshold; j<countRev; j++){
+			deltaBefore = results[2][reversalsPositions[j]-1]; //delta before the reversal
+			deltaAfter = results[2][reversalsPositions[j]]; //delta after the reversal
+			score += (deltaBefore + deltaAfter)/2; //average delta of the reversal
+		}
+		score /= (countRev - reversalThreshold); //average deltas of every reversal
+		score = parseFloat(parseInt(score*100)/100); //approximate to 2 decimal digits
+		
 		alert("il test é finito");
 		
 		//format datas as a csv file (only the last <reversalThreshold> reversals)
@@ -130,7 +140,7 @@ function select(button){
 		description += "&threshold="+reversalThreshold+"&alg="+algorithm;
 		
 		//pass the datas to the php file
-		location.href="salvaDati.php?result="+result+"&timestamp="+timestamp+"&type=freq"+description+"&score="+(score/countRev);
+		location.href="salvaDati.php?result="+result+"&timestamp="+timestamp+"&type=freq"+description+"&score="+score;
 	}
 	//if the test is not ended
 	else{
@@ -158,9 +168,6 @@ function nDOWNoneUP(n, button){
 				//there was a reversal
 				reversalsPositions[countRev] = i-(n-1);//save the position of that reversal
 				countRev++;
-				
-				//calculate score
-				score += (delta + (varFreq-stdFreq))/2;
 			}
 			positiveStrike = 1;
 		}
@@ -176,9 +183,6 @@ function nDOWNoneUP(n, button){
 			//there was a reversal
 			reversalsPositions[countRev] = i;//save the position of that reversal
 			countRev++;
-			
-			//calculate score
-			score += (delta + (varFreq-stdFreq))/2;
 		}
 		positiveStrike = 0;
 		
