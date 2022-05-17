@@ -109,6 +109,8 @@
 			}
 		}
 		
+		unset($_SESSION['score']);
+		
 		fclose($txt);
 		//*scrittura su file (per disattivare togliere uno slash da questo commento)
 		header('Content-Description: File Transfer');
