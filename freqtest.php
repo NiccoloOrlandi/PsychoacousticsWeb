@@ -55,10 +55,9 @@
 		<button type="button" class="btn btn-success" id="button1" onclick = "select(1)" disabled>1° sound</button>
 		<button type="button" class="btn btn-danger" id="button2" onclick = "select(2)" disabled>2° sound</button>
 		<?php
+			$colors = ["#198754", "#dc3545", "#0d6efd", "#e0b000", "#a000a0", "#ff8010", "#50a0f0", "#703000", "#606090"];
 			for($i = 3; $i<=intval($_SESSION['nAFC']); $i++){
-				echo "<button type='button' class='btn btn-success' style='background-color:";
-				printf( "#%06X\n", mt_rand( 0, 0xFFFFFF ));
-				echo "; border:none;' id='button{$i}' onclick = 'select({$i})' disabled>{$i}° sound</button>";
+				echo "<button type='button' class='btn btn-success' style='background-color:".$colors[($i-1)%count($colors)].";' id='button{$i}' onclick = 'select({$i})' disabled>{$i}° sound</button>";
 			}
 		?>
 

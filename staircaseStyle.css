@@ -28,11 +28,15 @@
 	width: 40%;
 }
 
-.p-3.border.bg-light.little{
+.little1, .little2{
 	/*in soundsettings i primi due gruppi di input box (i più piccoli) contengono solo oggetti float,
 	quindi hanno bisogno di avere una dimensione maggiore di 100% per coprire tutto. Gli oggetti con
 	proprietà float non occupano spazio e quindi il div crede di essere vuoto e diventa troppo piccolo*/
-	height: 140%;
+	height: 140% !important;
+}
+
+.p-3.border.bg-light.little1 .input-group.flex-nowrap{
+	width: 31%;
 }
 
 .p-3.border.bg-light{
@@ -73,7 +77,7 @@
 	
 	/*gli input box ora prendono tutta la riga, come le note*/
 	.input-group.flex-nowrap{
-		width: 98%; 
+		width: 98% !important; 
 		float: none; 
 		margin-right: 2%;
 	}

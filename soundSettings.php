@@ -76,7 +76,7 @@
 							<div class="container p-4" >
 								<div class="row gx-4">
 									<div class="col">
-										<div class="p-3 border bg-light little">
+										<div class="p-3 border bg-light little1">
 											<!-- <form name="soundsForm">  non veniva mai chiuso, al momento non serve, andrà inserito quando imprementeremo la parte in php -->
 											
 											<!-- Contenuto dello slot, qui vanno inseriti tutti i bottoni e i check box del secondo slot -->
@@ -113,7 +113,7 @@
 							<div class="container p-4" >
 								<div class="row gx-4">
 									<div class="col">
-									<div class="p-3 border bg-light little">
+									<div class="p-3 border bg-light little2">
 							
 											<!-- Contenuto dello slot, qui vanno inseriti tutti i bottoni e i check box del secondo slot -->
 											
