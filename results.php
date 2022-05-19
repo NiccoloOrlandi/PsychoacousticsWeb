@@ -24,10 +24,10 @@
 						<h2 style="margin:5%;">Your score is <?php echo substr($_SESSION['score'],0,-1); ?> (the fewer, the better)</h2>
 						<?php
 							if(isset($_SESSION['usr']))
-								echo "<button type='button' class='btn btn-primary btn-lg m-3' id='download' onclick = 'location.href=\"download.php?format=complete\"'>Download datas (complete)</button>";
+								echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"download.php?format=complete\"'>Download datas (complete)</button>";
 						?>
-						<button type='button' class='btn btn-primary btn-lg m-3' id='download' onclick = 'location.href="download.php?format=reduced"'>Download datas (reduced)</button>
-						<button type="button" class="btn btn-primary btn-lg m-3" id="home" onclick = "location.href='index.php'">Home</button>
+						<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href="download.php?format=reduced"'>Download datas (reduced)</button>
+						<button type="button" class="btn btn-primary btn-lg m-3" onclick="location.href='index.php'">Home</button>
 						<p style="margin-bottom:5%;"></p>
 					</div>
 				</div>

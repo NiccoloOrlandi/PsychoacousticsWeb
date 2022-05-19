@@ -38,6 +38,28 @@
 		
 		<h1>Benvenuto <?php echo $_SESSION['usr'];?></h1>
 		
+		<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href="downloadYours.php?all=1"'>Download all your datas</button>
+		<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href="downloadYours.php?all=0"'>Download all your gest's datas</button>
+		
+		<?php
+			$conn = new mysqli($host, $user, $password, $dbname);
+			
+			if ($conn->errno)
+				die("Problemi di connessione" . $conn->error);
+			
+			mysqli_set_charset($conn, "utf8");
+			
+			$usr = $_SESSION['usr'];
+			$id = $_SESSION['idGuest'];
+			
+			$sql = "SELECT Type FROM account WHERE Guest_ID='$id' AND Username='$usr'";
+			$result=$conn->query($sql);
+			$row=$result->fetch_assoc();
+			if($row['Type'] == 1){
+				echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"downloadAll.php\"'>Download all the datas in the database</button>";
+			}
+		?>
+		
 		<h3>I tuoi risultati</h3>
 		
 		<table>
@@ -48,16 +70,6 @@
 				<th>Result</th>
 			</tr>
 			<?php
-				$conn = new mysqli($host, $user, $password, $dbname);
-				
-				if ($conn->errno)
-					die("Problemi di connessione" . $conn->error);
-				
-				mysqli_set_charset($conn, "utf8");
-				
-				$usr = $_SESSION['usr'];
-				$id = $_SESSION['idGuest'];
-				
 				$sql = "SELECT Test_count, Timestamp, Type, Result FROM test WHERE Guest_ID='$id'";
 				$result=$conn->query($sql);
 				while($row=$result->fetch_assoc()){

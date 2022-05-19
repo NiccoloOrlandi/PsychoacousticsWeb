@@ -67,9 +67,9 @@ DEADLINES E TO-DO:
 	✓ account ha un type
 		✓ corretto inserimento nel registering
 		- super user deve poter creare altri super user
-		- super user deve poter scaricare i dati di tutti i test nel db
-		- i guest non collegati non possono scaricare i dati come csv
-		- download di tutti i vecchi test dell'account da yourTests.php
+		✓ super user deve poter scaricare i dati di tutti i test nel db
+		✓ i guest non collegati non possono scaricare i dati come csv
+		✓ download di tutti i vecchi test dell'account da yourTests.php
 	✓ account ha un referral
 		- creazione nuovo referral
 		- creazione link (demographicData.php?ref=####)

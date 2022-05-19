@@ -1,6 +1,4 @@
 <?php
-	//TODO: i dati della ex-descrizione devono arrivare separati (più facili da leggere)
-
 	//apro la connessione con la sessione e col db
 	include "config.php";
 	session_start();
@@ -22,12 +20,6 @@
 		$result = $conn->query($sql);
 		$row = $result->fetch_assoc();
 		
-		/*/creo una cartella con i permessi di scrittura
-		$dir = 'csvFiles';
-		if (!file_exists($dir))
-			mkdir ($dir, 0744);
-		//*/
-
 		//creo e apro il file csv
 		if($_GET['format']=="complete")
 			$path = "results.csv";
