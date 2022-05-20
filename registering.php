@@ -49,12 +49,6 @@
 			$sqlVal .= ",'$surname'";
 		}
 		
-		if($date != ""){
-			$sql .= ",age";
-			$age = date_diff(date_create($date), date_create('now'))->y;
-			$sqlVal .= ",'$age'";
-		}
-		
 		if($gender != "NULL"){
 			$sql .= ",gender";
 			$sqlVal .= ",'$gender'";
@@ -72,11 +66,13 @@
 		$sql .= $sqlVal;
 		$conn->query($sql);
 		
-		//trovo il suo id prendendo l'id massimo tra gli utenti con gli stessi dati
-		
-		
 		//creo e collego l'account, salvo l'hash della password con sha2-256, tipo di account 0 (base)
-		$sql = "INSERT INTO account VALUES ('$usr', SHA2('$psw', 256), '$id', '0', '".base64_encode($usr)."', NULL, NULL)";
+		$sql = "INSERT INTO account VALUES ('$usr', SHA2('$psw', 256), ";
+		if($date != "")
+			$sql .= ",$date ";
+		else
+			$sql .= ",NULL ";
+		$sql .= "'$id', '0', '".base64_encode($usr)."', NULL, NULL)";
 		$conn->query($sql);
 		
 		//faccio sapere alle altre pagine quale utente è loggato

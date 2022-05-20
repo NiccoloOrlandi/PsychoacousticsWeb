@@ -3,6 +3,7 @@
 	//accesso alla sessione
 	session_start();
 	unset($_SESSION['idGuestTest']); //se c'erano stati altri guest temporanei, li elimino per evitare collisioni
+	unset($_SESSION['name']); //se è settato dopo questa pagina, allora è stato creato un nuovo guest
 	
 	//connessione al db
 	$conn = new mysqli($host, $user, $password, $dbname);

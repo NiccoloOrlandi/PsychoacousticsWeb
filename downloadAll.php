@@ -58,16 +58,24 @@
 		$sql = "SELECT Guest.Name as name, Guest.Surname as surname, Guest.Age as age, Guest.Gender as gender, 
 				Test.Test_count as count, Test.Type as type, Test.Timestamp as time, Test.Amplitude as amp, Test.Frequency as freq, 
 				Test.Duration as dur, Test.nAFC as nafc, Test.Factor as fact, Test.Reversal as rev, Test.SecFactor as secfact, 
-				Test.SecReversal as secrev, Test.Threshold as thr, Test.Algorithm as alg, Test.Result as results
+				Test.SecReversal as secrev, Test.Threshold as thr, Test.Algorithm as alg, Test.Result as results, account.Date as date
 				
 				FROM guest
-				INNER JOIN test ON guest.ID=test.Guest_ID";
+				INNER JOIN test ON guest.ID=test.Guest_ID
+				LEFT JOIN account ON guest.ID=account.Guest_ID;";
 		$result = $conn->query($sql);
 
 		while($row = $result->fetch_assoc()){
+			if($row['date']!="")
+				$age = strval(date_diff(date_create($row['date']), date_create('now'))->y);
+			else if(strval($row['age'])!='0')
+				$age = strval($row['age']);
+			else
+				$age = "";
+			
 			//valore della prima parte (quella fissa che va ripetuta)
-			$firstValues = [$row["name"],$row["surname"],$row["age"],$row["gender"],$row["count"],$row["type"],$row["time"],$row["amp"],
-				$row["freq"],$row["dur"],$row["nafc"],$row["fact"],$row["rev"],$row["secfact"],$row["secrev"],$row["thr"],$row["alg"]];
+			$firstValues = [$row["name"], $row["surname"], $age, $row["gender"], $row["count"], $row["type"], $row["time"], $row["amp"], 
+				$row["freq"], $row["dur"], $row["nafc"], $row["fact"], $row["rev"], $row["secfact"], $row["secrev"], $row["thr"], $row["alg"]];
 				
 			//parte variabile e scrittura su file
 			$results = substr($_SESSION["results"], strpos($_SESSION["results"], ";")+1); 

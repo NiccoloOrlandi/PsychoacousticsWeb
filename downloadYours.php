@@ -1,10 +1,10 @@
 <?php
 	function addMine($conn, $txt, $usr){
 		//prendo i dati dei test collegati al guest dell'account
-		$sql = "SELECT Guest.Name as name, Guest.Surname as surname, Guest.Age as age, Guest.Gender as gender, 
+		$sql = "SELECT Guest.Name as name, Guest.Surname as surname, Guest.Gender as gender, 
 				Test.Test_count as count, Test.Type as type, Test.Timestamp as time, Test.Amplitude as amp, Test.Frequency as freq, 
 				Test.Duration as dur, Test.nAFC as nafc, Test.Factor as fact, Test.Reversal as rev, Test.SecFactor as secfact, 
-				Test.SecReversal as secrev, Test.Threshold as thr, Test.Algorithm as alg, Test.Result as results 
+				Test.SecReversal as secrev, Test.Threshold as thr, Test.Algorithm as alg, Test.Result as results, Account.date as date 
 				
 				FROM account 
 				INNER JOIN guest ON account.Guest_ID=guest.ID
@@ -16,8 +16,9 @@
 		//parte variabile e scrittura su file
 		while($row = $result->fetch_assoc()){
 			//valore della prima parte (quella fissa che va ripetuta)
-			$firstValues = [$row["name"],$row["surname"],$row["age"],$row["gender"],$row["count"],$row["type"],$row["time"],$row["amp"],
-				$row["freq"],$row["dur"],$row["nafc"],$row["fact"],$row["rev"],$row["secfact"],$row["secrev"],$row["thr"],$row["alg"]];
+			$age = date_diff(date_create($row['date']), date_create('now'))->y;
+			$firstValues = [$row["name"], $row["surname"], $age, $row["gender"], $row["count"], $row["type"], $row["time"], $row["amp"], 
+				$row["freq"], $row["dur"], $row["nafc"], $row["fact"], $row["rev"], $row["secfact"], $row["secrev"], $row["thr"], $row["alg"]];
 			
 			$results = substr($row["results"], strpos($row["results"], ";")+1); 
 			writeResults($txt, $firstValues, $results);
@@ -74,11 +75,12 @@
 	fwrite($txt, $line);
 	
 	//metto i dati dei test dell'utente, se vanno messi
-	if(isset($_GET['all']) && $_GET['all']==1)
+	if(isset($_GET['all']) && $_GET['all']==1){
 		addMine($conn, $txt, $usr);
-	
-	//aggiungo una riga vuota per separare
-	fwrite($txt, "\n");
+		
+		//aggiungo una riga vuota per separare
+		fwrite($txt, "\n");
+	}
 	
 	//metto i dati dei guest collegati
 	$sql = "SELECT Guest.Name as name, Guest.Surname as surname, Guest.Age as age, Guest.Gender as gender, 

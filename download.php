@@ -16,9 +16,18 @@
 		$id = $_SESSION['idGuest'];
 		if(isset($_SESSION['idGuestTest']))
 			$id = $_SESSION['idGuestTest'];
-		$sql = "SELECT name, surname, age, gender FROM guest WHERE ID='$id'";
+		if(isset($_SESSION['name']))
+			$sql = "SELECT name, surname, age, gender FROM guest WHERE ID='$id'";
+		else
+			$sql = "SELECT name, surname, gender, date FROM guest INNER JOIN account ON account.Guest_ID = guest.ID WHERE ID='$id'";
 		$result = $conn->query($sql);
 		$row = $result->fetch_assoc();
+		
+		//se il test è stato fatto dal guest dell'account loggato, la sua età viene calcolata dalla data di nascita
+		if(!isset($_SESSION['name']))
+			$age = date_diff(date_create($row['date']), date_create('now'))->y;
+		else
+			$age = $row['age'];
 		
 		//creo e apro il file csv
 		if($_GET['format']=="complete")
@@ -41,7 +50,7 @@
 		$firstValues = [];
 		array_push($firstValues,$row["name"]);
 		array_push($firstValues,$row["surname"]);
-		array_push($firstValues,$row["age"]);
+		array_push($firstValues,$age);
 		array_push($firstValues,$row["gender"]);
 		array_push($firstValues,$_SESSION["type"]);
 		array_push($firstValues,$_SESSION["timestamp"]);

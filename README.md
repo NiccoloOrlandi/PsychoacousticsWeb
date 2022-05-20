@@ -71,8 +71,8 @@ DEADLINES E TO-DO:
 		✓ i guest non collegati non possono scaricare i dati come csv
 		✓ download di tutti i vecchi test dell'account da yourTests.php
 	✓ account ha un referral
-		- creazione nuovo referral
-		- creazione link (demographicData.php?ref=####)
+		✓ creazione nuovo referral
+		✓ creazione link (demographicData.php?ref=####)
 		✓ demographicData ha un input box per il referral
 		✓ demographicData prende il valore del referral direttamente dal link, se c'è
 	✓ guest ha una fk_account
@@ -92,6 +92,8 @@ DEADLINES E TO-DO:
 				✓ se c'è il referral: crea guest collegato all'account del referral tramite fk_account
 	✓ account ha un test collegato dal quale prende i settings
 		- checkbox "save settings" se è stato fatto il log in
+	✓ account ha una data di nascita e il suo guest ha età nulla
+		✓ sistemare registering.php e i vari download (la colonna età)
 
 - altro da fare 	entro 22/05/2022?
 	✓ nAFC funzionante (faccio nAFC-1 volte playStd e 1 playVar)
@@ -108,6 +110,8 @@ DEADLINES E TO-DO:
 	- Diagramma architetturale del sistema
 	✗ Recupero dati utente e psw ( difficile serve mailing list, quando ci si registra bisogna inserire email )
 	- premi '1' e '2' da tastiera oltre ai pulsanti a schermo
+	✓ Pagina per cambiare dati e impostazioni (nome, cognome, username, password), per creare altri SU (se tu sei SU) e per vedere e modificare referral e link
+		- salvataggio dati da completare
 	
 	✗ suoni suonabili componibili
 	? problema del click iniziale   

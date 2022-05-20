@@ -14,7 +14,7 @@ body{
     color: white;
 }
 
-.btn-primary{
+.darkred{
     background-color: darkred;
     border-color: black;
 }
@@ -57,7 +57,12 @@ body{
 	margin-left: 0; 
 	margin-right: auto;
 	text-align:center;
+	text-decoration: none;
 }
+
+.welcomeMessage:hover{
+	color: lightblue;
+}	
 
 .navbar-brand{
 	width:60%;
@@ -76,4 +81,43 @@ body{
 	padding-bottom: 1rem; 
 	font-size:70px; 
 	font-weight: 400;
+}
+
+.settingForm{
+	padding: 40px;
+    background: #DDD;
+    border: 2px solid #000;
+    width: 90%;
+    margin: 30px auto;
+    border-radius: 10px;
+}
+
+.form-select{
+	margin: 2%;
+	width: 45%;
+	float: left;
+}
+
+.input-group.mb-3{
+	margin: 2%;
+	width: 45%;
+	float: left;
+}
+
+.input-group.mb-3.notes{
+	margin: 2%;
+	width: 94%;
+	float: left;
+}
+
+.input-group-text.link{
+	width: 70%;
+	display: initial;
+	overflow:hidden; 
+	white-space:nowrap; 
+	text-overflow:ellipsis; 
+}
+
+.settingForm.ref .input-group-text.title{
+	width:30%;
 }
