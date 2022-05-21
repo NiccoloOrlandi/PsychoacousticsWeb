@@ -4,7 +4,8 @@ var context= new AudioContext();
 // minimum initial variation
 var varFreq = parseInt(freq) + parseInt(delta);	// frequency of the variable 
 var stdFreq = parseInt(freq);					// frequency of the standard
- 
+var startingDelta = delta;
+
 var stdDur = dur/1000;				// duration of the standard 
 var varDur = dur/1000;				// duration of the variable 
 
@@ -196,6 +197,23 @@ function start(){
 	// take the timestamp when the test starts
 	var currentdate = new Date(); 
 	timestamp = currentdate.getFullYear()+"-"+(currentdate.getMonth()+1)+"-"+currentdate.getDate()+" "+currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
-	
-	random(); //comincia il test
+	for(var j = 1; j<=blocks; j++){
+		
+		delta = startingDelta
+		varFreq = parseInt(freq) + parseInt(delta)
+		swap =-1;						// position of variable sound			
+		correctAnsw = 0;				// number of correct answers
+
+		currentFactor = factor;			// first or second factor, depending on the number of reversals
+
+		// array and variables for data storage
+		history = [];				// will have the answers ('1' if right, '0' if wrong)
+		reversalsPositions = [];	// will have the position of the i-th reversal in the history array 
+		i = 0;						// next index of the array
+		countRev = 0;
+		score = 0					// final score
+		positiveStrike = -1;	
+				
+		random(); //comincia il test
+	}
 }
