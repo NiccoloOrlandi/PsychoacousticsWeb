@@ -43,6 +43,8 @@
 					echo "<div class='alert alert-danger'>The nAFC field is required</div>";
 				else if($_GET['err']=="nAFC2")
 					echo "<div class='alert alert-danger'>The nAFC value can't be a negative number</div>";
+				else if($_GET['err']=="nAFC3")
+					echo "<div class='alert alert-danger'>The nAFC value can't be greater than 9</div>";
 				else if($_GET['err']=="factor1")
 					echo "<div class='alert alert-danger'>The factor field is required</div>";
 				else if($_GET['err']=="factor2")

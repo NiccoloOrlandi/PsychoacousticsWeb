@@ -39,7 +39,7 @@
 		<h1>Benvenuto <?php echo $_SESSION['usr'];?></h1>
 		
 		<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href="downloadYours.php?all=1"'>Download all your datas</button>
-		<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href="downloadYours.php?all=0"'>Download all your gest's datas</button>
+		<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href="downloadYours.php?all=0"'>Download all your guest's datas</button>
 		
 		<?php
 			$conn = new mysqli($host, $user, $password, $dbname);

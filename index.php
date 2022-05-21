@@ -7,7 +7,8 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel ="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel ="stylesheet" href="style.css">
     <script type="text/javascript" src="funzioni.js"></script>
 
     <title>Psychoacoustics</title>
@@ -33,7 +34,8 @@
 					echo "<button class=\"btn btn-outline-danger \" type=\"button\" onclick=\"location.href='registrazione.php'\" >Sign Up</button>";
 					echo "<button class=\"btn btn-outline-success me-2\" type=\"button\" onclick=\"location.href='login.php'\">Log In</button>";
 				}else{
-					echo "<label class='welcomeMessage'><a class='welcomeMessage' href='userSettings.php'>Benvenuto ".$_SESSION['usr']."</a></label>";
+					echo "<label class='welcomeMessage'>Benvenuto ".$_SESSION['usr']."</label>";
+					echo "<a class='settings' href='userSettings.php'><i class='material-icons rotate'>settings</i></a>";
 					echo "<button class=\"btn btn-outline-primary yourTests\" type=\"button\" onclick=\"location.href='yourTests.php'\">Your tests</button>";
 					echo "<button class=\"btn btn-outline-danger logout\" type=\"button\" onclick=\"location.href='logout.php'\">Log Out</button>";
 				}
@@ -43,7 +45,10 @@
         </div>
     </nav>
     
-      
+      <?php
+		if(isset($_GET['err']) && $_GET['err']==1)
+			echo "<div class='alert alert-danger'>Access denied, attempt logged</div>";
+	  ?>
       <!-- Descrizione e presentazione -->
       
       <div class="container-fluid" style="background-color: #fff; ">

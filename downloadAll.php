@@ -95,11 +95,17 @@
 		//*/
 		unlink($path);//elimino il file dal server
 	}
-	else{
+	else{//tentativo di accesso senza permessi: scrivo nel file log
 		date_default_timezone_set('Europe/Rome');
 		$date = date('Y/m/d h:i:s a', time());
+		
 		$txt = fopen("log.txt", "a") or die("Unable to open file!");
-		fwrite($txt, "Tentativo di accesso a downloadAll.php senza permessi - ".$date."\n");
+		
+		fwrite($txt, "Tentativo di accesso a downloadAll.php senza permessi - timestamp: ".$date);
+		if(isset($_SESSION['usr']))
+			fwrite($txt, " - username: ".$_SESSION['usr']);
+		fwrite($txt, "\n");
+		
 		fclose($txt);
 		header("Location: index.php?err=1");
 	}

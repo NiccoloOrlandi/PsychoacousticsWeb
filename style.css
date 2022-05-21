@@ -60,9 +60,26 @@ body{
 	text-decoration: none;
 }
 
-.welcomeMessage:hover{
-	color: lightblue;
-}	
+.settings{
+	float:right;
+	margin: 1%;
+	color: white;
+	margin-left:2%;
+}
+
+.rotate{
+	transform: rotate(-360deg);
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.settings:hover{
+	color: white;
+}
+
+.rotate:hover{
+	transform: rotate(360deg);
+    transition: all 0.3s ease-in-out 0s;
+}
 
 .navbar-brand{
 	width:60%;

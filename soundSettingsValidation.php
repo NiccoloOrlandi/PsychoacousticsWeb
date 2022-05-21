@@ -55,6 +55,9 @@ else if (($_POST["nAFC"]== "") || ($_POST["nAFC"]== "undefined"))
 else if ($_POST["nAFC"]<0)
     header("Location: soundSettings.php?test={$_GET['type']}&err=nAFC2");
 
+else if ($_POST["nAFC"]>9)
+    header("Location: soundSettings.php?test={$_GET['type']}&err=nAFC3");
+
 //controlli sul factor
 else if (($_POST["factor"]== "") || ($_POST["factor"]== "undefined")) 
     header("Location: soundSettings.php?test={$_GET['type']}&err=factor1");
