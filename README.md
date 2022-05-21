@@ -66,7 +66,7 @@ DEADLINES E TO-DO:
 - modifiche al db (e quindi al sito) 	entro 22/05/2022?
 	✓ account ha un type
 		✓ corretto inserimento nel registering
-		- super user deve poter creare altri super user
+		✓ super user deve poter creare altri super user
 		✓ super user deve poter scaricare i dati di tutti i test nel db
 		✓ i guest non collegati non possono scaricare i dati come csv
 		✓ download di tutti i vecchi test dell'account da yourTests.php
@@ -97,7 +97,8 @@ DEADLINES E TO-DO:
 
 - altro da fare 	entro 22/05/2022?
 	✓ nAFC funzionante (faccio nAFC-1 volte playStd e 1 playVar)
-	- n. of blocks funzionante (ripeto n volte il test)
+	✓ n. of blocks funzionante (ripeto n volte il test)
+		- testare number of blocks 
 		? dopo ogni blocco escono i risultati col pulsante continua e dopo l'ultimo esce il pulsante "download data" e "home"
 	✓ nel risultato esce la media delle medie dei valori del delta prima e dopo gli ultimi <threshold> reversal
 	✓ aggiungere download di un file ridotto con solo dati anagrafici, dati del test, blocco e risultato (ossia la media delle medie) (una riga per blocco)
@@ -112,6 +113,7 @@ DEADLINES E TO-DO:
 	- Diagramma architetturale del sistema
 	✗ Recupero dati utente e psw ( difficile serve mailing list, quando ci si registra bisogna inserire email )
 	- premi '1' e '2' da tastiera oltre ai pulsanti a schermo
+		- limite nAFC: 9
 	✓ Pagina per cambiare dati e impostazioni (nome, cognome, username, password), per creare altri SU (se tu sei SU) e per vedere e modificare referral e link
 		- salvataggio dati da completare
 	
