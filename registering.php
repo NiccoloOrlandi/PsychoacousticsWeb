@@ -67,12 +67,13 @@
 		$conn->query($sql);
 		
 		//creo e collego l'account, salvo l'hash della password con sha2-256, tipo di account 0 (base)
-		$sql = "INSERT INTO account VALUES ('$usr', SHA2('$psw', 256), ";
+		$sql = "INSERT INTO account VALUES ('$usr', SHA2('$psw', 256) ";
 		if($date != "")
 			$sql .= ",$date ";
 		else
 			$sql .= ",NULL ";
-		$sql .= "'$id', '0', '".base64_encode($usr)."', NULL, NULL)";
+		$sql .= ",'$id', '0', '".base64_encode($usr)."', NULL, NULL)";
+		echo $sql;
 		$conn->query($sql);
 		
 		//faccio sapere alle altre pagine quale utente è loggato

@@ -72,8 +72,23 @@
 				<span class="input-group-text link" id="link" onclick="copy('link')" title="click to copy">http://psychoacoustics.dpg.psy.unipd.it/sito/demographicData.php?test=freq&ref=<?php echo $ref; ?></span>
 			</div>
 			<button type="submit" class="btn btn-primary btn-lg m-1">Cambia referral</button>
+			
 		</form>
-		
+		<?php
+			$sql = "SELECT Type FROM account WHERE Guest_ID='{$_SESSION['idGuest']}' AND Username='{$_SESSION['usr']}'";
+			$result=$conn->query($sql);
+			$row=$result->fetch_assoc();
+			if($row['Type'] == 1){
+				echo '<form action="newUsername.php" method="POST" class="settingForm ref">
+					<div class="input-group mb-3">
+						<span class="input-group-text title" onclick="copy(\'ref\')" title="Username">Username</span>
+						<input type="text" class="form-control" placeholder="Username"  name="username">
+					</div>
+				
+					<button type="submit"  class="btn btn-primary btn-lg m-1">Create new Superuser</button>
+				</form>';
+			}
+		?>
 		<form method="post" action="saveSettings.php" class="settingForm">
 			<div class="input-group mb-3">
 				<span class="input-group-text">Username</span>
