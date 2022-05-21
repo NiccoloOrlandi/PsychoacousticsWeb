@@ -101,6 +101,8 @@ DEADLINES E TO-DO:
 		? dopo ogni blocco escono i risultati col pulsante continua e dopo l'ultimo esce il pulsante "download data" e "home"
 	✓ nel risultato esce la media delle medie dei valori del delta prima e dopo gli ultimi <threshold> reversal
 	✓ aggiungere download di un file ridotto con solo dati anagrafici, dati del test, blocco e risultato (ossia la media delle medie) (una riga per blocco)
+	- gestione eccezioni nelle interazioni col db (un try catch per ogni $conn->query($sql);)
+	- utilizzo sequence.next per simulare l'autoincrement (al posto di SELECT max(ID), serve per evitare collisioni)
 
 - plus se riusciamo entro il 10/06/2022
 	✗ Vedere se si puó modificare la fase del suono
