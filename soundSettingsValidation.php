@@ -100,6 +100,10 @@ else{
 	if(isset($_POST["checkFb"]))
 		$checkFb = 1;
 	
+	$checkSave = 0;
+	if(isset($_POST["saveSettings"]))
+		$checkSave = 1;
+	
 	$_SESSION["amplitude"] = $_POST["amplitude"];
 	$_SESSION["frequency"] = $_POST["frequency"];
 	$_SESSION["duration"] = $_POST["duration"];
@@ -108,6 +112,7 @@ else{
 	$_SESSION["delta"] = $_POST["delta"];
 	$_SESSION["nAFC"] = $_POST["nAFC"];
 	$_SESSION["checkFb"] = $checkFb;
+	$_SESSION["saveSettings"] = $checkSave;
 	$_SESSION["factor"] = $_POST["factor"];
 	$_SESSION["secFactor"] = $_POST["secFactor"];
 	$_SESSION["reversals"] = $_POST["reversals"];

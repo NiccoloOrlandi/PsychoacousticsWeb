@@ -22,6 +22,7 @@
 			var delta = parseInt(<?php echo $_SESSION["delta"]; ?>);
 			var nAFC = parseInt(<?php echo $_SESSION["nAFC"]; ?>);
 			var feedback = <?php echo $_SESSION["checkFb"]; ?>;
+			var saveSettings = <?php echo $_SESSION["saveSettings"]; ?>;
 			var factor = parseFloat(<?php echo $_SESSION["factor"]; ?>);
 			var secondFactor = parseFloat(<?php echo $_SESSION["secFactor"]; ?>);
 			var reversals = parseInt(<?php echo $_SESSION["reversals"]; ?>);

@@ -138,3 +138,5 @@ DEADLINES E TO-DO:
 	✓ dati per recapchta : email futuro proprietario, nome dominio, non posso farlo ora perché servono questi dati e un collegamento https
 	✓ download file da server (in locale funziona)
 	
+- domande prof Grassi
+	- score di più blocchi

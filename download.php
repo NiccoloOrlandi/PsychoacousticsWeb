@@ -37,8 +37,8 @@
 		$txt = fopen($path, "w") or die("Unable to open file!");
 		
 		//scrivo il nome delle colonne
-		$line = "Name;Surname;Age;Gender;Test Type;Timestamp;Amplitude;Frequency;Duration;nAFC;First factor;";
-		$line .= "First reversals;Second factor;Second reversals;reversal threshold;algorithm;blocks;";
+		$line = "Name;Surname;Age;Gender;Test Type;Timestamp;Amplitude;Frequency;Duration;n. of blocks;nAFC;First factor;";
+		$line .= "First reversals;Second factor;Second reversals;reversal threshold;algorithm;block;";
 		if($_GET['format']=="complete")
 			$line .= "trials;delta;variable;Variable Position;Pressed button;correct?;reversals\n";
 		else
@@ -57,6 +57,7 @@
 		array_push($firstValues,$_SESSION["amp"]);
 		array_push($firstValues,$_SESSION["freq"]);
 		array_push($firstValues,$_SESSION["dur"]);
+		array_push($firstValues,$_SESSION["blocks"]);
 		array_push($firstValues,$_SESSION["nAFC"]);
 		array_push($firstValues,$_SESSION["fact"]);
 		array_push($firstValues,$_SESSION["rev"]);
@@ -64,6 +65,8 @@
 		array_push($firstValues,$_SESSION["secRev"]);
 		array_push($firstValues,$_SESSION["threshold"]);
 		array_push($firstValues,$_SESSION["alg"]);
+		
+		echo $_SESSION["results"];
 		
 		if($_GET['format']=="complete"){
 			//parte variabile e scrittura su file
@@ -111,7 +114,7 @@
 		}
 		
 		fclose($txt);
-		//*scrittura su file (per disattivare togliere uno slash da questo commento)
+		/*scrittura su file (per disattivare togliere uno slash da questo commento)
 		header('Content-Description: File Transfer');
 		header('Content-Disposition: attachment; filename='.basename($path));
 		header('Expires: 0');

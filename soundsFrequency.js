@@ -18,13 +18,15 @@ var correctAnsw = 0;				// number of correct answers
 var currentFactor = factor;			// first or second factor, depending on the number of reversals
 
 // array and variables for data storage
-const history = [];				// will have the answers ('1' if right, '0' if wrong)
+var history = [];				// will have the answers ('1' if right, '0' if wrong)
 var reversalsPositions = [];	// will have the position of the i-th reversal in the history array 
 var i = 0;						// next index of the array
 var countRev = 0;				// count of reversals 
 var results = [[], [], [], [], [], [], [], []];		// block, trial, delta, variable value, variable position, pressed button, correct answer?, reversals
 var score = 0					// final score
 var positiveStrike = -1;		// -1 = unsetted, 0 = negative strike, 1 = positive strike
+var currentBlock = 1;			// current testing block
+var result = "";				// final results that will be saved on the db
 
 var timestamp = 0;				// timestamp of the starting of the test
 var pressedButton;
@@ -97,13 +99,13 @@ function select(button){
 	}
 	
 	//save new data
-	results[0][i] = 1;					// blocco --> da implementare in futuro
+	results[0][i] = currentBlock;		// blocco --> da implementare in futuro
 	results[1][i] = i+1;				// trial
 	results[2][i] = varFreq-stdFreq; 	// delta
 	results[3][i] = varFreq;			// variable value
 	results[4][i] = swap;				// variable position
 	results[5][i] = pressedButton; 		// pulsante premuto
-	results[6][i] = history[i]			// correttezza risposta
+	results[6][i] = history[i];			// correttezza risposta
 	results[7][i] = countRev;			// reversals
 	
 	//increment counter
@@ -116,29 +118,50 @@ function select(button){
 	//end of the test
 	if(countRev == reversals+secondReversals){
 		
-		//calculate score 
-		for(var j = countRev - reversalThreshold; j<countRev; j++){
-			deltaBefore = results[2][reversalsPositions[j]-1]; //delta before the reversal
-			deltaAfter = results[2][reversalsPositions[j]]; //delta after the reversal
-			score += (deltaBefore + deltaAfter)/2; //average delta of the reversal
+		if(currentBlock<blocks){
+			//format datas as a csv file (only the last <reversalThreshold> reversals)
+			//format: block;trials;delta;variableValue;variablePosition;button;correct;reversals;";
+			for(var j = Math.min(reversalsPositions[countRev - reversalThreshold]-1,0); j < i; j++){
+				result += results[0][j] + ";" + results[1][j] + ";" + results[2][j] + ";" + results[3][j] + ";"
+				result += results[4][j] + ";" + results[5][j] + ";" + results[6][j] + ";" + results[7][j] + "\n";
+			}
+			
+			currentBlock += 1;
+			
+			delta = startingDelta
+			varFreq = parseInt(freq) + parseInt(delta)
+			swap =-1;						// position of variable sound			
+			correctAnsw = 0;				// number of correct answers
+
+			currentFactor = factor;			// first or second factor, depending on the number of reversals
+
+			history = [];				// will have the answers ('1' if right, '0' if wrong)
+			reversalsPositions = [];	// will have the position of the i-th reversal in the history array 
+			i = 0;						// next index of the array
+			countRev = 0;
+			score = 0					// final score
+			positiveStrike = -1;
+			
+			random(); 					//ricomincia il test
+		}else{
+			//calculate score 
+			for(var j = countRev - reversalThreshold; j<countRev; j++){
+				deltaBefore = results[2][reversalsPositions[j]-1]; //delta before the reversal
+				deltaAfter = results[2][reversalsPositions[j]]; //delta after the reversal
+				score += (deltaBefore + deltaAfter)/2; //average delta of the reversal
+			}
+			score /= reversalThreshold; //average deltas of every reversal
+			score = parseFloat(parseInt(score*100)/100); //approximate to 2 decimal digits
+			
+			//format description as a csv file
+			//prima tutti i nomi, poi tutti i dati
+			var description = "&amp="+amp+"&freq="+freq+"&dur="+dur+/*"&phase="+phase+*/"&blocks="+blocks+"&delta="+startingDelta;
+			description += "&nAFC="+nAFC+"&fact="+factor+"&secFact="+secondFactor+"&rev="+reversals+"&secRev="+secondReversals;
+			description += "&threshold="+reversalThreshold+"&alg="+algorithm;
+			
+			//pass the datas to the php file
+			location.href="salvaDati.php?result="+result+"&timestamp="+timestamp+"&type=freq"+description+"&score="+score+"&saveSettings="+saveSettings;
 		}
-		score /= reversalThreshold; //average deltas of every reversal
-		score = parseFloat(parseInt(score*100)/100); //approximate to 2 decimal digits
-		
-		//format datas as a csv file (only the last <reversalThreshold> reversals)
-		var result = "blocks,trials,delta,variableValue,variablePosition,button,correct,reversals;";
-		for(var j = Math.min(reversalsPositions[countRev - reversalThreshold]-1,0); j < i; j++){
-			result += results[0][j] + "," + results[1][j] + "," + results[2][j] + "," + results[3][j] + "," + results[4][j] + "," + results[5][j] + "," + results[6][j] + "," + results[7][j] + ";";
-		}
-		
-		//format description as a csv file
-		//prima tutti i nomi, poi tutti i dati
-		var description = "&amp="+amp+"&freq="+freq+"&dur="+dur+/*"&phase="+phase+*/"&blocks="+blocks+"&delta="+delta;
-		description += "&nAFC="+nAFC+"&fact="+factor+"&secFact="+secondFactor+"&rev="+reversals+"&secRev="+secondReversals;
-		description += "&threshold="+reversalThreshold+"&alg="+algorithm;
-		
-		//pass the datas to the php file
-		location.href="salvaDati.php?result="+result+"&timestamp="+timestamp+"&type=freq"+description+"&score="+score;
 	}
 	//if the test is not ended
 	else{
@@ -197,23 +220,6 @@ function start(){
 	// take the timestamp when the test starts
 	var currentdate = new Date(); 
 	timestamp = currentdate.getFullYear()+"-"+(currentdate.getMonth()+1)+"-"+currentdate.getDate()+" "+currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
-	for(var j = 1; j<=blocks; j++){
-		
-		delta = startingDelta
-		varFreq = parseInt(freq) + parseInt(delta)
-		swap =-1;						// position of variable sound			
-		correctAnsw = 0;				// number of correct answers
-
-		currentFactor = factor;			// first or second factor, depending on the number of reversals
-
-		// array and variables for data storage
-		history = [];				// will have the answers ('1' if right, '0' if wrong)
-		reversalsPositions = [];	// will have the position of the i-th reversal in the history array 
-		i = 0;						// next index of the array
-		countRev = 0;
-		score = 0					// final score
-		positiveStrike = -1;	
-				
-		random(); //comincia il test
-	}
+	
+	random(); //comincia il test
 }
