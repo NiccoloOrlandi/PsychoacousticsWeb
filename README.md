@@ -78,7 +78,7 @@ DEADLINES E TO-DO:
 	✓ guest ha una fk_account
 		- se non si è fatto il log in:
 			✓ se non c'è il nome: errore
-				- gestione messaggio di errore
+				✓ gestione messaggio di errore
 			✓ se c'è il nome:
 				✓ se non c'è il referral: crea guest con fk_account nulla
 				✓ se c'è il referral: crea guest collegato all'account del referral tramite fk_account
@@ -86,7 +86,7 @@ DEADLINES E TO-DO:
 			- se non c'è il nome:
 				✓ se non c'è il referral: il test si collega al guest dell'account loggato
 				✓ se c'è il referral: errore
-					- gestione messaggio di errore
+					✓ gestione messaggio di errore
 			✓ se c'è il nome:
 				✓ se non c'è il referral: crea guest collegato all'account loggato tramite fk_account
 				✓ se c'è il referral: crea guest collegato all'account del referral tramite fk_account
