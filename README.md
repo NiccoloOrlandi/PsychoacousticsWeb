@@ -76,14 +76,14 @@ DEADLINES E TO-DO:
 		✓ demographicData ha un input box per il referral
 		✓ demographicData prende il valore del referral direttamente dal link, se c'è
 	✓ guest ha una fk_account
-		- se non si è fatto il log in:
+		✓ se non si è fatto il log in:
 			✓ se non c'è il nome: errore
 				✓ gestione messaggio di errore
 			✓ se c'è il nome:
 				✓ se non c'è il referral: crea guest con fk_account nulla
 				✓ se c'è il referral: crea guest collegato all'account del referral tramite fk_account
-		-se si è fatto il log in:
-			- se non c'è il nome:
+		✓se si è fatto il log in:
+			✓ se non c'è il nome:
 				✓ se non c'è il referral: il test si collega al guest dell'account loggato
 				✓ se c'è il referral: errore
 					✓ gestione messaggio di errore
@@ -91,19 +91,19 @@ DEADLINES E TO-DO:
 				✓ se non c'è il referral: crea guest collegato all'account loggato tramite fk_account
 				✓ se c'è il referral: crea guest collegato all'account del referral tramite fk_account
 	✓ account ha un test collegato dal quale prende i settings
-		- checkbox "save settings" se è stato fatto il log in
+		✓ checkbox "save settings" se è stato fatto il log in
 	✓ account ha una data di nascita e il suo guest ha età nulla
 		✓ sistemare registering.php e i vari download (la colonna età)
 
 - altro da fare 	entro 22/05/2022?
 	✓ nAFC funzionante (faccio nAFC-1 volte playStd e 1 playVar)
 	✓ n. of blocks funzionante (ripeto n volte il test)
-		- testare number of blocks 
-		? dopo ogni blocco escono i risultati col pulsante continua e dopo l'ultimo esce il pulsante "download data" e "home"
+		✓ testare number of blocks 
 	✓ nel risultato esce la media delle medie dei valori del delta prima e dopo gli ultimi <threshold> reversal
 	✓ aggiungere download di un file ridotto con solo dati anagrafici, dati del test, blocco e risultato (ossia la media delle medie) (una riga per blocco)
 	- gestione eccezioni nelle interazioni col db (un try catch per ogni $conn->query($sql);)
 	- utilizzo sequence.next per simulare l'autoincrement (al posto di SELECT max(ID), serve per evitare collisioni)
+	- fix degli altri download + svuotamento db (ora che i dati vengono salvati in modo diverso)
 
 - plus se riusciamo entro il 10/06/2022
 	✗ Vedere se si puó modificare la fase del suono
@@ -140,3 +140,6 @@ DEADLINES E TO-DO:
 	
 - domande prof Grassi
 	- score di più blocchi
+	? dopo ogni blocco escono i risultati col pulsante continua e dopo l'ultimo esce il pulsante "download data" e "home" o continua come niente fosse?
+	? aggiungere email al db 
+	

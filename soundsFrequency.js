@@ -117,15 +117,14 @@ function select(button){
 	
 	//end of the test
 	if(countRev == reversals+secondReversals){
-		
-		if(currentBlock<blocks){
-			//format datas as a csv file (only the last <reversalThreshold> reversals)
-			//format: block;trials;delta;variableValue;variablePosition;button;correct;reversals;";
-			for(var j = Math.min(reversalsPositions[countRev - reversalThreshold]-1,0); j < i; j++){
-				result += results[0][j] + ";" + results[1][j] + ";" + results[2][j] + ";" + results[3][j] + ";"
-				result += results[4][j] + ";" + results[5][j] + ";" + results[6][j] + ";" + results[7][j] + "\n";
-			}
+		//format datas as a csv file (only the last <reversalThreshold> reversals)
+		//format: block;trials;delta;variableValue;variablePosition;button;correct;reversals;";
+		for(var j = Math.min(reversalsPositions[countRev - reversalThreshold]-1,0); j < i; j++){
+			result += results[0][j] + ";" + results[1][j] + ";" + results[2][j] + ";" + results[3][j] + ";"
+			result += results[4][j] + ";" + results[5][j] + ";" + results[6][j] + ";" + results[7][j] + ",";
+		}
 			
+		if(currentBlock<blocks){
 			currentBlock += 1;
 			
 			delta = startingDelta
@@ -159,6 +158,7 @@ function select(button){
 			description += "&nAFC="+nAFC+"&fact="+factor+"&secFact="+secondFactor+"&rev="+reversals+"&secRev="+secondReversals;
 			description += "&threshold="+reversalThreshold+"&alg="+algorithm;
 			
+			alert(result);
 			//pass the datas to the php file
 			location.href="salvaDati.php?result="+result+"&timestamp="+timestamp+"&type=freq"+description+"&score="+score+"&saveSettings="+saveSettings;
 		}

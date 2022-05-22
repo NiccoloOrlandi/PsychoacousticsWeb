@@ -10,7 +10,10 @@
 		<link rel="stylesheet" href="staircaseStyle.css">
 		
 		<script type="text/javascript" src="soundSettingsValidation.js" defer></script>
-		<?php session_start(); ?>
+		<?php 
+			session_start(); 
+			include "config.php";
+		?>
 		<title>Hello, world!</title>
 	</head>
 	<body>
@@ -66,12 +69,27 @@
 				else if($_GET['err']=="threshold2")
 					echo "<div class='alert alert-danger'>The reversal threshold value can't be a negative number</div>";
 			}
+			
+			$conn = new mysqli($host, $user, $password, $dbname);
+			if ($conn->errno)
+					die("Problemi di connessione" . $conn->error);
+			mysqli_set_charset($conn, "utf8");
+			
+			$sql = "SELECT Test.Amplitude as amp, Test.Frequency as freq, Test.Duration as dur, Test.blocks as blocks, Test.nAFC as nafc, Test.Factor as fact, 
+				Test.Delta as delta, Test.Reversal as rev, Test.SecFactor as secfact, Test.SecReversal as secrev, Test.Threshold as thr, Test.Algorithm as alg
+								
+				FROM test
+				INNER JOIN account ON account.fk_GuestTest = test.Guest_ID AND account.fk_TestCount = test.Test_count
+				
+				WHERE account.username = '{$_SESSION['usr']}'";
+			$result = $conn->query($sql);
+			$row = $result->fetch_assoc();
+			
 		?>
 		<div class="container" style="margin-top:1%">
 			<div class="row gx-4">
 				<div class="col">
 					<div class=" p-3 border bg-light" style="height:98%">
-		
 						<h1>Set the characteristics of the standard pure tone</h1>
 						<form action="soundSettingsValidation.php<?php echo "?type=".$_GET["test"]; ?>" name="Settings" method="post">
 							<!-- Primo slot di setting -->
@@ -84,19 +102,19 @@
 											<!-- Contenuto dello slot, qui vanno inseriti tutti i bottoni e i check box del secondo slot -->
 											<div class="input-group flex-nowrap">
 												<span class="input-group-text" id="addon-wrapping">Amplitude</span>
-												<input type="text" class="form-control"  name="amplitude" id = "amplitude" placeholder="Standard" aria-label="Username" aria-describedby="addon-wrapping" value = "-20">
+												<input type="text" class="form-control" name="amplitude" id="amplitude" placeholder="Standard" value="<?php if($row) echo $row['amp']; else echo "-20"; ?>">
 												<span class="input-group-text" id="addon-wrapping">dB</span>
 											</div>
 
 											<div class="input-group flex-nowrap">
 												<span class="input-group-text" id="addon-wrapping">Frequency</span>
-												<input type="text" class="form-control" name="frequency" id = "frequency" placeholder="Standard" aria-label="Username" aria-describedby="addon-wrapping" value="1000">
+												<input type="text" class="form-control" name="frequency" id = "frequency" placeholder="Standard" value="<?php if($row) echo $row['freq']; else echo "1000"; ?>">
 												<span class="input-group-text" id="addon-wrapping">Hz</span>
 											</div>
 
 											<div class="input-group flex-nowrap">
 												<span class="input-group-text" id="addon-wrapping">Duration</span>
-												<input type="text" class="form-control" name="duration" id = "duration" placeholder="Standard" aria-label="Username" aria-describedby="addon-wrapping" value = "1000">
+												<input type="text" class="form-control" name="duration" id = "duration" placeholder="Standard" value = "<?php if($row) echo $row['dur']; else echo "1000"; ?>">
 												<span class="input-group-text" id="addon-wrapping">ms</span>
 											</div>
 
@@ -121,17 +139,17 @@
 											
 											<div class="input-group flex-nowrap">
 											<span class="input-group-text" id="addon-wrapping" style="width:7rem">n. of blocks</span>
-											<input type="text" class="form-control" name = "blocks" id = "blocks" placeholder="Blocks" aria-label="Username" aria-describedby="addon-wrapping">
+											<input type="text" class="form-control" name = "blocks" id = "blocks" placeholder="Blocks" value="<?php if($row) echo $row['blocks']; else echo "1"; ?>">
 											</div>
 											
 											<div class="input-group flex-nowrap">
 												<span class="input-group-text" id="addon-wrapping">Delta</span>
-												<input type="text" class="form-control" name = "delta" id = "level" placeholder="Starting " aria-label="Username" aria-describedby="addon-wrapping">
+												<input type="text" class="form-control" name = "delta" id = "level" placeholder="Starting" value="<?php if($row) echo $row['delta']; else echo "500"; ?>">
 											</div>
 											
 											<div class="input-group flex-nowrap">
 												<span class="input-group-text" id="addon-wrapping">nAFC</span>
-												<input type="text" class="form-control" name = "nAFC" id = "nAFC" placeholder="nAFC" aria-label="Username" aria-describedby="addon-wrapping" value = "2" >
+												<input type="text" class="form-control" name = "nAFC" id = "nAFC" placeholder="nAFC" value = "<?php if($row) echo $row['nafc']; else echo "2"; ?>" >
 											</div>   
 											
 											<!-- Checkbox -->
@@ -141,20 +159,6 @@
 												Feedback
 												</label>
 											</div>
-											<?php
-
-											if(isset($_SESSION['usr'])){
-										
-											echo ' <div class="form-check">
-												<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name= "saveSettings" checked>
-												<label class="form-check-label" for="flexCheckDefault">
-												Save settings
-												</label>
-												</div>';
-											}
-
-
-											?>
 					 
 										</div>
 									</div>
@@ -175,49 +179,59 @@
 												<div class="left-div">
 													<div class="input-group flex-nowrap">
 														<span class="input-group-text" id="addon-wrapping">Factor</span>
-														<input type="text" class="form-control" name="factor" id="factor" placeholder="Factor" aria-label="Username" aria-describedby="addon-wrapping" value = "2">
+														<input type="text" class="form-control" name="factor" id="factor" placeholder="Factor" value = "<?php if($row) echo $row['fact']; else echo "2"; ?>">
 													</div>
 													<div class="input-group flex-nowrap">
 														<span class="input-group-text" id="addon-wrapping">Reversals</span>
-														<input type="text" class="form-control" name="reversals" id = "reversals" placeholder="Reversals" aria-label="Username" aria-describedby="addon-wrapping" value = "4">
+														<input type="text" class="form-control" name="reversals" id = "reversals" placeholder="Reversals" value = "<?php if($row) echo $row['rev']; else echo "4"; ?>">
 													</div>
 												</div>
 												<div class="right-div">
 													<div class="input-group flex-nowrap">
 														<span class="input-group-text" id="addon-wrapping">Second factor</span>
-														<input type="text" class="form-control" name="secFactor" id="secondFactor" placeholder="secondFactor" aria-label="Username" aria-describedby="addon-wrapping" value = "1.414">
+														<input type="text" class="form-control" name="secFactor" id="secondFactor" placeholder="secondFactor" value = "<?php if($row) echo $row['secfact']; else echo "1.414"; ?>">
 													</div>
 													<div class="input-group flex-nowrap">
 														<span class="input-group-text" id="addon-wrapping">Second reversals</span>
-														<input type="text" class="form-control" name="secReversals" id = "reversals" placeholder="Reversals" aria-label="Username" aria-describedby="addon-wrapping" value = "8">
+														<input type="text" class="form-control" name="secReversals" id = "reversals" placeholder="Reversals" value = "<?php if($row) echo $row['secrev']; else echo "8"; ?>">
 													</div>
 												</div>
 												<div class="input-group flex-nowrap">
 													<span class="input-group-text" id="addon-wrapping">Reversal threshold</span>
-													<input type="text" class="form-control" name="threshold" id = "reversalsTh" placeholder="Threshold" aria-label="Username" aria-describedby="addon-wrapping" value="8">
+													<input type="text" class="form-control" name="threshold" id = "reversalsTh" placeholder="Threshold" value="<?php if($row) echo $row['secrev']; else echo "8"; ?>">
 												</div>
 											</div>
 
 											<!-- Radios, sono raggruppati in un div che sta sulla sinistra-->
 											<div class="left-div">
 												<div class="form-check">
-													<input class="form-check-input" type="radio" name="algorithm" value="SimpleUpDown" checked>
+													<input class="form-check-input" type="radio" name="algorithm" value="SimpleUpDown" <?php if(($row && $row['alg']=="SimpleUpDown") || !$row) echo "checked";?>>
 													<label class="form-check-label" for="flexRadioDefault1">
 														SimpleUpDown
 													</label>
 												</div>
 												<div class="form-check">
-													<input class="form-check-input" type="radio" name="algorithm" value="TwoDownOneUp">
+													<input class="form-check-input" type="radio" name="algorithm" value="TwoDownOneUp" <?php if($row && $row['alg']=="TwoDownOneUp") echo "checked"; ?>>
 													<label class="form-check-label" for="flexRadioDefault1">
 														TwoDownOneUp
 													</label>
 												</div>
 												<div class="form-check" >
-													<input class="form-check-input" type="radio" name="algorithm" value="ThreeDownOneUp">
+													<input class="form-check-input" type="radio" name="algorithm" value="ThreeDownOneUp" <?php if($row && $row['alg']=="ThreeDownOneUp") echo "checked"; ?>>
 													<label class="form-check-label" for="flexRadioDefault1">
 														ThreeDownOneUp
 													</label>
 												</div>
+												
+												<?php
+													if(isset($_SESSION['usr']))
+														echo '<div class="form-check saveSettings">
+																<input class="form-check-input" type="checkbox" id="saveSettings" name= "saveSettings">
+																<label class="form-check-label" for="saveSettings">
+																	Save settings
+																</label>
+															  </div>';
+												?>
 												
 												<!-- Algoritmi non implementati
 												<div class="form-check">

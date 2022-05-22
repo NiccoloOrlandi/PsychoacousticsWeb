@@ -38,70 +38,37 @@
 		
 		//scrivo il nome delle colonne
 		$line = "Name;Surname;Age;Gender;Test Type;Timestamp;Amplitude;Frequency;Duration;n. of blocks;nAFC;First factor;";
-		$line .= "First reversals;Second factor;Second reversals;reversal threshold;algorithm;block;";
+		$line .= "First reversals;Second factor;Second reversals;reversal threshold;algorithm;";
 		if($_GET['format']=="complete")
-			$line .= "trials;delta;variable;Variable Position;Pressed button;correct?;reversals\n";
+			$line .= "block;trials;delta;variable;Variable Position;Pressed button;correct?;reversals\n";
 		else
 			$line .= "score\n";
 			
 		fwrite($txt, $line);
 		
 		//valore della prima parte (quella fissa che va ripetuta)
-		$firstValues = [];
-		array_push($firstValues,$row["name"]);
-		array_push($firstValues,$row["surname"]);
-		array_push($firstValues,$age);
-		array_push($firstValues,$row["gender"]);
-		array_push($firstValues,$_SESSION["type"]);
-		array_push($firstValues,$_SESSION["timestamp"]);
-		array_push($firstValues,$_SESSION["amp"]);
-		array_push($firstValues,$_SESSION["freq"]);
-		array_push($firstValues,$_SESSION["dur"]);
-		array_push($firstValues,$_SESSION["blocks"]);
-		array_push($firstValues,$_SESSION["nAFC"]);
-		array_push($firstValues,$_SESSION["fact"]);
-		array_push($firstValues,$_SESSION["rev"]);
-		array_push($firstValues,$_SESSION["secFact"]);
-		array_push($firstValues,$_SESSION["secRev"]);
-		array_push($firstValues,$_SESSION["threshold"]);
-		array_push($firstValues,$_SESSION["alg"]);
-		
-		echo $_SESSION["results"];
+		$firstValues = $row["name"].";".$row["surname"].";".$age.";".$row["gender"].";".$_SESSION["type"].";".$_SESSION["timestamp"].";".$_SESSION["amp"].";";
+		$firstValues .= $_SESSION["freq"].";".$_SESSION["dur"].";".$_SESSION["blocks"].";".$_SESSION["nAFC"].";".$_SESSION["fact"].";".$_SESSION["rev"].";";
+		$firstValues .= $_SESSION["secFact"].";".$_SESSION["secRev"].";".$_SESSION["threshold"].";".$_SESSION["alg"];
 		
 		if($_GET['format']=="complete"){
 			//parte variabile e scrittura su file
-			$results = substr($_SESSION["results"], strpos($_SESSION["results"], ";")+1); 
+			$results = explode(",", $_SESSION["results"]);
+			echo count($results)."<br>";
 			//results sarà nella forma "bl1,tr1,del1,var1,but1,cor1,rev1;bl2,tr2,del2,var2,but2,cor2,rev2;..."
-			$pos = 0;
-			$variableValues = [0, 0, 0, 0, 0, 0, 0, 0]; //blocks, trials, delta, variable, Variable Position, Pressed button, correct?, reversals
-			for($i = 0, $j=0;$i<strlen($results)-1;$i++){
-				if($results[$i]==";"){//quando incontro un punto e virgola sono all'ultimo dato
-					$variableValues[$j] = substr($results,$pos,$i-$pos);
-					$pos = $i+1;
-					
-					foreach($firstValues as $elem)//scrivo i dati fissi
-						fwrite($txt, $elem.";");
-					foreach($variableValues as $elem)//scrivo i dati variabili
-						fwrite($txt, $elem.";");
-					fwrite($txt, "\n");//vado all'altra linea
-					$j=0;
-				}else{
-					if($results[$i]==","){//quando trovo una virgola è finito il valore di un dato
-						$variableValues[$j] = substr($results,$pos,$i-$pos);
-						$pos = $i+1;
-						$j++;
-					}
-				}
+			for($i = 0;$i<count($results)-1;$i++){
+				echo $results[$i]."<br>";
+				fwrite($txt, $firstValues.";");
+				fwrite($txt, $results[$i]);
+				fwrite($txt, "\n");//vado all'altra linea
 			}
 		}else{
-			$results = $_SESSION['score'];
-			$pos = 0;
-			$cont = 1;
-			$score = "";
+			fwrite($txt, $firstValues.";");
+			fwrite($txt, $_SESSION['score']);
+			/*$results = $_SESSION['score'];
 			for($i = 0;$i<strlen($results);$i++){
 				if($results[$i]==";"){//quando incontro un punto e virgola sono a fine di un blocco
-					foreach($firstValues as $elem)//scrivo i dati fissi
-						fwrite($txt, $elem.";");
+					fwrite($txt, $firstValues.";");
 					
 					fwrite($txt, $cont.";");//scrivo il blocco
 					fwrite($txt, substr($results,$pos,$i-$pos).";");//scrivo lo score del blocco
@@ -110,11 +77,11 @@
 					$pos = $i+1;
 					$cont += 1;
 				}
-			}
+			}*/
 		}
 		
 		fclose($txt);
-		/*scrittura su file (per disattivare togliere uno slash da questo commento)
+		//*scrittura su file (per disattivare togliere uno slash da questo commento)
 		header('Content-Description: File Transfer');
 		header('Content-Disposition: attachment; filename='.basename($path));
 		header('Expires: 0');

@@ -67,6 +67,7 @@
 
 		if($_GET['saveSettings']){
 			$sql = "UPDATE account SET fk_guestTest = '$id', fk_testCount = '$count' WHERE username = '{$_SESSION['usr']}' ";
+			$conn->query($sql);
 		}
 	}
 	header("Location: results.php");
