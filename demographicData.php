@@ -18,8 +18,12 @@
     
     <?php
 		//se si sceglie un username già esistente verrà messo "?err=1" nell'url
-		if(isset($_GET['err']) && $_GET['err']==1)
-			echo "<div class='alert alert-danger'>The name field is required</div>";
+		if(isset($_GET['err']))
+			if($_GET['err']==1)
+				echo "<div class='alert alert-danger'>The name field is required</div>";
+			else if($_GET['err']==2)
+				echo "<div class='alert alert-danger'>The name field is required when using a referral code</div>";
+				
 	?>
 
     <div class="container p-4" style="margin-top:15%" >
