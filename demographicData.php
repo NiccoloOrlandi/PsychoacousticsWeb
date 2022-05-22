@@ -12,7 +12,9 @@
 
     <title>Hello, world!</title>
 
-    <?php include "config.php"; ?>
+    <?php include "config.php"; 
+      session_start();    
+    ?>
   </head>
   <body>
     
@@ -100,12 +102,19 @@
                     </div>
 					
                     <!-- Checkbox -->
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name= "checkSave" checked>
-                        <label class="form-check-label" for="flexCheckDefault">
-                          Save results
-                        </label>
-                    </div>
+                    <?php
+
+                       
+                      if(isset($_SESSION['usr'])){
+                       
+                        echo ' <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name= "checkSave" checked>
+                              <label class="form-check-label" for="flexCheckDefault">
+                                Save results
+                              </label>
+                          </div>';
+                      }
+                    ?>
                     
                     <button type="button" class="btn btn-primary btn-lg m-3" onclick = "location.href='index.php'">BACK</button>
                     <button type="submit" class="btn btn-primary btn-lg m-3" >NEXT</button>

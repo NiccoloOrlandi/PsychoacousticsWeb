@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="staircaseStyle.css">
 		
 		<script type="text/javascript" src="soundSettingsValidation.js" defer></script>
-		
+		<?php session_start(); ?>
 		<title>Hello, world!</title>
 	</head>
 	<body>
@@ -141,6 +141,21 @@
 												Feedback
 												</label>
 											</div>
+											<?php
+
+											if(isset($_SESSION['usr'])){
+										
+											echo ' <div class="form-check">
+												<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name= "saveSettings" checked>
+												<label class="form-check-label" for="flexCheckDefault">
+												Save settings
+												</label>
+												</div>';
+											}
+
+
+											?>
+					 
 										</div>
 									</div>
 								</div>

@@ -4,7 +4,7 @@
 	if(isset($_SESSION['idGuest']) && isset($_GET['result']) && isset($_GET['timestamp']) && isset($_GET['type']) && ($_SESSION["checkSave"])
 		&& isset($_GET['amp']) && isset($_GET['freq']) && isset($_GET['dur']) && isset($_GET['blocks']) && isset($_GET['delta'])
 		&& isset($_GET['nAFC']) && isset($_GET['fact']) && isset($_GET['secFact']) && isset($_GET['rev']) && isset($_GET['secRev'])
-		&& isset($_GET['threshold']) && isset($_GET['alg']) && isset($_GET['score'])){
+		&& isset($_GET['threshold']) && isset($_GET['alg']) && isset($_GET['score']) && isset($_GET['saveSettings'])){
 		
 		if(isset($_SESSION["score"]))
 			$_SESSION["score"] .= $_GET['score'].";";
@@ -64,6 +64,10 @@
 		$sql .= "'{$_GET['delta']}', '{$_GET['nAFC']}', '{$_GET['fact']}', '{$_GET['rev']}', ";
 		$sql .= "'{$_GET['secFact']}', '{$_GET['secRev']}', '{$_GET['threshold']}', '{$_GET['alg']}', '{$_GET['result']}')";
 		$conn->query($sql);
+
+		if($_GET['saveSettings']){
+			$sql = "UPDATE account SET fk_guestTest = '$id', fk_testCount = '$count' WHERE username = '{$_SESSION['usr']}' ";
+		}
 	}
 	header("Location: results.php");
 ?>
