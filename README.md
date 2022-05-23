@@ -30,7 +30,7 @@ DEADLINES E TO-DO:
     	✓ implementare
     	✓ riempire
 	✓ cambiare l'identificativo di test: usare fk_guest + un seriale (n-esimo test di un certo guest) 
-	✗ età in guest deve essere sostituita con data di nascita (solo quando creiamo account?)
+	✓ età in guest deve essere sostituita con data di nascita (solo quando creiamo account?)
 	✓ feedback se checkbox spuntata 
 	✓ dati salvati solo se spunto la checkbox "save results"
 	- aggiungere email al db 
@@ -104,21 +104,17 @@ DEADLINES E TO-DO:
 	- gestione eccezioni nelle interazioni col db (un try catch per ogni $conn->query($sql);)
 	- utilizzo sequence.next per simulare l'autoincrement (al posto di SELECT max(ID), serve per evitare collisioni)
 	✓ fix degli altri download + svuotamento db (ora che i dati vengono salvati in modo diverso)
+	- menù a tendina nel referral per scegliere il tipo di test
 
 - plus se riusciamo entro il 10/06/2022
 	✗ Vedere se si puó modificare la fase del suono
 	? Funzione (esponenziale fino a 1?) che permette di non avere brutte sensazioni a inizio e fine suono 
-	- Predisporre presenza di rumori di sottofondo 
-	- Predisporre piú di due suoni alla volta ( un suono viene ripetuto piú volte e l'altro una volta sola )
-	- Diagramma architetturale del sistema
-	✗ Recupero dati utente e psw ( difficile serve mailing list, quando ci si registra bisogna inserire email )
+	✓ Predisporre piú di due suoni alla volta ( un suono viene ripetuto piú volte e l'altro una volta sola )
+	? Recupero dati utente e psw ( difficile serve mailing list, quando ci si registra bisogna inserire email )
 	✓ premi '1' e '2' da tastiera oltre ai pulsanti a schermo
 		✓ limite nAFC: 9
 	✓ Pagina per cambiare dati e impostazioni (nome, cognome, username, password), per creare altri SU (se tu sei SU) e per vedere e modificare referral e link
 		- salvataggio dati da completare
-	
-	✗ suoni suonabili componibili
-	? problema del click iniziale   
 	
 - grafica entro il 10/06/2022
 	- alert di errore di inerimento dati (migliorare)
@@ -127,7 +123,18 @@ DEADLINES E TO-DO:
 	- tradurre tutto in inglese in ogni pagina
 	- title delle pagine
 
+- migiorie per il futuro
+	- problema del click iniziale
+	- modificare la fase del suono
+	- suoni suonabili componibili
+	- presenza di rumori di sottofondo
+	- migiorare la sicurezza (dati di accesso al db criptati)
+	- link con referral manda anche i setting del test
+	- save test settings funziona anche senza finire il test (si crea un apposito test dummy nel db che serve solo a quello)
+
 - documentazione entro il 10/06/2022
+	- Diagramma architetturale del sistema
+	- guida/documentazione
 	- documento dei requisiti
 	- tesi
 

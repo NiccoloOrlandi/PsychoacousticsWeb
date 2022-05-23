@@ -9,7 +9,7 @@
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 		<link rel ="stylesheet" href="test.css">
 
-		<title>Frequency test</title>
+		<title>Psychoacoustics - Frequency test</title>
 
 		<script>
 			// pass info from php session to js

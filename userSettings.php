@@ -10,7 +10,7 @@
 		<link rel ="stylesheet" href="style.css">
 		<script type="text/javascript" src="funzioni.js"></script>
 
-		<title>Psychoacoustics</title>
+		<title>Psychoacoustics - User settings</title>
 
 		<?php 
 			session_start(); 
@@ -23,8 +23,8 @@
 		<!-- Barra navigazione -->
 		<nav class="navbar navbar-dark bg-dark">
 			<div class="container-fluid" >
-			  <a class="navbar-brand" href="#" >
-				<img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top" >
+			  <a class="navbar-brand" href="index.php" >
+				<img src="colore.png" alt="" width="30" height="24" class="d-inline-block align-text-top" >
 				PSYCHOACOUSTICS
 			  </a>
 			  <form class="container-fluid logButtons">
@@ -121,30 +121,23 @@
 			<select name='gender' class="form-select">
 				<option disabled="disabled" value="null" id="NullGender" <?php if($gender=="NULL") echo "selected"; ?>>Select your gender</option>
 				<?php 
+					$conn = new mysqli($host, $user, $password, $dbname);
+					if ($conn->errno)
+						die("Problemi di connessione" . $conn->error);
+					mysqli_set_charset($conn, "utf8");
+
 					$sql="SELECT COLUMN_TYPE AS ct FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'psychoacoustics_db' AND TABLE_NAME = 'guest' AND COLUMN_NAME = 'gender';";
 					$result=$conn->query($sql);
-					$row=$result->fetch_assoc();//questa query da un risultato di tipo enum('Male','Female','Unspecified')
-					
+					$row=$result->fetch_assoc();//questa query da un risultato di tipo enum('Male','Female','Non-Binary')
+
 					//metto i valori in un array
-					$values = substr($row['ct'], 5);
-					$list = array();
-					$initialPos = -1;
-					for($i=0;str_split($values)[$i]!=')';$i++){
-						if(str_split($values)[$i]=="'" and $initialPos==-1)
-							$initialPos = $i+1;
-						else if(str_split($values)[$i]=="'"){
-							$list[] = substr($values, $initialPos, $i-$initialPos);
-							$initialPos = -1;
-						}
-					}
+					$values = substr($row['ct'], 5, -1);//tolgo "enum(" e ")"
+					$values = str_replace("'", "", $values);//tolgo gli apici
+					$list = explode(",", $values);//divido in una lista in base alle virgole
 					
 					//creo un'opzione per ogni possibile valore
-					foreach($list as $elem){
-						echo "<option value='".strtoupper($elem)."'";
-						if($gender == $elem) 
-							echo "selected";
-						echo ">".strtoupper($elem)."</option>";
-					}
+					foreach($list as $elem)
+						echo "<option value='".strtoupper($elem)."'>".strtoupper($elem)."</option>";
 				?>
 			</select>
 			<div class="input-group mb-3 notes">

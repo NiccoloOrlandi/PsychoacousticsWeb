@@ -13,6 +13,8 @@
 		<?php 
 			session_start(); 
 			include "config.php";
+			if(!isset($_GET["test"]))
+				header("Location: index.php");
 		?>
 		<title>Psychoacoustics - Test settings</title>
 	</head>
