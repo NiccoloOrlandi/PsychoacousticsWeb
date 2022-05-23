@@ -38,6 +38,8 @@
 		<?php
 			//se si sceglie un username già esistente verrà messo "?err=1" nell'url
 			if(isset($_GET['err'])){
+				if ($_GET['err']==0)
+					echo "<div class='alert alert-danger'>Some inserted characters aren't allowed</div>";
 				if ($_GET['err']==1)
 					echo "<div class='alert alert-danger'>Username already taken</div>";
 				if ($_GET['err']==2)
@@ -104,7 +106,7 @@
 			</div>
 			<div class="input-group mb-3">
 				<span class="input-group-text">Nuova password</span>
-				<input type="password" class="form-control" placeholder="Nuova password"name="newPsw">
+				<input type="password" class="form-control" placeholder="Nuova password" name="newPsw">
 			</div>
 			<div class="input-group mb-3">
 				<span class="input-group-text">Name</span>

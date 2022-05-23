@@ -8,8 +8,12 @@
     <body>
 		<?php
 			//se si sceglie un username già esistente verrà messo "?err=1" nell'url
-			if(isset($_GET['err']) && $_GET['err']==1)
-				echo "<div class='alert alert-danger'>Username o password errati</div>";
+			if(isset($_GET['err'])){
+				if ($_GET['err']==0)
+					echo "<div class='alert alert-danger'>Some inserted characters aren't allowed</div>";
+				if ($_GET['err']==1)
+					echo "<div class='alert alert-danger'>Incorrect username or password</div>";
+			}
 		?>
         <form method="post" action="log.php">
             <h1>Login</h1>

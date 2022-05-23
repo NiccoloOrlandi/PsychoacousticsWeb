@@ -39,7 +39,7 @@ DEADLINES E TO-DO:
 	
 - poi php entro 30/04/2022
 	✓ quando un utente si registra va creato un nuovo account (e va controllato che l'username non esista già)
-		- controlli js sugli input (required data + sql injections)
+		✓ controlli js sugli input (required data + sql injections)
 	✓ passaggio dati in sicurezza (demographicData, soundSettings, tipo di test)
 	✓ richiedere al professore una spiegazione specifica su cosa dovrá fare chi ha l'account (invita gli altri in che modo e cosa ne facciamo dei dati)
 	
@@ -128,7 +128,10 @@ DEADLINES E TO-DO:
 	- modificare la fase del suono
 	- suoni suonabili componibili
 	- presenza di rumori di sottofondo
-	- migiorare la sicurezza (dati di accesso al db criptati)
+	- migiorare la sicurezza
+		- dati di accesso al db criptati
+		- controlli sui dati passati con get
+		- blocco accesso alle pagine tramite copia-incolla dell'url
 	- link con referral manda anche i setting del test
 	- save test settings funziona anche senza finire il test (si crea un apposito test dummy nel db che serve solo a quello)
 

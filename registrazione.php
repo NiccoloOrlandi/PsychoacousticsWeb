@@ -9,25 +9,29 @@
     <body>
 		<?php
 			//se si sceglie un username già esistente verrà messo "?err=1" nell'url
-			if(isset($_GET['err']) && $_GET['err']==1)
-				echo "<div class='alert alert-danger'>Username already taken</div>";
+			if(isset($_GET['err'])){
+				if ($_GET['err']==0)
+					echo "<div class='alert alert-danger'>Some inserted characters aren't allowed</div>";
+				if ($_GET['err']==1)
+					echo "<div class='alert alert-danger'>Username already taken</div>";
+			}
 		?>
         <form method="post" action="registering.php" onsubmit="validation()">
             <h1>Registrazione</h1>
             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Username</span>
+                <span class="input-group-text" id="basic-addon1">Username*</span>
                 <input type="text" class="form-control" placeholder="Username" required name="usr">
             </div>            
             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Password</span>
+                <span class="input-group-text" id="basic-addon1">Password*</span>
                 <input type="password" class="form-control" placeholder="Password" required name="psw">
             </div>
 			<div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Email</span>
+                <span class="input-group-text" id="basic-addon1">Email*</span>
                 <input type="text" class="form-control" placeholder="Email" required name="Email">
             </div> 
 			<div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Name</span>
+                <span class="input-group-text" id="basic-addon1">Name*</span>
                 <input type="text" class="form-control" placeholder="Name" required name="name">
             </div> 
 			<div class="input-group mb-3">
