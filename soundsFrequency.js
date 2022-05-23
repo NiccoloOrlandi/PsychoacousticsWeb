@@ -9,8 +9,8 @@ var startingDelta = delta;
 var stdDur = dur/1000;				// duration of the standard 
 var varDur = dur/1000;				// duration of the variable 
 
-var intStd = parseFloat(amp);		// intensity of the variable
-var intVar = parseFloat(amp);		// intensity of the standard 
+var stdAmp = amp;					// intensity of the variable
+var varAmp = amp;					// intensity of the standard 
 
 var swap =-1;						// position of variable sound			
 var correctAnsw = 0;				// number of correct answers
@@ -33,7 +33,7 @@ var pressedButton;
 //funzione per generare il primo suono
 function playVar(time){
 	var volume1 = context.createGain();		//volume
-	volume1.gain.value = (10**(parseInt(intVar)/20));			// do una valore al guadagno
+	volume1.gain.value = (10**(parseInt(varAmp)/20));			// do una valore al guadagno
 	volume1.connect(context.destination);	//collego all'uscita audio
 
 	oscillator = context.createOscillator();//Creiamo il primo oscillatore
@@ -48,7 +48,7 @@ function playVar(time){
 //funzione per generare il secondo suono
 function playStd(time){
 	var volume2 = context.createGain();		//volume
-	volume2.gain.value = (10**(parseInt(intStd)/20))			//do una valore al guadagno
+	volume2.gain.value = (10**(parseInt(stdAmp)/20))			//do una valore al guadagno
 	volume2.connect(context.destination);	//collego all'uscita audio
 
 	oscillator = context.createOscillator();//Creiamo il secondo oscillatore
@@ -127,8 +127,8 @@ function select(button){
 		if(currentBlock<blocks){
 			currentBlock += 1;
 			
-			delta = startingDelta
-			varFreq = parseInt(freq) + parseInt(delta)
+			delta = startingDelta;
+			varFreq = freq + delta;
 			swap =-1;						// position of variable sound			
 			correctAnsw = 0;				// number of correct answers
 

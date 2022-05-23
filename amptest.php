@@ -44,7 +44,7 @@
 		</div>
 
 		<form action="" id="PlayForm">
-			<H1>Quale suono è più lungo?</H1>
+			<H1>Quale suono è più forte?</H1>
 			<button type="button" class="btn btn-success" id="button1" onclick = "select(1)" disabled>1° sound</button>
 			<button type="button" class="btn btn-danger" id="button2" onclick = "select(2)" disabled>2° sound</button>
 			<?php

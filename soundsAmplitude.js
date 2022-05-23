@@ -7,10 +7,10 @@ var stdFreq = parseInt(freq);					// frequency of the standard
 var startingDelta = delta;
 
 var stdDur = dur/1000;				// duration of the standard 
-var varDur = (dur+delta)/1000;		// duration of the variable 
+var varDur = dur/1000;				// duration of the variable 
 
 var stdAmp = amp;					// intensity of the variable
-var varAmp = amp;					// intensity of the standard 
+var varAmp = amp+delta;				// intensity of the standard 
 
 var swap =-1;						// position of variable sound			
 var correctAnsw = 0;				// number of correct answers
@@ -102,8 +102,8 @@ function select(button){
 	//save new data
 	results[0][i] = currentBlock;		// blocco --> da implementare in futuro
 	results[1][i] = i+1;				// trial
-	results[2][i] = varDur-stdDur; 		// delta
-	results[3][i] = varDur;				// variable value
+	results[2][i] = varAmp-stdAmp; 	// delta
+	results[3][i] = varAmp;			// variable value
 	results[4][i] = swap;				// variable position
 	results[5][i] = pressedButton; 		// pulsante premuto
 	results[6][i] = history[i];			// correttezza risposta
@@ -129,7 +129,7 @@ function select(button){
 			currentBlock += 1;
 			
 			delta = startingDelta;
-			varDur = (dur+delta)/1000;
+			varAmp = amp + delta;
 			swap =-1;						// position of variable sound			
 			correctAnsw = 0;				// number of correct answers
 
@@ -161,7 +161,7 @@ function select(button){
 			
 			alert(result);
 			//pass the datas to the php file
-			location.href="salvaDati.php?result="+result+"&timestamp="+timestamp+"&type=dur"+description+"&score="+score+"&saveSettings="+saveSettings;
+			location.href="salvaDati.php?result="+result+"&timestamp="+timestamp+"&type=amp"+description+"&score="+score+"&saveSettings="+saveSettings;
 		}
 	}
 	//if the test is not ended
@@ -178,13 +178,13 @@ function select(button){
 
 //funzione per implementare l'algoritmo nD1U
 function nDOWNoneUP(n, button){
-	delta = varDur-stdDur;
+	delta = varAmp-stdAmp;
 	pressedButton = button;
 	if(button == swap){ //correct answer
 		history[i] = 0;
 		correctAnsw += 1;
 		if(correctAnsw == n){ //if there are n consegutive correct answers
-			varDur = stdDur + (delta/parseInt(currentFactor));
+			varAmp = stdAmp + (delta/parseInt(currentFactor));
 			correctAnsw = 0;
 			if(positiveStrike == 0){
 				//there was a reversal
@@ -197,7 +197,7 @@ function nDOWNoneUP(n, button){
 			alert("Risposta corretta")
 		
 	}else{ //wrong answer
-		varDur = stdDur + (delta*parseInt(currentFactor));
+		varAmp = stdAmp + (delta*parseInt(currentFactor));
 		history[i] = 1;
 		correctAnsw = 0;
 		
