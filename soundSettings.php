@@ -75,8 +75,8 @@
 					die("Problemi di connessione" . $conn->error);
 			mysqli_set_charset($conn, "utf8");
 			
-			$sql = "SELECT Test.Amplitude as amp, Test.Frequency as freq, Test.Duration as dur, Test.blocks as blocks, Test.nAFC as nafc, Test.Factor as fact, 
-				Test.Delta as delta, Test.Reversal as rev, Test.SecFactor as secfact, Test.SecReversal as secrev, Test.Threshold as thr, Test.Algorithm as alg
+			$sql = "SELECT test.Amplitude as amp, test.Frequency as freq, test.Duration as dur, test.blocks as blocks, test.nAFC as nafc, test.Factor as fact, 
+				test.Delta as delta, test.Reversal as rev, test.SecFactor as secfact, test.SecReversal as secrev, test.Threshold as thr, test.Algorithm as alg
 								
 				FROM test
 				INNER JOIN account ON account.fk_GuestTest = test.Guest_ID AND account.fk_TestCount = test.Test_count
@@ -267,7 +267,7 @@
 							</div>
 							
 							<!-- i bottoni sono fuori dal terzo slot -->
-							<button type="button" class="btn btn-primary btn-lg m-3 soundSettingsButton" onclick = "location.href='demographicData.html'">BACK</button>
+							<button type="button" class="btn btn-primary btn-lg m-3 soundSettingsButton" onclick = "location.href='demographicData.php'">BACK</button>
 							<button type="submit" class="btn btn-primary btn-lg m-3 soundSettingsButton" >START</button>
 						</form>
 					</div>
