@@ -47,17 +47,15 @@
 		fwrite($txt, $line);
 		
 		//valore della prima parte (quella fissa che va ripetuta)
-		$firstValues = $row["name"].";".$row["surname"].";".$age.";".$row["gender"].";".$_SESSION["type"].";".$_SESSION["timestamp"].";".$_SESSION["amp"].";";
-		$firstValues .= $_SESSION["freq"].";".$_SESSION["dur"].";".$_SESSION["blocks"].";".$_SESSION["nAFC"].";".$_SESSION["fact"].";".$_SESSION["rev"].";";
-		$firstValues .= $_SESSION["secFact"].";".$_SESSION["secRev"].";".$_SESSION["threshold"].";".$_SESSION["alg"];
+		$firstValues = $row["name"].";".$row["surname"].";".$age.";".$row["gender"].";".$_SESSION["type"].";".$_SESSION["time"].";".$_SESSION["fact"].";";
+		$firstValues .= $_SESSION["amp"].";".$_SESSION["freq"].";".$_SESSION["dur"].";".$_SESSION["blocks"].";".$_SESSION["nAFC"].";";
+		$firstValues .= $_SESSION["rev"].";".$_SESSION["secFact"].";".$_SESSION["secRev"].";".$_SESSION["thr"].";".$_SESSION["alg"];
 		
 		if($_GET['format']=="complete"){
 			//parte variabile e scrittura su file
 			$results = explode(",", $_SESSION["results"]);
-			echo count($results)."<br>";
-			//results sarà nella forma "bl1,tr1,del1,var1,but1,cor1,rev1;bl2,tr2,del2,var2,but2,cor2,rev2;..."
+			//results sarà nella forma ["bl1;tr1;del1;var1;varpos1;but1;cor1;rev1", "bl2;tr2;...", ...]
 			for($i = 0;$i<count($results)-1;$i++){
-				echo $results[$i]."<br>";
 				fwrite($txt, $firstValues.";");
 				fwrite($txt, $results[$i]);
 				fwrite($txt, "\n");//vado all'altra linea

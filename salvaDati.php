@@ -11,7 +11,7 @@
 		else
 			$_SESSION["score"] = $_GET['score'].";";
 		$_SESSION["results"] = $_GET['result'];
-		$_SESSION["timestamp"] = $_GET['timestamp'];
+		$_SESSION["time"] = $_GET['timestamp'];
 		$_SESSION["type"] = $_GET['type'];
 		$_SESSION["amp"] = $_GET['amp'];
 		$_SESSION["freq"] = $_GET['freq'];
@@ -23,7 +23,7 @@
 		$_SESSION["secFact"] = $_GET['secFact'];
 		$_SESSION["rev"] = $_GET['rev'];
 		$_SESSION["secRev"] = $_GET['secRev'];
-		$_SESSION["threshold"] = $_GET['threshold'];
+		$_SESSION["thr"] = $_GET['threshold'];
 		$_SESSION["alg"] = $_GET['alg'];
 		
 		//apro la connessione con il db

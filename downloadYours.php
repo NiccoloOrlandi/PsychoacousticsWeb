@@ -3,7 +3,7 @@
 		//prendo i dati dei test collegati al guest dell'account
 		$sql = "SELECT Guest.Name as name, Guest.Surname as surname, Guest.Gender as gender, 
 				Test.Test_count as count, Test.Type as type, Test.Timestamp as time, Test.Amplitude as amp, Test.Frequency as freq, 
-				Test.Duration as dur, Test.nAFC as nafc, Test.Factor as fact, Test.Reversal as rev, Test.SecFactor as secfact, 
+				Test.Duration as dur, Test.blocks as blocks, Test.nAFC as nafc, Test.Factor as fact, Test.Reversal as rev, Test.SecFactor as secfact, 
 				Test.SecReversal as secrev, Test.Threshold as thr, Test.Algorithm as alg, Test.Result as results, Account.date as date 
 				
 				FROM account 
@@ -17,36 +17,21 @@
 		while($row = $result->fetch_assoc()){
 			//valore della prima parte (quella fissa che va ripetuta)
 			$age = date_diff(date_create($row['date']), date_create('now'))->y;
-			$firstValues = [$row["name"], $row["surname"], $age, $row["gender"], $row["count"], $row["type"], $row["time"], $row["amp"], 
-				$row["freq"], $row["dur"], $row["nafc"], $row["fact"], $row["rev"], $row["secfact"], $row["secrev"], $row["thr"], $row["alg"]];
+			$firstValues = $row["name"].";".$row["surname"].";".$age.";".$row["gender"].";".$row["count"].";".$row["type"].";";
+			$firstValues .= $row["time"].";".$row["amp"].";".$row["freq"].";".$row["dur"].";".$row["blocks"].";".$row["nafc"].";";
+			$firstValues .= $row["fact"].";".$row["rev"].";".$row["secfact"].";".$row["secrev"].";".$row["thr"].";".$row["alg"];
 			
-			$results = substr($row["results"], strpos($row["results"], ";")+1); 
+			$results = explode(",", $row["results"]);
 			writeResults($txt, $firstValues, $results);
 		}
 	}
 	
 	function writeResults($txt, $firstValues, $results){
-		//results sarà nella forma "bl1,tr1,del1,var1,but1,cor1,rev1;bl2,tr2,del2,var2,but2,cor2,rev2;..."
-		$pos = 0;
-		$variableValues = [0, 0, 0, 0, 0, 0, 0, 0]; //blocks, trials, delta, variable, Variable Position, Pressed button, correct?, reversals
-		for($i = 0, $j=0;$i<strlen($results)-1;$i++){
-			if($results[$i]==";"){//quando incontro un punto e virgola sono all'ultimo dato
-				$variableValues[$j] = substr($results,$pos,$i-$pos);
-				$pos = $i+1;
-				
-				foreach($firstValues as $elem)//scrivo i dati fissi
-					fwrite($txt, $elem.";");
-				foreach($variableValues as $elem)//scrivo i dati variabili
-					fwrite($txt, $elem.";");
-				fwrite($txt, "\n");//vado all'altra linea
-				$j=0;
-			}else{
-				if($results[$i]==","){//quando trovo una virgola è finito il valore di un dato
-					$variableValues[$j] = substr($results,$pos,$i-$pos);
-					$pos = $i+1;
-					$j++;
-				}
-			}
+		//results sarà nella forma ["bl1;tr1;del1;var1;varpos1;but1;cor1;rev1", "bl2;tr2;...", ...]
+		for($i = 0;$i<count($results)-1;$i++){
+			fwrite($txt, $firstValues.";");
+			fwrite($txt, $results[$i]);
+			fwrite($txt, "\n");//vado all'altra linea
 		}
 	}
 
@@ -68,9 +53,9 @@
 	$txt = fopen($path, "w") or die("Unable to open file!");
 	
 	//scrivo il nome delle colonne
-	$line = "Name;Surname;Age;Gender;Test Count;Test Type;Timestamp;Amplitude;Frequency;Duration;nAFC;First factor;";
-	$line .= "First reversals;Second factor;Second reversals;reversal threshold;algorithm;blocks;";
-	$line .= "trials;delta;variable;Variable Position;Pressed button;correct?;reversals\n";
+	$line = "Name;Surname;Age;Gender;Test Count;Test Type;Timestamp;Amplitude;Frequency;Duration;n. of blocks;";
+	$line .= "nAFC;First factor;First reversals;Second factor;Second reversals;reversal threshold;algorithm;";
+	$line .= "block;trials;delta;variable;Variable Position;Pressed button;correct?;reversals\n";
 	
 	fwrite($txt, $line);
 	
@@ -85,7 +70,7 @@
 	//metto i dati dei guest collegati
 	$sql = "SELECT Guest.Name as name, Guest.Surname as surname, Guest.Age as age, Guest.Gender as gender, 
 			Test.Test_count as count, Test.Type as type, Test.Timestamp as time, Test.Amplitude as amp, Test.Frequency as freq, 
-			Test.Duration as dur, Test.nAFC as nafc, Test.Factor as fact, Test.Reversal as rev, Test.SecFactor as secfact, 
+			Test.Duration as dur, Test.blocks as blocks, Test.nAFC as nafc, Test.Factor as fact, Test.Reversal as rev, Test.SecFactor as secfact, 
 			Test.SecReversal as secrev, Test.Threshold as thr, Test.Algorithm as alg, Test.Result as results
 			
 			FROM account 
@@ -97,11 +82,12 @@
 
 	while($row = $result->fetch_assoc()){
 		//valore della prima parte (quella fissa che va ripetuta)
-		$firstValues = [$row["name"],$row["surname"],$row["age"],$row["gender"],$row["count"],$row["type"],$row["time"],$row["amp"],
-			$row["freq"],$row["dur"],$row["nafc"],$row["fact"],$row["rev"],$row["secfact"],$row["secrev"],$row["thr"],$row["alg"]];
+		$firstValues = $row["name"].";".$row["surname"].";".$row["age"].";".$row["gender"].";".$row["count"].";".$row["type"].";";
+		$firstValues .= $row["time"].";".$row["amp"].";".$row["freq"].";".$row["dur"].";".$row["blocks"].";".$row["nafc"].";";
+		$firstValues .= $row["fact"].";".$row["rev"].";".$row["secfact"].";".$row["secrev"].";".$row["thr"].";".$row["alg"];
 			
 		//parte variabile e scrittura su file
-		$results = substr($_SESSION["results"], strpos($_SESSION["results"], ";")+1); 
+		$results = explode(",", $row["results"]);
 		writeResults($txt, $firstValues, $results);
 	}
 	

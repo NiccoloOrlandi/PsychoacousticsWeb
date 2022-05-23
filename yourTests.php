@@ -67,36 +67,15 @@
 				<th>Test</th>
 				<th>Time</th>
 				<th>Type</th>
-				<th>Result</th>
 			</tr>
 			<?php
-				$sql = "SELECT Test_count, Timestamp, Type, Result FROM test WHERE Guest_ID='$id'";
+				$sql = "SELECT Test_count, Timestamp, Type FROM test WHERE Guest_ID='$id'";
 				$result=$conn->query($sql);
 				while($row=$result->fetch_assoc()){
 					echo "<tr>";
 					echo "<th>".$row["Test_count"]."</th>";
 					echo "<th>".$row["Timestamp"]."</th>";
 					echo "<th>".$row["Type"]."</th>";
-					
-					//calcolo risultato
-					$results = $row["Result"];
-					$posSemicolon = 0;
-					for($i=0;$i<strlen($results)-1;$i++){//trovo l'ultima riga di risultati
-						if($results[$i]==';')
-							$posSemicolon = $i;
-					}
-					$results = substr($results, $posSemicolon, strlen($results)-$posSemicolon);
-					$posComma = 0;
-					$delta = "";
-					for($i=0, $j=0;$j<3;$i++){//trovo il valore di delta in quella riga
-						if($results[$i]==','){
-							$delta = substr($results, $posComma+1, $i-$posComma-1);
-							$posComma = $i;
-							$j++;
-						}
-					}
-			
-					echo "<th>".$delta."</th>";
 					echo "</tr>";
 				}
 			?>
@@ -110,7 +89,6 @@
 				<th>Test</th>
 				<th>Time</th>
 				<th>Type</th>
-				<th>Result</th>
 			</tr>
 			<?php
 				$conn = new mysqli($host, $user, $password, $dbname);
@@ -123,7 +101,7 @@
 				$usr = $_SESSION['usr'];
 				$id = $_SESSION['idGuest'];
 				
-				$sql = "SELECT Name, Test_count, Timestamp, Type, Result FROM test INNER JOIN guest ON Guest_ID=ID WHERE fk_guest='{$_SESSION['usr']}'";
+				$sql = "SELECT Name, Test_count, Timestamp, Type FROM test INNER JOIN guest ON Guest_ID=ID WHERE fk_guest='{$_SESSION['usr']}'";
 				$result=$conn->query($sql);
 				while($row=$result->fetch_assoc()){
 					echo "<tr>";
@@ -131,26 +109,6 @@
 					echo "<th>".$row["Test_count"]."</th>";
 					echo "<th>".$row["Timestamp"]."</th>";
 					echo "<th>".$row["Type"]."</th>";
-					
-					//calcolo risultato
-					$results = $row["Result"];
-					$posSemicolon = 0;
-					for($i=0;$i<strlen($results)-1;$i++){//trovo l'ultima riga di risultati
-						if($results[$i]==';')
-							$posSemicolon = $i;
-					}
-					$results = substr($results, $posSemicolon, strlen($results)-$posSemicolon);
-					$posComma = 0;
-					$delta = "";
-					for($i=0, $j=0;$j<3;$i++){//trovo il valore di delta in quella riga
-						if($results[$i]==','){
-							$delta = substr($results, $posComma+1, $i-$posComma-1);
-							$posComma = $i;
-							$j++;
-						}
-					}
-			
-					echo "<th>".$delta."</th>";
 					echo "</tr>";
 				}
 			?>
