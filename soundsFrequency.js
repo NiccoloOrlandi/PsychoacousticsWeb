@@ -175,6 +175,13 @@ function select(button){
 	}
 }
 
+document.addEventListener('keypress', function keypress(event){
+	if (event.code >= 'Digit1' && event.code <= 'Digit'+nAFC) {
+		select(event.code.charAt(5))
+		console.log('You pressed '+ event.code.charAt(5) + ' button');
+	  }
+});
+
 //funzione per implementare l'algoritmo nD1U
 function nDOWNoneUP(n, button){
 	delta = varFreq-stdFreq;
