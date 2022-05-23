@@ -18,7 +18,7 @@ include "config.php";
 	$row=$result->fetch_assoc();
 	if($row['Type'] == 1){
 
-        $sql = "UPDATE account SET Type='1' WHERE username='".$_POST['username']."'";
+        $sql = "UPDATE account SET Type='1' WHERE Username='".$_POST['username']."'";
         $conn->query($sql);
     }
     

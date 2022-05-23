@@ -81,7 +81,7 @@
 				FROM test
 				INNER JOIN account ON account.fk_GuestTest = test.Guest_ID AND account.fk_TestCount = test.Test_count
 				
-				WHERE account.username = '{$_SESSION['usr']}'";
+				WHERE account.Username = '{$_SESSION['usr']}'";
 			$result = $conn->query($sql);
 			$row = $result->fetch_assoc();
 			

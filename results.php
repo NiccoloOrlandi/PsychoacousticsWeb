@@ -13,7 +13,6 @@
 		<title>Test results</title>
 		<?php 
 			session_start();
-			include "config.php";
 		?>
 	</head>
 	<body>

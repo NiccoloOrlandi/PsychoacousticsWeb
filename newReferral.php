@@ -7,7 +7,7 @@
 		die("Problemi di connessione" . $conn->error);
 	mysqli_set_charset($conn, "utf8");
 	
-	$sql = "SELECT referral FROM account WHERE username='".$_SESSION['usr']."'";
+	$sql = "SELECT Referral FROM account WHERE Username='".$_SESSION['usr']."'";
 	$result = $conn->query($sql);
 	$row = $result->fetch_assoc();
 	$ref = $row['referral'];
@@ -16,7 +16,7 @@
 	while($newRef == $ref)
 		$newRef = base64_encode($_SESSION['usr'].rand(-9999, 9999));
 	
-	$sql = "UPDATE account SET referral='$newRef' WHERE username='".$_SESSION['usr']."'";
+	$sql = "UPDATE account SET Referral='$newRef' WHERE Username='".$_SESSION['usr']."'";
 	$conn->query($sql);
 	
 	header("Location: userSettings.php");

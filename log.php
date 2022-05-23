@@ -18,7 +18,7 @@
 	$psw = $_POST['psw'];
     
 	//controllo se esiste
-    $sql = "SELECT Guest_ID FROM account WHERE username='$usr' AND password=SHA2('$psw', 256)";
+    $sql = "SELECT Guest_ID FROM account WHERE Username='$usr' AND Password=SHA2('$psw', 256)";
 	
     $result=$conn->query($sql);
 	

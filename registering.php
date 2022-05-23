@@ -17,7 +17,7 @@
     $usr = $_POST['usr'];
     
 	//controllo se esiste già
-    $sql = "SELECT * FROM account WHERE username='$usr'";
+    $sql = "SELECT * FROM account WHERE Username='$usr'";
     $result=$conn->query($sql);
     if($result->num_rows>0)  
 		header('Location: registrazione.php?err=1'); //errore 1: lo definisco come errore di username già esistente
@@ -33,7 +33,7 @@
 		$notes = $_POST['notes'];
 		
 		//trovo l'id massimo
-		$sql = "SELECT MAX(id) as maxId FROM guest";
+		$sql = "SELECT MAX(ID) as maxId FROM guest";
 		$result=$conn->query($sql);
 		$row=$result->fetch_assoc();
 		
@@ -41,21 +41,21 @@
 		$id = $row['maxId'] + 1;
 		
 		//inizio a creare la query inserendo i valori non NULL
-		$sql = "INSERT INTO guest (ID, name";
+		$sql = "INSERT INTO guest (ID, Name";
 		$sqlVal = " VALUES ('$id', '$name'";
 		
 		if($surname != ""){
-			$sql .= ",surname";
+			$sql .= ",Surname";
 			$sqlVal .= ",'$surname'";
 		}
 		
 		if($gender != "NULL"){
-			$sql .= ",gender";
+			$sql .= ",Gender";
 			$sqlVal .= ",'$gender'";
 		}
 		
 		if($notes != ""){
-			$sql .= ",notes";
+			$sql .= ",Notes";
 			$sqlVal .= ",'$notes'";
 		}
 		

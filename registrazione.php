@@ -51,7 +51,7 @@
 						
 					mysqli_set_charset($conn, "utf8");
 					
-					$sql="SELECT COLUMN_TYPE AS ct FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'psychoacoustics_db' AND TABLE_NAME = 'guest' AND COLUMN_NAME = 'gender';";
+					$sql="SELECT COLUMN_TYPE AS ct FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'psychoacoustics_db' AND TABLE_NAME = 'guest' AND COLUMN_NAME = 'Gender';";
 					$result=$conn->query($sql);
 					$row=$result->fetch_assoc();//questa query da un risultato di tipo enum('Male','Female','Unspecified')
 					

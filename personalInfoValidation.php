@@ -15,7 +15,7 @@
 	mysqli_set_charset($conn, "utf8");
 	
 	// trovo l'id massimo fin'ora (così creo un utente con ID_max+1)
-	$sql="SELECT max(ID) as max FROM guest ";
+	$sql="SELECT max(ID) as max FROM guest";
 	$result=$conn->query($sql);
 	$row=$result->fetch_assoc();
 	$id = $row["max"]+1;
@@ -31,7 +31,7 @@
 	else{
 		
 		//scrivo la query di creazione del guest
-		$sql="INSERT into guest VALUES ( '".$id."' , '" .$_POST["name"] ."',";
+		$sql="INSERT INTO guest VALUES ( '".$id."' , '" .$_POST["name"] ."',";
 				
 		if($_POST["surname"] == ""){
 			$_SESSION["surname"] = null;
@@ -78,7 +78,7 @@
 			}else{
 				$_SESSION["ref"] = $_POST["ref"];
 				
-				$refSQL = "SELECT Username FROM account WHERE referral='{$_SESSION["ref"]}';";
+				$refSQL = "SELECT Username FROM account WHERE Referral='{$_SESSION["ref"]}';";
 				$result = $conn->query($refSQL);
 				$row = $result->fetch_assoc();
 				
@@ -110,7 +110,7 @@
 				
 				$_SESSION["ref"] = $_POST["ref"];
 				
-				$refSQL = "SELECT Username FROM account WHERE referral='{$_SESSION["ref"]}';";
+				$refSQL = "SELECT Username FROM account WHERE Referral='{$_SESSION["ref"]}';";
 				$result = $conn->query($refSQL);
 				$row = $result->fetch_assoc();
 				

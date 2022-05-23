@@ -1,10 +1,10 @@
 <?php
 	function addMine($conn, $txt, $usr){
 		//prendo i dati dei test collegati al guest dell'account
-		$sql = "SELECT Guest.Name as name, Guest.Surname as surname, Guest.Gender as gender, 
-				Test.Test_count as count, Test.Type as type, Test.Timestamp as time, Test.Amplitude as amp, Test.Frequency as freq, 
-				Test.Duration as dur, Test.blocks as blocks, Test.nAFC as nafc, Test.Factor as fact, Test.Reversal as rev, Test.SecFactor as secfact, 
-				Test.SecReversal as secrev, Test.Threshold as thr, Test.Algorithm as alg, Test.Result as results, Account.date as date 
+		$sql = "SELECT guest.Name as name, guest.Surname as surname, guest.Gender as gender, 
+				test.Test_count as count, test.Type as type, test.Timestamp as time, test.Amplitude as amp, test.Frequency as freq, 
+				test.Duration as dur, test.blocks as blocks, test.nAFC as nafc, test.Factor as fact, test.Reversal as rev, test.SecFactor as secfact, 
+				test.SecReversal as secrev, test.Threshold as thr, test.Algorithm as alg, test.Result as results, account.date as date 
 				
 				FROM account 
 				INNER JOIN guest ON account.Guest_ID=guest.ID
@@ -68,10 +68,10 @@
 	}
 	
 	//metto i dati dei guest collegati
-	$sql = "SELECT Guest.Name as name, Guest.Surname as surname, Guest.Age as age, Guest.Gender as gender, 
-			Test.Test_count as count, Test.Type as type, Test.Timestamp as time, Test.Amplitude as amp, Test.Frequency as freq, 
-			Test.Duration as dur, Test.blocks as blocks, Test.nAFC as nafc, Test.Factor as fact, Test.Reversal as rev, Test.SecFactor as secfact, 
-			Test.SecReversal as secrev, Test.Threshold as thr, Test.Algorithm as alg, Test.Result as results
+	$sql = "SELECT guest.Name as name, guest.Surname as surname, guest.Age as age, guest.Gender as gender, 
+			test.Test_count as count, test.Type as type, test.Timestamp as time, test.Amplitude as amp, test.Frequency as freq, 
+			test.Duration as dur, test.blocks as blocks, test.nAFC as nafc, test.Factor as fact, test.Reversal as rev, test.SecFactor as secfact, 
+			test.SecReversal as secrev, test.Threshold as thr, test.Algorithm as alg, test.Result as results
 			
 			FROM account 
 			INNER JOIN guest ON account.Username=guest.fk_guest
