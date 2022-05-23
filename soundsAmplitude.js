@@ -2,8 +2,8 @@
 var context= new AudioContext();
 
 // minimum initial variation
-var varFreq = parseInt(freq) + parseInt(delta);	// frequency of the variable 
-var stdFreq = parseInt(freq);					// frequency of the standard
+var varFreq = freq;	// frequency of the variable 
+var stdFreq = freq;					// frequency of the standard
 var startingDelta = delta;
 
 var stdDur = dur/1000;				// duration of the standard 

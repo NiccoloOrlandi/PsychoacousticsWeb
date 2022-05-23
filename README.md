@@ -112,8 +112,8 @@ DEADLINES E TO-DO:
 	- Predisporre piú di due suoni alla volta ( un suono viene ripetuto piú volte e l'altro una volta sola )
 	- Diagramma architetturale del sistema
 	✗ Recupero dati utente e psw ( difficile serve mailing list, quando ci si registra bisogna inserire email )
-	- premi '1' e '2' da tastiera oltre ai pulsanti a schermo
-		- limite nAFC: 9
+	✓ premi '1' e '2' da tastiera oltre ai pulsanti a schermo
+		✓ limite nAFC: 9
 	✓ Pagina per cambiare dati e impostazioni (nome, cognome, username, password), per creare altri SU (se tu sei SU) e per vedere e modificare referral e link
 		- salvataggio dati da completare
 	
