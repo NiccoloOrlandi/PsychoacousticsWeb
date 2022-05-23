@@ -125,6 +125,7 @@ DEADLINES E TO-DO:
 	- index.html:le funzioni che cambiano il colore potrebbero essere sostituite con del css
 	- index.html:la funzione "onclick" delle card può essere sostituita dall'href (è un tag link <a>) e col css si può evitare che esca sottolineato
 	- tradurre tutto in inglese in ogni pagina
+	- title delle pagine
 
 - documentazione entro il 10/06/2022
 	- documento dei requisiti
