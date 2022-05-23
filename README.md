@@ -140,7 +140,8 @@ DEADLINES E TO-DO:
 	✓ download file da server (in locale funziona)
 	
 - domande prof Grassi
-	- score di più blocchi
+	? score di più blocchi
 	? dopo ogni blocco escono i risultati col pulsante continua e dopo l'ultimo esce il pulsante "download data" e "home" o continua come niente fosse?
 	? aggiungere email al db 
+	? amplitude iniziale = amp + delta (ma delta non è il db, deve esserlo? o va convertita?)
 	
