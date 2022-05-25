@@ -5,7 +5,7 @@
 	unset($_SESSION['idGuestTest']); //se c'erano stati altri guest temporanei, li elimino per evitare collisioni
 	unset($_SESSION['name']); //se è settato dopo questa pagina, allora è stato creato un nuovo guest
 	
-	//sql injections handling
+	/*sql injections handling
 	$elements = ['name', 'surname', 'notes', 'ref'];
 	$characters = ["'", '"', "\\", chr(0)];
 	$specialCharacters = false;
@@ -17,7 +17,7 @@
 	if($specialCharacters)
 		header("Location: demographicData.php?test=".$_GET["test"]."&err=0");
 	else{
-			
+		//*/
 		//connessione al db
 		$conn = new mysqli($host, $user, $password, $dbname);
 							
@@ -137,5 +137,5 @@
 				
 			}
 		}
-	}
+	//}
 ?>
