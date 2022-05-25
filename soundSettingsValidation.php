@@ -45,7 +45,7 @@ else if ($_POST["blocks"]<0)
 else if (($_POST["delta"]== "") || ($_POST["delta"]== "undefined")) 
     header("Location: soundSettings.php?test={$_GET['type']}&err=delta1");
 
-else if ($_POST["delta"]<0 && $_GET['type']!="amp")
+else if ($_POST["delta"]<0)
     header("Location: soundSettings.php?test={$_GET['type']}&err=delta2");
 
 else if ($_GET['type']=="amp" && $_POST["amplitude"]+$_POST["delta"]>0)
