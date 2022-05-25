@@ -30,7 +30,7 @@
 				else if($_GET['err']=="freq1")
 					echo "<div class='alert alert-danger'>The frequency field is required</div>";
 				else if($_GET['err']=="freq2")
-					echo "<div class='alert alert-danger'>The frequency value can't be a negative number</div>";
+					echo "<div class='alert alert-danger'>The frequency value must be a positive number</div>";
 				else if($_GET['err']=="dur1")
 					echo "<div class='alert alert-danger'>The duration field is required</div>";
 				else if($_GET['err']=="dur2")
@@ -43,6 +43,8 @@
 					echo "<div class='alert alert-danger'>The delta field is required</div>";
 				else if($_GET['err']=="delta2")
 					echo "<div class='alert alert-danger'>The delta value can't be a negative number</div>";
+				else if($_GET['err']=="delta3")
+					echo "<div class='alert alert-danger'>The delta value is too high</div>";
 				else if($_GET['err']=="nAFC1")
 					echo "<div class='alert alert-danger'>The nAFC field is required</div>";
 				else if($_GET['err']=="nAFC2")
@@ -73,20 +75,23 @@
 					echo "<div class='alert alert-danger'>The reversal threshold value can't be more than the sum of 'Reversals' value and 'Second reversal' value</div>";
 			}
 			
-			$conn = new mysqli($host, $user, $password, $dbname);
-			if ($conn->errno)
-					die("Problemi di connessione" . $conn->error);
-			mysqli_set_charset($conn, "utf8");
-			
-			$sql = "SELECT test.Amplitude as amp, test.Frequency as freq, test.Duration as dur, test.blocks as blocks, test.nAFC as nafc, test.Factor as fact, 
-				test.Delta as delta, test.Reversal as rev, test.SecFactor as secfact, test.SecReversal as secrev, test.Threshold as thr, test.Algorithm as alg
-								
-				FROM test
-				INNER JOIN account ON account.fk_GuestTest = test.Guest_ID AND account.fk_TestCount = test.Test_count
+			if(isset($_SESSION['usr'])){
+				$conn = new mysqli($host, $user, $password, $dbname);
+				if ($conn->errno)
+						die("Problemi di connessione" . $conn->error);
+				mysqli_set_charset($conn, "utf8");
 				
-				WHERE account.Username = '{$_SESSION['usr']}'";
-			$result = $conn->query($sql);
-			$row = $result->fetch_assoc();
+				$sql = "SELECT test.Amplitude as amp, test.Frequency as freq, test.Duration as dur, test.blocks as blocks, test.nAFC as nafc, test.Factor as fact, 
+					test.Delta as delta, test.Reversal as rev, test.SecFactor as secfact, test.SecReversal as secrev, test.Threshold as thr, test.Algorithm as alg
+									
+					FROM test
+					INNER JOIN account ON account.fk_GuestTest = test.Guest_ID AND account.fk_TestCount = test.Test_count
+					
+					WHERE account.Username = '{$_SESSION['usr']}'";
+				$result = $conn->query($sql);
+				$row = $result->fetch_assoc();
+			}else
+				$row=false;
 			
 		?>
 		<div class="container" style="margin-top:1%">
@@ -147,7 +152,15 @@
 											
 											<div class="input-group flex-nowrap">
 												<span class="input-group-text" id="addon-wrapping">Delta</span>
-												<input type="text" class="form-control" name = "delta" id = "level" placeholder="Starting" value="<?php if($row) echo $row['delta']; else echo "500"; ?>">
+												<input type="text" class="form-control" name = "delta" id = "level" placeholder="Starting" 
+												value="<?php 
+													if($row) 
+														echo $row['delta']; 
+													else if($_GET["test"]=="amp")
+														echo "10"; 
+													else
+														echo "500";
+												?>">
 											</div>
 											
 											<div class="input-group flex-nowrap">

@@ -32,7 +32,8 @@ var timestamp = 0;				// timestamp of the starting of the test
 var pressedButton;
 //funzione per generare il primo suono
 function playVar(time){
-	console.log(varFreq-stdFreq);
+	console.log("delta: "+(varAmp-stdAmp));
+	console.log("factor: "+currentFactor);
 	var volume1 = context.createGain();		//volume
 	volume1.gain.value = (10**(parseInt(varAmp)/20));			// do una valore al guadagno
 	volume1.connect(context.destination);	//collego all'uscita audio

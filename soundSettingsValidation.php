@@ -17,7 +17,7 @@ header("Location: soundSettings.php?test={$_GET['type']}&err=amp3");
 else if (($_POST["frequency"]== "") || ($_POST["frequency"]== "undefined")) 
     header("Location: soundSettings.php?test={$_GET['type']}&err=freq1");
 
-else if ($_POST["frequency"]<0)
+else if (!is_numeric($_POST["frequency"]) || intval($_POST["frequency"])<0)
     header("Location: soundSettings.php?test={$_GET['type']}&err=freq2");
 
 //Controlli su duration
@@ -45,8 +45,11 @@ else if ($_POST["blocks"]<0)
 else if (($_POST["delta"]== "") || ($_POST["delta"]== "undefined")) 
     header("Location: soundSettings.php?test={$_GET['type']}&err=delta1");
 
-else if ($_POST["delta"]<0)
+else if ($_POST["delta"]<0 && $_GET['type']!="amp")
     header("Location: soundSettings.php?test={$_GET['type']}&err=delta2");
+
+else if ($_GET['type']=="amp" && $_POST["amplitude"]+$_POST["delta"]>0)
+    header("Location: soundSettings.php?test={$_GET['type']}&err=delta3");
 
 //controlli su nAFC
 else if (($_POST["nAFC"]== "") || ($_POST["nAFC"]== "undefined")) 
