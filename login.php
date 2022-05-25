@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="formStyle.css"> 
     </head>
     <body>
+		<div class='alert alert-danger'>Questa pagina è in corso di testing, potrebbe non funzionare come previsto per alcuni minuti</div>
 		<?php
 			//se si sceglie un username già esistente verrà messo "?err=1" nell'url
 			if(isset($_GET['err'])){

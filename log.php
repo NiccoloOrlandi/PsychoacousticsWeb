@@ -3,19 +3,18 @@
 	//apro la sessione per comunicare con le altre pagine del sito
 	session_start();
 	
-	/*sql injections handling
+	//sql injections handling
 	$elements = ['usr', 'psw'];
-	$characters = ["'", '"', "\\", chr(0)];
+	$characters = ['"', "\\", chr(0)];
 	$specialCharacters = false;
 	foreach($elements as $elem)
+		str_replace("'","''",$_POST[$elem]);
 		foreach($characters as $char)
-			$specialCharacters |= str_contains($_POST[$elem], $char);
+			$specialCharacters |= strpos($_POST[$elem], $char);
 	
 	if($specialCharacters)
 		header("Location: login.php?&err=0");
 	else{
-		//*/
-
 		//apro la connessione con il db
 		$conn = new mysqli($host, $user, $password, $dbname);
 		
@@ -48,5 +47,5 @@
 			$conn->close();
 			header('Location: login.php?err=1');
 		}
-	//}
+	}    
 ?>
