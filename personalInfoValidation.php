@@ -12,7 +12,7 @@
 	foreach($elements as $elem)
 		foreach($characters as $char)
 			$specialCharacters |= str_contains($_POST[$elem], $char);
-	$specialCharacters &= !is_numeric($_POST["age"]);
+	$specialCharacters |= !is_numeric($_POST["age"]);
 	
 	if($specialCharacters)
 		header("Location: demographicData.php?test=".$_GET["test"]."&err=0");
