@@ -13,7 +13,8 @@
 		<title>Psychoacoustics - Test results</title>
 		<?php 
 			session_start();
-			if(!isset($_SESSION['usr']) || !isset($_SESSION['idGuest'])) header("Location: index.php");
+			if(!isset($_SESSION['usr']) || !isset($_SESSION['idGuest'])) 
+				header("Location: index.php");
 			include "config.php";
 		?>
 	</head>

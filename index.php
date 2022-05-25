@@ -46,8 +46,12 @@
     </nav>
     
       <?php
-		if(isset($_GET['err']) && $_GET['err']==1)
-			echo "<div class='alert alert-danger'>Access denied, attempt logged</div>";
+		if(isset($_GET['err'])){
+			if($_GET['err']==1)
+				echo "<div class='alert alert-danger'>Access denied, attempt logged</div>";
+			if($_GET['err']==2)
+				echo "<div class='alert alert-danger'>Something went wrong</div>";
+		}
 	  ?>
       <!-- Descrizione e presentazione -->
       

@@ -14,12 +14,12 @@
 		<script>
 			// pass info from php session to js
 			<?php session_start(); ?>
-			var amp = parseInt(<?php echo $_SESSION["amplitude"]; ?>);
-			var freq = parseInt(<?php echo $_SESSION["frequency"]; ?>);
-			var dur = parseInt(<?php echo $_SESSION["duration"]; ?>);
+			var amp = parseFloat(<?php echo $_SESSION["amplitude"]; ?>);
+			var freq = parseFloat(<?php echo $_SESSION["frequency"]; ?>);
+			var dur = parseFloat(<?php echo $_SESSION["duration"]; ?>);
 			//var phase = <//?php echo $_SESSION["phase"]; ?>;
 			var blocks = parseInt(<?php echo $_SESSION["blocks"]; ?>);
-			var delta = parseInt(<?php echo $_SESSION["delta"]; ?>);
+			var delta = parseFloat(<?php echo $_SESSION["delta"]; ?>);
 			var nAFC = parseInt(<?php echo $_SESSION["nAFC"]; ?>);
 			var feedback = <?php echo $_SESSION["checkFb"]; ?>;
 			var saveSettings = <?php echo $_SESSION["saveSettings"]; ?>;

@@ -3,7 +3,7 @@
 	//apro la sessione per comunicare con le altre pagine del sito
 	session_start();
 
-	//sql injections handling
+	/*sql injections handling
 	$elements = ['usr', 'psw', 'name', 'surname', 'Email', 'notes'];
 	$characters = ["'", '"', "\\", chr(0)];
 	$specialCharacters = false;
@@ -14,7 +14,7 @@
 	if($specialCharacters)
 		header("Location: registrazione.php?&err=0");
 	else{
-
+		//*/
 		//apro la connessione con il db
 		$conn = new mysqli($host, $user, $password, $dbname);
 		
@@ -96,5 +96,5 @@
 
 			header('Location: index.php');
 		}
-	}
+	//}
 ?>

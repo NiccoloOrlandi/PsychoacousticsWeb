@@ -6,8 +6,8 @@ var varFreq = freq;	// frequency of the variable
 var stdFreq = freq;					// frequency of the standard
 var startingDelta = delta;
 
-var stdDur = dur/1000;				// duration of the standard 
-var varDur = (dur+delta)/1000;		// duration of the variable 
+var stdDur = dur;					// duration of the standard 
+var varDur = dur+delta;				// duration of the variable 
 
 var stdAmp = amp;					// intensity of the variable
 var varAmp = amp;					// intensity of the standard 
@@ -33,6 +33,8 @@ var pressedButton;
 
 //funzione per generare il primo suono
 function playVar(time){
+	console.log(varDur-stdDur);
+	console.log(currentFactor);
 	var volume1 = context.createGain();		//volume
 	volume1.gain.value = (10**(parseInt(varAmp)/20));			// do una valore al guadagno
 	volume1.connect(context.destination);	//collego all'uscita audio
@@ -43,7 +45,7 @@ function playVar(time){
 	oscillator.type = "sine";				// tipo di onda
 	
 	oscillator.start(context.currentTime + time);		//Facciamo partire l'oscillatore
-	oscillator.stop(context.currentTime + time + (dur/1000));//Fermiamo l'oscillatore dopo 1 secondo
+	oscillator.stop(context.currentTime + time + (varDur/1000));//Fermiamo l'oscillatore dopo 1 secondo
 }
 
 //funzione per generare il secondo suono
@@ -58,7 +60,7 @@ function playStd(time){
 	oscillator.type = "sine";				//tipo di onda
 
 	oscillator.start(context.currentTime + time);		//Facciamo partire l'oscillatore
-	oscillator.stop(context.currentTime + time + (dur/1000));//Fermiamo l'oscillatore dopo 1 secondo
+	oscillator.stop(context.currentTime + time + (stdDur/1000));//Fermiamo l'oscillatore dopo 1 secondo
 }
 
 //funzione per randomizzare l'output
@@ -68,9 +70,11 @@ function random(){
 	
 	for(var j=0;j<nAFC;j++){
 		if(j==rand)
-			playVar((j*(dur/1000)) + j);
-		else
-			playStd((j*(dur/1000)) + j);
+			playVar((j*(stdDur/1000)) + j);
+		else if(j<rand)
+			playStd((j*(stdDur/1000)) + j);
+		else if(j>rand)
+			playStd(((j-1)*(stdDur/1000)) + (varDur/1000) + j);
 	}
 	
 	swap = rand+1;
@@ -184,7 +188,7 @@ function nDOWNoneUP(n, button){
 		history[i] = 0;
 		correctAnsw += 1;
 		if(correctAnsw == n){ //if there are n consegutive correct answers
-			varDur = stdDur + (delta/parseInt(currentFactor));
+			varDur = stdDur + (delta/currentFactor);
 			correctAnsw = 0;
 			if(positiveStrike == 0){
 				//there was a reversal
@@ -197,7 +201,7 @@ function nDOWNoneUP(n, button){
 			alert("Risposta corretta")
 		
 	}else{ //wrong answer
-		varDur = stdDur + (delta*parseInt(currentFactor));
+		varDur = stdDur + (delta*currentFactor);
 		history[i] = 1;
 		correctAnsw = 0;
 		

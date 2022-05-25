@@ -69,6 +69,7 @@
 			$sql = "UPDATE account SET fk_guestTest = '$id', fk_testCount = '$count' WHERE username = '{$_SESSION['usr']}' ";
 			$conn->query($sql);
 		}
-	}
-	header("Location: results.php");
+		header("Location: results.php");
+	}else
+		header("Location: index.php?err=2");
 ?>

@@ -6,8 +6,8 @@ var varFreq = parseInt(freq) + parseInt(delta);	// frequency of the variable
 var stdFreq = parseInt(freq);					// frequency of the standard
 var startingDelta = delta;
 
-var stdDur = dur/1000;				// duration of the standard 
-var varDur = dur/1000;				// duration of the variable 
+var stdDur = dur;				// duration of the standard 
+var varDur = dur;				// duration of the variable 
 
 var stdAmp = amp;					// intensity of the variable
 var varAmp = amp;					// intensity of the standard 
@@ -43,7 +43,7 @@ function playVar(time){
 	oscillator.type = "sine";				// tipo di onda
 	
 	oscillator.start(context.currentTime + time);		//Facciamo partire l'oscillatore
-	oscillator.stop(context.currentTime + time + (dur/1000));//Fermiamo l'oscillatore dopo 1 secondo
+	oscillator.stop(context.currentTime + time + (varDur/1000));//Fermiamo l'oscillatore dopo 1 secondo
 }
 
 //funzione per generare il secondo suono
@@ -58,7 +58,7 @@ function playStd(time){
 	oscillator.type = "sine";				//tipo di onda
 
 	oscillator.start(context.currentTime + time);		//Facciamo partire l'oscillatore
-	oscillator.stop(context.currentTime + time + (dur/1000));//Fermiamo l'oscillatore dopo 1 secondo
+	oscillator.stop(context.currentTime + time + (stdDur/1000));//Fermiamo l'oscillatore dopo 1 secondo
 }
 
 //funzione per randomizzare l'output
@@ -191,7 +191,7 @@ function nDOWNoneUP(n, button){
 		history[i] = 0;
 		correctAnsw += 1;
 		if(correctAnsw == n){ //if there are n consegutive correct answers
-			varFreq = stdFreq + (delta/parseInt(currentFactor));
+			varFreq = stdFreq + (delta/currentFactor);
 			correctAnsw = 0;
 			if(positiveStrike == 0){
 				//there was a reversal
@@ -204,7 +204,7 @@ function nDOWNoneUP(n, button){
 			alert("Risposta corretta")
 		
 	}else{ //wrong answer
-		varFreq = stdFreq + (delta*parseInt(currentFactor));
+		varFreq = stdFreq + (delta*currentFactor);
 		history[i] = 1;
 		correctAnsw = 0;
 		

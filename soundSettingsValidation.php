@@ -95,6 +95,9 @@ else if (($_POST["threshold"]== "") || ($_POST["threshold"]== "undefined"))
 else if ($_POST["threshold"]<0)
     header("Location: soundSettings.php?test={$_GET['type']}&err=threshold2");
 
+else if ($_POST["threshold"]>$_POST["reversals"]+$_POST["secReversals"])
+    header("Location: soundSettings.php?test={$_GET['type']}&err=threshold3");
+
 else{
 	$checkFb = 0;
 	if(isset($_POST["checkFb"]))

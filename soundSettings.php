@@ -69,6 +69,8 @@
 					echo "<div class='alert alert-danger'>The reversal threshold field is required</div>";
 				else if($_GET['err']=="threshold2")
 					echo "<div class='alert alert-danger'>The reversal threshold value can't be a negative number</div>";
+				else if($_GET['err']=="threshold3")
+					echo "<div class='alert alert-danger'>The reversal threshold value can't be more than the sum of 'Reversals' value and 'Second reversal' value</div>";
 			}
 			
 			$conn = new mysqli($host, $user, $password, $dbname);
