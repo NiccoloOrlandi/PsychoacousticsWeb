@@ -7,10 +7,11 @@
 	$elements = ['usr', 'psw'];
 	$characters = ['"', "\\", chr(0)];
 	$specialCharacters = false;
-	foreach($elements as $elem)
+	foreach($elements as $elem){
 		str_replace("'","''",$_POST[$elem]);
 		foreach($characters as $char)
-			$specialCharacters |= strpos($_POST[$elem], $char);
+			$specialCharacters |= is_numeric(strpos($_POST[$elem], $char));
+	}
 	
 	if($specialCharacters)
 		header("Location: login.php?&err=0");
