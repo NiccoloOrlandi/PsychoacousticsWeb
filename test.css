@@ -32,3 +32,10 @@ form {
 	margin-top: 20%;
 	padding: 5%;
 }
+
+.alert{
+	margin: 40%;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	display: none;
+}

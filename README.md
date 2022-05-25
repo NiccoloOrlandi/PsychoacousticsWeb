@@ -105,6 +105,11 @@ DEADLINES E TO-DO:
 	- utilizzo sequence.next per simulare l'autoincrement (al posto di SELECT max(ID), serve per evitare collisioni)
 	✓ fix degli altri download + svuotamento db (ora che i dati vengono salvati in modo diverso)
 	- menù a tendina nel referral per scegliere il tipo di test
+	✓ delta in db per test ampiezza
+	- aggiungere isi (ordine: blocks-nafc-isi-delta e feedback insieme agli algoritmi)
+	✓ feedback stampato a schermo senza alert
+	✓ logo (ne ho abbozzato uno)
+	- dopo ogni blocco esce il risultato e il tasto "continue"
 
 - plus se riusciamo entro il 10/06/2022
 	✗ Vedere se si puó modificare la fase del suono
@@ -148,10 +153,11 @@ DEADLINES E TO-DO:
 	✓ é possibile fare in modo che le modifiche che faccio nella repository github vengano fatte anche sul server?
 	✓ dati per recapchta : email futuro proprietario, nome dominio, non posso farlo ora perché servono questi dati e un collegamento https
 	✓ download file da server (in locale funziona)
+	- psychoacoustics -> psychoacousticsweb
 	
 - domande prof Grassi
 	? score di più blocchi
 	? dopo ogni blocco escono i risultati col pulsante continua e dopo l'ultimo esce il pulsante "download data" e "home" o continua come niente fosse?
-	? aggiungere email al db 
+	? aggiungere email al db -> migliardi
 	? amplitude iniziale = amp + delta (ma delta non è il db, deve esserlo? o va convertita?)
 	

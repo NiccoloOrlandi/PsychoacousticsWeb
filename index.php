@@ -4,6 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="logo.png">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -11,7 +12,7 @@
 	<link rel ="stylesheet" href="style.css">
     <script type="text/javascript" src="funzioni.js"></script>
 
-    <title>Psychoacoustics</title>
+    <title>Psychoacoustics-web</title>
 	
 	<?php session_start(); ?>
   </head>
@@ -22,7 +23,7 @@
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid" >
           <a class="navbar-brand" href="#" >
-            <img src="colore.png" alt="" width="30" height="24" class="d-inline-block align-text-top" >
+            <img src="logo.png" alt="" width="25" height="25" class="d-inline-block align-text-top" >
             PSYCHOACOUSTICS
             
           </a>
@@ -58,7 +59,7 @@
       <div class="container-fluid" style="background-color: #fff; ">
         
         <h3 class="display-3 descriptionTitle"> 
-			Che cos'é psychoacoustics:
+			Welcome to PSYCHOACOUSTICS WEB
 		</h3>  
         <h5 class="display-8 description"> 
 			PSYCHOACOUSTICS-WEB is a web developed tool to measure auditory sensory thresholds for a 

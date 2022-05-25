@@ -195,8 +195,10 @@ function nDOWNoneUP(n, button){
 			}
 			positiveStrike = 1;
 		}
-		if(feedback)
-			alert("Risposta corretta")
+		if(feedback){
+			document.getElementById("correct").style.display="inherit";
+			document.getElementById("wrong").style.display="none";
+		}
 		
 	}else{ //wrong answer
 		varAmp = stdAmp + (delta*currentFactor);
@@ -210,8 +212,10 @@ function nDOWNoneUP(n, button){
 		}
 		positiveStrike = 0;
 		
-		if(feedback)
-			alert("Risposta errata")
+		if(feedback){
+			document.getElementById("correct").style.display="none";
+			document.getElementById("wrong").style.display="inherit";
+		}
 	}
 }
 

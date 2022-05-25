@@ -4,12 +4,13 @@
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" type="image/x-icon" href="logo.png">
 
 		<!-- Bootstrap CSS -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 		<link rel ="stylesheet" href="test.css">
 
-		<title>Psychoacoustics - Amplitude test</title>
+		<title>Psychoacoustics-web - Amplitude test</title>
 
 		<script>
 			// pass info from php session to js
@@ -44,7 +45,7 @@
 		</div>
 
 		<form action="" id="PlayForm">
-			<H1>Quale suono è più forte?</H1>
+			<H1>Which is the loudest tone?</H1>
 			<button type="button" class="btn btn-success" id="button1" onclick = "select(1)" disabled>1° sound</button>
 			<button type="button" class="btn btn-danger" id="button2" onclick = "select(2)" disabled>2° sound</button>
 			<?php
@@ -54,5 +55,7 @@
 				}
 			?>
 		</form>
+		<div class='alert alert-danger' id="wrong">Wrong!</div>
+		<div class='alert alert-success' id="correct">Correct!</div>
 	</body>
 </html>
