@@ -60,12 +60,8 @@
 	fwrite($txt, $line);
 	
 	//metto i dati dei test dell'utente, se vanno messi
-	if(isset($_GET['all']) && $_GET['all']==1){
+	if(isset($_GET['all']) && $_GET['all']==1)
 		addMine($conn, $txt, $usr);
-		
-		//aggiungo una riga vuota per separare
-		fwrite($txt, "\n");
-	}
 	
 	//metto i dati dei guest collegati
 	$sql = "SELECT guest.Name as name, guest.Surname as surname, guest.Age as age, guest.Gender as gender, 
