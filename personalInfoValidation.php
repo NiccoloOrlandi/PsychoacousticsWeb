@@ -5,19 +5,20 @@
 	unset($_SESSION['idGuestTest']); //se c'erano stati altri guest temporanei, li elimino per evitare collisioni
 	unset($_SESSION['name']); //se è settato dopo questa pagina, allora è stato creato un nuovo guest
 	
-	/*sql injections handling
+	//sql injections handling
 	$elements = ['name', 'surname', 'notes', 'ref'];
 	$characters = ["'", '"', "\\", chr(0)];
 	$specialCharacters = false;
-	foreach($elements as $elem)
+	foreach($elements as $elem){
+		str_replace("'","''",$_POST[$elem]);
 		foreach($characters as $char)
-			$specialCharacters |= str_contains($_POST[$elem], $char);
+			$specialCharacters |= is_numeric(strpos($_POST[$elem], $char));
+	}
 	$specialCharacters |= !is_numeric($_POST["age"]);
 	
 	if($specialCharacters)
 		header("Location: demographicData.php?test=".$_GET["test"]."&err=0");
 	else{
-		//*/
 		//connessione al db
 		$conn = new mysqli($host, $user, $password, $dbname);
 							
@@ -137,5 +138,5 @@
 				
 			}
 		}
-	//}
+	}
 ?>

@@ -2,16 +2,16 @@
 	include "config.php";
 	session_start();
 	
-	/*sql injections handling
+	//sql injections handling
 	$characters = ["'", '"', "\\", chr(0)];
 	$specialCharacters = false;
+	str_replace("'","''",$_POST['username']);
 	foreach($characters as $char)
-		$specialCharacters |= str_contains($_POST[$elem], $char);
+		$specialCharacters |= is_numeric(strpos($_POST['username'], $char));
 	
 	if($specialCharacters)
 		header("Location: userSettings.php?&err=0");
 	else{
-		//*/
 		$conn = new mysqli($host, $user, $password, $dbname);
 		if ($conn->errno)
 				die("Problemi di connessione" . $conn->error);
@@ -32,5 +32,5 @@
 		}
 		
 		header("Location: userSettings.php");
-	//}
+	}
 ?>
