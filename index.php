@@ -22,7 +22,7 @@
     <!-- Barra navigazione -->
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid" >
-          <a class="navbar-brand" href="#" >
+          <a class="navbar-brand" href="index.php" >
             <img src="logo.png" alt="" width="25" height="25" class="d-inline-block align-text-top" >
             PSYCHOACOUSTICS
             
