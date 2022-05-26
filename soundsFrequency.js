@@ -25,7 +25,6 @@ var countRev = 0;				// count of reversals
 var results = [[], [], [], [], [], [], [], []];		// block, trial, delta, variable value, variable position, pressed button, correct answer?, reversals
 var score = 0					// final score
 var positiveStrike = -1;		// -1 = unsetted, 0 = negative strike, 1 = positive strike
-var currentBlock = 1;			// current testing block
 var result = "";				// final results that will be saved on the db
 
 var timestamp = 0;				// timestamp of the starting of the test
@@ -102,8 +101,8 @@ function select(button){
 	//save new data
 	results[0][i] = currentBlock;		// blocco --> da implementare in futuro
 	results[1][i] = i+1;				// trial
-	results[2][i] = varFreq-stdFreq; 	// delta
-	results[3][i] = varFreq;			// variable value
+	results[2][i] = parseFloat(parseInt((varFreq-stdFreq)*1000)/1000); 	// approximated delta
+	results[3][i] = parseFloat(parseInt(varFreq*1000)/1000);			// approximated variable value
 	results[4][i] = swap;				// variable position
 	results[5][i] = pressedButton; 		// pulsante premuto
 	results[6][i] = history[i];			// correttezza risposta
@@ -124,44 +123,25 @@ function select(button){
 			result += results[0][j] + ";" + results[1][j] + ";" + results[2][j] + ";" + results[3][j] + ";"
 			result += results[4][j] + ";" + results[5][j] + ";" + results[6][j] + ";" + results[7][j] + ",";
 		}
-			
-		if(currentBlock<blocks){
-			currentBlock += 1;
-			
-			delta = startingDelta;
-			varFreq = freq + delta;
-			swap =-1;						// position of variable sound			
-			correctAnsw = 0;				// number of correct answers
-
-			currentFactor = factor;			// first or second factor, depending on the number of reversals
-
-			history = [];				// will have the answers ('1' if right, '0' if wrong)
-			reversalsPositions = [];	// will have the position of the i-th reversal in the history array 
-			i = 0;						// next index of the array
-			countRev = 0;
-			score = 0					// final score
-			positiveStrike = -1;
-			
-			random(); 					//ricomincia il test
-		}else{
-			//calculate score 
-			for(var j = countRev - reversalThreshold; j<countRev; j++){
-				deltaBefore = results[2][reversalsPositions[j]-1]; //delta before the reversal
-				deltaAfter = results[2][reversalsPositions[j]]; //delta after the reversal
-				score += (deltaBefore + deltaAfter)/2; //average delta of the reversal
-			}
-			score /= reversalThreshold; //average deltas of every reversal
-			score = parseFloat(parseInt(score*100)/100); //approximate to 2 decimal digits
-			
-			//format description as a csv file
-			//prima tutti i nomi, poi tutti i dati
-			var description = "&amp="+amp+"&freq="+freq+"&dur="+dur+/*"&phase="+phase+*/"&blocks="+blocks+"&delta="+startingDelta;
-			description += "&nAFC="+nAFC+"&ISI="+ISI+"&fact="+factor+"&secFact="+secondFactor+"&rev="+reversals+"&secRev="+secondReversals;
-			description += "&threshold="+reversalThreshold+"&alg="+algorithm;
-			
-			//pass the datas to the php file
-			location.href="salvaDati.php?result="+result+"&timestamp="+timestamp+"&type=freq"+description+"&score="+score+"&saveSettings="+saveSettings;
+		
+		//calculate score 
+		for(var j = countRev - reversalThreshold; j<countRev; j++){
+			deltaBefore = results[2][reversalsPositions[j]-1]; //delta before the reversal
+			deltaAfter = results[2][reversalsPositions[j]]; //delta after the reversal
+			score += (deltaBefore + deltaAfter)/2; //average delta of the reversal
 		}
+		score /= reversalThreshold; //average deltas of every reversal
+		score = parseFloat(parseInt(score*100)/100); //approximate to 2 decimal digits
+		
+		//format description as a csv file
+		//prima tutti i nomi, poi tutti i dati
+		var description = "&amp="+amp+"&freq="+freq+"&dur="+dur+/*"&phase="+phase+*/"&blocks="+blocks+"&delta="+startingDelta;
+		description += "&nAFC="+nAFC+"&ISI="+ISI+"&fact="+factor+"&secFact="+secondFactor+"&rev="+reversals+"&secRev="+secondReversals;
+		description += "&threshold="+reversalThreshold+"&alg="+algorithm;
+		
+		alert(result);
+		//pass the datas to the php file
+		location.href="salvaDati.php?result="+result+"&timestamp="+timestamp+"&type=freq"+description+"&currentBlock="+currentBlock+"&score="+score+"&saveSettings="+saveSettings;
 	}
 	//if the test is not ended
 	else{

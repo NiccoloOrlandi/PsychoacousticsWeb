@@ -21,13 +21,29 @@
 			<div class="row gx-4">
 				<div class="col">
 					<div class=" p-3 border bg-light" style="text-align:center;">
-						<h2 style="margin:5%;">Your threshold is <?php echo substr($_SESSION['score'],0,-1); ?></h2>
+						<h2 style="margin:5%;">Your threshold is 
+							<?php 
+								if(isset($_SESSION['score']))
+									if(strrpos($_SESSION['score'],";"))
+										echo substr($_SESSION['score'],strrpos($_SESSION['score'],";")+1);
+									else
+										echo $_SESSION['score'];
+							?>
+						</h2>
+						
 						<?php
-							if(isset($_SESSION['usr']))
-								echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"download.php?format=complete\"'>Download datas</button>";
+							if(isset($_GET['continue'])){
+								if(!$_GET['continue']){
+									if(isset($_SESSION['usr']))
+										echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"download.php?format=complete\"'>Download datas</button>";
+									echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"download.php?format=reduced\"'>Download datas (thresholds only)</button>";
+									echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"index.php\"'>Home</button>";
+								}else{
+									echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"{$_SESSION['type']}test.php\"'>Continue</button>";
+								}
+							}
 						?>
-						<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href="download.php?format=reduced"'>Download datas (thresholds only)</button>
-						<button type="button" class="btn btn-primary btn-lg m-3" onclick="location.href='index.php'">Home</button>
+						
 						<p style="margin-bottom:5%;"></p>
 					</div>
 				</div>

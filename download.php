@@ -42,7 +42,7 @@
 		if($_GET['format']=="complete")
 			$line .= "block;trials;delta;variable;Variable Position;Pressed button;correct?;reversals\n";
 		else
-			$line .= "score\n";
+			$line .= "block;score\n";
 			
 		fwrite($txt, $line);
 		
@@ -56,26 +56,18 @@
 			$results = explode(",", $_SESSION["results"]);
 			//results sarà nella forma ["bl1;tr1;del1;var1;varpos1;but1;cor1;rev1", "bl2;tr2;...", ...]
 			for($i = 0;$i<count($results)-1;$i++){
-				fwrite($txt, $firstValues.";");
-				fwrite($txt, $results[$i]);
+				fwrite($txt, $firstValues.";");//scrivo i valori fissi
+				fwrite($txt, $results[$i]);//scrivo i valori variabili
 				fwrite($txt, "\n");//vado all'altra linea
 			}
 		}else{
-			fwrite($txt, $firstValues.";");
-			fwrite($txt, $_SESSION['score']);
-			/*$results = $_SESSION['score'];
-			for($i = 0;$i<strlen($results);$i++){
-				if($results[$i]==";"){//quando incontro un punto e virgola sono a fine di un blocco
-					fwrite($txt, $firstValues.";");
-					
-					fwrite($txt, $cont.";");//scrivo il blocco
-					fwrite($txt, substr($results,$pos,$i-$pos).";");//scrivo lo score del blocco
-					fwrite($txt, "\n");//vado all'altra linea
-					
-					$pos = $i+1;
-					$cont += 1;
-				}
-			}*/
+			$results = explode(";", $_SESSION["score"]);
+			for($i = 0;$i<count($results);$i++){
+				fwrite($txt, $firstValues.";");//scrivo i valori fissi
+				fwrite($txt, ($i+1).";");//scrivo il blocco
+				fwrite($txt, $results[$i]);//scrivo lo score del blocco
+				fwrite($txt, "\n");//vado all'altra linea
+			}
 		}
 		
 		fclose($txt);

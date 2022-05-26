@@ -134,6 +134,8 @@ else{
 	$_SESSION["threshold"] = $_POST["threshold"];
 	$_SESSION["algorithm"] = $_POST["algorithm"];
 	unset($_SESSION['score']);
+	unset($_SESSION['currentBlock']);
+	unset($_SESSION['results']);
 	
 	header("Location: {$_GET['test']}test.php");
 }
