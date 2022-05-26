@@ -29,7 +29,7 @@
 				PSYCHOACOUSTICS
 			  </a>
 			  <form class="container-fluid logButtons">
-				<label class='welcomeMessage'>Benvenuto <?php echo $_SESSION['usr'];?></label>
+				<label class='welcomeMessage'>Welcome <?php echo $_SESSION['usr'];?></label>
 				<button class="btn btn-outline-primary yourTests" type="button" onclick="location.href='yourTests.php'">Your tests</button>
 				<button class="btn btn-outline-danger logout" type="button" onclick="location.href='logout.php'">Log Out</button>
 			  </form>
@@ -52,7 +52,7 @@
 				die("Problemi di connessione" . $conn->error);
 			mysqli_set_charset($conn, "utf8");
 			
-			$sql = "SELECT referral, name, surname, date, gender, notes 
+			$sql = "SELECT referral, name, surname, date, gender, notes, email 
 				FROM account INNER JOIN guest ON account.Guest_ID = guest.ID 
 				WHERE username='".$_SESSION['usr']."'";
 			$result = $conn->query($sql);
@@ -63,18 +63,19 @@
 			$date = $row['date'];
 			$gender = $row['gender'];
 			$notes = $row['notes'];
+			$email = $row['email'];
 		?>
 		
 		<form action="newReferral.php" class="settingForm ref">
 			<div class="input-group mb-3">
-				<span class="input-group-text title" onclick="copy('ref')" title="click to copy">Referral</span>
+				<span class="input-group-text title" onclick="copy('ref')" title="click to copy">Invite code</span>
 				<span class="input-group-text link" id="ref" onclick="copy('ref')" title="click to copy"><?php echo $ref; ?></span>
 			</div>
 			<div class="input-group mb-3">
 				<span class="input-group-text title" onclick="copy('link')" title="click to copy">Link</span>
 				<span class="input-group-text link" id="link" onclick="copy('link')" title="click to copy">http://psychoacoustics.dpg.psy.unipd.it/sito/demographicData.php?test=freq&ref=<?php echo $ref; ?></span>
 			</div>
-			<button type="submit" class="btn btn-primary btn-lg m-1">Cambia referral</button>
+			<button type="submit" class="btn btn-primary btn-lg m-1">Change invite code</button>
 			
 		</form>
 		<?php
@@ -92,6 +93,19 @@
 				</form>';
 			}
 		?>
+
+		<form action="changePsw.php" class="settingForm">
+			<div class="input-group mb-3">
+				<span class="input-group-text">Old password</span>
+				<input type="password" class="form-control" placeholder="Old password" name="oldPsw">
+			</div>
+			<div class="input-group mb-3">
+				<span class="input-group-text">New password</span>
+				<input type="password" class="form-control" placeholder="New password" name="newPsw">
+			</div>
+			<button type="submit" class="btn btn-primary btn-lg m-1">Change Password</button>
+		</form>
+
 		<form method="post" action="saveSettings.php" class="settingForm">
 			<div class="input-group mb-3">
 				<span class="input-group-text">Username</span>
@@ -101,14 +115,7 @@
 				<span class="input-group-text">Email</span>
 				<input type="text" class="form-control" placeholder="E-mail"  name="email">
 			</div> 
-			<div class="input-group mb-3">
-				<span class="input-group-text">Vecchia password</span>
-				<input type="password" class="form-control" placeholder="Vecchia password" name="oldPsw">
-			</div>
-			<div class="input-group mb-3">
-				<span class="input-group-text">Nuova password</span>
-				<input type="password" class="form-control" placeholder="Nuova password" name="newPsw">
-			</div>
+			
 			<div class="input-group mb-3">
 				<span class="input-group-text">Name</span>
 				<input type="text" class="form-control" name="name" value="<?php echo $name; ?>">
@@ -147,7 +154,7 @@
 				<span class="input-group-text">Notes</span>
 				<input type="text" class="form-control" placeholder="Notes" name="notes" value="<?php echo $notes; ?>">
 			</div>
-			<button type="submit" class="btn btn-primary btn-lg m-1">Salva Dati</button>
+			<button type="submit" class="btn btn-primary btn-lg m-1">Save</button>
 		</form>
 	</body>
 </html>

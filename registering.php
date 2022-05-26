@@ -4,7 +4,7 @@
 	session_start();
 
 	//sql injections handling
-	$elements = ['usr', 'psw', 'name', 'surname', 'Email', 'notes'];
+	$elements = ['usr', 'psw', 'name', 'surname', 'email', 'notes'];
 	$characters = ["'", '"', "\\", chr(0)];
 	$specialCharacters = false;
 	foreach($elements as $elem){
@@ -44,6 +44,7 @@
 			$date = $_POST['date'];
 			$gender = strtoupper($_POST['gender']);
 			$notes = $_POST['notes'];
+			$email = $_POST['email'];  // permetto la creazione di piú utenti username diversi ma con la stessa email 
 			
 			//trovo l'id massimo
 			$sql = "SELECT MAX(ID) as maxId FROM guest";
@@ -71,7 +72,7 @@
 				$sql .= ",Notes";
 				$sqlVal .= ",'$notes'";
 			}
-			
+
 			$sql .= ")";
 			$sqlVal .= ")";
 			
@@ -81,11 +82,14 @@
 			
 			//creo e collego l'account, salvo l'hash della password con sha2-256, tipo di account 0 (base)
 			$sql = "INSERT INTO account VALUES ('$usr', SHA2('$psw', 256) ";
+			
 			if($date != "")
 				$sql .= ",$date ";
+			
 			else
 				$sql .= ",NULL ";
-			$sql .= ",'$id', '0', '".base64_encode($usr)."', NULL, NULL)";
+				
+			$sql .= ",'$id', '0', '".base64_encode($usr)."', NULL, NULL, email)";
 			echo $sql;
 			$conn->query($sql);
 			
