@@ -72,8 +72,9 @@
 	width: 35% !important;
 }
 
-.saveSettings{
+.checkboxes{
 	margin-top: 5%;
+	padding-left: 0%;
 }
 
 /*quando la finestra è più piccola di 991 pixel, viene usato questo css*/

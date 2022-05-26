@@ -3,8 +3,8 @@
 	session_start();
 	if(isset($_SESSION['idGuest']) && isset($_GET['result']) && isset($_GET['timestamp']) && isset($_GET['type']) && ($_SESSION["checkSave"])
 		&& isset($_GET['amp']) && isset($_GET['freq']) && isset($_GET['dur']) && isset($_GET['blocks']) && isset($_GET['delta'])
-		&& isset($_GET['nAFC']) && isset($_GET['fact']) && isset($_GET['secFact']) && isset($_GET['rev']) && isset($_GET['secRev'])
-		&& isset($_GET['threshold']) && isset($_GET['alg']) && isset($_GET['score']) && isset($_GET['saveSettings'])){
+		&& isset($_GET['nAFC']) && isset($_GET['ISI']) && isset($_GET['fact']) && isset($_GET['secFact']) && isset($_GET['rev']) 
+		&& isset($_GET['secRev']) && isset($_GET['threshold']) && isset($_GET['alg']) && isset($_GET['score']) && isset($_GET['saveSettings'])){
 		
 		if(isset($_SESSION["score"]))
 			$_SESSION["score"] .= $_GET['score'].";";
@@ -19,6 +19,7 @@
 		$_SESSION["blocks"] = $_GET['blocks'];
 		$_SESSION["delta"] = $_GET['delta'];
 		$_SESSION["nAFC"] = $_GET['nAFC'];
+		$_SESSION["ISI"] = $_GET['ISI'];
 		$_SESSION["fact"] = $_GET['fact'];
 		$_SESSION["secFact"] = $_GET['secFact'];
 		$_SESSION["rev"] = $_GET['rev'];
@@ -61,7 +62,7 @@
 		//inserisci i dati del nuovo test
 		$sql = "INSERT INTO test VALUES ('$id', '$count', '{$_GET['timestamp']}', ";
 		$sql .= "'$type', '{$_GET['amp']}', '{$_GET['freq']}', '{$_GET['dur']}', '{$_GET['blocks']}', ";
-		$sql .= "'{$_GET['delta']}', '{$_GET['nAFC']}', '{$_GET['fact']}', '{$_GET['rev']}', ";
+		$sql .= "'{$_GET['delta']}', '{$_GET['nAFC']}', '{$_GET['ISI']}', '{$_GET['fact']}', '{$_GET['rev']}', ";
 		$sql .= "'{$_GET['secFact']}', '{$_GET['secRev']}', '{$_GET['threshold']}', '{$_GET['alg']}', '{$_GET['result']}')";
 		$conn->query($sql);
 

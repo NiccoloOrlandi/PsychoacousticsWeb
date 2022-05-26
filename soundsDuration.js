@@ -70,11 +70,11 @@ function random(){
 	
 	for(var j=0;j<nAFC;j++){
 		if(j==rand)
-			playVar((j*(stdDur/1000)) + j);
+			playVar((j*(stdDur/1000)) + j*(ISI/1000));
 		else if(j<rand)
-			playStd((j*(stdDur/1000)) + j);
+			playStd((j*(stdDur/1000)) + j*(ISI/1000));
 		else if(j>rand)
-			playStd(((j-1)*(stdDur/1000)) + (varDur/1000) + j);
+			playStd(((j-1)*(stdDur/1000)) + (varDur/1000) + j*(ISI/1000));
 	}
 	
 	swap = rand+1;
@@ -160,10 +160,9 @@ function select(button){
 			//format description as a csv file
 			//prima tutti i nomi, poi tutti i dati
 			var description = "&amp="+amp+"&freq="+freq+"&dur="+dur+/*"&phase="+phase+*/"&blocks="+blocks+"&delta="+startingDelta;
-			description += "&nAFC="+nAFC+"&fact="+factor+"&secFact="+secondFactor+"&rev="+reversals+"&secRev="+secondReversals;
+			description += "&nAFC="+nAFC+"&ISI="+ISI+"&fact="+factor+"&secFact="+secondFactor+"&rev="+reversals+"&secRev="+secondReversals;
 			description += "&threshold="+reversalThreshold+"&alg="+algorithm;
 			
-			alert(result);
 			//pass the datas to the php file
 			location.href="salvaDati.php?result="+result+"&timestamp="+timestamp+"&type=dur"+description+"&score="+score+"&saveSettings="+saveSettings;
 		}

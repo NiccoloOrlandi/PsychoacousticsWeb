@@ -22,6 +22,7 @@
 			var blocks = parseInt(<?php echo $_SESSION["blocks"]; ?>);
 			var delta = parseFloat(<?php echo $_SESSION["delta"]; ?>);
 			var nAFC = parseInt(<?php echo $_SESSION["nAFC"]; ?>);
+			var ISI = parseInt(<?php echo $_SESSION["ISI"]; ?>);
 			var feedback = <?php echo $_SESSION["checkFb"]; ?>;
 			var saveSettings = <?php echo $_SESSION["saveSettings"]; ?>;
 			var factor = parseFloat(<?php echo $_SESSION["factor"]; ?>);
