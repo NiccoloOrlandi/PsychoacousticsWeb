@@ -45,6 +45,8 @@
 					echo "<div class='alert alert-danger'>Username already taken</div>";
 				if ($_GET['err']==2)
 					echo "<div class='alert alert-danger'>Wrong password</div>";
+				if ($_GET['err']==3)
+					echo "<div class='alert alert-success'>Password changed</div>";
 			}
 			
 			$conn = new mysqli($host, $user, $password, $dbname);
@@ -94,7 +96,7 @@
 			}
 		?>
 
-		<form action="changePsw.php" class="settingForm">
+		<form action="changePsw.php" method= "post" class="settingForm">
 			<div class="input-group mb-3">
 				<span class="input-group-text">Old password</span>
 				<input type="password" class="form-control" placeholder="Old password" name="oldPsw">
