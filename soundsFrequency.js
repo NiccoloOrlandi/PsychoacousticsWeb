@@ -65,7 +65,6 @@ function playStd(time){
 //funzione per randomizzare l'output
 function random(){
 	var rand = Math.floor(Math.random() * nAFC);// the variable sound will be the rand-th sound played
-	rand=0;
 	
 	for(var j=0;j<nAFC;j++){
 		if(j==rand)
@@ -177,10 +176,12 @@ function select(button){
 }
 
 document.addEventListener('keypress', function keypress(event){
-	if (event.code >= 'Digit1' && event.code <= 'Digit'+nAFC) {
-		select(event.code.charAt(5))
-		console.log('You pressed '+ event.code.charAt(5) + ' button');
-	  }
+	if(!document.getElementById("button1").disabled){
+		if ((event.code >= 'Digit1' && event.code <= 'Digit'+nAFC) || (event.code >= 'Numpad1' && event.code <= 'Numpad'+nAFC)) {
+			select(event.key)
+			console.log('You pressed '+ event.key + ' button');
+		}
+	}
 });
 
 //funzione per implementare l'algoritmo nD1U

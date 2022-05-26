@@ -114,19 +114,37 @@
 											<!-- Contenuto dello slot, qui vanno inseriti tutti i bottoni e i check box del secondo slot -->
 											<div class="input-group flex-nowrap">
 												<span class="input-group-text">Amplitude</span>
-												<input type="text" class="form-control" name="amplitude" id="amplitude" placeholder="Standard" value="<?php if($row) echo $row['amp']; else echo "-20"; ?>">
+												<input type="text" class="form-control" name="amplitude" id="amplitude" placeholder="Standard" 
+													value="<?php 
+														if($row) 
+															echo $row['amp']; 
+														else 
+															echo "-20"; 
+													?>">
 												<span class="input-group-text">dB</span>
 											</div>
 
 											<div class="input-group flex-nowrap">
 												<span class="input-group-text">Frequency</span>
-												<input type="text" class="form-control" name="frequency" id="frequency" placeholder="Standard" value="<?php if($row) echo $row['freq']; else echo "1000"; ?>">
+												<input type="text" class="form-control" name="frequency" id="frequency" placeholder="Standard" 
+													value="<?php 
+														if($row) 
+															echo $row['freq']; 
+														else 
+															echo "1000"; 
+													?>">
 												<span class="input-group-text">Hz</span>
 											</div>
 
 											<div class="input-group flex-nowrap">
 												<span class="input-group-text">Duration</span>
-												<input type="text" class="form-control" name="duration" id="duration" placeholder="Standard" value="<?php if($row) echo $row['dur']; else echo "1000"; ?>">
+												<input type="text" class="form-control" name="duration" id="duration" placeholder="Standard" 
+													value="<?php 
+														if($row) 
+															echo $row['dur']; 
+														else 
+															echo "500"; 
+													?>">
 												<span class="input-group-text">ms</span>
 											</div>
 
@@ -158,7 +176,7 @@
 													if($row) 
 														echo $row['blocks']; 
 													else 
-														echo "1"; 
+														echo "3"; 
 												?>">
 											</div>
 											
@@ -180,7 +198,7 @@
 														if($row) 
 															echo $row['isi']; 
 														else 
-															echo "1000"; 
+															echo "500"; 
 													?>" >
 												<span class="input-group-text">ms</span>
 											</div>   
@@ -192,9 +210,11 @@
 														if($row) 
 															echo $row['delta']; 
 														else if($_GET["test"]=="amp")
-															echo "10"; 
-														else
-															echo "500";
+															echo "12"; 
+														else if($_GET["test"]=="freq")
+															echo "200";
+														else if($_GET["test"]=="dur")
+															echo "300";
 													?>">
 												<span class="input-group-text">
 													<?php
@@ -284,7 +304,7 @@
 												<div class="form-check">
 													<input class="form-check-input" type="radio" name="algorithm" value="SimpleUpDown" 
 														<?php 
-															if(($row && $row['alg']=="SimpleUpDown") || !$row) 
+															if($row && $row['alg']=="SimpleUpDown")
 																echo "checked";
 														?>>
 													<label class="form-check-label" for="flexRadioDefault1">
@@ -294,7 +314,7 @@
 												<div class="form-check">
 													<input class="form-check-input" type="radio" name="algorithm" value="TwoDownOneUp" 
 														<?php 
-															if($row && $row['alg']=="TwoDownOneUp") 
+															if(($row && $row['alg']=="TwoDownOneUp") || !$row) 
 																echo "checked"; 
 														?>>
 													<label class="form-check-label" for="flexRadioDefault1">
