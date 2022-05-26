@@ -1,6 +1,10 @@
 # Wep app per dipartimento di psicologia UniPd
 attualmente in sviluppo il primo test 
 
+glossario:
+ISI: inter-stimulus interval
+nAFC: number of Alternative Forced Choice
+
 legenda:
  ✓ : fatto 
  ✗ : non da fare
