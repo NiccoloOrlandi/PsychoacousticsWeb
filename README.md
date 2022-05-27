@@ -104,8 +104,8 @@ DEADLINES E TO-DO:
 		✓ testare number of blocks 
 	✓ nel risultato esce la media delle medie dei valori del delta prima e dopo gli ultimi <threshold> reversal
 	✓ aggiungere download di un file ridotto con solo dati anagrafici, dati del test, blocco e risultato (ossia la media delle medie) (una riga per blocco)
-	- gestione eccezioni nelle interazioni col db (un try catch per ogni $conn->query($sql);)
-	- utilizzo sequence.next per simulare l'autoincrement (al posto di SELECT max(ID), serve per evitare collisioni)
+	✓ gestione eccezioni nelle interazioni col db (un try catch per ogni $conn->query($sql);)
+	✓ utilizzo sequence.next per simulare l'autoincrement (al posto di SELECT max(ID), serve per evitare collisioni)
 	✓ fix degli altri download + svuotamento db (ora che i dati vengono salvati in modo diverso)
 	- menù a tendina nel referral per scegliere il tipo di test
 	✓ delta in db per test ampiezza
@@ -113,6 +113,7 @@ DEADLINES E TO-DO:
 	✓ feedback stampato a schermo senza alert
 	✓ logo (ne ho abbozzato uno)
 	✓ dopo ogni blocco esce il risultato e il tasto "continue"
+	- prova a fare la insert per 5 volte in salva dati
 
 - plus se riusciamo entro il 10/06/2022
 	✗ Vedere se si puó modificare la fase del suono
@@ -140,6 +141,7 @@ DEADLINES E TO-DO:
 		- dati di accesso al db criptati
 		- controlli sui dati passati con get
 		- blocco accesso alle pagine tramite copia-incolla dell'url
+		- auto increment manuale
 	- link con referral manda anche i setting del test
 	- save test settings funziona anche senza finire il test (si crea un apposito test dummy nel db che serve solo a quello)
 

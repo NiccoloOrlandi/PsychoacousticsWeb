@@ -47,17 +47,9 @@
 				$notes = $_POST['notes'];
 				$email = $_POST['email'];  // permetto la creazione di piú utenti username diversi ma con la stessa email 
 				
-				//trovo l'id massimo
-				$sql = "SELECT MAX(ID) as maxId FROM guest";
-				$result=$conn->query($sql);
-				$row=$result->fetch_assoc();
-				
-				//uso l'id massimo + 1
-				$id = $row['maxId'] + 1;
-				
 				//inizio a creare la query inserendo i valori non NULL
-				$sql = "INSERT INTO guest (ID, Name";
-				$sqlVal = " VALUES ('$id', '$name'";
+				$sql = "INSERT INTO guest (Name";
+				$sqlVal = " VALUES ('$name'";
 				
 				if($surname != ""){
 					$sql .= ",Surname";
@@ -75,11 +67,13 @@
 				}
 
 				$sql .= ")";
-				$sqlVal .= ")";
+				$sqlVal .= ");SELECT LAST_INSERT_ID() as id;";
 				
 				//creo il guest
 				$sql .= $sqlVal;
-				$conn->query($sql);
+				$result=$conn->query($sql);
+				$row = $result.fetch_assoc();
+				$id = $row['id'];
 				
 				//creo e collego l'account, salvo l'hash della password con sha2-256, tipo di account 0 (base)
 				$sql = "INSERT INTO account VALUES ('$usr', SHA2('$psw', 256) ";

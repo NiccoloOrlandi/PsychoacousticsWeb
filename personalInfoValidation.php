@@ -28,12 +28,6 @@
 			
 			mysqli_set_charset($conn, "utf8");
 			
-			// trovo l'id massimo fin'ora (così creo un utente con ID_max+1)
-			$sql="SELECT max(ID) as max FROM guest";
-			$result=$conn->query($sql);
-			$row=$result->fetch_assoc();
-			$id = $row["max"]+1;
-			
 			// vedo se andranno salvati i dati del test
 			$checkSave = 0;
 			if(isset($_POST["checkSave"]))
@@ -45,7 +39,7 @@
 			else{
 				
 				//scrivo la query di creazione del guest
-				$sql="INSERT INTO guest VALUES ( '".$id."' , '" .$_POST["name"] ."',";
+				$sql="INSERT INTO guest VALUES (NULL, '" .$_POST["name"] ."',";
 						
 				if($_POST["surname"] == ""){
 					$_SESSION["surname"] = null;
@@ -96,10 +90,12 @@
 						$result = $conn->query($refSQL);
 						$row = $result->fetch_assoc();
 						
-						$sql .= "'".$row['Username']."') ";
+						$sql .= "'".$row['Username']."');SELECT LAST_INSERT_ID() as id;";
 					}
 
-					$conn->query($sql);
+					$result = $conn->query($sql);
+					$row = $result.fetch_assoc();
+					$id = $row['id'];
 					$_SESSION['idGuest']=$id;
 
 					header("Location: soundSettings.php?test=".$_GET["test"]);
@@ -111,9 +107,10 @@
 					else if($_POST["name"]!="" && $_POST['ref']==""){//log in e nome ma niente referral, va creato un nuovo guest e va collegato all'account che ha fatto il log in
 						$_SESSION["name"] = $_POST["name"];
 						
-						$sql .= "'".$_SESSION['usr']."') ";
-						echo $sql;
-						$conn->query($sql);
+						$sql .= "'".$_SESSION['usr']."');SELECT LAST_INSERT_ID() as id;";
+						$result = $conn->query($sql);
+						$row = $result.fetch_assoc();
+						$id = $row['id'];
 						$_SESSION['idGuestTest']=$id;
 
 						header("Location: soundSettings.php?test=".$_GET["test"]);
@@ -128,9 +125,10 @@
 						$result = $conn->query($refSQL);
 						$row = $result->fetch_assoc();
 						
-						$sql .= "'".$row['Username']."') ";
-						
-						$conn->query($sql);
+						$sql .= "'".$row['Username']."');SELECT LAST_INSERT_ID() as id;";
+						$result = $conn->query($sql);
+						$row = $result.fetch_assoc();
+						$id = $row['id'];
 						$_SESSION['idGuestTest']=$id;
 
 						header("Location: soundSettings.php?test=".$_GET["test"]);
