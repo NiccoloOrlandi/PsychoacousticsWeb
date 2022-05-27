@@ -36,7 +36,7 @@ mail($email,'Password changing','you have correctly changed the password');
 		}
 		else
 			header('Location: userSettings.php?err=2');
-		//mail($email,'Password changing','you have correctly changed the password');
+		mail($email,'Password changing','you have correctly changed the password');
 	}catch(Exception $e){
 		header("Location: index.php?err=db");
 	}
