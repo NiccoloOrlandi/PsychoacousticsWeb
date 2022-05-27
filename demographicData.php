@@ -65,23 +65,27 @@
 						  <select name='gender' class="form-select">
 							<option disabled="disabled" selected value="null" id="NullGender">Select your gender</option>
 							<?php 
-								$conn = new mysqli($host, $user, $password, $dbname);
-								if ($conn->errno)
-									die("Problemi di connessione" . $conn->error);
-								mysqli_set_charset($conn, "utf8");
+								try{
+									$conn = new mysqli($host, $user, $password, $dbname);
+									if ($conn->connect_errno)
+										throw new Exception('DB connection failed');
+									mysqli_set_charset($conn, "utf8");
 
-								$sql="SELECT COLUMN_TYPE AS ct FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'psychoacoustics_db' AND TABLE_NAME = 'guest' AND COLUMN_NAME = 'gender';";
-								$result=$conn->query($sql);
-								$row=$result->fetch_assoc();//questa query da un risultato di tipo enum('Male','Female','Non-Binary')
+									$sql="SELECT COLUMN_TYPE AS ct FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'psychoacoustics_db' AND TABLE_NAME = 'guest' AND COLUMN_NAME = 'gender';";
+									$result=$conn->query($sql);
+									$row=$result->fetch_assoc();//questa query da un risultato di tipo enum('Male','Female','Non-Binary')
 
-								//metto i valori in un array
-								$values = substr($row['ct'], 5, -1);//tolgo "enum(" e ")"
-								$values = str_replace("'", "", $values);//tolgo gli apici
-								$list = explode(",", $values);//divido in una lista in base alle virgole
-								
-								//creo un'opzione per ogni possibile valore
-								foreach($list as $elem)
-									echo "<option value='".strtoupper($elem)."'>".strtoupper($elem)."</option>";
+									//metto i valori in un array
+									$values = substr($row['ct'], 5, -1);//tolgo "enum(" e ")"
+									$values = str_replace("'", "", $values);//tolgo gli apici
+									$list = explode(",", $values);//divido in una lista in base alle virgole
+									
+									//creo un'opzione per ogni possibile valore
+									foreach($list as $elem)
+										echo "<option value='".strtoupper($elem)."'>".strtoupper($elem)."</option>";
+								}catch(Exception $e){
+									header("Location: index.php?err=db");
+								}
 							?>
 						  </select>
 						</div>

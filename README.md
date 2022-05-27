@@ -16,7 +16,7 @@ legenda:
 DEADLINES E TO-DO:
 
 - test amp e freq
-	- rivedere amp iniziale
+	✓ rivedere amp iniziale
 	✓ inserire doppio factor (per freq)		
 		✓ fattore <factor> usato per i primi <reversals> reversals (per freq)
 		✓ fattore <second factor> usato per i successivi <second reversals> reversals (per freq)
@@ -37,7 +37,7 @@ DEADLINES E TO-DO:
 	✓ età in guest deve essere sostituita con data di nascita (solo quando creiamo account?)
 	✓ feedback se checkbox spuntata 
 	✓ dati salvati solo se spunto la checkbox "save results"
-	- aggiungere email al db 
+	✓ aggiungere email al db 
 	✓ inviamo solo gli ultimi reversals oppure tutti e poi ci pensano gli analisti 
 	✓ salvataggio di blocco, trial, delta, posizioneVariabile, tastoPremuto, rispostaCorretta, reversal (in questo ordine)
 	
@@ -60,12 +60,11 @@ DEADLINES E TO-DO:
 	- captcha livello v2 o v3
 	✓ come oscurare i dati di php username e psw
 	✓ scrivi su file e i file php leggono il file
-	- conferma password (non ancora messa prima bisogna iscriversi e forse va introdotta la email ma va chiesto al prof)
 	✓ implementare struttura a tre livelli
 	✓ creare la pagina per i risultati immediati del test
 	✓ implementare download dati come CSV
 	✓ creare pagina per lo storico dei test
-	? modificare il php per inserimento dati
+	✓ modificare il php per inserimento dati
 
 - modifiche al db (e quindi al sito) 	entro 22/05/2022?
 	✓ account ha un type
@@ -110,10 +109,10 @@ DEADLINES E TO-DO:
 	✓ fix degli altri download + svuotamento db (ora che i dati vengono salvati in modo diverso)
 	- menù a tendina nel referral per scegliere il tipo di test
 	✓ delta in db per test ampiezza
-	- aggiungere isi (ordine: blocks-nafc-isi-delta e feedback insieme agli algoritmi)
+	✓ aggiungere isi (ordine: blocks-nafc-isi-delta e feedback insieme agli algoritmi)
 	✓ feedback stampato a schermo senza alert
 	✓ logo (ne ho abbozzato uno)
-	- dopo ogni blocco esce il risultato e il tasto "continue"
+	✓ dopo ogni blocco esce il risultato e il tasto "continue"
 
 - plus se riusciamo entro il 10/06/2022
 	✗ Vedere se si puó modificare la fase del suono
@@ -126,11 +125,11 @@ DEADLINES E TO-DO:
 		- salvataggio dati da completare
 	
 - grafica entro il 10/06/2022
-	- alert di errore di inerimento dati (migliorare)
+	- alert di errore di inserimento dati (migliorare)
 	- index.html:le funzioni che cambiano il colore potrebbero essere sostituite con del css
 	- index.html:la funzione "onclick" delle card può essere sostituita dall'href (è un tag link <a>) e col css si può evitare che esca sottolineato
 	- tradurre tutto in inglese in ogni pagina
-	- title delle pagine
+	✓ title delle pagine
 
 - migiorie per il futuro
 	- problema del click iniziale
@@ -160,8 +159,4 @@ DEADLINES E TO-DO:
 	- psychoacoustics -> psychoacousticsweb
 	
 - domande prof Grassi
-	? score di più blocchi
-	? dopo ogni blocco escono i risultati col pulsante continua e dopo l'ultimo esce il pulsante "download data" e "home" o continua come niente fosse?
 	? aggiungere email al db -> migliardi
-	? amplitude iniziale = amp + delta (ma delta non è il db, deve esserlo? o va convertita?)
-	

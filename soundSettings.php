@@ -81,21 +81,25 @@
 			}
 			
 			if(isset($_SESSION['usr'])){
-				$conn=new mysqli($host, $user, $password, $dbname);
-				if ($conn->errno)
-						die("Problemi di connessione" . $conn->error);
-				mysqli_set_charset($conn, "utf8");
-				
-				$sql="SELECT test.Amplitude as amp, test.Frequency as freq, test.Duration as dur, test.blocks as blocks, 
-					test.nAFC as nafc, test.ISI as isi, test.Factor as fact, test.Delta as delta, test.Reversal as rev, 
-					test.SecFactor as secfact, test.SecReversal as secrev, test.Threshold as thr, test.Algorithm as alg
-									
-					FROM test
-					INNER JOIN account ON account.fk_GuestTest=test.Guest_ID AND account.fk_TestCount=test.Test_count
+				try{
+					$conn=new mysqli($host, $user, $password, $dbname);
+					if ($conn->connect_errno)
+						throw new Exception('DB connection failed');
+					mysqli_set_charset($conn, "utf8");
 					
-					WHERE account.Username='{$_SESSION['usr']}'";
-				$result=$conn->query($sql);
-				$row=$result->fetch_assoc();
+					$sql="SELECT test.Amplitude as amp, test.Frequency as freq, test.Duration as dur, test.blocks as blocks, 
+						test.nAFC as nafc, test.ISI as isi, test.Factor as fact, test.Delta as delta, test.Reversal as rev, 
+						test.SecFactor as secfact, test.SecReversal as secrev, test.Threshold as thr, test.Algorithm as alg
+										
+						FROM test
+						INNER JOIN account ON account.fk_GuestTest=test.Guest_ID AND account.fk_TestCount=test.Test_count
+						
+						WHERE account.Username='{$_SESSION['usr']}'";
+					$result=$conn->query($sql);
+					$row=$result->fetch_assoc();
+				}catch(Exception $e){
+					header("Location: index.php?err=db");
+				}
 			}else
 				$row=false;
 			
