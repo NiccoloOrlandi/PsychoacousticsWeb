@@ -44,21 +44,25 @@
 		<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href="downloadYours.php?all=0"'>Download all your guest's datas</button>
 		
 		<?php
-			$conn = new mysqli($host, $user, $password, $dbname);
-			
-			if ($conn->errno)
-				die("Problemi di connessione" . $conn->error);
-			
-			mysqli_set_charset($conn, "utf8");
-			
-			$usr = $_SESSION['usr'];
-			$id = $_SESSION['idGuest'];
-			
-			$sql = "SELECT Type FROM account WHERE Guest_ID='$id' AND Username='$usr'";
-			$result=$conn->query($sql);
-			$row=$result->fetch_assoc();
-			if($row['Type'] == 1){
-				echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"downloadAll.php\"'>Download all the datas in the database</button>";
+			try{
+				$conn = new mysqli($host, $user, $password, $dbname);
+				
+				if ($conn->connect_errno)
+					throw new Exception('DB connection failed');
+				
+				mysqli_set_charset($conn, "utf8");
+				
+				$usr = $_SESSION['usr'];
+				$id = $_SESSION['idGuest'];
+				
+				$sql = "SELECT Type FROM account WHERE Guest_ID='$id' AND Username='$usr'";
+				$result=$conn->query($sql);
+				$row=$result->fetch_assoc();
+				if($row['Type'] == 1){
+					echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"downloadAll.php\"'>Download all the datas in the database</button>";
+				}
+			}catch(Exception $e){
+				header("Location: index.php?err=db");
 			}
 		?>
 		
@@ -71,14 +75,18 @@
 				<th>Type</th>
 			</tr>
 			<?php
-				$sql = "SELECT Test_count, Timestamp, Type FROM test WHERE Guest_ID='$id'";
-				$result=$conn->query($sql);
-				while($row=$result->fetch_assoc()){
-					echo "<tr>";
-					echo "<th>".$row["Test_count"]."</th>";
-					echo "<th>".$row["Timestamp"]."</th>";
-					echo "<th>".$row["Type"]."</th>";
-					echo "</tr>";
+				try{
+					$sql = "SELECT Test_count, Timestamp, Type FROM test WHERE Guest_ID='$id'";
+					$result=$conn->query($sql);
+					while($row=$result->fetch_assoc()){
+						echo "<tr>";
+						echo "<th>".$row["Test_count"]."</th>";
+						echo "<th>".$row["Timestamp"]."</th>";
+						echo "<th>".$row["Type"]."</th>";
+						echo "</tr>";
+					}
+				}catch(Exception $e){
+					header("Location: index.php?err=db");
 				}
 			?>
 		</table>
@@ -93,25 +101,19 @@
 				<th>Type</th>
 			</tr>
 			<?php
-				$conn = new mysqli($host, $user, $password, $dbname);
-				
-				if ($conn->errno)
-					die("Problemi di connessione" . $conn->error);
-				
-				mysqli_set_charset($conn, "utf8");
-				
-				$usr = $_SESSION['usr'];
-				$id = $_SESSION['idGuest'];
-				
-				$sql = "SELECT Name, Test_count, Timestamp, Type FROM test INNER JOIN guest ON Guest_ID=ID WHERE fk_guest='{$_SESSION['usr']}'";
-				$result=$conn->query($sql);
-				while($row=$result->fetch_assoc()){
-					echo "<tr>";
-					echo "<th>".$row["Name"]."</th>";
-					echo "<th>".$row["Test_count"]."</th>";
-					echo "<th>".$row["Timestamp"]."</th>";
-					echo "<th>".$row["Type"]."</th>";
-					echo "</tr>";
+				try{
+					$sql = "SELECT Name, Test_count, Timestamp, Type FROM test INNER JOIN guest ON Guest_ID=ID WHERE fk_guest='{$_SESSION['usr']}'";
+					$result=$conn->query($sql);
+					while($row=$result->fetch_assoc()){
+						echo "<tr>";
+						echo "<th>".$row["Name"]."</th>";
+						echo "<th>".$row["Test_count"]."</th>";
+						echo "<th>".$row["Timestamp"]."</th>";
+						echo "<th>".$row["Type"]."</th>";
+						echo "</tr>";
+					}
+				}catch(Exception $e){
+					header("Location: index.php?err=db");
 				}
 			?>
 		</table>
