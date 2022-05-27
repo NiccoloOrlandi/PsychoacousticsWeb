@@ -24,5 +24,5 @@ if($result->num_rows>0){
 }
 else
     header('Location: userSettings.php?err=2');
-//mail($email,'Password changing','you have correctly changed the password');
+mail($email,'Password changing','you have correctly changed the password');
 ?>
