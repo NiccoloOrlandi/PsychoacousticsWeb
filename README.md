@@ -162,3 +162,10 @@ DEADLINES E TO-DO:
 	
 - domande prof Grassi
 	? aggiungere email al db -> migliardi
+	
+-cose da fare con i tecnici aggiornamentop 28/05/2022
+	- cambio nome psychoacoustics web
+	- capchta, serve https
+	- cambiare la landing page
+	- settare smtp per inviare le email
+	-
