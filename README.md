@@ -162,6 +162,9 @@ DEADLINES E TO-DO:
 	
 - domande prof Grassi
 	? aggiungere email al db -> migliardi
+	- lista errori/limiti dei valori nel manuale? quando si sbaglia esce 
+		un messaggio di errore che descrive il problema ma forse meglio 
+		descrivere i vari possibili casi anche nella documentazione
 	
 -cose da fare con i tecnici aggiornamentop 28/05/2022
 	- cambio nome psychoacoustics web
