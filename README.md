@@ -122,7 +122,7 @@ DEADLINES E TO-DO:
 	✓ premi '1' e '2' da tastiera oltre ai pulsanti a schermo
 		✓ limite nAFC: 9
 	✓ Pagina per cambiare dati e impostazioni (nome, cognome, username, password), per creare altri SU (se tu sei SU) e per vedere e modificare referral e link
-		- salvataggio dati da completare
+		✓ salvataggio dati da completare
 	
 - grafica entro il 10/06/2022
 	✓ alert di errore di inserimento dati (migliorare)
@@ -171,4 +171,3 @@ DEADLINES E TO-DO:
 	- capchta, serve https
 	- cambiare la landing page
 	- settare smtp per inviare le email
-	-
