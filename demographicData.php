@@ -35,7 +35,7 @@
 					
 		?>
 
-		<div class="container p-4" style="margin-top:15%" >
+		<div class="container p-4" style="margin-top:12%" >
 			<div class="row gx-4">
 				<div class="col">
 					<div class=" p-3 border bg-light">

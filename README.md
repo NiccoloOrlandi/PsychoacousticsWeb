@@ -107,7 +107,7 @@ DEADLINES E TO-DO:
 	✓ gestione eccezioni nelle interazioni col db (un try catch per ogni $conn->query($sql);)
 	✓ utilizzo sequence.next per simulare l'autoincrement (al posto di SELECT max(ID), serve per evitare collisioni)
 	✓ fix degli altri download + svuotamento db (ora che i dati vengono salvati in modo diverso)
-	- menù a tendina nel referral per scegliere il tipo di test
+	✓ menù a tendina nel referral per scegliere il tipo di test
 	✓ delta in db per test ampiezza
 	✓ aggiungere isi (ordine: blocks-nafc-isi-delta e feedback insieme agli algoritmi)
 	✓ feedback stampato a schermo senza alert
@@ -126,11 +126,12 @@ DEADLINES E TO-DO:
 		- salvataggio dati da completare
 	
 - grafica entro il 10/06/2022
-	- alert di errore di inserimento dati (migliorare)
+	✓ alert di errore di inserimento dati (migliorare)
 	- index.html:le funzioni che cambiano il colore potrebbero essere sostituite con del css
 	- index.html:la funzione "onclick" delle card può essere sostituita dall'href (è un tag link <a>) e col css si può evitare che esca sottolineato
 	- tradurre tutto in inglese in ogni pagina
 	✓ title delle pagine
+	- responsive
 
 - migiorie per il futuro
 	- problema del click iniziale

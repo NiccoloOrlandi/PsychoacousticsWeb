@@ -13,6 +13,18 @@ function leave(){
 }
 
 function copy(id){
-	navigator.clipboard.writeText(document.getElementById(id).innerHTML);
+	var value = document.getElementById(id).innerHTML;
+	value = value.replaceAll('&amp;', '&');
+	navigator.clipboard.writeText(value);
 	alert('copied to clipboard');
+}
+
+function updateLink(){
+	var link = document.getElementById('link').innerHTML;
+	var test = document.getElementById('testType').value;
+	var testStart = link.indexOf("test=") + 5;
+	var testEnd = link.indexOf("&");
+	
+	link = link.substring(0,testStart) + test + link.substring(testEnd);
+	document.getElementById('link').innerHTML = link;
 }

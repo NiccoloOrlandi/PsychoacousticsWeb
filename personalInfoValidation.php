@@ -6,6 +6,11 @@
 		unset($_SESSION['idGuestTest']); //se c'erano stati altri guest temporanei, li elimino per evitare collisioni
 		unset($_SESSION['name']); //se è settato dopo questa pagina, allora è stato creato un nuovo guest
 		
+		if(isset($_POST["ref"]))
+			$ref = "&ref=".$_POST["ref"];
+		else
+			$ref = "";
+		
 		//sql injections handling
 		$elements = ['name', 'surname', 'notes', 'ref'];
 		$characters = ["'", '"', "\\", chr(0)];
@@ -18,7 +23,7 @@
 		$specialCharacters |= (!is_numeric($_POST["age"]) && $_POST["age"]!="");
 		
 		if($specialCharacters)
-			header("Location: demographicData.php?test=".$_GET["test"]."&err=0");
+			header("Location: demographicData.php?test=".$_GET["test"].$ref."&err=0");
 		else{
 			//connessione al db
 			$conn = new mysqli($host, $user, $password, $dbname);
@@ -75,7 +80,7 @@
 				
 				
 				if($_POST["name"]=="" && !isset($_SESSION["idGuest"])) //niente log in e nome mancante (errore)
-					header("Location: demographicData.php?test=".$_GET["test"]."&err=1");
+					header("Location: demographicData.php?test=".$_GET["test"].$ref."&err=1");
 				
 				else if (!isset($_SESSION["idGuest"])){ //niente log in ma c'è il nome (creo il guest)
 					$_SESSION["name"] = $_POST["name"];
@@ -115,7 +120,7 @@
 
 						header("Location: soundSettings.php?test=".$_GET["test"]);
 					}else if($_POST["name"]=="" && $_POST['ref']!="")//log in e referral ma niente nome, va lanciato un errore (nome obbligatorio col referral)
-						header("Location: demographicData.php?test=".$_GET["test"]."&err=2");
+						header("Location: demographicData.php?test=".$_GET["test"].$ref."&err=2");
 					else if($_POST["name"]!="" && $_POST['ref']!=""){//log in, referral e nome, va creato un nuovo guest e va collegato all'account del referral
 						$_SESSION["name"] = $_POST["name"];
 						
