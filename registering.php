@@ -71,7 +71,7 @@
 				
 				//creo il guest
 				$sql .= $sqlVal;
-				
+				echo $sql."<br>";
 				$conn->multi_query($sql);
 				$conn->next_result();
 				$result = $conn->store_result();
@@ -87,9 +87,9 @@
 				else
 					$sql .= ",NULL ";
 					
-				$sql .= ",'$id', '0', '".base64_encode($usr)."', NULL, NULL, '$email')";
+				$sql .= ",'$id', '0', '".base64_encode($usr)."', NULL, NULL, '$email');";
 				$conn->query($sql);
-				
+				echo $sql;
 				//faccio sapere alle altre pagine quale utente è loggato
 				$_SESSION['usr'] = $usr;
 				$_SESSION['idGuest'] = $id;
