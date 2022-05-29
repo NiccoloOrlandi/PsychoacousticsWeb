@@ -72,7 +72,7 @@
 				//creo il guest
 				$sql .= $sqlVal;
 				$result=$conn->query($sql);
-				$row = $result.fetch_assoc();
+				$row = $result->fetch_assoc();
 				$id = $row['id'];
 				
 				//creo e collego l'account, salvo l'hash della password con sha2-256, tipo di account 0 (base)
