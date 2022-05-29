@@ -71,7 +71,10 @@
 				
 				//creo il guest
 				$sql .= $sqlVal;
-				$result=$conn->query($sql);
+				
+				$conn->multi_query($sql);
+				$conn->next_result();
+				$result = $conn->store_result();
 				$row = $result->fetch_assoc();
 				$id = $row['id'];
 				

@@ -87,7 +87,7 @@
 				
 					if($_POST["ref"] == ""){
 						$_SESSION["ref"] = null;
-						$sql .= "NULL) ";
+						$sql .= "NULL);SELECT LAST_INSERT_ID() as id;";
 					}else{
 						$_SESSION["ref"] = $_POST["ref"];
 						
@@ -98,8 +98,11 @@
 						$sql .= "'".$row['Username']."');SELECT LAST_INSERT_ID() as id;";
 					}
 
-					$result = $conn->query($sql);
-					$row = $result.fetch_assoc();
+					$conn->multi_query($sql);
+					$conn->next_result();
+					$result = $conn->store_result();
+					$row = $result->fetch_assoc();
+					
 					$id = $row['id'];
 					$_SESSION['idGuest']=$id;
 
@@ -113,8 +116,12 @@
 						$_SESSION["name"] = $_POST["name"];
 						
 						$sql .= "'".$_SESSION['usr']."');SELECT LAST_INSERT_ID() as id;";
-						$result = $conn->query($sql);
-						$row = $result.fetch_assoc();
+						
+						$conn->multi_query($sql);
+						$conn->next_result();
+						$result = $conn->store_result();
+						$row = $result->fetch_assoc();
+						
 						$id = $row['id'];
 						$_SESSION['idGuestTest']=$id;
 
@@ -131,8 +138,12 @@
 						$row = $result->fetch_assoc();
 						
 						$sql .= "'".$row['Username']."');SELECT LAST_INSERT_ID() as id;";
-						$result = $conn->query($sql);
-						$row = $result.fetch_assoc();
+						
+						$conn->multi_query($sql);
+						$conn->next_result();
+						$result = $conn->store_result();
+						$row = $result->fetch_assoc();
+						
 						$id = $row['id'];
 						$_SESSION['idGuestTest']=$id;
 
