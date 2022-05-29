@@ -87,7 +87,7 @@
 				else
 					$sql .= ",NULL ";
 					
-				$sql .= ",'$id', '0', '".base64_encode($usr)."', NULL, NULL, email)";
+				$sql .= ",'$id', '0', '".base64_encode($usr)."', NULL, NULL, '$email')";
 				echo $sql;
 				$conn->query($sql);
 				
@@ -97,7 +97,7 @@
 				
 				$conn->close();
 
-				header('Location: index.php');
+				//header('Location: index.php');
 			}
 		}
 	}catch(Exception $e){
