@@ -113,7 +113,6 @@ DEADLINES E TO-DO:
 	✓ feedback stampato a schermo senza alert
 	✓ logo (ne ho abbozzato uno)
 	✓ dopo ogni blocco esce il risultato e il tasto "continue"
-	- prova a fare la insert per 5 volte in salva dati
 
 - plus se riusciamo entro il 10/06/2022
 	✗ Vedere se si puó modificare la fase del suono
