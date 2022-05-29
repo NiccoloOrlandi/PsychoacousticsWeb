@@ -118,7 +118,7 @@
 											<!-- Contenuto dello slot, qui vanno inseriti tutti i bottoni e i check box del secondo slot -->
 											<div class="input-group flex-nowrap">
 												<span class="input-group-text">Amplitude</span>
-												<input type="text" class="form-control" name="amplitude" id="amplitude" placeholder="Standard" 
+												<input type="text" class="form-control" name="amplitude" id="amplitude"
 													value="<?php 
 														if($row) 
 															echo $row['amp']; 
@@ -130,7 +130,7 @@
 
 											<div class="input-group flex-nowrap">
 												<span class="input-group-text">Frequency</span>
-												<input type="text" class="form-control" name="frequency" id="frequency" placeholder="Standard" 
+												<input type="text" class="form-control" name="frequency" id="frequency"
 													value="<?php 
 														if($row) 
 															echo $row['freq']; 
@@ -142,7 +142,7 @@
 
 											<div class="input-group flex-nowrap">
 												<span class="input-group-text">Duration</span>
-												<input type="text" class="form-control" name="duration" id="duration" placeholder="Standard" 
+												<input type="text" class="form-control" name="duration" id="duration" 
 													value="<?php 
 														if($row) 
 															echo $row['dur']; 
@@ -175,7 +175,7 @@
 											<span class="input-group-text">
 												n. of blocks
 											</span>
-											<input type="text" class="form-control" name="blocks" id="blocks" placeholder="Blocks" 
+											<input type="text" class="form-control" name="blocks" id="blocks"
 												value="<?php
 													if($row) 
 														echo $row['blocks']; 
@@ -186,7 +186,7 @@
 											
 											<div class="input-group flex-nowrap" title="how many sounds will be played">
 												<span class="input-group-text">nAFC</span>
-												<input type="text" class="form-control" name="nAFC" id="nAFC" placeholder="nAFC" 
+												<input type="text" class="form-control" name="nAFC" id="nAFC"
 													value="<?php 
 														if($row) 
 															echo $row['nafc']; 
@@ -197,7 +197,7 @@
 											
 											<div class="input-group flex-nowrap" title="the time between two sounds (ms)">
 												<span class="input-group-text">ISI</span>
-												<input type="text" class="form-control" name="ISI" id="ISI" placeholder="ISI" 
+												<input type="text" class="form-control" name="ISI" id="ISI"
 													value="<?php 
 														if($row) 
 															echo $row['isi']; 
@@ -209,7 +209,7 @@
 											
 											<div class="input-group flex-nowrap" title="the starting difference between the sounds">
 												<span class="input-group-text">Delta</span>
-												<input type="text" class="form-control" name="delta" id="level" placeholder="Starting delta" 
+												<input type="text" class="form-control" name="delta" id="level"
 													value="<?php 
 														if($row) 
 															echo $row['delta']; 
@@ -250,7 +250,7 @@
 												<div class="left-div">
 													<div class="input-group flex-nowrap">
 														<span class="input-group-text">Factor</span>
-														<input type="text" class="form-control" name="factor" id="factor" placeholder="Factor" 
+														<input type="text" class="form-control" name="factor" id="factor" 
 															value="<?php 
 																if($row) 
 																	echo $row['fact']; 
@@ -260,7 +260,7 @@
 													</div>
 													<div class="input-group flex-nowrap">
 														<span class="input-group-text">Reversals</span>
-														<input type="text" class="form-control" name="reversals" id="reversals" placeholder="Reversals" 
+														<input type="text" class="form-control" name="reversals" id="reversals"
 															value="<?php 
 																if($row) 
 																	echo $row['rev']; 
@@ -272,7 +272,7 @@
 												<div class="right-div">
 													<div class="input-group flex-nowrap">
 														<span class="input-group-text">Second factor</span>
-														<input type="text" class="form-control" name="secFactor" id="secondFactor" placeholder="secondFactor" 
+														<input type="text" class="form-control" name="secFactor" id="secondFactor"
 															value="<?php 
 																if($row) 
 																	echo $row['secfact']; 
@@ -282,7 +282,7 @@
 													</div>
 													<div class="input-group flex-nowrap">
 														<span class="input-group-text">Second reversals</span>
-														<input type="text" class="form-control" name="secReversals" id="reversals" placeholder="Reversals" 
+														<input type="text" class="form-control" name="secReversals" id="reversals"
 															value="<?php 
 																if($row) 
 																	echo $row['secrev']; 
@@ -293,7 +293,7 @@
 												</div>
 												<div class="input-group flex-nowrap">
 													<span class="input-group-text">Reversal threshold</span>
-													<input type="text" class="form-control" name="threshold" id="reversalsTh" placeholder="Threshold" 
+													<input type="text" class="form-control" name="threshold" id="reversalsTh"
 														value="<?php 
 															if($row) 
 																echo $row['secrev']; 

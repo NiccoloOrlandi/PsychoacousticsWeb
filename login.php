@@ -33,7 +33,7 @@
             </div>  
               
               <!--input type="password" id="password" placeholder="Password" name="password"-->
-            <button type="submit" class="btn btn-primary btn-lg m-1">Accedi</button>
+            <button type="submit" class="btn btn-primary btn-lg m-1">Log in</button>
         </form>
     </body>
 </html>

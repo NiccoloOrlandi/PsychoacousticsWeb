@@ -143,7 +143,7 @@ function select(button){
 		description += "&threshold="+reversalThreshold+"&alg="+algorithm;
 		
 		//pass the datas to the php file
-		location.href="salvaDati.php?result="+result+"&timestamp="+timestamp+"&type=dur"+description+"&currentBlock="+currentBlock+"&score="+score+"&saveSettings="+saveSettings;
+		location.href="saveData.php?result="+result+"&timestamp="+timestamp+"&type=dur"+description+"&currentBlock="+currentBlock+"&score="+score+"&saveSettings="+saveSettings;
 	}
 	//if the test is not ended
 	else{

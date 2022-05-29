@@ -132,7 +132,7 @@
 			</div>
 			<div class="input-group mb-3">
 				<span class="input-group-text">Email</span>
-				<input type="text" class="form-control" placeholder="E-mail" name="email" value="<?php echo $email; ?>">
+				<input type="text" class="form-control" name="email" value="<?php echo $email; ?>">
 			</div> 
 			
 			<div class="input-group mb-3">

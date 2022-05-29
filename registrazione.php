@@ -78,7 +78,7 @@
                 <span class="input-group-text" id="basic-addon1">Notes</span>
                 <input type="text" class="form-control" placeholder="Notes" name="notes">
             </div>
-            <button type="submit" class="btn btn-primary btn-lg m-1">Registrati</button>
+            <button type="submit" class="btn btn-primary btn-lg m-1">Register</button>
         </form>
     </body>
 	

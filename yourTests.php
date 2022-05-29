@@ -30,7 +30,7 @@
 			  </a>
 			  <form class="container-fluid logButtons">
 				<?php				
-					echo "<label class='welcomeMessage'>Benvenuto ".$_SESSION['usr']."</label>";
+					echo "<label class='welcomeMessage'>Welcome ".$_SESSION['usr']."</label>";
 					echo "<button class=\"btn btn-outline-danger logout\" type=\"button\" onclick=\"location.href='logout.php'\">Log Out</button>";
 				?>
 			  </form>
@@ -38,7 +38,7 @@
 			</div>
 		</nav>
 		
-		<h1>Benvenuto <?php echo $_SESSION['usr'];?></h1>
+		<h1>Welcome <?php echo $_SESSION['usr'];?></h1>
 		
 		<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href="downloadYours.php?all=1"'>Download all your datas</button>
 		<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href="downloadYours.php?all=0"'>Download all your guest's datas</button>
@@ -66,7 +66,7 @@
 			}
 		?>
 		
-		<h3>I tuoi risultati</h3>
+		<h3>Your results</h3>
 		
 		<table>
 			<tr class="tableHeader">
@@ -91,7 +91,7 @@
 			?>
 		</table>
 		
-		<h3>I risultati dei Guest collegati</h3>
+		<h3>Your guest's results</h3>
 		
 		<table>
 			<tr class="tableHeader">
