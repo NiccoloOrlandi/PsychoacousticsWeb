@@ -88,7 +88,6 @@
 					$sql .= ",NULL ";
 					
 				$sql .= ",'$id', '0', '".base64_encode($usr)."', NULL, NULL, '$email')";
-				echo $sql;
 				$conn->query($sql);
 				
 				//faccio sapere alle altre pagine quale utente è loggato
@@ -97,7 +96,7 @@
 				
 				$conn->close();
 
-				//header('Location: index.php');
+				header('Location: index.php');
 			}
 		}
 	}catch(Exception $e){
