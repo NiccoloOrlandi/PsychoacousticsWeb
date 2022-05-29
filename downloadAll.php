@@ -89,7 +89,7 @@
 			
 			$txt = fopen("log.txt", "a") or die("Unable to open file!");
 			
-			fwrite($txt, "Tentativo di accesso a downloadAll.php senza permessi - timestamp: ".$date);
+			fwrite($txt, "Attempt to access downloadAll.php without permission - timestamp: ".$date);
 			if(isset($_SESSION['usr']))
 				fwrite($txt, " - username: ".$_SESSION['usr']);
 			fwrite($txt, "\n");

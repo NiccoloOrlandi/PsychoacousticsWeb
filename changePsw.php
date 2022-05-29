@@ -16,18 +16,6 @@
 		$psw = $row['password'];
 		$email =$row['email'];
 
-
-<<<<<<< HEAD
-if($result->num_rows>0){
-   
-    $sql ="UPDATE account SET password = SHA2('$newPsw', 256)  WHERE username= '".$_SESSION['usr']."'";
-    $conn->query($sql);
-    header('Location: userSettings.php?err=3');
-}
-else
-    header('Location: userSettings.php?err=2');
-mail($email,'Password changing','you have correctly changed the password');
-=======
 		if($result->num_rows>0){
 		   
 			$sql ="UPDATE account SET password = SHA2('$newPsw', 256)  WHERE username= '".$_SESSION['usr']."'";
@@ -40,5 +28,4 @@ mail($email,'Password changing','you have correctly changed the password');
 	}catch(Exception $e){
 		header("Location: index.php?err=db");
 	}
->>>>>>> 01bff1f57b871faf48b52dc182b2304def00550d
 ?>

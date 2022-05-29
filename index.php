@@ -35,7 +35,7 @@
 						echo "<button class=\"btn btn-outline-danger \" type=\"button\" onclick=\"location.href='registrazione.php'\" >Sign Up</button>";
 						echo "<button class=\"btn btn-outline-success me-2\" type=\"button\" onclick=\"location.href='login.php'\">Log In</button>";
 					}else{
-						echo "<label class='welcomeMessage'>Benvenuto ".$_SESSION['usr']."</label>";
+						echo "<label class='welcomeMessage'>Welcome ".$_SESSION['usr']."</label>";
 						echo "<a class='settings' href='userSettings.php'><i class='material-icons rotate'>settings</i></a>";
 						echo "<button class=\"btn btn-outline-primary yourTests\" type=\"button\" onclick=\"location.href='yourTests.php'\">Your tests</button>";
 						echo "<button class=\"btn btn-outline-danger logout\" type=\"button\" onclick=\"location.href='logout.php'\">Log Out</button>";
