@@ -139,7 +139,6 @@ function select(button){
 		description += "&nAFC="+nAFC+"&ISI="+ISI+"&fact="+factor+"&secFact="+secondFactor+"&rev="+reversals+"&secRev="+secondReversals;
 		description += "&threshold="+reversalThreshold+"&alg="+algorithm;
 		
-		alert(result);
 		//pass the datas to the php file
 		location.href="saveData.php?result="+result+"&timestamp="+timestamp+"&type=freq"+description+"&currentBlock="+currentBlock+"&score="+score+"&saveSettings="+saveSettings;
 	}

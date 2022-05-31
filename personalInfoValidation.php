@@ -13,7 +13,7 @@
 		
 		//sql injections handling
 		$elements = ['name', 'surname', 'notes', 'ref'];
-		$characters = ["'", '"', "\\", chr(0)];
+		$characters = ['"', "\\", chr(0)];
 		$specialCharacters = false;
 		foreach($elements as $elem){
 			str_replace("'","''",$_POST[$elem]);
@@ -22,9 +22,9 @@
 		}
 		$specialCharacters |= (!is_numeric($_POST["age"]) && $_POST["age"]!="");
 		
-		if($specialCharacters)
+		if($specialCharacters){
 			header("Location: demographicData.php?test=".$_GET["test"].$ref."&err=0");
-		else{
+		}else{
 			//connessione al db
 			$conn = new mysqli($host, $user, $password, $dbname);
 
@@ -39,10 +39,10 @@
 				$checkSave = 1;
 			$_SESSION["checkSave"] = $checkSave;
 			
-			if($checkSave==0)
+			if($checkSave==0){
 				header("Location: soundSettings.php?test=".$_GET["test"]);
-			else{
-				
+			
+			}else{
 				//scrivo la query di creazione del guest
 				$sql="INSERT INTO guest VALUES (NULL, '" .$_POST["name"] ."',";
 						
@@ -78,11 +78,10 @@
 					$sql .= "'".$_SESSION["notes"]."', ";
 				}
 				
-				
-				if($_POST["name"]=="" && !isset($_SESSION["idGuest"])) //niente log in e nome mancante (errore)
+				if($_POST["name"]=="" && !isset($_SESSION["idGuest"])){ //niente log in e nome mancante (errore)
 					header("Location: demographicData.php?test=".$_GET["test"].$ref."&err=1");
 				
-				else if (!isset($_SESSION["idGuest"])){ //niente log in ma c'è il nome (creo il guest)
+				}else if (!isset($_SESSION["idGuest"])){ //niente log in ma c'è il nome (creo il guest)
 					$_SESSION["name"] = $_POST["name"];
 				
 					if($_POST["ref"] == ""){
@@ -104,15 +103,15 @@
 					$row = $result->fetch_assoc();
 					
 					$id = $row['id'];
-					$_SESSION['idGuest']=$id;
+					$_SESSION['idGuestTest']=$id;
 
 					header("Location: soundSettings.php?test=".$_GET["test"]);
-					
 				}
 				else{ //è stato fatto il log in
-					if($_POST["name"]=="" && $_POST['ref']=="")//log in ma niente nome e niente referral, il test va collegato all'account che ha fatto il log in
+					if($_POST["name"]=="" && $_POST['ref']==""){//log in ma niente nome e niente referral, il test va collegato all'account che ha fatto il log in
+						$_SESSION['idGuestTest'] = $_SESSION['idGuest'];
 						header("Location: soundSettings.php?test=".$_GET["test"]);
-					else if($_POST["name"]!="" && $_POST['ref']==""){//log in e nome ma niente referral, va creato un nuovo guest e va collegato all'account che ha fatto il log in
+					}else if($_POST["name"]!="" && $_POST['ref']==""){//log in e nome ma niente referral, va creato un nuovo guest e va collegato all'account che ha fatto il log in
 						$_SESSION["name"] = $_POST["name"];
 						
 						$sql .= "'".$_SESSION['usr']."');SELECT LAST_INSERT_ID() as id;";
@@ -126,9 +125,9 @@
 						$_SESSION['idGuestTest']=$id;
 
 						header("Location: soundSettings.php?test=".$_GET["test"]);
-					}else if($_POST["name"]=="" && $_POST['ref']!="")//log in e referral ma niente nome, va lanciato un errore (nome obbligatorio col referral)
+					}else if($_POST["name"]=="" && $_POST['ref']!=""){//log in e referral ma niente nome, va lanciato un errore (nome obbligatorio col referral)
 						header("Location: demographicData.php?test=".$_GET["test"].$ref."&err=2");
-					else if($_POST["name"]!="" && $_POST['ref']!=""){//log in, referral e nome, va creato un nuovo guest e va collegato all'account del referral
+					}else if($_POST["name"]!="" && $_POST['ref']!=""){//log in, referral e nome, va creato un nuovo guest e va collegato all'account del referral
 						$_SESSION["name"] = $_POST["name"];
 						
 						$_SESSION["ref"] = $_POST["ref"];

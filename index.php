@@ -65,7 +65,7 @@
 			</h3>  
 			<h5 class="display-8 description"> 
 				PSYCHOACOUSTICS-WEB is a web developed tool to measure auditory sensory thresholds for a 
-				variety of classic tasks. You can run each test as a gues or you can create your personal 
+				variety of classic tasks. You can run each test as a guest or you can create your personal 
 				account and costumize the toolbox for your own research. Please refer to the <a href="">instruction 
 				manual</a> for further info on how to use the toolbox.
 			</h5>

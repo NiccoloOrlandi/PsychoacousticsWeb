@@ -31,6 +31,7 @@
 			//creo e apro il file csv
 			$path = "allResults.csv";
 			$txt = fopen($path, "w") or die("Unable to open file!");
+			fwrite($txt, chr(0xEF).chr(0xBB).chr(0xBF)); //utf8 encoding
 			
 			//scrivo il nome delle colonne
 			$line = "Name;Surname;Age;Gender;Test Count;Test Type;Timestamp;Amplitude;Frequency;Duration;n. of blocks;";

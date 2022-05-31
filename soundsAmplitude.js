@@ -172,8 +172,11 @@ function nDOWNoneUP(n, button){
 		history[i] = 0;
 		correctAnsw += 1;
 		if(correctAnsw == n){ //if there are n consegutive correct answers
-			varAmp = stdAmp + (delta/currentFactor);
+		
+			if(stdAmp + (delta/currentFactor)<=0)// varAmp can't be more than 0
+				varAmp = stdAmp + (delta/currentFactor);
 			correctAnsw = 0;
+			
 			if(positiveStrike == 0){
 				//there was a reversal
 				reversalsPositions[countRev] = i-(n-1);//save the position of that reversal
@@ -205,14 +208,14 @@ function nDOWNoneUP(n, button){
 	}
 }
 
-//funzione per iniziare
+//starting function
 function start(){
-	document.getElementById("StartingWindow").style.display="none"; //rendo invisibile la finestra iniziale
-	document.getElementById("PlayForm").style.display="inherit"; //rendo visibile l'interfaccia del test
+	document.getElementById("StartingWindow").style.display="none"; //starting window becomes invisible
+	document.getElementById("PlayForm").style.display="inherit"; //test interface becomes visible
 	
 	// take the timestamp when the test starts
 	var currentdate = new Date(); 
 	timestamp = currentdate.getFullYear()+"-"+(currentdate.getMonth()+1)+"-"+currentdate.getDate()+" "+currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
 	
-	random(); //comincia il test
+	random(); //the test starts
 }

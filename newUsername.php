@@ -4,7 +4,7 @@
 		session_start();
 		
 		//sql injections handling
-		$characters = ["'", '"', "\\", chr(0)];
+		$characters = ['"', "\\", chr(0)];
 		$specialCharacters = false;
 		str_replace("'","''",$_POST['username']);
 		foreach($characters as $char)

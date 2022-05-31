@@ -15,6 +15,20 @@ legenda:
 
 DEADLINES E TO-DO:
 
+- feedback testing:
+	✓ file csv codifica utf 8
+	✓ test ampiezza, varAmp diventa positivo (>0)
+	✓ typo nella home "gues"
+	✓ alert nella frequenza
+	✓ something went wrong a fine test quando non registrati
+	- se registrato e metti i dati da errore php
+	- link referral "localhost" invece di "psychoacoustics.dpg.psy.unipd.it/sito"
+	- "referral" invece di "invite link" in demographic data
+	- registrato + demographic data in test della durata non ha salvato il test (non lo vede in your tests)
+	✓ "some characters aren't allowed" anche con '
+	✓ save data si può fare solo se sei loggato
+
+
 - test amp e freq
 	✓ rivedere amp iniziale
 	✓ inserire doppio factor (per freq)		
@@ -128,7 +142,7 @@ DEADLINES E TO-DO:
 	✓ alert di errore di inserimento dati (migliorare)
 	- index.html:le funzioni che cambiano il colore potrebbero essere sostituite con del css
 	- index.html:la funzione "onclick" delle card può essere sostituita dall'href (è un tag link <a>) e col css si può evitare che esca sottolineato
-	- tradurre tutto in inglese in ogni pagina
+	✓ tradurre tutto in inglese in ogni pagina
 	✓ title delle pagine
 	- responsive
 

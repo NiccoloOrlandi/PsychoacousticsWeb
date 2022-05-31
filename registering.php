@@ -6,7 +6,7 @@
 
 		//sql injections handling
 		$elements = ['usr', 'psw', 'name', 'surname', 'email', 'notes'];
-		$characters = ["'", '"', "\\", chr(0)];
+		$characters = ['"', "\\", chr(0)];
 		$specialCharacters = false;
 		foreach($elements as $elem){
 			str_replace("'","''",$_POST[$elem]);

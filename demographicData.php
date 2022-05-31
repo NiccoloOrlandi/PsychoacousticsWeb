@@ -100,16 +100,10 @@
 						  <input type="text" class="form-control" id="ref" name="ref" onchange="verifyRef()" value="<?php if(isset($_GET['ref'])) echo $_GET['ref']; ?>">
 						</div>
 						
-						<?php
-						  if(isset($_SESSION['usr'])){
-							echo ' <div class="form-check">
-								  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name= "checkSave" checked>
-								  <label class="form-check-label" for="flexCheckDefault">
-									Save results
-								  </label>
-							  </div>';
-						  }
-						?>
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name= "checkSave" checked>
+							<label class="form-check-label" for="flexCheckDefault">Save results</label>
+						</div>
 						
 						<button type="button" class="btn btn-primary btn-lg m-3" onclick = "location.href='index.php'">BACK</button>
 						<button type="submit" class="btn btn-primary btn-lg m-3" >NEXT</button>
