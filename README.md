@@ -21,10 +21,10 @@ DEADLINES E TO-DO:
 	✓ typo nella home "gues"
 	✓ alert nella frequenza
 	✓ something went wrong a fine test quando non registrati
-	- se registrato e metti i dati da errore php
-	- link referral "localhost" invece di "psychoacoustics.dpg.psy.unipd.it/sito"
-	- "referral" invece di "invite link" in demographic data
-	- registrato + demographic data in test della durata non ha salvato il test (non lo vede in your tests)
+	✓ se registrato e metti i dati da errore php
+	✓ link referral "localhost" invece di "psychoacoustics.dpg.psy.unipd.it/sito"
+	✓ "referral" invece di "invite link" in demographic data
+	✓ registrato + demographic data in test della durata non ha salvato il test (non lo vede in your tests)
 	✓ "some characters aren't allowed" anche con '
 	✓ save data si può fare solo se sei loggato
 

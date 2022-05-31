@@ -96,7 +96,7 @@
 						</div>
 						
 						<div class="input-group flex-nowrap referral">
-						  <span class="input-group-text" id="notes">Referral code</span>
+						  <span class="input-group-text" id="notes">Invite code</span>
 						  <input type="text" class="form-control" id="ref" name="ref" onchange="verifyRef()" value="<?php if(isset($_GET['ref'])) echo $_GET['ref']; ?>">
 						</div>
 						

@@ -79,7 +79,7 @@
 			<div class="input-group mb-3">
 				<span class="input-group-text title" onclick="copy('link')" title="click to copy">Link</span>
 				<span class="input-group-text link" id="link" onclick="copy('link')" title="click to copy">
-					http://localhost/tesi/tesi/demographicData.php?test=amp&amp;ref=<?php echo $ref; ?>
+					psychoacoustics.dpg.psy.unipd.it/sito/demographicData.php?test=amp&amp;ref=<?php echo $ref; ?>
 				</span>
 			</div>
 			<button type="submit" class="btn btn-primary btn-lg m-1">Change invite code</button>
