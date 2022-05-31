@@ -158,6 +158,7 @@ DEADLINES E TO-DO:
 		- auto increment manuale
 	- link con referral manda anche i setting del test
 	- save test settings funziona anche senza finire il test (si crea un apposito test dummy nel db che serve solo a quello)
+	- possibilità di cancellare i test da yourTests
 
 - documentazione entro il 10/06/2022
 	- Diagramma architetturale del sistema
@@ -185,3 +186,4 @@ DEADLINES E TO-DO:
 	- capchta, serve https
 	- cambiare la landing page
 	- settare smtp per inviare le email
+	- copy to clipboard di userSettings richiede https (togliere overflow:scroll dopo aver risolto)

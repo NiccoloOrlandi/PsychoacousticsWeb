@@ -130,9 +130,13 @@ body{
 .input-group-text.link{
 	width: 70%;
 	display: initial;
+	/*da attivare quando ci sarà https
 	overflow:hidden; 
 	white-space:nowrap; 
-	text-overflow:ellipsis; 
+	text-overflow:ellipsis;
+	//*/
+	overflow:scroll; 
+	
 }
 
 .settingForm.ref .input-group-text.title{
