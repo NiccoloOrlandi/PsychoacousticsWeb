@@ -147,7 +147,7 @@ DEADLINES E TO-DO:
 	✓ title delle pagine
 	- responsive
 
-- migiorie per il futuro
+- migliorie per il futuro
 	- problema del click iniziale
 	- modificare la fase del suono
 	- suoni suonabili componibili
@@ -160,6 +160,7 @@ DEADLINES E TO-DO:
 	- link con referral manda anche i setting del test
 	- save test settings funziona anche senza finire il test (si crea un apposito test dummy nel db che serve solo a quello)
 	- possibilità di cancellare i test da yourTests
+	- possibilità di scaricare un singolo test da yourTests
 
 - documentazione entro il 10/06/2022
 	- Diagramma architetturale del sistema
@@ -181,6 +182,7 @@ DEADLINES E TO-DO:
 	- lista errori/limiti dei valori nel manuale? quando si sbaglia esce 
 		un messaggio di errore che descrive il problema ma forse meglio 
 		descrivere i vari possibili casi anche nella documentazione
+	- save data per tutti o solo per utenti loggati?
 	
 -cose da fare con i tecnici aggiornamentop 28/05/2022
 	- cambio nome psychoacoustics web
