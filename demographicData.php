@@ -32,9 +32,14 @@
 				else if($_GET['err']==2)
 					echo "<div class='alert alert-danger'>The name field is required when using a referral code</div>";
 			}
-					
+			
+			if(isset($_SESSION['usr'])){
+				echo "<div class='alert alert-warning'>Warning: if you are logged in AND insert your personal 
+					information here, a new Guest will be created and it will be linked to your account</div>";
+			}
 		?>
-
+		
+		
 		<div class="container p-4" style="margin-top:12%" >
 			<div class="row gx-4">
 				<div class="col">
