@@ -211,9 +211,7 @@
 												<span class="input-group-text">Delta</span>
 												<input type="text" class="form-control" name="delta" id="level"
 													value="<?php 
-														if($row) 
-															echo $row['delta']; 
-														else if($_GET["test"]=="amp")
+														if($_GET["test"]=="amp")
 															echo "12"; 
 														else if($_GET["test"]=="freq")
 															echo "200";

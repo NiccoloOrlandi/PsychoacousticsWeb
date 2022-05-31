@@ -27,6 +27,7 @@ DEADLINES E TO-DO:
 	✓ registrato + demographic data in test della durata non ha salvato il test (non lo vede in your tests)
 	✓ "some characters aren't allowed" anche con '
 	✓ save data si può fare solo se sei loggato
+	✓ il save sound settings sul delta è un problema da un test all'altro, meglio lasciarlo di default
 
 
 - test amp e freq
