@@ -2,7 +2,7 @@
 var context= new AudioContext();
 
 // minimum initial variation
-var varFreq = freq;	// frequency of the variable 
+var varFreq = freq;					// frequency of the variable 
 var stdFreq = freq;					// frequency of the standard
 var startingDelta = delta;
 
@@ -84,32 +84,37 @@ function random(){
 	}
 }
 
+function saveResults(){
+	//save new data
+	results[0][i] = currentBlock;			// blocco --> da implementare in futuro
+	results[1][i] = i+1;					// trial
+	results[2][i] = parseFloat(parseInt((varDur-stdDur)*1000)/1000); 	// approximated delta
+	results[3][i] = parseFloat(parseInt(varDur*1000)/1000);				// approximated variable value
+	results[4][i] = swap;					// variable position
+	results[5][i] = pressedButton; 			// pulsante premuto
+	results[6][i] = pressedButton==swap;	// correttezza risposta
+	results[7][i] = countRev;				// reversals
+}
+
 //funzione per implementare l'algoritmo SimpleUpDown
 function select(button){
+	pressedButton = button;
+	saveResults();
+	
 	switch(algorithm){
 		case 'SimpleUpDown':
-			nDOWNoneUP(1, button);
+			nDOWNoneUP(1);
 			break;
 		case 'TwoDownOneUp':
-			nDOWNoneUP(2, button);
+			nDOWNoneUP(2);
 			break;
 		case 'ThreeDownOneUp':
-			nDOWNoneUP(3, button);
+			nDOWNoneUP(3);
 			break;
 		default:
-			nDOWNoneUP(1, button);
+			nDOWNoneUP(2);
 			break;
 	}
-	
-	//save new data
-	results[0][i] = currentBlock;		// blocco
-	results[1][i] = i+1;				// trial
-	results[2][i] = parseFloat(parseInt((varDur-stdDur)*1000)/1000);	// approximated delta
-	results[3][i] = parseFloat(parseInt(varDur*1000)/1000);				// approximated variable value
-	results[4][i] = swap;				// variable position
-	results[5][i] = pressedButton; 		// pulsante premuto
-	results[6][i] = history[i];			// correttezza risposta
-	results[7][i] = countRev;			// reversals
 	
 	//increment counter
 	i++;
@@ -122,7 +127,7 @@ function select(button){
 	if(countRev == reversals+secondReversals){
 		//format datas as a csv file (only the last <reversalThreshold> reversals)
 		//format: block;trials;delta;variableValue;variablePosition;button;correct;reversals;";
-		for(var j = Math.min(reversalsPositions[countRev - reversalThreshold]-1,0); j < i; j++){
+		for(var j = Math.max(reversalsPositions[countRev - reversalThreshold]-1,0); j < i; j++){
 			result += results[0][j] + ";" + results[1][j] + ";" + results[2][j] + ";" + results[3][j] + ";"
 			result += results[4][j] + ";" + results[5][j] + ";" + results[6][j] + ";" + results[7][j] + ",";
 		}
@@ -167,11 +172,11 @@ document.addEventListener('keypress', function keypress(event){
 });
 
 //funzione per implementare l'algoritmo nD1U
-function nDOWNoneUP(n, button){
+function nDOWNoneUP(n){
 	delta = varDur-stdDur;
-	pressedButton = button;
-	if(button == swap){ //correct answer
-		history[i] = 0;
+	
+	if(pressedButton == swap){ //correct answer
+		history[i] = 1;
 		correctAnsw += 1;
 		if(correctAnsw == n){ //if there are n consegutive correct answers
 			varDur = stdDur + (delta/currentFactor);
@@ -189,9 +194,9 @@ function nDOWNoneUP(n, button){
 		}
 		
 	}else{ //wrong answer
-		varDur = stdDur + (delta*currentFactor);
-		history[i] = 1;
+		history[i] = 0;
 		correctAnsw = 0;
+		varDur = stdDur + (delta*currentFactor);
 		
 		if(positiveStrike == 1){
 			//there was a reversal
@@ -207,14 +212,14 @@ function nDOWNoneUP(n, button){
 	}
 }
 
-//funzione per iniziare
+//starting function
 function start(){
-	document.getElementById("StartingWindow").style.display="none"; //rendo invisibile la finestra iniziale
-	document.getElementById("PlayForm").style.display="inherit"; //rendo visibile l'interfaccia del test
+	document.getElementById("StartingWindow").style.display="none"; //starting window becomes invisible
+	document.getElementById("PlayForm").style.display="inherit"; //test interface becomes visible
 	
 	// take the timestamp when the test starts
 	var currentdate = new Date(); 
 	timestamp = currentdate.getFullYear()+"-"+(currentdate.getMonth()+1)+"-"+currentdate.getDate()+" "+currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
 	
-	random(); //comincia il test
+	random(); //the test starts
 }

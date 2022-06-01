@@ -35,8 +35,8 @@
 							if(isset($_GET['continue'])){
 								if(!$_GET['continue']){
 									if(isset($_SESSION['usr']))
-										echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"download.php?format=complete\"'>Download datas</button>";
-									echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"download.php?format=reduced\"'>Download datas (thresholds only)</button>";
+										echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"download.php?format=complete\"'>Download data</button>";
+									echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"download.php?format=reduced\"'>Download data (thresholds only)</button>";
 									echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"index.php\"'>Home</button>";
 								}else{
 									echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"{$_SESSION['type']}test.php\"'>Continue</button>";

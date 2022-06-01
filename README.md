@@ -28,13 +28,13 @@ DEADLINES E TO-DO:
 	✓ "some characters aren't allowed" anche con '
 	✓ save data si può fare solo se sei loggato
 	✓ il save sound settings sul delta è un problema da un test all'altro, meglio lasciarlo di default
-	- "download data" non "datas"
-	- il feedback deve cancellarsi dopo un certo tempo feedbackduration di 0.5 secondi (nuova feature, facciamo se c'è tempo)
-	- nuovo suono parte dopo un certo tempo interTrialInterval di 1 secondo (nuova feature, facciamo se c'è tempo)
-	- Nel file dati csv breve sostituire "score" con "threshold"
-	- typo in Pure tone intensity discrimination: L'etichetta di Delta è "db" va sostituita con "dB"
-	- controllo su tutti e tre che nAFC non puo' essere minore di 2
-	- A un certo punto "Pure tone intensity discrimination" e' crashato (provare a sbagliare risposta fin dall'inizio)
+	✓ "download data" non "datas"
+	✓ Nel file dati csv breve sostituire "score" con "threshold"
+	✓ typo in Pure tone intensity discrimination: L'etichetta di Delta è "db" va sostituita con "dB"
+	✓ controllo su tutti e tre che nAFC non puo' essere minore di 2
+	✓ A un certo punto "Pure tone intensity discrimination" e' crashato (provare a sbagliare risposta fin dall'inizio)
+	- il feedback deve cancellarsi dopo un certo tempo <feedbackduration> di 0.5 secondi (nuova feature, facciamo se c'è tempo)
+	- nuovo suono parte dopo un certo tempo <interTrialInterval> di 1 secondo (nuova feature, facciamo se c'è tempo)
 	- se uno sbaglia la prova con primo valore di delta, il programma si ferma e manda un pop-up "Are you sure you set a convenient Delta?" (nuova feature, facciamo se c'è tempo)
 	✓ nel csv colonna "correct?" invertire i valori: 1==correct 0==incorrect
 	✓ salva i dati in modo errato (scrive il delta dopo averlo modificato, quindi di fatto in corrispondenza di un trial scrive il delta successivo)
@@ -180,7 +180,7 @@ DEADLINES E TO-DO:
 
 - domande tecnici:
 	✓ non funziona forticlient
-	? come cambiare la landing page, ora quando entro nel sito vengo portato all'albero delle cartelle (impossibile crare un file html che faccia il redirect automatico)
+	✓ come cambiare la landing page (creato un file che fa il redirect automatico)
 	✓ come inviare i file 
 	✓ é possibile fare in modo che le modifiche che faccio nella repository github vengano fatte anche sul server?
 	✓ dati per recapchta : email futuro proprietario, nome dominio, non posso farlo ora perché servono questi dati e un collegamento https
@@ -189,10 +189,13 @@ DEADLINES E TO-DO:
 	
 - domande prof Grassi
 	? aggiungere email al db -> migliardi
-	- lista errori/limiti dei valori nel manuale? quando si sbaglia esce 
-		un messaggio di errore che descrive il problema ma forse meglio 
-		descrivere i vari possibili casi anche nella documentazione
+	- lista errori/limiti dei valori nel manuale? 
+		quando si sbaglia esce un messaggio di errore che descrive il problema ma forse meglio descrivere i vari possibili casi anche nella documentazione
 	- save data per tutti o solo per utenti loggati?
+	- se varAmp dovrebbe superare lo 0, mettiamo a 0 o lasciamo com'è?
+	- feedbackduration e interTrialInterval sono variabili o costanti? l'utente deve poterle modificare?
+	- ora nei csv (e nel db) ci sono solo i dati relativi agli ultimi <reversal threshold> reversals 
+		(prima per un errore venivano inseriti tutti dal primo trial in poi). Va bene o era meglio tutti?
 	
 -cose da fare con i tecnici aggiornamentop 28/05/2022
 	- cambio nome psychoacoustics web

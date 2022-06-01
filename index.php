@@ -32,7 +32,7 @@
 					if(!isset($_SESSION["usr"])){
 						if(isset($_SESSION["idGuest"]))
 							unset($_SESSION["idGuest"]);
-						echo "<button class=\"btn btn-outline-danger \" type=\"button\" onclick=\"location.href='registrazione.php'\" >Sign Up</button>";
+						echo "<button class=\"btn btn-outline-danger \" type=\"button\" onclick=\"location.href='register.php'\" >Sign Up</button>";
 						echo "<button class=\"btn btn-outline-success me-2\" type=\"button\" onclick=\"location.href='login.php'\">Log In</button>";
 					}else{
 						echo "<label class='welcomeMessage'>Welcome ".$_SESSION['usr']."</label>";

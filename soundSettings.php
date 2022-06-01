@@ -53,7 +53,7 @@
 				else if($_GET['err']=="nAFC1")
 					echo "<div class='alert alert-danger'>The nAFC field is required</div>";
 				else if($_GET['err']=="nAFC2")
-					echo "<div class='alert alert-danger'>The nAFC value must be a positive number</div>";
+					echo "<div class='alert alert-danger'>The nAFC value must be a number greater than or equal to 2</div>";
 				else if($_GET['err']=="nAFC3")
 					echo "<div class='alert alert-danger'>The nAFC value can't be greater than 9</div>";
 				else if($_GET['err']=="factor1")
@@ -221,7 +221,7 @@
 												<span class="input-group-text">
 													<?php
 														if($_GET['test']=="amp")
-															echo "db";
+															echo "dB";
 														else if($_GET['test']=="freq")
 															echo "Hz";
 														else if($_GET['test']=="dur")

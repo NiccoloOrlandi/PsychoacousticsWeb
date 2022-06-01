@@ -2,12 +2,12 @@
 var context= new AudioContext();
 
 // minimum initial variation
-var varFreq = parseInt(freq) + parseInt(delta);	// frequency of the variable 
-var stdFreq = parseInt(freq);					// frequency of the standard
+var varFreq = freq + delta;			// frequency of the variable 
+var stdFreq = freq;					// frequency of the standard
 var startingDelta = delta;
 
-var stdDur = dur;				// duration of the standard 
-var varDur = dur;				// duration of the variable 
+var stdDur = dur;					// duration of the standard 
+var varDur = dur;					// duration of the variable 
 
 var stdAmp = amp;					// intensity of the variable
 var varAmp = amp;					// intensity of the standard 
@@ -29,6 +29,7 @@ var result = "";				// final results that will be saved on the db
 
 var timestamp = 0;				// timestamp of the starting of the test
 var pressedButton;
+
 //funzione per generare il primo suono
 function playVar(time){
 	console.log("delta: "+(varFreq-stdFreq));
@@ -97,7 +98,7 @@ function saveResults(){
 function select(button){
 	pressedButton = button;
 	saveResults();
-		
+	
 	switch(algorithm){
 		case 'SimpleUpDown':
 			nDOWNoneUP(1);
@@ -109,7 +110,7 @@ function select(button){
 			nDOWNoneUP(3);
 			break;
 		default:
-			nDOWNoneUP(1);
+			nDOWNoneUP(2);
 			break;
 	}
 	

@@ -2,12 +2,12 @@
 var context= new AudioContext();
 
 // minimum initial variation
-var varFreq = freq;	// frequency of the variable 
+var varFreq = freq;					// frequency of the variable 
 var stdFreq = freq;					// frequency of the standard
 var startingDelta = delta;
 
-var stdDur = dur;				// duration of the standard 
-var varDur = dur;				// duration of the variable 
+var stdDur = dur;					// duration of the standard 
+var varDur = dur;					// duration of the variable 
 
 var stdAmp = amp;					// intensity of the variable
 var varAmp = amp+delta;				// intensity of the standard 
@@ -65,7 +65,7 @@ function playStd(time){
 //funzione per randomizzare l'output
 function random(){
 	var rand = Math.floor(Math.random() * nAFC);// the variable sound will be the rand-th sound played
-	
+	rand = 0;
 	for(var j=0;j<nAFC;j++){
 		if(j==rand)
 			playVar((j*(dur/1000)) + j*(ISI/1000));
@@ -82,32 +82,37 @@ function random(){
 	}
 }
 
-//funzione per implementare l'algoritmo SimpleUpDown
-function select(button){
-	switch(algorithm){
-		case 'SimpleUpDown':
-			nDOWNoneUP(1, button);
-			break;
-		case 'TwoDownOneUp':
-			nDOWNoneUP(2, button);
-			break;
-		case 'ThreeDownOneUp':
-			nDOWNoneUP(3, button);
-			break;
-		default:
-			nDOWNoneUP(1, button);
-			break;
-	}
-	
+function saveResults(){
 	//save new data
-	results[0][i] = currentBlock;		// blocco --> da implementare in futuro
-	results[1][i] = i+1;				// trial
+	results[0][i] = currentBlock;			// blocco --> da implementare in futuro
+	results[1][i] = i+1;					// trial
 	results[2][i] = parseFloat(parseInt((varAmp-stdAmp)*1000)/1000); 	// approximated delta
 	results[3][i] = parseFloat(parseInt(varAmp*1000)/1000);				// approximated variable value
-	results[4][i] = swap;				// variable position
-	results[5][i] = pressedButton; 		// pulsante premuto
-	results[6][i] = history[i];			// correttezza risposta
-	results[7][i] = countRev;			// reversals
+	results[4][i] = swap;					// variable position
+	results[5][i] = pressedButton; 			// pulsante premuto
+	results[6][i] = pressedButton==swap;	// correttezza risposta
+	results[7][i] = countRev;				// reversals
+}
+
+//funzione per implementare l'algoritmo SimpleUpDown
+function select(button){
+	pressedButton = button;
+	saveResults();
+	
+	switch(algorithm){
+		case 'SimpleUpDown':
+			nDOWNoneUP(1);
+			break;
+		case 'TwoDownOneUp':
+			nDOWNoneUP(2);
+			break;
+		case 'ThreeDownOneUp':
+			nDOWNoneUP(3);
+			break;
+		default:
+			nDOWNoneUP(2);
+			break;
+	}
 	
 	//increment counter
 	i++;
@@ -120,7 +125,7 @@ function select(button){
 	if(countRev == reversals+secondReversals){
 		//format datas as a csv file (only the last <reversalThreshold> reversals)
 		//format: block;trials;delta;variableValue;variablePosition;button;correct;reversals;";
-		for(var j = Math.min(reversalsPositions[countRev - reversalThreshold]-1,0); j < i; j++){
+		for(var j = Math.max(reversalsPositions[countRev - reversalThreshold]-1,0); j < i; j++){
 			result += results[0][j] + ";" + results[1][j] + ";" + results[2][j] + ";" + results[3][j] + ";"
 			result += results[4][j] + ";" + results[5][j] + ";" + results[6][j] + ";" + results[7][j] + ",";
 		}
@@ -165,16 +170,15 @@ document.addEventListener('keypress', function keypress(event){
 });
 
 //funzione per implementare l'algoritmo nD1U
-function nDOWNoneUP(n, button){
+function nDOWNoneUP(n){
 	delta = varAmp-stdAmp;
-	pressedButton = button;
-	if(button == swap){ //correct answer
-		history[i] = 0;
+	
+	if(pressedButton == swap){ //correct answer
+		history[i] = 1;
 		correctAnsw += 1;
 		if(correctAnsw == n){ //if there are n consegutive correct answers
 		
-			if(stdAmp + (delta/currentFactor)<=0)// varAmp can't be more than 0
-				varAmp = stdAmp + (delta/currentFactor);
+			varAmp = stdAmp + (delta/currentFactor);
 			correctAnsw = 0;
 			
 			if(positiveStrike == 0){
@@ -190,9 +194,10 @@ function nDOWNoneUP(n, button){
 		}
 		
 	}else{ //wrong answer
-		varAmp = stdAmp + (delta*currentFactor);
-		history[i] = 1;
+		history[i] = 0;
 		correctAnsw = 0;
+		if(stdAmp + (delta*currentFactor)<=0)// varAmp can't be more than 0
+			varAmp = stdAmp + (delta*currentFactor);
 		
 		if(positiveStrike == 1){
 			//there was a reversal

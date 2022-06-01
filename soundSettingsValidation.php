@@ -62,7 +62,7 @@ else if (!is_numeric($_POST["ISI"]) || $_POST["ISI"]<0)
 else if (($_POST["nAFC"]== "") || ($_POST["nAFC"]== "undefined")) 
     header("Location: soundSettings.php?test={$_GET['test']}&err=nAFC1");
 
-else if (!is_numeric($_POST["nAFC"]) || $_POST["nAFC"]<0)
+else if (!is_numeric($_POST["nAFC"]) || $_POST["nAFC"]<2)
     header("Location: soundSettings.php?test={$_GET['test']}&err=nAFC2");
 
 else if ($_POST["nAFC"]>9)

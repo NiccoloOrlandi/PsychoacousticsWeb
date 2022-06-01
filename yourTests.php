@@ -40,8 +40,8 @@
 		
 		<h1>Welcome <?php echo $_SESSION['usr'];?></h1>
 		
-		<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href="downloadYours.php?all=1"'>Download all your datas</button>
-		<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href="downloadYours.php?all=0"'>Download all your guest's datas</button>
+		<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href="downloadYours.php?all=1"'>Download all your data</button>
+		<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href="downloadYours.php?all=0"'>Download all your guest's data</button>
 		
 		<?php
 			try{
@@ -59,7 +59,7 @@
 				$result=$conn->query($sql);
 				$row=$result->fetch_assoc();
 				if($row['Type'] == 1){
-					echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"downloadAll.php\"'>Download all the datas in the database</button>";
+					echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"downloadAll.php\"'>Download all the data in the database</button>";
 				}
 			}catch(Exception $e){
 				header("Location: index.php?err=db");

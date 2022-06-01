@@ -44,7 +44,7 @@
 			if($_GET['format']=="complete")
 				$line .= "block;trials;delta;variable;Variable Position;Pressed button;correct?;reversals\n";
 			else
-				$line .= "block;score\n";
+				$line .= "block;threshold\n";
 				
 			fwrite($txt, $line);
 			
