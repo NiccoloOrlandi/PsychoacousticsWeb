@@ -9,6 +9,15 @@
 			&& isset($_GET['secRev']) && isset($_GET['threshold']) && isset($_GET['alg']) && isset($_GET['score']) 
 			&& isset($_GET['saveSettings']) && isset($_GET['currentBlock'])){
 			
+			//trova il tipo
+			$type = "";
+			if($_GET['type'] == "freq")
+				$type = "PURE_TONE_FREQUENCY";
+			else if($_GET['type'] == "amp")
+				$type = "PURE_TONE_INTENSITY";
+			else if($_GET['type'] == "dur")
+				$type = "PURE_TONE_DURATION";
+			
 			if(isset($_SESSION["score"]))
 				$_SESSION["score"] .= ";".$_GET['score'];
 			else
@@ -20,7 +29,7 @@
 				$_SESSION["results"] = $_GET['result'];
 			
 			$_SESSION["time"] = $_GET['timestamp'];
-			$_SESSION["type"] = $_GET['type'];
+			$_SESSION["type"] = $type;
 			$_SESSION["amp"] = $_GET['amp'];
 			$_SESSION["freq"] = $_GET['freq'];
 			$_SESSION["dur"] = $_GET['dur'];
@@ -52,14 +61,6 @@
 			
 				//save the test, if it must be saved
 				if($_SESSION["checkSave"]){
-					//trova il tipo
-					$type = "";
-					if($_GET['type'] == "freq")
-						$type = "PURE_TONE_FREQUENCY";
-					else if($_GET['type'] == "amp")
-						$type = "PURE_TONE_INTENSITY";
-					else if($_GET['type'] == "dur")
-						$type = "PURE_TONE_DURATION";
 					
 					//trovo l'id a cui associare il test
 					$id = $_SESSION['idGuestTest'];
