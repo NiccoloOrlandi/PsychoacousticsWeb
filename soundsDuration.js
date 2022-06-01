@@ -32,7 +32,7 @@ var pressedButton;
 
 //funzione per generare il primo suono
 function playVar(time){
-	console.log("delta: "+(varAmp-stdAmp));
+	console.log("delta: "+(varDur-stdDur));
 	console.log("factor: "+currentFactor);
 	var volume1 = context.createGain();		//volume
 	volume1.gain.value = (10**(parseInt(varAmp)/20));			// do una valore al guadagno

@@ -31,7 +31,7 @@ var timestamp = 0;				// timestamp of the starting of the test
 var pressedButton;
 //funzione per generare il primo suono
 function playVar(time){
-	console.log("delta: "+(varAmp-stdAmp));
+	console.log("delta: "+(varFreq-stdFreq));
 	console.log("factor: "+currentFactor);
 	var volume1 = context.createGain();		//volume
 	volume1.gain.value = (10**(parseInt(varAmp)/20));			// do una valore al guadagno
@@ -81,32 +81,37 @@ function random(){
 	}
 }
 
-//funzione per implementare l'algoritmo SimpleUpDown
-function select(button){
-	switch(algorithm){
-		case 'SimpleUpDown':
-			nDOWNoneUP(1, button);
-			break;
-		case 'TwoDownOneUp':
-			nDOWNoneUP(2, button);
-			break;
-		case 'ThreeDownOneUp':
-			nDOWNoneUP(3, button);
-			break;
-		default:
-			nDOWNoneUP(1, button);
-			break;
-	}
-	
+function saveResults(){
 	//save new data
-	results[0][i] = currentBlock;		// blocco --> da implementare in futuro
-	results[1][i] = i+1;				// trial
+	results[0][i] = currentBlock;			// blocco --> da implementare in futuro
+	results[1][i] = i+1;					// trial
 	results[2][i] = parseFloat(parseInt((varFreq-stdFreq)*1000)/1000); 	// approximated delta
 	results[3][i] = parseFloat(parseInt(varFreq*1000)/1000);			// approximated variable value
-	results[4][i] = swap;				// variable position
-	results[5][i] = pressedButton; 		// pulsante premuto
-	results[6][i] = history[i];			// correttezza risposta
-	results[7][i] = countRev;			// reversals
+	results[4][i] = swap;					// variable position
+	results[5][i] = pressedButton; 			// pulsante premuto
+	results[6][i] = pressedButton==swap;	// correttezza risposta
+	results[7][i] = countRev;				// reversals
+}
+
+//funzione per implementare l'algoritmo SimpleUpDown
+function select(button){
+	pressedButton = button;
+	saveResults();
+		
+	switch(algorithm){
+		case 'SimpleUpDown':
+			nDOWNoneUP(1);
+			break;
+		case 'TwoDownOneUp':
+			nDOWNoneUP(2);
+			break;
+		case 'ThreeDownOneUp':
+			nDOWNoneUP(3);
+			break;
+		default:
+			nDOWNoneUP(1);
+			break;
+	}
 	
 	//increment counter
 	i++;
@@ -119,7 +124,7 @@ function select(button){
 	if(countRev == reversals+secondReversals){
 		//format datas as a csv file (only the last <reversalThreshold> reversals)
 		//format: block;trials;delta;variableValue;variablePosition;button;correct;reversals;";
-		for(var j = Math.min(reversalsPositions[countRev - reversalThreshold]-1,0); j < i; j++){
+		for(var j = Math.max(reversalsPositions[countRev - reversalThreshold]-1,0); j < i; j++){
 			result += results[0][j] + ";" + results[1][j] + ";" + results[2][j] + ";" + results[3][j] + ";"
 			result += results[4][j] + ";" + results[5][j] + ";" + results[6][j] + ";" + results[7][j] + ",";
 		}
@@ -164,11 +169,11 @@ document.addEventListener('keypress', function keypress(event){
 });
 
 //funzione per implementare l'algoritmo nD1U
-function nDOWNoneUP(n, button){
+function nDOWNoneUP(n){
 	delta = varFreq-stdFreq;
-	pressedButton = button;
-	if(button == swap){ //correct answer
-		history[i] = 0;
+	
+	if(pressedButton == swap){ //correct answer
+		history[i] = 1;
 		correctAnsw += 1;
 		if(correctAnsw == n){ //if there are n consegutive correct answers
 			varFreq = stdFreq + (delta/currentFactor);
@@ -186,9 +191,9 @@ function nDOWNoneUP(n, button){
 		}
 		
 	}else{ //wrong answer
-		varFreq = stdFreq + (delta*currentFactor);
-		history[i] = 1;
+		history[i] = 0;
 		correctAnsw = 0;
+		varFreq = stdFreq + (delta*currentFactor);
 		
 		if(positiveStrike == 1){
 			//there was a reversal

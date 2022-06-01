@@ -28,6 +28,16 @@ DEADLINES E TO-DO:
 	✓ "some characters aren't allowed" anche con '
 	✓ save data si può fare solo se sei loggato
 	✓ il save sound settings sul delta è un problema da un test all'altro, meglio lasciarlo di default
+	- "download data" non "datas"
+	- il feedback deve cancellarsi dopo un certo tempo feedbackduration di 0.5 secondi (nuova feature, facciamo se c'è tempo)
+	- nuovo suono parte dopo un certo tempo interTrialInterval di 1 secondo (nuova feature, facciamo se c'è tempo)
+	- Nel file dati csv breve sostituire "score" con "threshold"
+	- typo in Pure tone intensity discrimination: L'etichetta di Delta è "db" va sostituita con "dB"
+	- controllo su tutti e tre che nAFC non puo' essere minore di 2
+	- A un certo punto "Pure tone intensity discrimination" e' crashato (provare a sbagliare risposta fin dall'inizio)
+	- se uno sbaglia la prova con primo valore di delta, il programma si ferma e manda un pop-up "Are you sure you set a convenient Delta?" (nuova feature, facciamo se c'è tempo)
+	✓ nel csv colonna "correct?" invertire i valori: 1==correct 0==incorrect
+	✓ salva i dati in modo errato (scrive il delta dopo averlo modificato, quindi di fatto in corrispondenza di un trial scrive il delta successivo)
 
 
 - test amp e freq
