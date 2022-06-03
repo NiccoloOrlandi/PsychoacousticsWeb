@@ -134,19 +134,24 @@
 						
 						$refSQL = "SELECT Username FROM account WHERE Referral='{$_SESSION["ref"]}';";
 						$result = $conn->query($refSQL);
-						$row = $result->fetch_assoc();
-						
-						$sql .= "'".$row['Username']."');SELECT LAST_INSERT_ID() as id;";
-						
-						$conn->multi_query($sql);
-						$conn->next_result();
-						$result = $conn->store_result();
-						$row = $result->fetch_assoc();
-						
-						$id = $row['id'];
-						$_SESSION['idGuestTest']=$id;
+						$row = $result->fetch_assoc();	// dopo aver fatto la query controllo se il risultato é nullo, se lo é, il referral non é valido
+						if (!isset($row['Username'])) {
 
-						header("Location: soundSettings.php?test=".$_GET["test"]);
+							header("Location: demographicData.php?test=".$_GET["test"].$ref."&err=3");
+						}
+						else{
+							$sql .= "'".$row['Username']."');SELECT LAST_INSERT_ID() as id;";
+							
+							$conn->multi_query($sql);
+							$conn->next_result();
+							$result = $conn->store_result();
+							$row = $result->fetch_assoc();
+							
+							$id = $row['id'];
+							$_SESSION['idGuestTest']=$id;
+
+							header("Location: soundSettings.php?test=".$_GET["test"]);
+						}
 					}
 					
 				}

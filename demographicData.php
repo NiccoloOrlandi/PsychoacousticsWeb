@@ -29,8 +29,11 @@
 					echo "<div class='alert alert-danger'>Some inserted characters aren't allowed</div>";
 				if($_GET['err']==1)
 					echo "<div class='alert alert-danger'>The name field is required</div>";
-				else if($_GET['err']==2)
+				if($_GET['err']==2)
 					echo "<div class='alert alert-danger'>The name field is required when using a referral code</div>";
+				else if($_GET['err']==3)
+					echo "<div class='alert alert-danger'>Invalid referral code</div>";
+				
 			}
 			
 			if(isset($_SESSION['usr'])){
@@ -102,7 +105,7 @@
 						
 						<div class="input-group flex-nowrap referral">
 						  <span class="input-group-text" id="notes">Invite code</span>
-						  <input type="text" class="form-control" id="ref" name="ref" onchange="verifyRef()" value="<?php if(isset($_GET['ref'])) echo $_GET['ref']; ?>">
+						  <input type="text" class="form-control" id="ref" name="ref" onchange="verifyRef()" value="<?php if(isset($_GET['ref'])) {echo $_GET['ref'];}?>">
 						</div>
 						
 						<div class="form-check">
