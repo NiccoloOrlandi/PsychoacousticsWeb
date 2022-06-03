@@ -38,11 +38,12 @@ DEADLINES E TO-DO:
 	- se uno sbaglia la prova con primo valore di delta, il programma si ferma e manda un pop-up "Are you sure you set a convenient Delta?" (nuova feature, facciamo se c'è tempo)
 	✓ nel csv colonna "correct?" invertire i valori: 1==correct 0==incorrect
 	✓ salva i dati in modo errato (scrive il delta dopo averlo modificato, quindi di fatto in corrispondenza di un trial scrive il delta successivo)
-	- test fatto con link non ha salvato i dati
+	? test fatto con link non ha salvato i dati (ho provato e a me (Andrea) funziona)
 	? amptest: il suono variabile è sempre in prima posizione
 	? salva i dati degli ultimi <revarsal threshold> reversals
 	? ha salvato il test come guest invece che come account (da verificare se è perchè aveva inserito i dati in demographicData e quindi se va bene così o va tolto)
 	✓ risposta corretta/sbagliata da scrivere come 1(corretta) e 0(sbagliata)
+	- link con referral non valido da errore 500 (bisogna gestire l'errore)
 
 
 
