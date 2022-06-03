@@ -42,7 +42,7 @@ DEADLINES E TO-DO:
 	? amptest: il suono variabile è sempre in prima posizione
 	? salva i dati degli ultimi <revarsal threshold> reversals
 	? ha salvato il test come guest invece che come account (da verificare se è perchè aveva inserito i dati in demographicData e quindi se va bene così o va tolto)
-	- risposta corretta/sbagliata da scrivere come 1(corretta) e 0(sbagliata)
+	✓ risposta corretta/sbagliata da scrivere come 1(corretta) e 0(sbagliata)
 
 
 

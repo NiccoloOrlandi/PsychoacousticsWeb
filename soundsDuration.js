@@ -92,7 +92,7 @@ function saveResults(){
 	results[3][i] = parseFloat(parseInt(varDur*1000)/1000);				// approximated variable value
 	results[4][i] = swap;					// variable position
 	results[5][i] = pressedButton; 			// pulsante premuto
-	results[6][i] = pressedButton==swap;	// correttezza risposta
+	results[6][i] = pressedButton==swap? 1:0;	// correttezza risposta
 	results[7][i] = countRev;				// reversals
 }
 
