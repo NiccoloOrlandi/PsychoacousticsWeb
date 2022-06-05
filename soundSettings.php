@@ -72,12 +72,6 @@
 					echo "<div class='alert alert-danger'>The second reversals field is required</div>";
 				else if($_GET['err']=="secRev2")
 					echo "<div class='alert alert-danger'>The second reversals value must be a positive number</div>";
-				else if($_GET['err']=="threshold1")
-					echo "<div class='alert alert-danger'>The reversal threshold field is required</div>";
-				else if($_GET['err']=="threshold2")
-					echo "<div class='alert alert-danger'>The reversal threshold value must be a positive number</div>";
-				else if($_GET['err']=="threshold3")
-					echo "<div class='alert alert-danger'>The reversal threshold value can't be more than the sum of 'Reversals' value and 'Second reversal' value</div>";
 			}
 			
 			if(isset($_SESSION['usr'])){
@@ -289,15 +283,14 @@
 															?>">
 													</div>
 												</div>
-												<div class="input-group flex-nowrap">
-													<span class="input-group-text">Reversal threshold</span>
-													<input type="text" class="form-control" name="threshold" id="reversalsTh"
-														value="<?php 
-															if($row) 
-																echo $row['secrev']; 
-															else 
-																echo "8"; 
-														?>">
+												
+												<div class="form-check checkboxes">
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox" id="cb" name="checkFb" checked>
+														<label class="form-check-label" for="cb">
+														Feedback
+														</label>
+													</div>
 												</div>
 											</div>
 
@@ -337,13 +330,6 @@
 											
 												<!-- Checkbox -->
 												<div class="form-check checkboxes">
-													<div class="form-check">
-														<input class="form-check-input" type="checkbox" id="cb" name="checkFb" >
-														<label class="form-check-label" for="cb">
-														Feedback
-														</label>
-													</div>
-													
 													<?php
 														if(isset($_SESSION['usr']))
 															echo '<div class="form-check">

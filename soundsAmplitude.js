@@ -84,14 +84,13 @@ function random(){
 
 function saveResults(){
 	//save new data
-	results[0][i] = currentBlock;			// blocco --> da implementare in futuro
-	results[1][i] = i+1;					// trial
+	results[0][i] = currentBlock;				// block
+	results[1][i] = i+1;						// trial
 	results[2][i] = parseFloat(parseInt((varAmp-stdAmp)*1000)/1000); 	// approximated delta
 	results[3][i] = parseFloat(parseInt(varAmp*1000)/1000);				// approximated variable value
-	results[4][i] = swap;					// variable position
-	results[5][i] = pressedButton; 			// pulsante premuto
-	results[6][i] = pressedButton==swap? 1:0;	// correttezza risposta
-	results[7][i] = countRev;				// reversals
+	results[4][i] = swap;						// variable position
+	results[5][i] = pressedButton; 				// pressed button
+	results[6][i] = pressedButton==swap? 1:0;	// is the answer correct? 1->yes, 0->no
 }
 
 //funzione per implementare l'algoritmo SimpleUpDown
@@ -114,6 +113,8 @@ function select(button){
 			break;
 	}
 	
+	results[7][i] = countRev; // reversals counter is updated in nDOWNoneUP() function and saved after it
+	
 	//increment counter
 	i++;
 	
@@ -123,27 +124,26 @@ function select(button){
 	
 	//end of the test
 	if(countRev == reversals+secondReversals){
-		//format datas as a csv file (only the last <reversalThreshold> reversals)
+		//format datas as a csv file
 		//format: block;trials;delta;variableValue;variablePosition;button;correct;reversals;";
-		for(var j = Math.max(reversalsPositions[countRev - reversalThreshold]-1,0); j < i; j++){
+		for(var j = 0; j < i; j++){
 			result += results[0][j] + ";" + results[1][j] + ";" + results[2][j] + ";" + results[3][j] + ";"
 			result += results[4][j] + ";" + results[5][j] + ";" + results[6][j] + ";" + results[7][j] + ",";
 		}
 		
 		//calculate score 
-		for(var j = countRev - reversalThreshold; j<countRev; j++){
+		for(var j = 0; j<countRev; j++){
 			deltaBefore = results[2][reversalsPositions[j]-1]; //delta before the reversal
 			deltaAfter = results[2][reversalsPositions[j]]; //delta after the reversal
 			score += (deltaBefore + deltaAfter)/2; //average delta of the reversal
 		}
-		score /= reversalThreshold; //average deltas of every reversal
+		score /= countRev; //average deltas of every reversal
 		score = parseFloat(parseInt(score*100)/100); //approximate to 2 decimal digits
 		
 		//format description as a csv file
 		//prima tutti i nomi, poi tutti i dati
-		var description = "&amp="+amp+"&freq="+freq+"&dur="+dur+/*"&phase="+phase+*/"&blocks="+blocks+"&delta="+startingDelta;
-		description += "&nAFC="+nAFC+"&ISI="+ISI+"&fact="+factor+"&secFact="+secondFactor+"&rev="+reversals+"&secRev="+secondReversals;
-		description += "&threshold="+reversalThreshold+"&alg="+algorithm;
+		var description = "&amp="+amp+"&freq="+freq+"&dur="+dur+/*"&phase="+phase+*/"&blocks="+blocks+"&delta="+startingDelta+"&nAFC="+nAFC;
+		description += "&ISI="+ISI+"&fact="+factor+"&secFact="+secondFactor+"&rev="+reversals+"&secRev="+secondReversals+"&alg="+algorithm;
 		
 		//pass the datas to the php file
 		location.href="saveData.php?result="+result+"&timestamp="+timestamp+"&type=amp"+description+"&currentBlock="+currentBlock+"&score="+score+"&saveSettings="+saveSettings;

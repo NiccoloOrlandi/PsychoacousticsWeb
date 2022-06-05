@@ -29,7 +29,6 @@
 			var secondFactor = parseFloat(<?php echo $_SESSION["secFactor"]; ?>);
 			var reversals = parseInt(<?php echo $_SESSION["reversals"]; ?>);
 			var secondReversals = parseInt(<?php echo $_SESSION["secReversals"]; ?>);
-			var reversalThreshold = parseInt(<?php echo $_SESSION["threshold"]; ?>);
 			var algorithm = <?php echo "'{$_SESSION["algorithm"]}'"; ?>;
 			var currentBlock = parseInt(<?php if(isset($_SESSION["currentBlock"])) echo $_SESSION["currentBlock"]+1; else echo "1"?>);
 			

@@ -98,16 +98,6 @@ else if (($_POST["secReversals"]== "") || ($_POST["secReversals"]== "undefined")
 else if (!is_numeric($_POST["secReversals"]) || $_POST["secReversals"]<0)
     header("Location: soundSettings.php?test={$_GET['test']}&err=secRev2");
 
-//controlli su revTh
-else if (($_POST["threshold"]== "") || ($_POST["threshold"]== "undefined")) 
-    header("Location: soundSettings.php?test={$_GET['test']}&err=threshold1");
-
-else if (!is_numeric($_POST["threshold"]) || $_POST["threshold"]<0)
-    header("Location: soundSettings.php?test={$_GET['test']}&err=threshold2");
-
-else if ($_POST["threshold"]>$_POST["reversals"]+$_POST["secReversals"])
-    header("Location: soundSettings.php?test={$_GET['test']}&err=threshold3");
-
 else{
 	$checkFb = 0;
 	if(isset($_POST["checkFb"]))
@@ -131,7 +121,6 @@ else{
 	$_SESSION["secFactor"] = $_POST["secFactor"];
 	$_SESSION["reversals"] = $_POST["reversals"];
 	$_SESSION["secReversals"] = $_POST["secReversals"];
-	$_SESSION["threshold"] = $_POST["threshold"];
 	$_SESSION["algorithm"] = $_POST["algorithm"];
 	unset($_SESSION['score']);
 	unset($_SESSION['currentBlock']);
