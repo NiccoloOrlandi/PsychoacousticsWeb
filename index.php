@@ -84,7 +84,7 @@
 					and 3-down 1-up. Please refer to Levitt (JASA, 1971) for more info on 
 					these adaptive staircases.
 				</p>
-				<a href="#" class="btn btn-primary darkred" id="test-button" onmouseover="changeColor()" onmouseleave="leave()" onclick="location.href='demographicData.php?test=amp'" >Run the test</a>
+				<a href="#" class="btn btn-primary darkred" id="test-button" onclick="location.href='demographicData.php?test=amp'" >Run the test</a>
 			</div>
 		</div>
 
@@ -102,7 +102,7 @@
 					these adaptive staircases.
 				</p>
 				<!-- passo il tipo di test come parametro nell'url -->
-				<a href="#" class="btn btn-primary darkred" id="test-button" onmouseover="changeColor()" onmouseleave="leave()" onclick="location.href='demographicData.php?test=freq'" >Run the test</a>
+				<a href="#" class="btn btn-primary darkred" id="test-button" onclick="location.href='demographicData.php?test=freq'" >Run the test</a>
 			</div>
 		</div>
 
@@ -118,7 +118,7 @@
 					and 3-down 1-up. Please refer to Levitt (JASA, 1971) for more info on 
 					these adaptive staircases.
 				</p>
-				<a href="#" class="btn btn-primary darkred" id="test-button" onmouseover="changeColor()" onmouseleave="leave()" onclick="location.href='demographicData.php?test=dur'" >Run the test</a>
+				<a href="#" class="btn btn-primary darkred" id="test-button" onclick="location.href='demographicData.php?test=dur'" >Run the test</a>
 			</div>
 		</div>
 
