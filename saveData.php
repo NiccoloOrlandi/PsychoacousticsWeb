@@ -41,7 +41,6 @@
 			$_SESSION["secFact"] = $_GET['secFact'];
 			$_SESSION["rev"] = $_GET['rev'];
 			$_SESSION["secRev"] = $_GET['secRev'];
-			$_SESSION["thr"] = $_GET['threshold'];
 			$_SESSION["alg"] = $_GET['alg'];
 			$_SESSION["currentBlock"] = $_GET['currentBlock'];
 			
@@ -77,7 +76,8 @@
 					$sql = "INSERT INTO test VALUES ('$id', '$count', '{$_GET['timestamp']}', ";
 					$sql .= "'$type', '{$_GET['amp']}', '{$_GET['freq']}', '{$_GET['dur']}', '{$_GET['blocks']}', ";
 					$sql .= "'{$_GET['delta']}', '{$_GET['nAFC']}', '{$_GET['ISI']}', '{$_GET['fact']}', '{$_GET['rev']}', ";
-					$sql .= "'{$_GET['secFact']}', '{$_GET['secRev']}', '{$_GET['threshold']}', '{$_GET['alg']}', '{$_GET['result']}')";
+					$sql .= "'{$_GET['secFact']}', '{$_GET['secRev']}', '{$_GET['alg']}', '{$_GET['result']}')";
+					echo $sql;
 					$conn->query($sql);
 				}
 				
@@ -85,7 +85,7 @@
 					$sql = "UPDATE account SET fk_guestTest = '$id', fk_testCount = '$count' WHERE username = '{$_SESSION['usr']}' ";
 					$conn->query($sql);
 				}
-				header("Location: results.php?continue=0");
+				//header("Location: results.php?continue=0");
 			}
 		}else
 			header("Location: index.php?err=2");

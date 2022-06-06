@@ -4,7 +4,7 @@
 		$sql = "SELECT guest.Name as name, guest.Surname as surname, guest.Gender as gender, 
 				test.Test_count as count, test.Type as type, test.Timestamp as time, test.Amplitude as amp, test.Frequency as freq, 
 				test.Duration as dur, test.blocks as blocks, test.nAFC as nafc, test.ISI as isi, test.Factor as fact, test.Reversal as rev, 
-				test.SecFactor as secfact, test.SecReversal as secrev, test.Threshold as thr, test.Algorithm as alg, test.Result as results, 
+				test.SecFactor as secfact, test.SecReversal as secrev, test.Algorithm as alg, test.Result as results, 
 				account.date as date 
 				
 				FROM account 
@@ -20,7 +20,7 @@
 			$age = date_diff(date_create($row['date']), date_create('now'))->y;
 			$firstValues = $row["name"].";".$row["surname"].";".$age.";".$row["gender"].";".$row["count"].";".$row["type"].";";
 			$firstValues .= $row["time"].";".$row["amp"].";".$row["freq"].";".$row["dur"].";".$row["blocks"].";".$row["nafc"].";";
-			$firstValues .= $row["isi"].";".$row["fact"].";".$row["rev"].";".$row["secfact"].";".$row["secrev"].";".$row["thr"].";".$row["alg"];
+			$firstValues .= $row["isi"].";".$row["fact"].";".$row["rev"].";".$row["secfact"].";".$row["secrev"].";".$row["alg"];
 			
 			$results = explode(",", $row["results"]);
 			writeResults($txt, $firstValues, $results);
@@ -57,7 +57,7 @@
 		
 		//scrivo il nome delle colonne
 		$line = "Name;Surname;Age;Gender;Test Count;Test Type;Timestamp;Amplitude;Frequency;Duration;n. of blocks;";
-		$line .= "nAFC;ISI;First factor;First reversals;Second factor;Second reversals;reversal threshold;algorithm;";
+		$line .= "nAFC;ISI;First factor;First reversals;Second factor;Second reversals;algorithm;";
 		$line .= "block;trials;delta;variable;Variable Position;Pressed button;correct?;reversals\n";
 		
 		fwrite($txt, $line);
@@ -70,7 +70,7 @@
 		$sql = "SELECT guest.Name as name, guest.Surname as surname, guest.Age as age, guest.Gender as gender, 
 				test.Test_count as count, test.Type as type, test.Timestamp as time, test.Amplitude as amp, test.Frequency as freq, 
 				test.Duration as dur, test.blocks as blocks, test.nAFC as nafc, test.ISI as isi, test.Factor as fact, test.Reversal as rev, 
-				test.SecFactor as secfact, test.SecReversal as secrev, test.Threshold as thr, test.Algorithm as alg, test.Result as results
+				test.SecFactor as secfact, test.SecReversal as secrev, test.Algorithm as alg, test.Result as results
 				
 				FROM account 
 				INNER JOIN guest ON account.Username=guest.fk_guest
@@ -83,7 +83,7 @@
 			//valore della prima parte (quella fissa che va ripetuta)
 			$firstValues = $row["name"].";".$row["surname"].";".$row["age"].";".$row["gender"].";".$row["count"].";".$row["type"].";";
 			$firstValues .= $row["time"].";".$row["amp"].";".$row["freq"].";".$row["dur"].";".$row["blocks"].";".$row["nafc"].";";
-			$firstValues .= $row["isi"].";".$row["fact"].";".$row["rev"].";".$row["secfact"].";".$row["secrev"].";".$row["thr"].";".$row["alg"];
+			$firstValues .= $row["isi"].";".$row["fact"].";".$row["rev"].";".$row["secfact"].";".$row["secrev"].";".$row["alg"];
 				
 			//parte variabile e scrittura su file
 			$results = explode(",", $row["results"]);

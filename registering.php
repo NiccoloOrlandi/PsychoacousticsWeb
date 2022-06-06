@@ -83,7 +83,6 @@
 				
 				if($date != "")
 					$sql .= ",'$date' ";
-				
 				else
 					$sql .= ",NULL ";
 					
