@@ -39,7 +39,14 @@
 									echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"download.php?format=reduced\"'>Download data (thresholds only)</button>";
 									echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"index.php\"'>Home</button>";
 								}else{
-									echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"{$_SESSION['type']}test.php\"'>Continue</button>";
+									$page = "test.php";
+									if($_SESSION['type'] == "PURE_TONE_FREQUENCY")
+										$page = "freq".$page;
+									if($_SESSION['type'] == "PURE_TONE_INTENSITY")
+										$page = "amp".$page;
+									if($_SESSION['type'] == "PURE_TONE_DURATION")
+										$page = "dur".$page;
+									echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"{$page}\"'>Continue</button>";
 								}
 							}
 						?>
