@@ -83,7 +83,7 @@
 					
 					$sql="SELECT test.Amplitude as amp, test.Frequency as freq, test.Duration as dur, test.blocks as blocks, 
 						test.nAFC as nafc, test.ISI as isi, test.Factor as fact, test.Delta as delta, test.Reversal as rev, 
-						test.SecFactor as secfact, test.SecReversal as secrev, test.Threshold as thr, test.Algorithm as alg
+						test.SecFactor as secfact, test.SecReversal as secrev, test.Algorithm as alg
 										
 						FROM test
 						INNER JOIN account ON account.fk_GuestTest=test.Guest_ID AND account.fk_TestCount=test.Test_count
@@ -297,7 +297,7 @@
 											<!-- Radios, sono raggruppati in un div che sta sulla sinistra-->
 											<div class="left-div">
 												<div class="form-check">
-													<input class="form-check-input" type="radio" name="algorithm" value="SimpleUpDown" 
+													<input class="form-check-input" type="radio" name="algorithm" value="SimpleUpDown" id="alg"
 														<?php 
 															if($row && $row['alg']=="SimpleUpDown")
 																echo "checked";
@@ -307,7 +307,7 @@
 													</label>
 												</div>
 												<div class="form-check">
-													<input class="form-check-input" type="radio" name="algorithm" value="TwoDownOneUp" 
+													<input class="form-check-input" type="radio" name="algorithm" value="TwoDownOneUp" id="alg"
 														<?php 
 															if(($row && $row['alg']=="TwoDownOneUp") || !$row) 
 																echo "checked"; 
@@ -317,7 +317,7 @@
 													</label>
 												</div>
 												<div class="form-check" >
-													<input class="form-check-input" type="radio" name="algorithm" value="ThreeDownOneUp" 
+													<input class="form-check-input" type="radio" name="algorithm" value="ThreeDownOneUp" id="alg"
 														<?php 
 															if($row && $row['alg']=="ThreeDownOneUp") 
 																echo "checked"; 
