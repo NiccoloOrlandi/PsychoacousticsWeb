@@ -1,5 +1,21 @@
 body{
-    background-color: #fff;
+	background-color: #fff;
+}
+
+.wallpaper{
+	position:absolute;
+	top:0%;
+	left:0%;
+	width: 100%;
+	height: 100%;
+	object-fit:cover;
+	opacity: 0.6;
+	z-index: -1;
+	overflow: hidden;
+}
+
+.navbar{
+    box-shadow: 0px 2px 5px darkred;
 }
 
 .btn-outline-success{
@@ -14,37 +30,10 @@ body{
     color: white;
 }
 
-.btn-primary{
-	border-radius:20px;
-	background-color: #80000F;
-	border-color: black;
-}
-
-.btn-primary:hover{
-	background-color: #80000F;
-	border-color: black;
-}
-
-
-
 .darkred{
     background-color: darkred;
     border-color: black;
 }
-
-.card{
-	float: left; /*fa in modo che tutte le card vengano inpilate a sinistra finchè c'è spazio, poi si va a capo*/
-    width: 45%; /*con questa larghezza ce ne vanno sempre almeno 2 di card, finchè lo schermo è abbastanza largo*/
-    margin: 1rem; /*margine su tutti i lati*/
-    margin-top: 3px; /*solo in alto è diverso*/
-    background-color: #212529;
-    border-color: darkred;
-    box-shadow: 10px 10px 5px gray;
-    color: white;
-	font-weight: lighter;
-	border-radius:5px 30px 5px 30px;
-}
-
 
 .logout{
 	margin-left: 2%;
@@ -78,7 +67,7 @@ body{
 .settings{
 	float:right;
 	margin: 1%;
-	color: white;
+	color: grey;
 	margin-left:2%;
 }
 
@@ -103,16 +92,43 @@ body{
 
 .description{
 	color:black; 
-	padding-bottom: 6rem; 
-	margin-bottom: -2rem; 
+	padding: 3%;
+	margin: 1%;
 	font-weight: 400;
+	background-color: rgba(255,255,255,0.5);
+	border-radius: 30px;
 }
 
 .descriptionTitle{
 	color:black; 
-	padding-bottom: 1rem; 
-	font-size:70px; 
+	padding: 3%;
+	padding-bottom:1%;
+	font-size:60px; 
 	font-weight: 400;
+	text-align:center;
+}
+
+.cards{
+	margin:2%;	
+}
+
+.card{
+	float: left;
+    width: 30%;
+    margin: 1.5%;
+    margin-top: 3px;
+    box-shadow: 3px 3px 5px darkred;
+    color: white;
+	font-weight: lighter;
+	text-align: center;
+	cursor: pointer;
+	background-color:#212529;
+}
+
+.card:hover{
+	background-color:darkred;
+	color: white;
+    box-shadow: 10px 10px 5px #212529;
 }
 
 .settingForm{

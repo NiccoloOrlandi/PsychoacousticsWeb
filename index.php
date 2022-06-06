@@ -18,13 +18,13 @@
 	</head>
 
 	<body>
-
+		<img src="wallpaper.jpg" class="wallpaper">
 		<!-- Barra navigazione -->
 		<nav class="navbar navbar-dark bg-dark">
 			<div class="container-fluid" >
 			  <a class="navbar-brand" href="index.php" >
 				<img src="logo.png" alt="" width="25" height="25" class="d-inline-block align-text-top" >
-				PSYCHOACOUSTICS
+				PSYCHOACOUSTICS-WEB
 				
 			  </a>
 			  <form class="container-fluid logButtons">
@@ -58,70 +58,52 @@
 		?>
 		<!-- Descrizione e presentazione -->
 
-		<div class="container-fluid" style="background-color: #fff; ">
+		<div class="container-fluid">
 
 			<h3 class="display-3 descriptionTitle"> 
-				Welcome to PSYCHOACOUSTICS WEB
+				Welcome to PSYCHOACOUSTICS-WEB
 			</h3>  
 			<h5 class="display-8 description"> 
 				PSYCHOACOUSTICS-WEB is a web developed tool to measure auditory sensory thresholds for a 
 				variety of classic tasks. You can run each test as a guest or you can create your personal 
 				account and costumize the toolbox for your own research. Please refer to the <a href="">instruction 
 				manual</a> for further info on how to use the toolbox.
+				<br><br>
+				The tasks estimate the intensity, frequency and duration discrimination threshold for a pure tone. 
+				In the tasks you can set up the characteristics of the tone as well as 
+				the characteristics of the adaptive staircase. The tests implement the 
+				following adaptive staircase algorithms: simple up-down, 2-down 1-up, 
+				and 3-down 1-up. Please refer to Levitt (JASA, 1971) for more info on 
+				these adaptive staircases.
 			</h5>
 		</div>
 
 		<!-- cards -->
+		<div class="cards">
+			<div class="card">
+				<div class="card-body" onclick="location.href='demographicData.php?test=amp'">
+					<h5 class="card-title" >Pure tone intensity discrimination</h5>
+					<p>Click here to run the test</p>
+				</div>
+			</div>
 
-		<div class="card">
-			<div class="card-body">
-				<h5 class="card-title" >Pure tone intensity discrimination</h5>
-				<p class="card-text" >
-					This task estimate the intensity discrimination threshold for a pure tone. 
-					In the task you can set up the characteristics of the tone as well as 
-					the characteristics of the adaptive staircase. The test implements the 
-					following adaptive staircase algorithms: simple up-down, 2-down 1-up, 
-					and 3-down 1-up. Please refer to Levitt (JASA, 1971) for more info on 
-					these adaptive staircases.
-				</p>
-				<a href="#" class="btn btn-primary darkred" id="test-button" onclick="location.href='demographicData.php?test=amp'" >Run the test</a>
+
+
+			<div class="card">
+				<div class="card-body" onclick="location.href='demographicData.php?test=freq'">
+					<h5 class="card-title">Pure tone frequency discrimination</h5>
+					<p>Click here to run the test</p>
+				</div>
+			</div>
+
+
+			<div class="card">
+				<div class="card-body" onclick="location.href='demographicData.php?test=dur'">
+					<h5 class="card-title">Pure tone duration discrimination</h5>
+					<p>Click here to run the test</p>
+				</div>
 			</div>
 		</div>
-
-
-
-		<div class="card">
-			<div class="card-body">
-				<h5 class="card-title">Pure tone frequency discrimination</h5>
-				<p class="card-text">
-					This task estimate the frequency discrimination threshold for a pure tone. 
-					In the task you can set up the characteristics of the tone as well as 
-					the characteristics of the adaptive staircase. The test implements the 
-					following adaptive staircase algorithms: simple up-down, 2-down 1-up, 
-					and 3-down 1-up. Please refer to Levitt (JASA, 1971) for more info on 
-					these adaptive staircases.
-				</p>
-				<!-- passo il tipo di test come parametro nell'url -->
-				<a href="#" class="btn btn-primary darkred" id="test-button" onclick="location.href='demographicData.php?test=freq'" >Run the test</a>
-			</div>
-		</div>
-
-
-		<div class="card">
-			<div class="card-body">
-				<h5 class="card-title">Pure tone duration discrimination</h5>
-				<p class="card-text">
-					This task estimate the duration discrimination threshold for a pure tone. 
-					In the task you can set up the characteristics of the tone as well as 
-					the characteristics of the adaptive staircase. The test implements the 
-					following adaptive staircase algorithms: simple up-down, 2-down 1-up, 
-					and 3-down 1-up. Please refer to Levitt (JASA, 1971) for more info on 
-					these adaptive staircases.
-				</p>
-				<a href="#" class="btn btn-primary darkred" id="test-button" onclick="location.href='demographicData.php?test=dur'" >Run the test</a>
-			</div>
-		</div>
-
 		<!-- Option 1: Bootstrap Bundle with Popper -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 	</body>
