@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 	<head>
+		<?php session_start(); ?>
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,13 +9,12 @@
 
 		<!-- Bootstrap CSS -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-		<link rel ="stylesheet" href="test.css">
+		<link rel ="stylesheet" href="test.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
 
 		<title>Psychoacoustics-web - Amplitude test</title>
 
 		<script>
 			// pass info from php session to js
-			<?php session_start(); ?>
 			var amp = parseFloat(<?php echo $_SESSION["amplitude"]; ?>);
 			var freq = parseFloat(<?php echo $_SESSION["frequency"]; ?>);
 			var dur = parseFloat(<?php echo $_SESSION["duration"]; ?>);
@@ -34,7 +34,7 @@
 			
 
 		</script>
-		<script type="text/javascript" src="soundsAmplitude.js" defer></script>
+		<script type="text/javascript" src="soundsAmplitude.js<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>" defer></script>
 	</head>
 	
 	<body>

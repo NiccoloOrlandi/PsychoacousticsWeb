@@ -40,3 +40,21 @@ form {
 	display: none;
 	text-align: center;
 }
+
+.p-3.border.bg-light{
+	height: 99%;
+	border-radius: 20px;
+}
+
+.btn-primary.btn-lg.m-3{
+    color: white;
+	font-weight: lighter;
+	text-align: center;
+	cursor: pointer;
+	background-color:darkred;
+	border: 0;
+}
+
+.btn-primary.btn-lg.m-3:hover{
+	background-color:#50000A;	
+}

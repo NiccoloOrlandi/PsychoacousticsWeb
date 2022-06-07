@@ -35,6 +35,23 @@
 	margin-right: 0;
 }
 
+.navbar{
+    box-shadow: 0px 2px 5px darkred;
+}
+
+.btn-primary.btn-lg.m-3{
+    color: white;
+	font-weight: lighter;
+	text-align: center;
+	cursor: pointer;
+	background-color:darkred;
+	border: 0;
+}
+
+.btn-primary.btn-lg.m-3:hover{
+	background-color:#50000A;	
+}
+
 h1, h3{
 	margin:2%;
 	margin-top:5%;
@@ -55,10 +72,6 @@ th{
 	padding:1%;
 	padding-top: 2%;
 	padding-bottom: 2%;
-}
-
-table th + th { 
-	/*border-left:1px solid black;*/
 }
 
 .tableHeader{

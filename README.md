@@ -44,7 +44,7 @@ DEADLINES E TO-DO:
 	- FORSE vuole che togliamo la possibilità di inserire i demographic data se sei loggato (a meno che non metti un referral, suppongo, quindi solo il campo referral e se si inserisce qualcosa escono anche gli altri)
 	✓ risposta corretta/sbagliata da scrivere come 1(corretta) e 0(sbagliata)
 	✓ link con referral non valido da errore 500 (bisogna gestire l'errore)
-	- in soundSettings "Set the characteristics of the standard tone" nel primo blocco, poi "Set the characteristics of the experiment" e "Set the characteristics of the staircase"
+	✓ in soundSettings "Set the characteristics of the standard tone" nel primo blocco, poi "Set the characteristics of the experiment" e "Set the characteristics of the staircase"
 
 
 

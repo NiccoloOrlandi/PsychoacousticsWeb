@@ -52,12 +52,14 @@
 			$firstValues = $row["name"].";".$row["surname"].";".$age.";".$row["gender"].";".$_SESSION["type"].";".$_SESSION["time"].";";
 			$firstValues .= $_SESSION["amp"].";".$_SESSION["freq"].";".$_SESSION["dur"].";".$_SESSION["blocks"].";".$_SESSION["nAFC"].";".$_SESSION["ISI"].";";
 			$firstValues .= $_SESSION["fact"].";".$_SESSION["rev"].";".$_SESSION["secFact"].";".$_SESSION["secRev"].";".$_SESSION["alg"];
+			$firstValues = str_replace(".",",",$firstValues);
 			
 			if($_GET['format']=="complete"){
 				//parte variabile e scrittura su file
 				$results = explode(",", $_SESSION["results"]);
 				//results sarà nella forma ["bl1;tr1;del1;var1;varpos1;but1;cor1;rev1", "bl2;tr2;...", ...]
 				for($i = 0;$i<count($results)-1;$i++){
+					$results[$i] = str_replace(".",",",$results[$i]);
 					fwrite($txt, $firstValues.";");//scrivo i valori fissi
 					fwrite($txt, $results[$i]);//scrivo i valori variabili
 					fwrite($txt, "\n");//vado all'altra linea
@@ -65,6 +67,7 @@
 			}else{
 				$results = explode(";", $_SESSION["score"]);
 				for($i = 0;$i<count($results);$i++){
+					$results[$i] = str_replace(".",",",$results[$i]);
 					fwrite($txt, $firstValues.";");//scrivo i valori fissi
 					fwrite($txt, ($i+1).";");//scrivo il blocco
 					fwrite($txt, $results[$i]);//scrivo lo score del blocco
@@ -73,7 +76,7 @@
 			}
 			
 			fclose($txt);
-			//*scrittura su file (per disattivare togliere uno slash da questo commento)
+			/*scrittura su file (per disattivare togliere uno slash da questo commento)
 			header('Content-Description: File Transfer');
 			header('Content-Disposition: attachment; filename='.basename($path));
 			header('Expires: 0');

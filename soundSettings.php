@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="en">
 	<head>
+		<?php 
+			session_start(); 
+			include "config.php";
+			if(!isset($_GET["test"]))
+				header("Location: index.php");
+		?>
+		
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,14 +15,9 @@
 
 		<!-- Bootstrap CSS -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-		<link rel="stylesheet" href="staircaseStyle.css">
 		
-		<?php 
-			session_start(); 
-			include "config.php";
-			if(!isset($_GET["test"]))
-				header("Location: index.php");
-		?>
+		<link rel="stylesheet" href="staircaseStyle.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
+		
 		<title>Psychoacoustics-web - Test settings</title>
 	</head>
 	<body>
@@ -101,14 +103,15 @@
 		<div class="container" style="margin-top:1%">
 			<div class="row gx-4">
 				<div class="col">
-					<div class=" p-3 border bg-light" style="height:98%">
-						<h1>Set the characteristics of the experiment</h1>
+					<div class=" p-3 border bg-light">
+						<h2>Set the characteristics of the experiment</h2>
 						<form action="soundSettingsValidation.php<?php echo "?test=".$_GET["test"]; ?>" name="Settings" method="post">
 							<!-- Primo slot di setting -->
 							<div class="container p-4" >
 								<div class="row gx-4">
 									<div class="col">
 										<div class="p-3 border bg-light little1">
+											<h6>Set the characteristics of the standard tone</h6>
 											<!-- Contenuto dello slot, qui vanno inseriti tutti i bottoni e i check box del secondo slot -->
 											<div class="input-group flex-nowrap">
 												<span class="input-group-text">Amplitude</span>
@@ -162,6 +165,7 @@
 								<div class="row gx-4">
 									<div class="col">
 									<div class="p-3 border bg-light little2">
+											<h6>Set the characteristics of the experiment</h6>
 							
 											<!-- Contenuto dello slot, qui vanno inseriti tutti i bottoni e i check box del secondo slot -->
 											
@@ -234,6 +238,7 @@
 								<div class="row gx-4">
 									<div class="col">
 										<div class="p-3 border bg-light">
+											<h6>Set the characteristics of the staircase</h6>
 										
 											<!-- Contenuto dello slot, qui vanno inseriti tutti i componenti del terzo slot -->
 											

@@ -21,6 +21,7 @@
 			$firstValues = $row["name"].";".$row["surname"].";".$age.";".$row["gender"].";".$row["count"].";".$row["type"].";";
 			$firstValues .= $row["time"].";".$row["amp"].";".$row["freq"].";".$row["dur"].";".$row["blocks"].";".$row["nafc"].";";
 			$firstValues .= $row["isi"].";".$row["fact"].";".$row["rev"].";".$row["secfact"].";".$row["secrev"].";".$row["alg"];
+			$firstValues = str_replace(".",",",$firstValues);
 			
 			$results = explode(",", $row["results"]);
 			writeResults($txt, $firstValues, $results);
@@ -30,6 +31,7 @@
 	function writeResults($txt, $firstValues, $results){
 		//results sarà nella forma ["bl1;tr1;del1;var1;varpos1;but1;cor1;rev1", "bl2;tr2;...", ...]
 		for($i = 0;$i<count($results)-1;$i++){
+			$results[$i] = str_replace(".",",",$results[$i]);
 			fwrite($txt, $firstValues.";");
 			fwrite($txt, $results[$i]);
 			fwrite($txt, "\n");//vado all'altra linea
@@ -84,6 +86,7 @@
 			$firstValues = $row["name"].";".$row["surname"].";".$row["age"].";".$row["gender"].";".$row["count"].";".$row["type"].";";
 			$firstValues .= $row["time"].";".$row["amp"].";".$row["freq"].";".$row["dur"].";".$row["blocks"].";".$row["nafc"].";";
 			$firstValues .= $row["isi"].";".$row["fact"].";".$row["rev"].";".$row["secfact"].";".$row["secrev"].";".$row["alg"];
+			$firstValues = str_replace(".",",",$firstValues);
 				
 			//parte variabile e scrittura su file
 			$results = explode(",", $row["results"]);

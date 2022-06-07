@@ -2,6 +2,10 @@ body{
 	background-color: #fff;
 }
 
+.alert{
+	margin:2%;
+}
+
 .wallpaper{
 	position:absolute;
 	top:0%;

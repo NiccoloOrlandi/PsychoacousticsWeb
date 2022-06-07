@@ -6,7 +6,7 @@
 		//sql injections handling
 		$characters = ['"', "\\", chr(0)];
 		$specialCharacters = false;
-		str_replace("'","''",$_POST['username']);
+		$_POST['username'] = str_replace("'","''",$_POST['username']);
 		foreach($characters as $char)
 			$specialCharacters |= is_numeric(strpos($_POST['username'], $char));
 		

@@ -44,7 +44,6 @@
 			$_SESSION["alg"] = $_GET['alg'];
 			$_SESSION["currentBlock"] = $_GET['currentBlock'];
 			
-			
 			if($_GET['currentBlock']<$_GET['blocks']){
 				header("Location: results.php?continue=1");
 			}else{

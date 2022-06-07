@@ -1,3 +1,7 @@
+.alert{
+	margin:2%;
+}
+
 .btn-primary.btn-lg.m-3{
     color: white;
 	font-weight: lighter;
@@ -57,6 +61,7 @@ input[type="checkbox"]:focus, input[type="radio"]:focus{
 	float: left;
 	margin: 5% !important;
 	margin-top: 0px !important;
+	margin-bottom: 2% !important;
 	width: 40%;
 }
 
@@ -64,7 +69,7 @@ input[type="checkbox"]:focus, input[type="radio"]:focus{
 	/*in soundsettings i primi due gruppi di input box (i più piccoli) contengono solo oggetti float,
 	quindi hanno bisogno di avere una dimensione maggiore di 100% per coprire tutto. Gli oggetti con
 	proprietà float non occupano spazio e quindi il div crede di essere vuoto e diventa troppo piccolo*/
-	height: 140% !important;
+	height: 130% !important;
 }
 
 .p-3.border.bg-light.little1 .input-group.flex-nowrap{
@@ -72,7 +77,8 @@ input[type="checkbox"]:focus, input[type="radio"]:focus{
 }
 
 .p-3.border.bg-light{
-	height: 102%;
+	height: 99%;
+	border-radius: 20px;
 }
 
 .right-div{
@@ -135,6 +141,10 @@ input[type="checkbox"]:focus, input[type="radio"]:focus{
 	.left-div{
 		width: 95%;
 		float: none;
+	}
+	
+	.p-3.border.bg-light{
+		height: 101%;
 	}
 	
 	.form-check{

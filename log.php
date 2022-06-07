@@ -9,7 +9,7 @@
 		$characters = ['"', "\\", chr(0)];
 		$specialCharacters = false;
 		foreach($elements as $elem){
-			str_replace("'","''",$_POST[$elem]);
+			$_POST[$elem] = str_replace("'","''",$_POST[$elem]);
 			foreach($characters as $char)
 				$specialCharacters |= is_numeric(strpos($_POST[$elem], $char));
 		}
