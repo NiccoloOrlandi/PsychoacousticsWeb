@@ -72,6 +72,7 @@ DEADLINES E TO-DO:
 	✓ risposta corretta/sbagliata da scrivere come 1(corretta) e 0(sbagliata)
 	✓ link con referral non valido da errore 500 (bisogna gestire l'errore)
 	✓ in soundSettings "Set the characteristics of the standard tone" nel primo blocco, poi "Set the characteristics of the experiment" e "Set the characteristics of the staircase"	
+	- se si fa un test togliendo la spunta a "save data" esce l'errore something went wrong nella home
 
 - test amp e freq
 	✓ rivedere amp iniziale
