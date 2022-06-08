@@ -18,7 +18,7 @@ DEADLINES E TO-DO:
 - domande prof Grassi
 	
 	
--cose da fare con i tecnici aggiornamentop 28/05/2022
+-cose da fare con i tecnici
 	? aggiungere email al db -> migliardi
 	- psychoacousticsWEB nell'url
 	- capchta, serve https
