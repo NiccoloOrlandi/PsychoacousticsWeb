@@ -149,7 +149,9 @@ input[type="checkbox"]:focus, input[type="radio"]:focus{
 	
 	.form-check{
 		/*per evitare che si sovrapponga ad altri oggetti*/
-		float: left;
+		float: none;
+		margin: 5%;
+		width: 95%;
 	}
 	
 	.referral{
