@@ -18,3 +18,12 @@ form {
 .form-select{
 	margin-bottom: 3%;
 }
+
+@media all and (max-width: 991px) {
+	form {
+		width: 90%;
+		padding: 3%;
+		margin: 5%;
+		margin-top:15%;
+	}
+}

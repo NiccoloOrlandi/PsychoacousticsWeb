@@ -58,3 +58,29 @@ form {
 .btn-primary.btn-lg.m-3:hover{
 	background-color:#50000A;	
 }
+
+@media all and (max-width: 900px) {
+	.window{
+		padding: 5%;
+		width: 80%;
+		margin: 10% auto;
+	}
+	
+	.window .btn-success{
+		margin: 2%;
+		margin-top: 5%;
+		padding: 3% 5% 3%;
+	}
+	
+	form {
+		padding: 5%;
+		width: 90%;
+		margin: 10% auto;
+	}
+	
+	.alert{
+		margin: 20%;
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
+}

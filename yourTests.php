@@ -16,7 +16,7 @@
 
 		<!-- Bootstrap CSS -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-		<link rel ="stylesheet" href="yourTests.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
+		<link rel ="stylesheet" href="style.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
 
 		<title>Psychoacoustics-web - Test results</title>
 	</head>
@@ -71,9 +71,9 @@
 		
 		<table>
 			<tr class="tableHeader">
-				<th>Test</th>
-				<th>Time</th>
-				<th>Type</th>
+				<td>Test</td>
+				<td>Time</td>
+				<td>Type</td>
 			</tr>
 			<?php
 				try{
@@ -81,9 +81,9 @@
 					$result=$conn->query($sql);
 					while($row=$result->fetch_assoc()){
 						echo "<tr>";
-						echo "<th>".$row["Test_count"]."</th>";
-						echo "<th>".$row["Timestamp"]."</th>";
-						echo "<th>".$row["Type"]."</th>";
+						echo "<td>".$row["Test_count"]."</td>";
+						echo "<td>".$row["Timestamp"]."</td>";
+						echo "<td>".$row["Type"]."</td>";
 						echo "</tr>";
 					}
 				}catch(Exception $e){
@@ -96,10 +96,10 @@
 		
 		<table>
 			<tr class="tableHeader">
-				<th>Name</th>
-				<th>Test</th>
-				<th>Time</th>
-				<th>Type</th>
+				<td>Name</td>
+				<td>Test</td>
+				<td>Time</td>
+				<td>Type</td>
 			</tr>
 			<?php
 				try{
@@ -107,10 +107,10 @@
 					$result=$conn->query($sql);
 					while($row=$result->fetch_assoc()){
 						echo "<tr>";
-						echo "<th>".$row["Name"]."</th>";
-						echo "<th>".$row["Test_count"]."</th>";
-						echo "<th>".$row["Timestamp"]."</th>";
-						echo "<th>".$row["Type"]."</th>";
+						echo "<td>".$row["Name"]."</td>";
+						echo "<td>".$row["Test_count"]."</td>";
+						echo "<td>".$row["Timestamp"]."</td>";
+						echo "<td>".$row["Type"]."</td>";
 						echo "</tr>";
 					}
 				}catch(Exception $e){

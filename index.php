@@ -3,7 +3,7 @@
 	<head>
 		<?php 
 			session_start(); 
-			$_SESSION['version'] = 1; //change this number to force cache update
+			$_SESSION['version'] = 2; //change this number to force cache update
 		?>
 		
 		<!-- Required meta tags -->
@@ -23,7 +23,7 @@
 	</head>
 
 	<body>
-		<img src="wallpaper.jpg" class="wallpaper">
+		<img src="wallpaper1.jpg" class="wallpaper">
 		<!-- Barra navigazione -->
 		<nav class="navbar navbar-dark bg-dark">
 			<div class="container-fluid" >

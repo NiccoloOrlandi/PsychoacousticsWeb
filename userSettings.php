@@ -83,7 +83,6 @@
 					psychoacoustics.dpg.psy.unipd.it/sito/demographicData.php?test=amp&amp;ref=<?php echo $ref; ?>
 				</span>
 			</div>
-			<button type="submit" class="btn btn-primary btn-lg m-1">Change invite code</button>
 			<div class="input-group mb-3">
 				<span class="input-group-text title" onclick="copy('link')" title="click to copy">Link's test type</span>
 				<select onchange="updateLink()" id="testType">
@@ -92,6 +91,7 @@
 					<option value="dur">Duration test</option>
 				</select>
 			</div>
+			<button type="submit" class="btn btn-primary btn-lg m-3">Change invite code</button>
 			
 		</form>
 		<?php
@@ -106,7 +106,7 @@
 							<input type="text" class="form-control" placeholder="Username"  name="username">
 						</div>
 					
-						<button type="submit"  class="btn btn-primary btn-lg m-1">Create new Superuser</button>
+						<button type="submit"  class="btn btn-primary btn-lg m-3">Create new Superuser</button>
 					</form>';
 				}
 			}catch(Exception $e){
@@ -123,7 +123,7 @@
 				<span class="input-group-text">New password</span>
 				<input type="password" class="form-control" placeholder="New password" name="newPsw">
 			</div>
-			<button type="submit" class="btn btn-primary btn-lg m-1">Change Password</button>
+			<button type="submit" class="btn btn-primary btn-lg m-3">Change Password</button>
 		</form>
 
 		<form method="post" action="saveSettings.php" class="settingForm">
@@ -173,7 +173,7 @@
 				<span class="input-group-text">Notes</span>
 				<input type="text" class="form-control" placeholder="Notes" name="notes" value="<?php echo $notes; ?>">
 			</div>
-			<button type="submit" class="btn btn-primary btn-lg m-1">Save</button>
+			<button type="submit" class="btn btn-primary btn-lg m-3">Save</button>
 		</form>
 	</body>
 </html>
