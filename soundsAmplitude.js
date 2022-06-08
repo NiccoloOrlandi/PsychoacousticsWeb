@@ -65,7 +65,7 @@ function playStd(time){
 //funzione per randomizzare l'output
 function random(){
 	var rand = Math.floor(Math.random() * nAFC);// the variable sound will be the rand-th sound played
-	
+	rand = 0;
 	for(var j=0;j<nAFC;j++){
 		if(j==rand)
 			playVar((j*(dur/1000)) + j*(ISI/1000));
