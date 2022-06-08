@@ -40,7 +40,7 @@ DEADLINES E TO-DO:
 		- con il link si mandano anche i settings salvati nell'account
 		- quando si usa un link dopo demographicData esce una pagina di spiegazioni e non quella dei settings
 		- demographicData: quando si è loggati escono i campi solo se c'è il referral + pulsante per mettere il proprio referral
-		- responsive
+		✓ responsive
 		- test con rumore per amp e dur 
 	- altro da fare il prima possibile
 		- lista errori/limiti dei valori nel manuale
