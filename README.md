@@ -35,7 +35,7 @@ DEADLINES E TO-DO:
 	✓ A un certo punto "Pure tone intensity discrimination" e' crashato (provare a sbagliare risposta fin dall'inizio)
 	- il feedback deve cancellarsi dopo un certo tempo <feedbackduration> di 0.5 secondi (nuova feature, facciamo se c'è tempo)
 	- nuovo suono parte dopo un certo tempo <interTrialInterval> di 1 secondo (nuova feature, facciamo se c'è tempo)
-	- se uno sbaglia la prova con primo valore di delta, il programma si ferma e manda un pop-up "Are you sure you set a convenient Delta?" (nuova feature, facciamo se c'è tempo)
+	✗ se uno sbaglia la prova con primo valore di delta, il programma si ferma e manda un pop-up "Are you sure you set a convenient Delta?" (nuova feature, facciamo se c'è tempo)
 	✓ nel csv colonna "correct?" invertire i valori: 1==correct 0==incorrect
 	✓ salva i dati in modo errato (scrive il delta dopo averlo modificato, quindi di fatto in corrispondenza di un trial scrive il delta successivo)
 	✓ test fatto con link non ha salvato i dati (ho provato e a me (Andrea) funziona)
@@ -45,7 +45,9 @@ DEADLINES E TO-DO:
 	✓ risposta corretta/sbagliata da scrivere come 1(corretta) e 0(sbagliata)
 	✓ link con referral non valido da errore 500 (bisogna gestire l'errore)
 	✓ in soundSettings "Set the characteristics of the standard tone" nel primo blocco, poi "Set the characteristics of the experiment" e "Set the characteristics of the staircase"
-
+	- reversal threshold solo per calcolo della soglia
+	- con il link si mandano anche i settings salvati nell'account
+	- quando si usa un link dopo demographicData esce una pagina di spiegazioni e non quella dei settings
 
 
 - test amp e freq
@@ -196,16 +198,21 @@ DEADLINES E TO-DO:
 	- psychoacoustics -> psychoacousticsweb
 	
 - domande prof Grassi
-	? aggiungere email al db -> migliardi
 	- lista errori/limiti dei valori nel manuale? 
 		quando si sbaglia esce un messaggio di errore che descrive il problema ma forse meglio descrivere i vari possibili casi anche nella documentazione
-	- save data per tutti o solo per utenti loggati?
-	- se varAmp dovrebbe superare lo 0, mettiamo a 0 o lasciamo com'è?
-	- feedbackduration e interTrialInterval sono variabili o costanti? l'utente deve poterle modificare?
-	- ora nei csv (e nel db) ci sono solo i dati relativi agli ultimi <reversal threshold> reversals 
-		(prima per un errore venivano inseriti tutti dal primo trial in poi). Va bene o era meglio tutti?
+	✓ feedbackduration e interTrialInterval sono variabili o costanti? l'utente deve poterle modificare? (interTrialInterval minimo 0.5 secondi, default 1 secondo, feedbackduration sempre 0.5 secondi)
+	- ora i punti vengono sostituiti da virgole nei file csv così da essere letti correttamente da excel, va bene o lasciamo i punti?
+	- togliamo la possibilità di inserire i demographic data se sei loggato (a meno che non metti un referral, quindi c'è solo il campo referral e se 
+		si inserisce qualcosa escono anche gli altri)
+	- psychoacousticsweb o psychoacoustics nell'url?
+	- link al manuale nella home page
+	- la grafica della homepage va bene? ci sono immagini più adatte?
+	- va fatto responsive per il bando o per la tesi?
+	- link con referral manda anche i setting del test e non permette di cambiarli (molto difficile da fare, serve tempo)
+	- funzioni diverse da sinusoidi, si può fare (vedasi doc) ma serve tempo, va fatto per la tesi? cosa va fatto per la tesi di nuove features?
 	
 -cose da fare con i tecnici aggiornamentop 28/05/2022
+	? aggiungere email al db -> migliardi
 	- cambio nome psychoacoustics web
 	- capchta, serve https
 	- cambiare la landing page
