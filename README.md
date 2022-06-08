@@ -15,6 +15,36 @@ legenda:
 
 DEADLINES E TO-DO:
 
+- domande prof Grassi
+	
+	
+-cose da fare con i tecnici aggiornamentop 28/05/2022
+	? aggiungere email al db -> migliardi
+	- psychoacousticsWEB nell'url
+	- capchta, serve https
+	- settare smtp per inviare le email
+	- copy to clipboard di userSettings richiede https (togliere overflow:scroll dopo aver risolto)
+
+- nuove features (in ordine)
+	- roba facile e veloce
+		✓ '.' come separatore dei decimali nei csv
+		✓ cambio immagine homepage
+		- etichette a tutti i valori
+		- db->dB negli errori
+		- link al manuale nella home page
+	- nuove feature in ordine di importanza
+		- sistemare click
+		- il feedback deve cancellarsi dopo un certo tempo <feedbackduration> di 0.5 secondi (nuova feature, facciamo se c'è tempo)
+		- nuovo suono parte dopo un certo tempo <interTrialInterval> di 1 secondo (nuova feature, facciamo se c'è tempo)
+		- reversal threshold solo per calcolo della soglia
+		- con il link si mandano anche i settings salvati nell'account
+		- quando si usa un link dopo demographicData esce una pagina di spiegazioni e non quella dei settings
+		- demographicData: quando si è loggati escono i campi solo se c'è il referral + pulsante per mettere il proprio referral
+		- responsive
+		- test con rumore per amp e dur 
+	- altro da fare il prima possibile
+		- lista errori/limiti dei valori nel manuale
+
 - feedback testing:
 	✓ file csv codifica utf 8
 	✓ test ampiezza, varAmp diventa positivo (>0)
@@ -33,22 +63,15 @@ DEADLINES E TO-DO:
 	✓ typo in Pure tone intensity discrimination: L'etichetta di Delta è "db" va sostituita con "dB"
 	✓ controllo su tutti e tre che nAFC non puo' essere minore di 2
 	✓ A un certo punto "Pure tone intensity discrimination" e' crashato (provare a sbagliare risposta fin dall'inizio)
-	- il feedback deve cancellarsi dopo un certo tempo <feedbackduration> di 0.5 secondi (nuova feature, facciamo se c'è tempo)
-	- nuovo suono parte dopo un certo tempo <interTrialInterval> di 1 secondo (nuova feature, facciamo se c'è tempo)
 	✗ se uno sbaglia la prova con primo valore di delta, il programma si ferma e manda un pop-up "Are you sure you set a convenient Delta?" (nuova feature, facciamo se c'è tempo)
 	✓ nel csv colonna "correct?" invertire i valori: 1==correct 0==incorrect
 	✓ salva i dati in modo errato (scrive il delta dopo averlo modificato, quindi di fatto in corrispondenza di un trial scrive il delta successivo)
 	✓ test fatto con link non ha salvato i dati (ho provato e a me (Andrea) funziona)
 	? amptest: il suono variabile è sempre in prima posizione (risistemare quando mandiamo il sito al bando)
 	✓ salva i dati degli ultimi <revarsal threshold> reversals (togliere reversal threshold)
-	- FORSE vuole che togliamo la possibilità di inserire i demographic data se sei loggato (a meno che non metti un referral, suppongo, quindi solo il campo referral e se si inserisce qualcosa escono anche gli altri)
 	✓ risposta corretta/sbagliata da scrivere come 1(corretta) e 0(sbagliata)
 	✓ link con referral non valido da errore 500 (bisogna gestire l'errore)
-	✓ in soundSettings "Set the characteristics of the standard tone" nel primo blocco, poi "Set the characteristics of the experiment" e "Set the characteristics of the staircase"
-	- reversal threshold solo per calcolo della soglia
-	- con il link si mandano anche i settings salvati nell'account
-	- quando si usa un link dopo demographicData esce una pagina di spiegazioni e non quella dei settings
-
+	✓ in soundSettings "Set the characteristics of the standard tone" nel primo blocco, poi "Set the characteristics of the experiment" e "Set the characteristics of the staircase"	
 
 - test amp e freq
 	✓ rivedere amp iniziale
@@ -196,25 +219,3 @@ DEADLINES E TO-DO:
 	✓ dati per recapchta : email futuro proprietario, nome dominio, non posso farlo ora perché servono questi dati e un collegamento https
 	✓ download file da server (in locale funziona)
 	- psychoacoustics -> psychoacousticsweb
-	
-- domande prof Grassi
-	- lista errori/limiti dei valori nel manuale? 
-		quando si sbaglia esce un messaggio di errore che descrive il problema ma forse meglio descrivere i vari possibili casi anche nella documentazione
-	✓ feedbackduration e interTrialInterval sono variabili o costanti? l'utente deve poterle modificare? (interTrialInterval minimo 0.5 secondi, default 1 secondo, feedbackduration sempre 0.5 secondi)
-	- ora i punti vengono sostituiti da virgole nei file csv così da essere letti correttamente da excel, va bene o lasciamo i punti?
-	- togliamo la possibilità di inserire i demographic data se sei loggato (a meno che non metti un referral, quindi c'è solo il campo referral e se 
-		si inserisce qualcosa escono anche gli altri)
-	- psychoacousticsweb o psychoacoustics nell'url?
-	- link al manuale nella home page
-	- la grafica della homepage va bene? ci sono immagini più adatte?
-	- va fatto responsive per il bando o per la tesi?
-	- link con referral manda anche i setting del test e non permette di cambiarli (molto difficile da fare, serve tempo)
-	- funzioni diverse da sinusoidi, si può fare (vedasi doc) ma serve tempo, va fatto per la tesi? cosa va fatto per la tesi di nuove features?
-	
--cose da fare con i tecnici aggiornamentop 28/05/2022
-	? aggiungere email al db -> migliardi
-	- cambio nome psychoacoustics web
-	- capchta, serve https
-	- cambiare la landing page
-	- settare smtp per inviare le email
-	- copy to clipboard di userSettings richiede https (togliere overflow:scroll dopo aver risolto)
