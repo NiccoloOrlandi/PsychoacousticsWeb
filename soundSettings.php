@@ -29,7 +29,7 @@
 				else if($_GET['err']=="amp2")
 					echo "<div class='alert alert-danger'>The amplitude value must be a number</div>";
 				else if($_GET['err']=="amp3")
-					echo "<div class='alert alert-danger'>The amplitude value can't be a positive value (maximum is 0db)</div>";
+					echo "<div class='alert alert-danger'>The amplitude value can't be a positive value (maximum is 0dB)</div>";
 				else if($_GET['err']=="freq1")
 					echo "<div class='alert alert-danger'>The frequency field is required</div>";
 				else if($_GET['err']=="freq2")
@@ -94,7 +94,7 @@
 					$result=$conn->query($sql);
 					$row=$result->fetch_assoc();
 				}catch(Exception $e){
-					header("Location: index.php?err=db");
+					header("Location: index.php?err=dB");
 				}
 			}else
 				$row=false;
@@ -113,7 +113,7 @@
 										<div class="p-3 border bg-light little1">
 											<h6>Set the characteristics of the standard tone</h6>
 											<!-- Contenuto dello slot, qui vanno inseriti tutti i bottoni e i check box del secondo slot -->
-											<div class="input-group flex-nowrap">
+											<div class="input-group flex-nowrap" title="dB of the standard tone, 0dB = 1 is the maximum value">
 												<span class="input-group-text">Amplitude</span>
 												<input type="text" class="form-control" name="amplitude" id="amplitude"
 													value="<?php 
@@ -125,7 +125,7 @@
 												<span class="input-group-text">dB</span>
 											</div>
 
-											<div class="input-group flex-nowrap">
+											<div class="input-group flex-nowrap" title="Hz of the standard tone, an higher frequency makes the sound sharper">
 												<span class="input-group-text">Frequency</span>
 												<input type="text" class="form-control" name="frequency" id="frequency"
 													value="<?php 
@@ -137,9 +137,9 @@
 												<span class="input-group-text">Hz</span>
 											</div>
 
-											<div class="input-group flex-nowrap">
+											<div class="input-group flex-nowrap" title="ms of the standard tone, an higher value makes the sound last longer">
 												<span class="input-group-text">Duration</span>
-												<input type="text" class="form-control" name="duration" id="duration" 
+												<input type="text" class="form-control" name="duration" id="duration"
 													value="<?php 
 														if($row) 
 															echo $row['dur']; 
@@ -151,7 +151,7 @@
 
 											<!-- <div class="input-group flex-nowrap">
 												<span class="input-group-text">Starting phase</span>
-												<input type="text" class="form-control" name="phase" id="phase" placeholder="Standard" aria-label="Username" aria-describedby="addon-wrapping" value="0">
+												<input type="text" class="form-control" name="phase" id="phase" placeholder="Standard" aria-label="Username" aria-describedBy="addon-wrapping" value="0">
 												<span class="input-group-text">°</span>
 											</div> -->
 										</div>
@@ -245,8 +245,8 @@
 											<!-- input boxes, sono raggruppati in un div che sta sulla destra-->
 											<div class="right-div">
 												<div class="left-div">
-													<div class="input-group flex-nowrap">
-														<span class="input-group-text">Factor</span>
+													<div class="input-group flex-nowrap" title="the changing factor for the first raversals">
+														<span class="input-group-text">First factor</span>
 														<input type="text" class="form-control" name="factor" id="factor" 
 															value="<?php 
 																if($row) 
@@ -255,8 +255,8 @@
 																	echo "2"; 
 															?>">
 													</div>
-													<div class="input-group flex-nowrap">
-														<span class="input-group-text">Reversals</span>
+													<div class="input-group flex-nowrap" title="for how many reversals the algorithm will use the first factor">
+														<span class="input-group-text">First reversals</span>
 														<input type="text" class="form-control" name="reversals" id="reversals"
 															value="<?php 
 																if($row) 
@@ -267,7 +267,7 @@
 													</div>
 												</div>
 												<div class="right-div">
-													<div class="input-group flex-nowrap">
+													<div class="input-group flex-nowrap" title="the changing factor for the second raversals">
 														<span class="input-group-text">Second factor</span>
 														<input type="text" class="form-control" name="secFactor" id="secondFactor"
 															value="<?php 
@@ -277,7 +277,7 @@
 																	echo "1.414"; 
 															?>">
 													</div>
-													<div class="input-group flex-nowrap">
+													<div class="input-group flex-nowrap" title="for how many reversals the algorithm will use the second factor">
 														<span class="input-group-text">Second reversals</span>
 														<input type="text" class="form-control" name="secReversals" id="reversals"
 															value="<?php 
@@ -289,11 +289,11 @@
 													</div>
 												</div>
 												
-												<div class="form-check checkboxes">
+												<div class="form-check checkboxes" title="if checked a message will tell if you choose the correct sound">
 													<div class="form-check">
 														<input class="form-check-input" type="checkbox" id="cb" name="checkFb" checked>
 														<label class="form-check-label" for="cb">
-														Feedback
+														FeedBack
 														</label>
 													</div>
 												</div>
@@ -301,7 +301,7 @@
 
 											<!-- Radios, sono raggruppati in un div che sta sulla sinistra-->
 											<div class="left-div">
-												<div class="form-check">
+												<div class="form-check" title="every correct answer increases the difficulty of the test, every wrong answer makes it easier">
 													<input class="form-check-input" type="radio" name="algorithm" value="SimpleUpDown" id="alg"
 														<?php 
 															if($row && $row['alg']=="SimpleUpDown")
@@ -311,7 +311,7 @@
 														SimpleUpDown
 													</label>
 												</div>
-												<div class="form-check">
+												<div class="form-check" title="two consecutive correct answer increase the difficulty of the test, every wrong answer makes it easier">
 													<input class="form-check-input" type="radio" name="algorithm" value="TwoDownOneUp" id="alg"
 														<?php 
 															if(($row && $row['alg']=="TwoDownOneUp") || !$row) 
@@ -321,7 +321,7 @@
 														TwoDownOneUp
 													</label>
 												</div>
-												<div class="form-check" >
+												<div class="form-check" title="three consecutive correct answer increase the difficulty of the test, every wrong answer makes it easier">
 													<input class="form-check-input" type="radio" name="algorithm" value="ThreeDownOneUp" id="alg"
 														<?php 
 															if($row && $row['alg']=="ThreeDownOneUp") 
@@ -337,7 +337,7 @@
 												<div class="form-check checkboxes">
 													<?php
 														if(isset($_SESSION['usr']))
-															echo '<div class="form-check">
+															echo '<div class="form-check" title="if checked the settings will be saved and used as default for the next tests">
 																	<input class="form-check-input" type="checkbox" id="saveSettings" name="saveSettings">
 																	<label class="form-check-label" for="saveSettings">
 																		Save settings

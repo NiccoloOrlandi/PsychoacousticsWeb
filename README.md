@@ -29,9 +29,9 @@ DEADLINES E TO-DO:
 	- roba facile e veloce
 		✓ '.' come separatore dei decimali nei csv
 		✓ cambio immagine homepage
-		- etichette a tutti i valori
-		- db->dB negli errori
-		- link al manuale nella home page
+		? etichette a tutti i valori (ricontrollare se vanno bene)
+		✓ db->dB negli errori
+		? link al manuale nella home page (da aggiornare dopo le modifiche)
 	- nuove feature in ordine di importanza
 		- sistemare click
 		- il feedback deve cancellarsi dopo un certo tempo <feedbackduration> di 0.5 secondi (nuova feature, facciamo se c'è tempo)
