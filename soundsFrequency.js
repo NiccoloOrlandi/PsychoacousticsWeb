@@ -189,6 +189,7 @@ function nDOWNoneUP(n){
 		if(feedback){
 			document.getElementById("correct").style.display="inherit";
 			document.getElementById("wrong").style.display="none";
+			window.setTimeout("timer()", 500);
 		}
 		
 	}else{ //wrong answer
@@ -206,6 +207,8 @@ function nDOWNoneUP(n){
 		if(feedback){
 			document.getElementById("correct").style.display="none";
 			document.getElementById("wrong").style.display="inherit";
+			window.setTimeout("timer()", 500);
+
 		}
 	}
 }
@@ -220,4 +223,9 @@ function start(){
 	timestamp = currentdate.getFullYear()+"-"+(currentdate.getMonth()+1)+"-"+currentdate.getDate()+" "+currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
 	
 	random(); //comincia il test
+}
+
+function timer(){
+	document.getElementById("wrong").style.display="none";
+	document.getElementById("correct").style.display="none";
 }

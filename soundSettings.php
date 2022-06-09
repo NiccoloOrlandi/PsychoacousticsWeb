@@ -297,6 +297,14 @@
 														</label>
 													</div>
 												</div>
+												<div class="form-check checkboxes" title="if checked a message will tell if you choose the correct sound">
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox" id="cb" name="checkNoise" >
+														<label class="form-check-label" for="cb">
+														Noise
+														</label>
+													</div>
+												</div>
 											</div>
 
 											<!-- Radios, sono raggruppati in un div che sta sulla sinistra-->
