@@ -222,7 +222,7 @@ function start(){
 	var currentdate = new Date(); 
 	timestamp = currentdate.getFullYear()+"-"+(currentdate.getMonth()+1)+"-"+currentdate.getDate()+" "+currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
 	
-	random(); //comincia il test
+	window.setTimeout("random()", 1000); //comincia il test dopo un secondo di attesa
 }
 
 function timer(){

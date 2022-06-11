@@ -224,7 +224,7 @@ function start(){
 	var currentdate = new Date(); 
 	timestamp = currentdate.getFullYear()+"-"+(currentdate.getMonth()+1)+"-"+currentdate.getDate()+" "+currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
 	
-	random(); //the test starts
+	window.setTimeout("random()", 1000); //the test starts
 }
 
 function timer(){
