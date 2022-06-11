@@ -16,7 +16,7 @@ legenda:
 DEADLINES E TO-DO:
 
 - domande prof Grassi
-	
+	- il tipo di test mandato con il referral è il tipo di test scelto quando si son salvati i settings
 	
 -cose da fare con i tecnici
 	? aggiungere email al db -> migliardi
@@ -36,8 +36,9 @@ DEADLINES E TO-DO:
 		- sistemare click
 		- il feedback deve cancellarsi dopo un certo tempo <feedbackduration> di 0.5 secondi (nuova feature, facciamo se c'è tempo)
 		- nuovo suono parte dopo un certo tempo <interTrialInterval> di 1 secondo (nuova feature, facciamo se c'è tempo)
-		- reversal threshold solo per calcolo della soglia
-		- con il link si mandano anche i settings salvati nell'account
+		✓ reversal threshold solo per calcolo della soglia
+		✓ con il link si mandano anche i settings salvati nell'account
+			- aggiungere controllo in sound settings validation: tutti i dati devono essere uguali a quelli nel test $_SESSION['test'] (serve nel caso qualcuno togliesse il 'disabled' con ispeziona elemento)
 		- quando si usa un link dopo demographicData esce una pagina di spiegazioni e non quella dei settings
 		- demographicData: quando si è loggati escono i campi solo se c'è il referral + pulsante per mettere il proprio referral
 		✓ responsive

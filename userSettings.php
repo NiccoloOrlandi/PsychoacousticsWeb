@@ -80,16 +80,8 @@
 			<div class="input-group mb-3">
 				<span class="input-group-text title" onclick="copy('link')" title="click to copy">Link</span>
 				<span class="input-group-text link" id="link" onclick="copy('link')" title="click to copy">
-					psychoacoustics.dpg.psy.unipd.it/sito/demographicData.php?test=amp&amp;ref=<?php echo $ref; ?>
+					psychoacoustics.dpg.psy.unipd.it/sito/demographicData.php?ref=<?php echo $ref; ?>
 				</span>
-			</div>
-			<div class="input-group mb-3">
-				<span class="input-group-text title" onclick="copy('link')" title="click to copy">Link's test type</span>
-				<select onchange="updateLink()" id="testType">
-					<option value="amp" selected>Amplitude test</option>
-					<option value="freq">Frequency test</option>
-					<option value="dur">Duration test</option>
-				</select>
 			</div>
 			<button type="submit" class="btn btn-primary btn-lg m-3">Change invite code</button>
 			

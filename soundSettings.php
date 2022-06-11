@@ -4,7 +4,7 @@
 		<?php 
 			session_start(); 
 			include "config.php";
-			if(!isset($_GET["test"]))
+			if(!isset($_GET["test"]) && !isset($_SESSION['test']))
 				header("Location: index.php");
 		?>
 		
@@ -19,6 +19,7 @@
 		<link rel="stylesheet" href="staircaseStyle.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
 		
 		<title>Psychoacoustics-web - Test settings</title>
+		
 	</head>
 	<body>
 		<?php
@@ -82,7 +83,56 @@
 					echo "<div class='alert alert-danger'>The reversal threshold value can't be more than the sum of 'Reversals' value and 'Second reversal' value</div>";
 			}
 			
-			if(isset($_SESSION['usr'])){
+			if(isset($_GET['test']))
+				$type=$_GET['test'];
+			
+			$readOnly="";
+			$disabled="";
+			
+			if(isset($_SESSION['test'])){
+				//se $_SESSION['test'] è settato allora è stato usato un referral:
+				//	imposto i valori del test salvato nell'account proprietario del referral e impedisco la modifica
+				try{
+					$conn = new mysqli($host, $user, $password, $dbname);
+					if ($conn->connect_errno)
+						throw new Exception('DB connection failed');
+					mysqli_set_charset($conn, "utf8");
+					
+					$sql = "SELECT Type, Amplitude as amp, Frequency as freq, Duration as dur, blocks as blocks, Delta, nAFC, 
+							ISI, Factor as fact, Reversal as rev, SecFactor as secfact, SecReversal as secrev, 
+							Threshold as thr, Algorithm as alg
+							
+							FROM test
+							
+							WHERE Guest_ID='{$_SESSION['test']['guest']}' AND Test_count='{$_SESSION['test']['count']}'";
+					$result = $conn->query($sql);
+					$row=$result->fetch_assoc();
+					
+					if($row['Type']=='PURE_TONE_INTENSITY')
+						$type="amp";
+					else if($row['Type']=='PURE_TONE_FREQUENCY')
+						$type="freq";
+					else if($row['Type']=='PURE_TONE_DURATION')
+						$type="dur";
+					
+					//se il tipo di test non è lo stesso scelto inizialmente lo scrivo in un warning alert
+					if(isset($_GET['test']) && $_GET['test']!=$type){
+						echo "<div class='alert alert-warning'>This will be a pure tone ";
+						if($type=="amp")
+							echo "intensity";
+						else if($type=="freq")
+							echo "frequency";
+						else if($type=="dur")
+							echo "duration";
+						echo " discrimination test</div>";
+					}
+					
+					$readOnly=" readonly ";
+					$disabled=" disabled ";
+				}catch(Exception $e){
+					header("Location: index.php?err=db");
+				}
+			}else if(isset($_SESSION['usr'])){
 				try{
 					$conn=new mysqli($host, $user, $password, $dbname);
 					if ($conn->connect_errno)
@@ -90,7 +140,7 @@
 					mysqli_set_charset($conn, "utf8");
 					
 					$sql="SELECT test.Amplitude as amp, test.Frequency as freq, test.Duration as dur, test.blocks as blocks, 
-						test.nAFC as nafc, test.ISI as isi, test.Factor as fact, test.Delta as delta, test.Reversal as rev, 
+						test.nAFC, test.ISI, test.Factor as fact, test.Reversal as rev, 
 						test.SecFactor as secfact, test.SecReversal as secrev, test.Algorithm as alg
 										
 						FROM test
@@ -104,14 +154,13 @@
 				}
 			}else
 				$row=false;
-			
 		?>
 		<div class="container" style="margin-top:1%">
 			<div class="row gx-4">
 				<div class="col">
 					<div class=" p-3 border bg-light">
 						<h2>Set the characteristics of the experiment</h2>
-						<form action="soundSettingsValidation.php<?php echo "?test=".$_GET["test"]; ?>" name="Settings" method="post">
+						<form action="soundSettingsValidation.php<?php echo "?test=".$type; ?>" name="Settings" method="post">
 							<!-- Primo slot di setting -->
 							<div class="container p-4" >
 								<div class="row gx-4">
@@ -127,7 +176,11 @@
 															echo $row['amp']; 
 														else 
 															echo "-20"; 
-													?>">
+													?>"
+													<?php
+														echo $readOnly;
+													?>
+													>
 												<span class="input-group-text">dB</span>
 											</div>
 
@@ -139,7 +192,11 @@
 															echo $row['freq']; 
 														else 
 															echo "1000"; 
-													?>">
+													?>"
+													<?php
+														echo $readOnly;
+													?>
+													>
 												<span class="input-group-text">Hz</span>
 											</div>
 
@@ -151,7 +208,11 @@
 															echo $row['dur']; 
 														else 
 															echo "500"; 
-													?>">
+													?>"
+													<?php
+														echo $readOnly;
+													?>
+													>
 												<span class="input-group-text">ms</span>
 											</div>
 
@@ -185,7 +246,11 @@
 														echo $row['blocks']; 
 													else 
 														echo "3"; 
-												?>">
+												?>"
+												<?php
+													echo $readOnly;
+												?>
+												>
 											</div>
 											
 											<div class="input-group flex-nowrap" title="how many sounds will be played">
@@ -193,10 +258,14 @@
 												<input type="text" class="form-control" name="nAFC" id="nAFC"
 													value="<?php 
 														if($row) 
-															echo $row['nafc']; 
+															echo $row['nAFC']; 
 														else 
 															echo "2"; 
-													?>" >
+													?>"
+													<?php
+														echo $readOnly;
+													?>
+													>
 											</div>   
 											
 											<div class="input-group flex-nowrap" title="the time between two sounds (ms)">
@@ -204,10 +273,14 @@
 												<input type="text" class="form-control" name="ISI" id="ISI"
 													value="<?php 
 														if($row) 
-															echo $row['isi']; 
+															echo $row['ISI']; 
 														else 
 															echo "500"; 
-													?>" >
+													?>"
+													<?php
+														echo $readOnly;
+													?>
+													>
 												<span class="input-group-text">ms</span>
 											</div>   
 											
@@ -215,20 +288,26 @@
 												<span class="input-group-text">Delta</span>
 												<input type="text" class="form-control" name="delta" id="level"
 													value="<?php 
-														if($_GET["test"]=="amp")
+														if(isset($_SESSION['test']))
+															echo $row['Delta'];
+														else if($type=="amp")
 															echo "12"; 
-														else if($_GET["test"]=="freq")
+														else if($type=="freq")
 															echo "200";
-														else if($_GET["test"]=="dur")
+														else if($type=="dur")
 															echo "300";
-													?>">
+													?>"
+													<?php
+														echo $readOnly;
+													?>
+													>
 												<span class="input-group-text">
 													<?php
-														if($_GET['test']=="amp")
+														if($type=="amp")
 															echo "dB";
-														else if($_GET['test']=="freq")
+														else if($type=="freq")
 															echo "Hz";
-														else if($_GET['test']=="dur")
+														else if($type=="dur")
 															echo "ms";
 													?>
 												</span>
@@ -259,7 +338,11 @@
 																	echo $row['fact']; 
 																else 
 																	echo "2"; 
-															?>">
+															?>"
+															<?php
+																echo $readOnly;
+															?>
+															>
 													</div>
 													<div class="input-group flex-nowrap" title="for how many reversals the algorithm will use the first factor">
 														<span class="input-group-text">First reversals</span>
@@ -269,7 +352,11 @@
 																	echo $row['rev']; 
 																else 
 																	echo "4"; 
-															?>">
+															?>"
+															<?php
+																echo $readOnly;
+															?>
+															>
 													</div>
 												</div>
 												<div class="right-div">
@@ -281,7 +368,11 @@
 																	echo $row['secfact']; 
 																else 
 																	echo "1.414"; 
-															?>">
+															?>"
+															<?php
+																echo $readOnly;
+															?>
+															>
 													</div>
 													<div class="input-group flex-nowrap" title="for how many reversals the algorithm will use the second factor">
 														<span class="input-group-text">Second reversals</span>
@@ -291,7 +382,11 @@
 																	echo $row['secrev']; 
 																else 
 																	echo "8"; 
-															?>">
+															?>"
+															<?php
+																echo $readOnly;
+															?>
+															>
 													</div>
 												</div>
 												
@@ -303,7 +398,11 @@
 																echo $row['secrev']; 
 															else 
 																echo "8"; 
-														?>">
+														?>"
+														<?php
+															echo $readOnly;
+														?>
+														>
 												</div>
 											</div>
 
@@ -314,7 +413,10 @@
 														<?php 
 															if($row && $row['alg']=="SimpleUpDown")
 																echo "checked";
-														?>>
+															else
+																echo $disabled;
+														?>
+														>
 													<label class="form-check-label" for="flexRadioDefault1">
 														SimpleUpDown
 													</label>
@@ -323,8 +425,11 @@
 													<input class="form-check-input" type="radio" name="algorithm" value="TwoDownOneUp" id="alg"
 														<?php 
 															if(($row && $row['alg']=="TwoDownOneUp") || !$row) 
-																echo "checked"; 
-														?>>
+																echo "checked";
+															else
+																echo $disabled;
+														?>
+														>
 													<label class="form-check-label" for="flexRadioDefault1">
 														TwoDownOneUp
 													</label>
@@ -334,6 +439,8 @@
 														<?php 
 															if($row && $row['alg']=="ThreeDownOneUp") 
 																echo "checked"; 
+															else
+																echo $disabled;
 														?>>
 													<label class="form-check-label" for="flexRadioDefault1">
 														ThreeDownOneUp
@@ -344,7 +451,8 @@
 												<!-- Checkbox -->
 												<div class="form-check checkboxes">
 													<div class="form-check" title="if checked there will be background noise">
-														<input class="form-check-input" type="checkbox" id="cb" name="checkNoise" onclick="alert('The NOISE checkbox doesn\'t work yet, it\'s a work in progress')">
+														<input class="form-check-input" type="checkbox" id="cb" name="checkNoise" 
+															onclick="alert('The NOISE checkbox doesn\'t work yet, it\'s a work in progress')">
 														<label class="form-check-label" for="cb">
 															Noise
 														</label>
