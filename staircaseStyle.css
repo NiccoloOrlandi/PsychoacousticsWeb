@@ -83,21 +83,23 @@ input[type="checkbox"]:focus, input[type="radio"]:focus{
 
 .right-div{
 	/*il right div sta a destra*/
-	width: 50%;
+	width: 48%;
 	float: right;
 	margin-bottom: 2%;
+	margin-left: 1%;
 }
 
 .right-div .input-group.flex-nowrap{
 	/*gli input box all'interno del right div stanno a destra*/
-	width: 90%; 
-	float: right;
+	width: 100%; 
+	float: left;
 }
 
 .left-div{
 	/*il left div sta a sinistra*/
-	width: 50%;
+	width: 48%;
 	float: left;
+	margin-right: 1%;
 }
 
 .left-div .form-check{
@@ -113,6 +115,7 @@ input[type="checkbox"]:focus, input[type="radio"]:focus{
 .checkboxes{
 	margin-top: 5%;
 	padding-left: 0%;
+	margin-bottom: 2%;
 }
 
 /*quando la finestra è più piccola di 991 pixel, viene usato questo css*/

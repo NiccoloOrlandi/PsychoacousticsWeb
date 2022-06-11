@@ -6,7 +6,7 @@
 		if(isset($_SESSION['idGuestTest']) && isset($_GET['result']) && isset($_GET['timestamp']) && isset($_GET['type'])
 			&& isset($_GET['amp']) && isset($_GET['freq']) && isset($_GET['dur']) && isset($_GET['blocks']) && isset($_GET['delta'])
 			&& isset($_GET['nAFC']) && isset($_GET['ISI']) && isset($_GET['fact']) && isset($_GET['secFact']) && isset($_GET['rev']) 
-			&& isset($_GET['secRev']) && isset($_GET['alg']) && isset($_GET['score']) 
+			&& isset($_GET['secRev'])&& isset($_GET['threshold']) && isset($_GET['alg']) && isset($_GET['score']) 
 			&& isset($_GET['saveSettings']) && isset($_GET['currentBlock'])){
 			
 			//trova il tipo
@@ -41,6 +41,7 @@
 			$_SESSION["secFact"] = $_GET['secFact'];
 			$_SESSION["rev"] = $_GET['rev'];
 			$_SESSION["secRev"] = $_GET['secRev'];
+			$_SESSION["thr"] = $_GET['threshold'];
 			$_SESSION["alg"] = $_GET['alg'];
 			$_SESSION["currentBlock"] = $_GET['currentBlock'];
 			
@@ -75,7 +76,7 @@
 					$sql = "INSERT INTO test VALUES ('$id', '$count', '{$_GET['timestamp']}', ";
 					$sql .= "'$type', '{$_GET['amp']}', '{$_GET['freq']}', '{$_GET['dur']}', '{$_GET['blocks']}', ";
 					$sql .= "'{$_GET['delta']}', '{$_GET['nAFC']}', '{$_GET['ISI']}', '{$_GET['fact']}', '{$_GET['rev']}', ";
-					$sql .= "'{$_GET['secFact']}', '{$_GET['secRev']}', '{$_GET['alg']}', '{$_GET['result']}')";
+					$sql .= "'{$_GET['secFact']}', '{$_GET['secRev']}', '{$_GET['threshold']}', '{$_GET['alg']}', '{$_GET['result']}')";
 					echo $sql;
 					$conn->query($sql);
 				}

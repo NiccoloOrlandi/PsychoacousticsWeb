@@ -8,10 +8,10 @@ body{
 
 .wallpaper{
 	position:absolute;
-	top:10%;
+	top:40px;
 	left:0%;
 	width: 100%;
-	height: 90%;
+	height: 100%;
 	object-fit:cover;
 	opacity: 0.6;
 	z-index: -1;
@@ -227,7 +227,7 @@ td{
 
 @media all and (max-width: 900px) {
 	.wallpaper{
-		top:20%;
+		top:22%;
 	}
 	
 	.navbar-brand{

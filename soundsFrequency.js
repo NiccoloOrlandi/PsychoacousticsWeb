@@ -132,18 +132,18 @@ function select(button){
 		}
 		
 		//calculate score 
-		for(var j = 0; j<countRev; j++){
+		for(var j = countRev - reversalThreshold; j<countRev; j++){
 			deltaBefore = results[2][reversalsPositions[j]-1]; //delta before the reversal
 			deltaAfter = results[2][reversalsPositions[j]]; //delta after the reversal
 			score += (deltaBefore + deltaAfter)/2; //average delta of the reversal
 		}
-		score /= countRev; //average deltas of every reversal
+		score /= reversalThreshold; //average deltas of every reversal
 		score = parseFloat(parseInt(score*100)/100); //approximate to 2 decimal digits
 		
 		//format description as a csv file
 		//prima tutti i nomi, poi tutti i dati
-		var description = "&amp="+amp+"&freq="+freq+"&dur="+dur+/*"&phase="+phase+*/"&blocks="+blocks+"&delta="+startingDelta+"&nAFC="+nAFC;
-		description += "&ISI="+ISI+"&fact="+factor+"&secFact="+secondFactor+"&rev="+reversals+"&secRev="+secondReversals+"&alg="+algorithm;
+		var description = "&amp="+amp+"&freq="+freq+"&dur="+dur+/*"&phase="+phase+*/"&blocks="+blocks+"&delta="+startingDelta+"&nAFC="+nAFC+"&ISI="+ISI;
+		description += "&fact="+factor+"&secFact="+secondFactor+"&rev="+reversals+"&secRev="+secondReversals+"&threshold="+reversalThreshold+"&alg="+algorithm;
 		
 		//pass the datas to the php file
 		location.href="saveData.php?result="+result+"&timestamp="+timestamp+"&type=freq"+description+"&currentBlock="+currentBlock+"&score="+score+"&saveSettings="+saveSettings;

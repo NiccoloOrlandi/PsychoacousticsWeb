@@ -74,6 +74,12 @@
 					echo "<div class='alert alert-danger'>The second reversals field is required</div>";
 				else if($_GET['err']=="secRev2")
 					echo "<div class='alert alert-danger'>The second reversals value must be a positive number</div>";
+				else if($_GET['err']=="threshold1")
+					echo "<div class='alert alert-danger'>The reversal threshold field is required</div>";
+				else if($_GET['err']=="threshold2")
+					echo "<div class='alert alert-danger'>The reversal threshold value must be a positive number</div>";
+				else if($_GET['err']=="threshold3")
+					echo "<div class='alert alert-danger'>The reversal threshold value can't be more than the sum of 'Reversals' value and 'Second reversal' value</div>";
 			}
 			
 			if(isset($_SESSION['usr'])){
@@ -125,7 +131,7 @@
 												<span class="input-group-text">dB</span>
 											</div>
 
-											<div class="input-group flex-nowrap" title="Hz of the standard tone, an higher frequency makes the sound sharper">
+											<div class="input-group flex-nowrap" title="Hz of the standard tone, a higher frequency makes the sound sharper">
 												<span class="input-group-text">Frequency</span>
 												<input type="text" class="form-control" name="frequency" id="frequency"
 													value="<?php 
@@ -137,7 +143,7 @@
 												<span class="input-group-text">Hz</span>
 											</div>
 
-											<div class="input-group flex-nowrap" title="ms of the standard tone, an higher value makes the sound last longer">
+											<div class="input-group flex-nowrap" title="ms of the standard tone, a higher value makes the sound last longer">
 												<span class="input-group-text">Duration</span>
 												<input type="text" class="form-control" name="duration" id="duration"
 													value="<?php 
@@ -289,21 +295,15 @@
 													</div>
 												</div>
 												
-												<div class="form-check checkboxes" title="if checked a message will tell if you choose the correct sound">
-													<div class="form-check">
-														<input class="form-check-input" type="checkbox" id="cb" name="checkFb" checked>
-														<label class="form-check-label" for="cb">
-														FeedBack
-														</label>
-													</div>
-												</div>
-												<div class="form-check checkboxes" title="if checked a message will tell if you choose the correct sound">
-													<div class="form-check">
-														<input class="form-check-input" type="checkbox" id="cb" name="checkNoise" >
-														<label class="form-check-label" for="cb">
-														Noise
-														</label>
-													</div>
+												<div class="input-group flex-nowrap">
+													<span class="input-group-text">Reversal threshold</span>
+													<input type="text" class="form-control" name="threshold" id="reversalsTh"
+														value="<?php 
+															if($row) 
+																echo $row['secrev']; 
+															else 
+																echo "8"; 
+														?>">
 												</div>
 											</div>
 
@@ -319,7 +319,7 @@
 														SimpleUpDown
 													</label>
 												</div>
-												<div class="form-check" title="two consecutive correct answer increase the difficulty of the test, every wrong answer makes it easier">
+												<div class="form-check" title="two consecutive correct answers increase the difficulty of the test, every wrong answer makes it easier">
 													<input class="form-check-input" type="radio" name="algorithm" value="TwoDownOneUp" id="alg"
 														<?php 
 															if(($row && $row['alg']=="TwoDownOneUp") || !$row) 
@@ -329,7 +329,7 @@
 														TwoDownOneUp
 													</label>
 												</div>
-												<div class="form-check" title="three consecutive correct answer increase the difficulty of the test, every wrong answer makes it easier">
+												<div class="form-check" title="three consecutive correct answers increase the difficulty of the test, every wrong answer makes it easier">
 													<input class="form-check-input" type="radio" name="algorithm" value="ThreeDownOneUp" id="alg"
 														<?php 
 															if($row && $row['alg']=="ThreeDownOneUp") 
@@ -343,6 +343,18 @@
 											
 												<!-- Checkbox -->
 												<div class="form-check checkboxes">
+													<div class="form-check" title="if checked there will be background noise">
+														<input class="form-check-input" type="checkbox" id="cb" name="checkNoise" onclick="alert('The NOISE checkbox doesn\'t work yet, it\'s a work in progress')">
+														<label class="form-check-label" for="cb">
+															Noise
+														</label>
+													</div>
+													<div class="form-check" title="if checked a message will tell if you choose the correct sound">
+														<input class="form-check-input" type="checkbox" id="cb" name="checkFb" checked>
+														<label class="form-check-label" for="cb">
+															FeedBack
+														</label>
+													</div>
 													<?php
 														if(isset($_SESSION['usr']))
 															echo '<div class="form-check" title="if checked the settings will be saved and used as default for the next tests">
