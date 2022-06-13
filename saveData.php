@@ -3,7 +3,7 @@
 		include "config.php";
 		session_start();
 		
-		if(isset($_SESSION['idGuestTest']) && isset($_GET['result']) && isset($_GET['timestamp']) && isset($_GET['type'])
+		if(isset($_GET['result']) && isset($_GET['timestamp']) && isset($_GET['type'])
 			&& isset($_GET['amp']) && isset($_GET['freq']) && isset($_GET['dur']) && isset($_GET['blocks']) && isset($_GET['delta'])
 			&& isset($_GET['nAFC']) && isset($_GET['ISI']) && isset($_GET['fact']) && isset($_GET['secFact']) && isset($_GET['rev']) 
 			&& isset($_GET['secRev'])&& isset($_GET['threshold']) && isset($_GET['alg']) && isset($_GET['score']) 
@@ -60,32 +60,40 @@
 			
 				//save the test, if it must be saved
 				if($_SESSION["checkSave"]){
-					
-					//trovo l'id a cui associare il test
-					$id = $_SESSION['idGuestTest'];
-					
-					//trova il numero di test effettuati fin'ora
-					$sql = "SELECT Max(Test_count) as count FROM test WHERE Guest_ID='$id'";
-					$result = $conn->query($sql);
-					$row = $result->fetch_assoc();
-					
-					//il test corrente è il numero di test già effettuati + 1
-					$count = $row['count']+1;
-					
-					//inserisci i dati del nuovo test
-					$sql = "INSERT INTO test VALUES ('$id', '$count', '{$_GET['timestamp']}', ";
-					$sql .= "'$type', '{$_GET['amp']}', '{$_GET['freq']}', '{$_GET['dur']}', '{$_GET['blocks']}', ";
-					$sql .= "'{$_GET['delta']}', '{$_GET['nAFC']}', '{$_GET['ISI']}', '{$_GET['fact']}', '{$_GET['rev']}', ";
-					$sql .= "'{$_GET['secFact']}', '{$_GET['secRev']}', '{$_GET['threshold']}', '{$_GET['alg']}', '{$_GET['result']}')";
-					echo $sql;
-					$conn->query($sql);
+					if(!isset($_SESSION['idGuestTest'])){
+						header("Location: index.php?err=2");
+					}else{
+						//trovo l'id a cui associare il test
+						$id = $_SESSION['idGuestTest'];
+						
+						//trova il numero di test effettuati fin'ora
+						$sql = "SELECT Max(Test_count) as count FROM test WHERE Guest_ID='$id'";
+						$result = $conn->query($sql);
+						$row = $result->fetch_assoc();
+						
+						//il test corrente è il numero di test già effettuati + 1
+						$count = $row['count']+1;
+						
+						//inserisci i dati del nuovo test
+						$sql = "INSERT INTO test VALUES ('$id', '$count', '{$_GET['timestamp']}', ";
+						$sql .= "'$type', '{$_GET['amp']}', '{$_GET['freq']}', '{$_GET['dur']}', '{$_GET['blocks']}', ";
+						$sql .= "'{$_GET['delta']}', '{$_GET['nAFC']}', '{$_GET['ISI']}', '{$_GET['fact']}', '{$_GET['rev']}', ";
+						$sql .= "'{$_GET['secFact']}', '{$_GET['secRev']}', '{$_GET['threshold']}', '{$_GET['alg']}', '{$_GET['result']}')";
+						echo $sql;
+						$conn->query($sql);
+						
+						if($_GET['saveSettings']){
+							$sql = "UPDATE account SET fk_guestTest = '$id', fk_testCount = '$count' WHERE username = '{$_SESSION['usr']}' ";
+							$conn->query($sql);
+						}
+					}
 				}
 				
-				if($_GET['saveSettings']){
-					$sql = "UPDATE account SET fk_guestTest = '$id', fk_testCount = '$count' WHERE username = '{$_SESSION['usr']}' ";
-					$conn->query($sql);
+				if(!$_SESSION["checkSave"] && $_GET['saveSettings']){
+					header("Location: results.php?continue=0&err=1");
+				}else{
+					header("Location: results.php?continue=0");
 				}
-				header("Location: results.php?continue=0");
 			}
 		}else
 			header("Location: index.php?err=2");

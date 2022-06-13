@@ -108,7 +108,7 @@ input[type="checkbox"]:focus, input[type="radio"]:focus{
 }
 
 .referral{
-	float:right !important;
+	float: right !important;
 	width: 35% !important;
 }
 
@@ -116,6 +116,16 @@ input[type="checkbox"]:focus, input[type="radio"]:focus{
 	margin-top: 5%;
 	padding-left: 0%;
 	margin-bottom: 2%;
+}
+
+.resultsBox{
+	margin-top: 10%;
+	text-align: center;
+	height: inherit !important;
+}
+
+.resultsBox > *{
+	margin-top: 5% !important;
 }
 
 /*quando la finestra è più piccola di 991 pixel, viene usato questo css*/

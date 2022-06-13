@@ -12,16 +12,25 @@
 
 		<!-- Bootstrap CSS -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-		<link rel ="stylesheet" href="test.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
+		<link rel ="stylesheet" href="staircaseStyle.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
 
 		<title>Psychoacoustics-web - Test results</title>
+		
 	</head>
 	<body>
-		<div class="container p-4" style="margin-top:10%" >
+		<?php
+			//controllo errori
+			if(isset($_GET['err'])){
+				if($_GET['err']=="1")
+					echo "<div class='alert alert-danger' style='float:left; width:95%'>'Save result' wasn't checked but 'Save settings' was, Settings can't be saved without saving the results
+							<br>Result and settings weren't saved</div>";
+			}
+		?>
+		<div class="container p-4">
 			<div class="row gx-4">
 				<div class="col">
-					<div class="p-3 border bg-light" style="text-align:center;">
-						<h2 style="margin:5%;">Your threshold is 
+					<div class="p-3 border bg-light resultsBox">
+						<h2>Your threshold is 
 							<?php 
 								if(isset($_SESSION['score']))
 									if(strrpos($_SESSION['score'],";"))
