@@ -103,7 +103,7 @@
 					mysqli_set_charset($conn, "utf8");
 					
 					$sql = "SELECT Type, Amplitude as amp, Frequency as freq, Duration as dur, blocks as blocks, Delta, nAFC, 
-							ISI, Factor as fact, Reversal as rev, SecFactor as secfact, SecReversal as secrev, 
+							ISI, ITI, Factor as fact, Reversal as rev, SecFactor as secfact, SecReversal as secrev, 
 							Threshold as thr, Algorithm as alg
 							
 							FROM test
