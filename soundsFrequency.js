@@ -142,7 +142,7 @@ function select(button){
 		
 		//format description as a csv file
 		//prima tutti i nomi, poi tutti i dati
-		var description = "&amp="+amp+"&freq="+freq+"&dur="+dur+/*"&phase="+phase+*/"&blocks="+blocks+"&delta="+startingDelta+"&nAFC="+nAFC+"&ISI="+ISI;
+		var description = "&amp="+amp+"&freq="+freq+"&dur="+dur+/*"&phase="+phase+*/"&blocks="+blocks+"&delta="+startingDelta+"&nAFC="+nAFC+"&ISI="+ISI+"&ITI="+ITI;
 		description += "&fact="+factor+"&secFact="+secondFactor+"&rev="+reversals+"&secRev="+secondReversals+"&threshold="+reversalThreshold+"&alg="+algorithm;
 		
 		//pass the datas to the php file
@@ -156,7 +156,7 @@ function select(button){
 			document.getElementById("button"+j).disabled = true;
 		
 		//randomize and play the next sounds
-		random();
+		window.setTimeout("random()", ITI); //next sounds after interTrialInterval ms
 	}
 }
 
@@ -213,16 +213,16 @@ function nDOWNoneUP(n){
 	}
 }
 
-//funzione per iniziare
+//starting function
 function start(){
-	document.getElementById("StartingWindow").style.display="none"; //rendo invisibile la finestra iniziale
-	document.getElementById("PlayForm").style.display="inherit"; //rendo visibile l'interfaccia del test
+	document.getElementById("StartingWindow").style.display="none"; //starting window becomes invisible
+	document.getElementById("PlayForm").style.display="inherit"; //test interface becomes visible
 	
 	// take the timestamp when the test starts
 	var currentdate = new Date(); 
 	timestamp = currentdate.getFullYear()+"-"+(currentdate.getMonth()+1)+"-"+currentdate.getDate()+" "+currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
 	
-	window.setTimeout("random()", 1000); //comincia il test dopo un secondo di attesa
+	window.setTimeout("random()", ITI); //test starts after interTrialInterval ms
 }
 
 function timer(){

@@ -76,6 +76,10 @@ input[type="checkbox"]:focus, input[type="radio"]:focus{
 	width: 31%;
 }
 
+.p-3.border.bg-light.little2 .input-group.flex-nowrap{
+	width: 31%;
+}
+
 .p-3.border.bg-light{
 	height: 99%;
 	border-radius: 20px;

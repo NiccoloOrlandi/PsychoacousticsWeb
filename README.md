@@ -18,6 +18,7 @@ DEADLINES E TO-DO:
 - domande prof Grassi
 	- il tipo di test mandato con il referral è il tipo di test scelto quando si son salvati i settings
 	- nella pagina di spiegazioni che esce quando si usa un link, deve esserci la spunta per il feedback o deve essere sempre attivo/disattivato/dipende da come ha impostato l'account generatore del link
+	- ITI (interTrialInterval) va messo nel csv?
 	
 -cose da fare con i tecnici
 	? aggiungere email al db -> migliardi
@@ -30,13 +31,13 @@ DEADLINES E TO-DO:
 	- roba facile e veloce
 		✓ '.' come separatore dei decimali nei csv
 		✓ cambio immagine homepage
-		? etichette a tutti i valori (ricontrollare se vanno bene)
+		✓ etichette a tutti i valori (ricontrollare se vanno bene)
 		✓ db->dB negli errori
 		? link al manuale nella home page (da aggiornare dopo le modifiche)
 	- nuove feature in ordine di importanza
 		- sistemare click
-		- il feedback deve cancellarsi dopo un certo tempo <feedbackduration> di 0.5 secondi (nuova feature, facciamo se c'è tempo)
-		- nuovo suono parte dopo un certo tempo <interTrialInterval> di 1 secondo (nuova feature, facciamo se c'è tempo)
+		- il feedback deve cancellarsi dopo un certo tempo <feedbackduration> di 0.5 secondi
+		- nuovo suono parte dopo un certo tempo <interTrialInterval> di 1 secondo
 		✓ reversal threshold solo per calcolo della soglia
 		✓ con il link si mandano anche i settings salvati nell'account
 			- aggiungere controllo in sound settings validation: tutti i dati devono essere uguali a quelli nel test $_SESSION['test'] (serve nel caso qualcuno togliesse il 'disabled' con ispeziona elemento)
@@ -118,7 +119,6 @@ DEADLINES E TO-DO:
 			
 - captcha	entro 15/05/2022
 	✓ inserire controllo login o sign in per non mettere il nome
-	- captcha livello v2 o v3
 	✓ come oscurare i dati di php username e psw
 	✓ scrivi su file e i file php leggono il file
 	✓ implementare struttura a tre livelli
@@ -187,23 +187,17 @@ DEADLINES E TO-DO:
 	
 - grafica entro il 10/06/2022
 	✓ alert di errore di inserimento dati (migliorare)
-	- index.html:le funzioni che cambiano il colore potrebbero essere sostituite con del css
-	- index.html:la funzione "onclick" delle card può essere sostituita dall'href (è un tag link <a>) e col css si può evitare che esca sottolineato
 	✓ tradurre tutto in inglese in ogni pagina
 	✓ title delle pagine
-	- responsive
+	✓ responsive
 
 - migliorie per il futuro
-	- problema del click iniziale
 	- modificare la fase del suono
 	- suoni suonabili componibili
-	- presenza di rumori di sottofondo
 	- migiorare la sicurezza
 		- dati di accesso al db criptati
 		- controlli sui dati passati con get
 		- blocco accesso alle pagine tramite copia-incolla dell'url
-		- auto increment manuale
-	- link con referral manda anche i setting del test
 	- save test settings funziona anche senza finire il test (si crea un apposito test dummy nel db che serve solo a quello)
 	- possibilità di cancellare i test da yourTests
 	- possibilità di scaricare un singolo test da yourTests
@@ -221,4 +215,3 @@ DEADLINES E TO-DO:
 	✓ é possibile fare in modo che le modifiche che faccio nella repository github vengano fatte anche sul server?
 	✓ dati per recapchta : email futuro proprietario, nome dominio, non posso farlo ora perché servono questi dati e un collegamento https
 	✓ download file da server (in locale funziona)
-	- psychoacoustics -> psychoacousticsweb

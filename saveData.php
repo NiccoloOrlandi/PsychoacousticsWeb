@@ -5,7 +5,7 @@
 		
 		if(isset($_GET['result']) && isset($_GET['timestamp']) && isset($_GET['type'])
 			&& isset($_GET['amp']) && isset($_GET['freq']) && isset($_GET['dur']) && isset($_GET['blocks']) && isset($_GET['delta'])
-			&& isset($_GET['nAFC']) && isset($_GET['ISI']) && isset($_GET['fact']) && isset($_GET['secFact']) && isset($_GET['rev']) 
+			&& isset($_GET['nAFC']) && isset($_GET['ITI']) && isset($_GET['ISI']) && isset($_GET['fact']) && isset($_GET['secFact']) && isset($_GET['rev']) 
 			&& isset($_GET['secRev'])&& isset($_GET['threshold']) && isset($_GET['alg']) && isset($_GET['score']) 
 			&& isset($_GET['saveSettings']) && isset($_GET['currentBlock'])){
 			
@@ -34,8 +34,9 @@
 			$_SESSION["freq"] = $_GET['freq'];
 			$_SESSION["dur"] = $_GET['dur'];
 			$_SESSION["blocks"] = $_GET['blocks'];
-			$_SESSION["delta"] = $_GET['delta'];
+			//$_SESSION["delta"] = $_GET['delta'];
 			$_SESSION["nAFC"] = $_GET['nAFC'];
+			//$_SESSION["ITI"] = $_GET['ITI'];
 			$_SESSION["ISI"] = $_GET['ISI'];
 			$_SESSION["fact"] = $_GET['fact'];
 			$_SESSION["secFact"] = $_GET['secFact'];
@@ -75,9 +76,9 @@
 						$count = $row['count']+1;
 						
 						//inserisci i dati del nuovo test
-						$sql = "INSERT INTO test VALUES ('$id', '$count', '{$_GET['timestamp']}', ";
-						$sql .= "'$type', '{$_GET['amp']}', '{$_GET['freq']}', '{$_GET['dur']}', '{$_GET['blocks']}', ";
-						$sql .= "'{$_GET['delta']}', '{$_GET['nAFC']}', '{$_GET['ISI']}', '{$_GET['fact']}', '{$_GET['rev']}', ";
+						$sql = "INSERT INTO test VALUES ('$id', '$count', '{$_GET['timestamp']}', '$type', ";
+						$sql .= "'{$_GET['amp']}', '{$_GET['freq']}', '{$_GET['dur']}', '{$_GET['blocks']}', '{$_GET['delta']}', ";
+						$sql .= "'{$_GET['nAFC']}', '{$_GET['ITI']}', '{$_GET['ISI']}', '{$_GET['fact']}', '{$_GET['rev']}', ";
 						$sql .= "'{$_GET['secFact']}', '{$_GET['secRev']}', '{$_GET['threshold']}', '{$_GET['alg']}', '{$_GET['result']}')";
 						echo $sql;
 						$conn->query($sql);

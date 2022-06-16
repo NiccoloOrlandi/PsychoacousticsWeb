@@ -49,6 +49,10 @@
 					echo "<div class='alert alert-danger'>The delta value must be a positive number</div>";
 				else if($_GET['err']=="delta3")
 					echo "<div class='alert alert-danger'>The delta value is too high</div>";
+				else if($_GET['err']=="ITI1")
+					echo "<div class='alert alert-danger'>The ITI field is required</div>";
+				else if($_GET['err']=="ITI2")
+					echo "<div class='alert alert-danger'>The ITI value must be a number greater than or equal to 1000</div>";
 				else if($_GET['err']=="ISI1")
 					echo "<div class='alert alert-danger'>The ISI field is required</div>";
 				else if($_GET['err']=="ISI2")
@@ -140,7 +144,7 @@
 					mysqli_set_charset($conn, "utf8");
 					
 					$sql="SELECT test.Amplitude as amp, test.Frequency as freq, test.Duration as dur, test.blocks as blocks, 
-						test.nAFC, test.ISI, test.Factor as fact, test.Reversal as rev, 
+						test.nAFC, test.ITI, test.ISI, test.Factor as fact, test.Reversal as rev, 
 						test.SecFactor as secfact, test.SecReversal as secrev, test.Algorithm as alg
 										
 						FROM test
@@ -267,6 +271,22 @@
 													?>
 													>
 											</div>   
+											
+											<div class="input-group flex-nowrap" title="the time before the new sounds are played (ms)">
+												<span class="input-group-text">ITI</span>
+												<input type="text" class="form-control" name="ITI" id="ITI"
+													value="<?php 
+														if($row) 
+															echo $row['ITI']; 
+														else 
+															echo "1000"; 
+													?>"
+													<?php
+														echo $readOnly;
+													?>
+													>
+												<span class="input-group-text">ms</span>
+											</div> 
 											
 											<div class="input-group flex-nowrap" title="the time between two sounds (ms)">
 												<span class="input-group-text">ISI</span>

@@ -144,7 +144,7 @@ function select(button){
 		
 		//format description as a csv file
 		//prima tutti i nomi, poi tutti i dati
-		var description = "&amp="+amp+"&freq="+freq+"&dur="+dur+/*"&phase="+phase+*/"&blocks="+blocks+"&delta="+startingDelta+"&nAFC="+nAFC+"&ISI="+ISI;
+		var description = "&amp="+amp+"&freq="+freq+"&dur="+dur+/*"&phase="+phase+*/"&blocks="+blocks+"&delta="+startingDelta+"&nAFC="+nAFC+"&ISI="+ISI+"&ITI="+ITI;
 		description += "&fact="+factor+"&secFact="+secondFactor+"&rev="+reversals+"&secRev="+secondReversals+"&threshold="+reversalThreshold+"&alg="+algorithm;
 		
 		//pass the datas to the php file
@@ -158,7 +158,7 @@ function select(button){
 			document.getElementById("button"+j).disabled = true;
 		
 		//randomize and play the next sounds
-		random();
+		window.setTimeout("random()", ITI); //next sounds after interTrialInterval ms
 	}
 }
 
@@ -223,7 +223,7 @@ function start(){
 	var currentdate = new Date(); 
 	timestamp = currentdate.getFullYear()+"-"+(currentdate.getMonth()+1)+"-"+currentdate.getDate()+" "+currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
 	
-	window.setTimeout("random()", 1000); //the test starts
+	window.setTimeout("random()", ITI); //test starts after interTrialInterval ms
 }
 
 function timer(){
