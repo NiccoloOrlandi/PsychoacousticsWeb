@@ -36,11 +36,11 @@ DEADLINES E TO-DO:
 		? link al manuale nella home page (da aggiornare dopo le modifiche)
 	- nuove feature in ordine di importanza
 		- sistemare click
-		- il feedback deve cancellarsi dopo un certo tempo <feedbackduration> di 0.5 secondi
-		- nuovo suono parte dopo un certo tempo <interTrialInterval> di 1 secondo
+		✓ il feedback deve cancellarsi dopo un certo tempo <feedbackduration> di 0.5 secondi
+		✓ nuovo suono parte dopo un certo tempo <interTrialInterval> di 1 secondo
 		✓ reversal threshold solo per calcolo della soglia
 		✓ con il link si mandano anche i settings salvati nell'account
-			- aggiungere controllo in sound settings validation: tutti i dati devono essere uguali a quelli nel test $_SESSION['test'] (serve nel caso qualcuno togliesse il 'disabled' con ispeziona elemento)
+			✓ aggiungere controllo in sound settings validation: tutti i dati devono essere uguali a quelli nel test $_SESSION['test'] (serve nel caso qualcuno togliesse il 'disabled' con ispeziona elemento)
 		- quando si usa un link dopo demographicData esce una pagina di spiegazioni e non quella dei settings (c'è comunque la spunta feedback?)
 		- demographicData: quando si è loggati escono i campi solo se c'è il referral + pulsante per mettere il proprio referral
 		✓ responsive
