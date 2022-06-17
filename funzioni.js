@@ -38,3 +38,4 @@ function updatePage(display){
 			elems[j].style.display = "none";
 	}
 }
+window.updatePage = updatePage;
