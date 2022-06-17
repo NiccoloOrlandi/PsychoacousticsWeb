@@ -51,6 +51,7 @@
 			}else{
 				//scrivo la query di creazione del guest
 				$sql="INSERT INTO guest VALUES (NULL, '" .$_POST["name"] ."',";
+				$_SESSION['name'] = $_POST["name"];
 						
 				if($_POST["surname"] == ""){
 					$_SESSION["surname"] = null;
@@ -115,8 +116,10 @@
 					
 					$id = $row['id'];
 					$_SESSION['idGuestTest']=$id;
-
-					header("Location: soundSettings.php?".$type);
+					if(isset($_SESSION['test']))
+						header("Location: info.php");
+					else
+						header("Location: soundSettings.php?".$type);
 				}
 				else{ //è stato fatto il log in
 					if($_POST["name"]=="" && $_POST['ref']==""){//log in ma niente nome e niente referral, il test va collegato all'account che ha fatto il log in
@@ -143,8 +146,11 @@
 							"guest" => $row['fk_GuestTest'],
 							"count" => $row['fk_TestCount']
 						);
-
-						header("Location: soundSettings.php?".$type);
+						
+						if(isset($_SESSION['test']))
+							header("Location: info.php");
+						else
+							header("Location: soundSettings.php?".$type);
 					}else if($_POST["name"]=="" && $_POST['ref']!=""){//log in e referral ma niente nome, va lanciato un errore (nome obbligatorio col referral)
 						header("Location: demographicData.php?".$type.$ref."&err=2");
 					}else if($_POST["name"]!="" && $_POST['ref']!=""){//log in, referral e nome, va creato un nuovo guest e va collegato all'account del referral
@@ -178,8 +184,11 @@
 								"guest" => $row['fk_GuestTest'],
 								"count" => $row['fk_TestCount']
 							);
-
-							header("Location: soundSettings.php?".$type);
+							
+							if(isset($_SESSION['test']))
+								header("Location: info.php");
+							else
+								header("Location: soundSettings.php?".$type);
 						}
 					}
 					

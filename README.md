@@ -19,6 +19,7 @@ DEADLINES E TO-DO:
 	- il tipo di test mandato con il referral è il tipo di test scelto quando si son salvati i settings
 	- nella pagina di spiegazioni che esce quando si usa un link, deve esserci la spunta per il feedback o deve essere sempre attivo/disattivato/dipende da come ha impostato l'account generatore del link
 	- ITI (interTrialInterval) va messo nel csv?
+	- cosa scrivere nella pagina di spiegazioni?
 	
 -cose da fare con i tecnici
 	? aggiungere email al db -> migliardi
@@ -41,7 +42,7 @@ DEADLINES E TO-DO:
 		✓ reversal threshold solo per calcolo della soglia
 		✓ con il link si mandano anche i settings salvati nell'account
 			✓ aggiungere controllo in sound settings validation: tutti i dati devono essere uguali a quelli nel test $_SESSION['test'] (serve nel caso qualcuno togliesse il 'disabled' con ispeziona elemento)
-		- quando si usa un link dopo demographicData esce una pagina di spiegazioni e non quella dei settings (c'è comunque la spunta feedback?)
+		✓ quando si usa un link dopo demographicData esce una pagina di spiegazioni e non quella dei settings (c'è comunque la spunta feedback?)
 		- demographicData: quando si è loggati escono i campi solo se c'è il referral + pulsante per mettere il proprio referral
 		✓ responsive
 		- test con rumore per amp e dur 

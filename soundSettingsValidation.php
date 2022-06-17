@@ -31,10 +31,6 @@
 			if(isset($_POST["checkFb"]))
 				$checkFb = 1;
 			
-			$checkSave = 0;
-			if(isset($_POST["saveSettings"]))
-				$checkSave = 1;
-			
 			$_SESSION["amplitude"] = $row["amp"];
 			$_SESSION["frequency"] = $row["freq"];
 			$_SESSION["duration"] = $row["dur"];
@@ -44,7 +40,7 @@
 			$_SESSION["ISI"] = $row["ISI"];
 			$_SESSION["delta"] = $row["Delta"];
 			$_SESSION["checkFb"] = $checkFb;
-			$_SESSION["saveSettings"] = $checkSave;
+			$_SESSION["saveSettings"] = 0;
 			$_SESSION["factor"] = $row["fact"];
 			$_SESSION["secFactor"] = $row["secfact"];
 			$_SESSION["reversals"] = $row["rev"];
