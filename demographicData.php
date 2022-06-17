@@ -18,11 +18,48 @@
 		<!-- Bootstrap CSS -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 		<link rel="stylesheet" href="staircaseStyle.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
-
+		<script type="text/javascript" src="funzioni.js<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>"></script>
 
 		<title>Psychoacoustics-web - Personal info</title>
+		
+		<script>
+			function verifyRef(){
+				var display = true;
+				var logged = <?php if(isset($_SESSION['usr'])) echo "true"; else echo "false"; ?>;
+				if(document.getElementById("ref").value != "" && logged){
+					if(document.getElementById("name").innerHTML.slice(-1)!="*")
+						document.getElementById("name").innerHTML += "*";
+					display = true;
+				}else if(document.getElementById("ref").value == "" && logged){
+					display = false;
+				}
+				updatePage(display);
+			}
+			
+			function insertRef(){
+				<?php
+					if(isset($_SESSION['usr'])){
+						try{
+							$conn = new mysqli($host, $user, $password, $dbname);
+							if ($conn->connect_errno)
+								throw new Exception('DB connection failed');
+							mysqli_set_charset($conn, "utf8");
+							
+							$sql="SELECT Referral as ref FROM account WHERE Username='{$_SESSION['usr']}'";
+							
+							$result = $conn->query($sql);
+							$row = $result->fetch_assoc();
+						}catch(Exception $e){
+							header("Location: index.php?err=db");
+						}
+					}
+				?>
+				document.getElementById("ref").value=<?php echo "'".$row['ref']."'"; ?>;
+				verifyRef();
+			}
+		</script>
 	</head>
-	<body>
+	<body onload="verifyRef()">
 
 		<?php
 			//se si sceglie un username già esistente verrà messo "?err=1" nell'url
@@ -36,11 +73,6 @@
 				else if($_GET['err']==3)
 					echo "<div class='alert alert-danger'>Invalid referral code</div>";
 				
-			}
-			
-			if(isset($_SESSION['usr'])){
-				echo "<div class='alert alert-warning'>Warning: if you are logged in AND insert your personal 
-					information here, a new Guest will be created and it will be linked to your account</div>";
 			}
 		?>
 		
@@ -58,22 +90,22 @@
 						<h1>Personal Informations</h1>
 						
 						<!-- Label -->
-						<div class="input-group flex-nowrap">
+						<div class="input-group flex-nowrap conditionalDisplay">
 							<span class="input-group-text" id="name" >Name<?php if(!isset($_SESSION['usr'])) echo "*"; ?></span>
 							<input type="text" class="form-control" id="inputName" placeholder="Name" name="name">
 						</div>
 						
-						<div class="input-group flex-nowrap">
+						<div class="input-group flex-nowrap conditionalDisplay">
 						  <span class="input-group-text" id="surname"  >Surname</span>
 						  <input type="text" class="form-control" id="inputSurname" placeholder="Surname" name="surname">
 						</div>
 						
-						<div class="input-group flex-nowrap">
+						<div class="input-group flex-nowrap conditionalDisplay">
 						  <span class="input-group-text" id="age" >Age</span>
 						  <input type="text" class="form-control" id="inputAge" placeholder="Age" name="age">
 						</div>
 						
-						<div class="input-group flex-nowrap">
+						<div class="input-group flex-nowrap conditionalDisplay">
 						  <span class="input-group-text" id="gender" >Gender</span>
 						  <select name='gender' class="form-select">
 							<option disabled="disabled" selected value="null" id="NullGender">Select your gender</option>
@@ -103,14 +135,15 @@
 						  </select>
 						</div>
 						
-						<div class="input-group flex-nowrap" id="notesDiv">
+						<div class="input-group flex-nowrap conditionalDisplay" id="notesDiv">
 						  <span class="input-group-text" id="notes">Notes</span>
 						  <input type="text" class="form-control" id="inputNotes" placeholder="Notes" name="notes">
 						</div>
 						
+						<?php if(isset($_SESSION['usr'])) echo '<button type="button" class="btn btn-primary btn-lg m-3 refButton" onclick="insertRef()">USE MINE</button>'; ?>
 						<div class="input-group flex-nowrap referral">
 						  <span class="input-group-text" id="notes">Invite code</span>
-						  <input type="text" class="form-control" id="ref" name="ref" onchange="verifyRef()" value="<?php if(isset($_GET['ref'])) {echo $_GET['ref'];}?>">
+						  <input type="text" class="form-control" id="ref" name="ref" onkeyup="verifyRef()" value="<?php if(isset($_GET['ref'])) {echo $_GET['ref'];}?>">
 						</div>
 						
 						<div class="form-check">
@@ -126,11 +159,5 @@
 				</div>
 			</div>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-		<script>
-			function verifyRef(){
-				if(document.getElementById("ref").value != "" && <?php if(isset($_SESSION['usr'])) echo "true"; else echo "false"; ?>)
-					document.getElementById("name").innerHTML += "*";
-			}
-		</script>
 	</body>
 </html>

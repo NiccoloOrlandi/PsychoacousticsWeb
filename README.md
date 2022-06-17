@@ -43,7 +43,8 @@ DEADLINES E TO-DO:
 		✓ con il link si mandano anche i settings salvati nell'account
 			✓ aggiungere controllo in sound settings validation: tutti i dati devono essere uguali a quelli nel test $_SESSION['test'] (serve nel caso qualcuno togliesse il 'disabled' con ispeziona elemento)
 		✓ quando si usa un link dopo demographicData esce una pagina di spiegazioni e non quella dei settings (c'è comunque la spunta feedback?)
-		- demographicData: quando si è loggati escono i campi solo se c'è il referral + pulsante per mettere il proprio referral
+		✓ demographicData: quando si è loggati escono i campi solo se c'è il referral
+		✓ pulsante per mettere il proprio referral
 		✓ responsive
 		- test con rumore per amp e dur 
 	- altro da fare il prima possibile

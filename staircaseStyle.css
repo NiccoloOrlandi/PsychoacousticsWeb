@@ -114,6 +114,14 @@ input[type="checkbox"]:focus, input[type="radio"]:focus{
 .referral{
 	float: right !important;
 	width: 35% !important;
+	margin: 2% !important;
+}
+
+.refButton{
+	float: right;
+	margin: 2% !important;
+	padding: 6px 1% 6px !important;
+	font-size: 1.1rem;
 }
 
 .checkboxes{
@@ -192,8 +200,16 @@ input[type="checkbox"]:focus, input[type="radio"]:focus{
 	}
 	
 	.referral{
-		margin-top: 5%;
+		margin: 0 !important;
+		margin-right: 2% !important;
+		margin-top: 5% !important;
 		float: none !important;
 		width: 98% !important;
+	}
+	
+	.refButton{
+		min-width: 50px;
+		width: 20% !important;
+		margin-top: 5% !important;
 	}
 }

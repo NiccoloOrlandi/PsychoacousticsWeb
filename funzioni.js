@@ -28,3 +28,13 @@ function updateLink(){
 	link = link.substring(0,testStart) + test + link.substring(testEnd);
 	document.getElementById('link').innerHTML = link;
 }
+
+function updatePage(display){
+	var elems = document.getElementsByClassName("conditionalDisplay");
+	for(j = 0; j < elems.length; j++) {
+		if(display)
+			elems[j].style.display = "";
+		else
+			elems[j].style.display = "none";
+	}
+}
