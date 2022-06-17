@@ -204,12 +204,10 @@ h1, h3{
 table{
 	margin:2%;
 	width: 95%;
-	border: 1px solid black;
 }
 
-tr{
-	border-bottom: 1px solid black;
-}
+tr:nth-child(even) {background: #CCC}
+tr:nth-child(odd) {background: #EEE}
 
 td{
 	text-align: center;
@@ -219,9 +217,7 @@ td{
 }
 
 .tableHeader{
-	border-top: 1px solid white;
-	border-left: 1px solid white;
-	border-right: 1px solid white;
+	background: #fff !important;
 	font-weight: 700;
 }
 
