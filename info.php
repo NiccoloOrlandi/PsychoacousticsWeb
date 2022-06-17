@@ -49,7 +49,9 @@
 		?>
 	</head>
 	<body>
-		<div class="container">
+		<img src="wallpaper1.jpg" class="wallpaper">
+		
+		<div class="info container">
 			<h2 class="info title">Hi <?php echo $_SESSION['name']; ?></h2>
 			<p class="info text">
 				You will now do an acoustic test that will measure your sensibility to the <?php echo $type; ?> of a sound.
