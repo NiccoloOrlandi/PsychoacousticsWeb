@@ -19,7 +19,10 @@ DEADLINES E TO-DO:
 	- il tipo di test mandato con il referral è il tipo di test scelto quando si son salvati i settings
 	- nella pagina di spiegazioni che esce quando si usa un link, deve esserci la spunta per il feedback o deve essere sempre attivo/disattivato/dipende da come ha impostato l'account generatore del link
 	- ITI (interTrialInterval) va messo nel csv?
-	- cosa scrivere nella pagina di spiegazioni?
+	- cosa scrivere nella pagina di spiegazioni? va bene come sta?
+	- la funzione downloadAll non segue molto le norme di privacy
+	- gli utenti devono poter essere informati su come vengono trattati i loro dati
+	- norme GDPR e utilizzo dei cookie senza consenso (rischio multa)
 	
 -cose da fare con i tecnici
 	? aggiungere email al db -> migliardi
