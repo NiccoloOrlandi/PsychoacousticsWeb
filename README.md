@@ -16,16 +16,17 @@ legenda:
 DEADLINES E TO-DO:
 
 - domande prof Grassi
+	- ITI (interTrialInterval) va messo nel csv?
+
 	- il tipo di test mandato con il referral è il tipo di test scelto quando si son salvati i settings
 	- nella pagina di spiegazioni che esce quando si usa un link, deve esserci la spunta per il feedback o deve essere sempre attivo/disattivato/dipende da come ha impostato l'account generatore del link
-	- ITI (interTrialInterval) va messo nel csv?
 	- cosa scrivere nella pagina di spiegazioni? va bene come sta?
+
 	- la funzione downloadAll non segue molto le norme di privacy
 	- gli utenti devono poter essere informati su come vengono trattati i loro dati
 	- norme GDPR e utilizzo dei cookie senza consenso (rischio multa)
 	
 -cose da fare con i tecnici
-	? aggiungere email al db -> migliardi
 	- psychoacousticsWEB nell'url
 	- capchta, serve https
 	- settare smtp per inviare le email
@@ -52,6 +53,25 @@ DEADLINES E TO-DO:
 		- test con rumore per amp e dur 
 	- altro da fare il prima possibile
 		- lista errori/limiti dei valori nel manuale
+
+- migliorie per il futuro
+	- modificare la fase del suono
+	- suoni suonabili componibili
+	- migiorare la sicurezza
+		- dati di accesso al db criptati
+		- controlli sui dati passati con get
+		- blocco accesso alle pagine tramite copia-incolla dell'url
+	- save test settings funziona anche senza finire il test (si crea un apposito test dummy nel db che serve solo a quello)
+	- possibilità di cancellare i test da yourTests
+	- possibilità di scaricare un singolo test da yourTests
+	- possibilità di togliere i SU (chi può farlo? Gli SU stessi? Se io metto un SU poi lui può togliermi. In molti ambiti funziona così)
+	- pulsante "set test" in user settings per modificare le impostazioni del test mandato con il link/invite code
+
+- documentazione entro il 10/06/2022
+	- Diagramma architetturale del sistema
+	- guida/documentazione
+	- documento dei requisiti
+	- tesi
 
 - feedback testing:
 	✓ file csv codifica utf 8
@@ -195,23 +215,6 @@ DEADLINES E TO-DO:
 	✓ tradurre tutto in inglese in ogni pagina
 	✓ title delle pagine
 	✓ responsive
-
-- migliorie per il futuro
-	- modificare la fase del suono
-	- suoni suonabili componibili
-	- migiorare la sicurezza
-		- dati di accesso al db criptati
-		- controlli sui dati passati con get
-		- blocco accesso alle pagine tramite copia-incolla dell'url
-	- save test settings funziona anche senza finire il test (si crea un apposito test dummy nel db che serve solo a quello)
-	- possibilità di cancellare i test da yourTests
-	- possibilità di scaricare un singolo test da yourTests
-
-- documentazione entro il 10/06/2022
-	- Diagramma architetturale del sistema
-	- guida/documentazione
-	- documento dei requisiti
-	- tesi
 
 - domande tecnici:
 	✓ non funziona forticlient
