@@ -26,8 +26,8 @@ legenda:
 
 - nuove features
 	- nuove features per Mattia
-		- sistemare click -> Mattia
-		- test con rumore per amp e dur -> Mattia
+		- sistemare click
+		- test con rumore per amp e dur
 
 	- nuove feature per Andrea e Niccolò
 		- save settings funziona anche senza fare il test
