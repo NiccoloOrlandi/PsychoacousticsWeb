@@ -16,12 +16,6 @@ legenda:
 DEADLINES E TO-DO:
 
 - domande prof Grassi
-	- ITI (interTrialInterval) va messo nel csv?
-
-	- il tipo di test mandato con il referral è il tipo di test scelto quando si son salvati i settings
-	- nella pagina di spiegazioni che esce quando si usa un link, deve esserci la spunta per il feedback o deve essere sempre attivo/disattivato/dipende da come ha impostato l'account generatore del link
-	- cosa scrivere nella pagina di spiegazioni? va bene come sta?
-
 	- la funzione downloadAll non segue molto le norme di privacy
 	- gli utenti devono poter essere informati su come vengono trattati i loro dati
 	- norme GDPR e utilizzo dei cookie senza consenso (rischio multa)
@@ -33,14 +27,21 @@ DEADLINES E TO-DO:
 	- copy to clipboard di userSettings richiede https (togliere overflow:scroll dopo aver risolto)
 
 - nuove features (in ordine)
+	- nuove feature per Mattia
+		- sistemare click -> Mattia
+		- test con rumore per amp e dur -> Mattia
+
 	- roba facile e veloce
 		✓ '.' come separatore dei decimali nei csv
 		✓ cambio immagine homepage
 		✓ etichette a tutti i valori (ricontrollare se vanno bene)
 		✓ db->dB negli errori
 		? link al manuale nella home page (da aggiornare dopo le modifiche)
+		- ITI (interTrialInterval) va messo nel csv
+
 	- nuove feature in ordine di importanza
-		- sistemare click
+		- save settings funziona anche senza fare il test
+		- feedback scelto da chi manda il link -> va aggiunto al db
 		✓ il feedback deve cancellarsi dopo un certo tempo <feedbackduration> di 0.5 secondi
 		✓ nuovo suono parte dopo un certo tempo <interTrialInterval> di 1 secondo
 		✓ reversal threshold solo per calcolo della soglia
@@ -50,7 +51,7 @@ DEADLINES E TO-DO:
 		✓ demographicData: quando si è loggati escono i campi solo se c'è il referral
 		✓ pulsante per mettere il proprio referral
 		✓ responsive
-		- test con rumore per amp e dur 
+
 	- altro da fare il prima possibile
 		- lista errori/limiti dei valori nel manuale
 
