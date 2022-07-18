@@ -44,7 +44,7 @@
 				
 				//scrivo il nome delle colonne
 				$line = "Name;Surname;Age;Gender;Test Type;Timestamp;Amplitude;Frequency;Duration;n. of blocks;nAFC;ISI;";
-				$line .= "First factor;First reversals;Second factor;Second reversals;reversal threshold;algorithm;";
+				$line .= "ITI;First factor;First reversals;Second factor;Second reversals;reversal threshold;algorithm;";
 				if($_GET['format']=="complete")
 					$line .= "block;trials;delta;variable;Variable Position;Pressed button;correct?;reversals\n";
 				else
@@ -53,8 +53,8 @@
 				fwrite($txt, $line);
 				
 				//valore della prima parte (quella fissa che va ripetuta)
-				$firstValues = $row["name"].";".$row["surname"].";".$age.";".$row["gender"].";".$_SESSION["type"].";".$_SESSION["time"].";";
-				$firstValues .= $_SESSION["amp"].";".$_SESSION["freq"].";".$_SESSION["dur"].";".$_SESSION["blocks"].";".$_SESSION["nAFC"].";".$_SESSION["ISI"].";";
+				$firstValues = $row["name"].";".$row["surname"].";".$age.";".$row["gender"].";".$_SESSION["type"].";".$_SESSION["time"].";".$_SESSION["amp"].";";
+				$firstValues .= $_SESSION["freq"].";".$_SESSION["dur"].";".$_SESSION["blocks"].";".$_SESSION["nAFC"].";".$_SESSION["ISI"].";".$_SESSION["ITI"].";";
 				$firstValues .= $_SESSION["fact"].";".$_SESSION["rev"].";".$_SESSION["secFact"].";".$_SESSION["secRev"].";".$_SESSION["thr"].";".$_SESSION["alg"];
 				
 				if($_GET['format']=="complete"){

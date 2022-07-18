@@ -32,13 +32,7 @@ legenda:
 	- nuove feature per Andrea e Niccolò
 		- save settings funziona anche senza fare il test
 		- feedback scelto da chi manda il link -> va aggiunto al db
-
-	- roba facile e veloce
-		? link al manuale nella home page (da aggiornare dopo le modifiche)
-		- ITI (interTrialInterval) va messo nel csv
-
-	- altro da fare il prima possibile
-		- lista errori/limiti dei valori nel manuale
+		- aggiornare manuale (lista errori + pdf aggiornato su github)
 
 - migliorie per il futuro
 	- modificare la fase del suono

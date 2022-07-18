@@ -36,7 +36,7 @@
 			$_SESSION["blocks"] = $_GET['blocks'];
 			//$_SESSION["delta"] = $_GET['delta'];
 			$_SESSION["nAFC"] = $_GET['nAFC'];
-			//$_SESSION["ITI"] = $_GET['ITI'];
+			$_SESSION["ITI"] = $_GET['ITI'];
 			$_SESSION["ISI"] = $_GET['ISI'];
 			$_SESSION["fact"] = $_GET['fact'];
 			$_SESSION["secFact"] = $_GET['secFact'];
