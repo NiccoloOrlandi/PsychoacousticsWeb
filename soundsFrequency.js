@@ -9,8 +9,11 @@ var startingDelta = delta;
 var stdDur = dur;					// duration of the standard 
 var varDur = dur;					// duration of the variable 
 
-var stdAmp = amp;					// intensity of the variable
-var varAmp = amp;					// intensity of the standard 
+var stdAmp = amp;					// intensity of the standard
+var varAmp = amp;					// intensity of the variable
+
+var stdMod = mod;                   // onset and offset duration of ramp of the standard
+var varMod = mod;                   // onset and offset duration of ramp of the variable
 
 var swap =-1;						// position of variable sound			
 var correctAnsw = 0;				// number of correct answers
@@ -32,17 +35,20 @@ var pressedButton;
 
 //funzione per generare il primo suono
 function playVar(time){
-	console.log("delta: "+(varFreq-stdFreq));
+	console.log("delta: "+(varAmp-stdAmp));
 	console.log("factor: "+currentFactor);
+
 	var volume1 = context.createGain();		//volume
-	volume1.gain.value = (10**(parseInt(varAmp)/20));			// do una valore al guadagno
+	volume1.gain.setValueAtTime(0, context.currentTime + time); //imposto volume iniziale a 0
 	volume1.connect(context.destination);	//collego all'uscita audio
+	volume1.gain.setTargetAtTime((10**(parseInt(varAmp)/20)), context.currentTime + time, varMod / 1000);   //implemento onset ramp
+	volume1.gain.setTargetAtTime(0, context.currentTime + time + (varDur/1000) - 3 * (varMod/1000), varMod / 1000); //implemento offset ramp (l'espressione "3 * (Mod/1000)" serve a garantire un raggiungimento del target del 95% circa, guardare documentazione di setTargetAtTime, in particolare la tabella del timecostant)
 
 	oscillator = context.createOscillator();//Creiamo il primo oscillatore
 	oscillator.connect(volume1);			//Colleghiamo l'oscillatore al
 	oscillator.frequency.value = varFreq;	//frequency
 	oscillator.type = "sine";				// tipo di onda
-	
+
 	oscillator.start(context.currentTime + time);		//Facciamo partire l'oscillatore
 	oscillator.stop(context.currentTime + time + (varDur/1000));//Fermiamo l'oscillatore dopo 1 secondo
 }
@@ -50,8 +56,10 @@ function playVar(time){
 //funzione per generare il secondo suono
 function playStd(time){
 	var volume2 = context.createGain();		//volume
-	volume2.gain.value = (10**(parseInt(stdAmp)/20))			//do una valore al guadagno
+	volume2.gain.setValueAtTime(0, context.currentTime + time);	//imposto volume iniziale a 0
 	volume2.connect(context.destination);	//collego all'uscita audio
+	volume2.gain.setTargetAtTime((10**(parseInt(stdAmp)/20)), context.currentTime + time, stdMod / 1000);   //implemento onset ramp
+	volume2.gain.setTargetAtTime(0, context.currentTime + time + (stdDur/1000) - 3 * (stdMod/1000), stdMod / 1000); //implemento offset ramp (l'espressione "3 * (Mod/1000)" serve a garantire un raggiungimento del target del 95% circa, guardare documentazione di setTargetAtTime, in particolare la tabella del timecostant)
 
 	oscillator = context.createOscillator();//Creiamo il secondo oscillatore
 	oscillator.connect(volume2);			//Colleghiamo l'oscillatore al
@@ -142,7 +150,7 @@ function select(button){
 		
 		//format description as a csv file
 		//prima tutti i nomi, poi tutti i dati
-		var description = "&amp="+amp+"&freq="+freq+"&dur="+dur+/*"&phase="+phase+*/"&blocks="+blocks+"&delta="+startingDelta+"&nAFC="+nAFC+"&ISI="+ISI+"&ITI="+ITI;
+		var description = "&amp="+amp+"&freq="+freq+"&dur="+dur+"&modu="+mod+/*"&phase="+phase+*/"&blocks="+blocks+"&delta="+startingDelta+"&nAFC="+nAFC+"&ISI="+ISI+"&ITI="+ITI;
 		description += "&fact="+factor+"&secFact="+secondFactor+"&rev="+reversals+"&secRev="+secondReversals+"&threshold="+reversalThreshold+"&alg="+algorithm;
 		
 		//pass the datas to the php file

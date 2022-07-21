@@ -3,7 +3,7 @@
 }
 
 .wallpaper{
-	position:absolute;
+	position:fixed;
 	top:0%;
 	left:0%;
 	width: 100%;
@@ -24,7 +24,7 @@
 }
 
 .btn-primary.btn-lg.m-3:hover{
-	background-color:#50000A;	
+	background-color:#50000A;
 }
 
 .btn-primary.btn-lg.m-3:focus{
@@ -51,8 +51,8 @@ input[type="checkbox"]:focus, input[type="radio"]:focus{
 }
 
 .input-group.flex-nowrap{
-	width: 23%; 
-	float: left; 
+	width: 23%;
+	float: left;
 	margin-right: 2%; /*anche il margine si adatta con la dimensione dello schermo*/
 }
 
@@ -107,7 +107,7 @@ input[type="checkbox"]:focus, input[type="radio"]:focus{
 
 .right-div .input-group.flex-nowrap{
 	/*gli input box all'interno del right div stanno a destra*/
-	width: 100%; 
+	width: 100%;
 	float: left;
 }
 
@@ -166,9 +166,49 @@ input[type="checkbox"]:focus, input[type="radio"]:focus{
 	margin: 4%;
 	margin-top:2%;
 	margin-bottom:0;
-	background-color: rgba(255,255,255,0.7);
+	background-color: rgba(255,255,255,0.85);
 	border-radius: 30px;
 	padding: 2%;
+}
+
+.info.test {
+	margin: 3% 4% 0;
+}
+
+.info.test-title {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	gap: 32px;
+}
+
+.info.test-title h5 {
+	margin: 0;
+}
+
+.info.test-preview {
+	background-color: white;
+	border-radius: 30px;
+	margin-top: 8px;
+	padding: 2%;
+}
+
+.info.test-preview-form {
+	padding: 3%;
+	background: #DDD;
+	border: 2px solid #000;
+	width: 50%;
+	margin: 30px auto;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.alert {
+	margin: 40%;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	text-align: center;
+	visibility: hidden;
 }
 
 .resultsBox{
@@ -183,43 +223,43 @@ input[type="checkbox"]:focus, input[type="radio"]:focus{
 
 /*quando la finestra è più piccola di 991 pixel, viene usato questo css*/
 @media all and (max-width: 991px) {
-	
+
 	/*gli input box ora prendono tutta la riga, come le note*/
 	.input-group.flex-nowrap{
-		width: 98% !important; 
-		float: none; 
+		width: 98% !important;
+		float: none;
 		margin-right: 2%;
 	}
-	
+
 	.right-div{
-		/*non sta più a destra, non c'è spazio per fare due colonne quindi vengono impilati verticalmente, 
+		/*non sta più a destra, non c'è spazio per fare due colonne quindi vengono impilati verticalmente,
 		quindi tolgo tutti i float*/
 		width: 95%;
 		float: none;
 		margin-bottom: 5%;
 	}
-	
+
 	.right-div .input-group.flex-nowrap{
-		width: 95%; 
+		width: 95%;
 		float: none;
 	}
-	
+
 	.left-div{
 		width: 95%;
 		float: none;
 	}
-	
+
 	.p-3.border.bg-light{
 		height: 101%;
 	}
-	
+
 	.form-check{
 		/*per evitare che si sovrapponga ad altri oggetti*/
 		float: none;
 		margin: 5%;
 		width: 95%;
 	}
-	
+
 	.referral{
 		margin: 0 !important;
 		margin-right: 2% !important;
@@ -227,7 +267,7 @@ input[type="checkbox"]:focus, input[type="radio"]:focus{
 		float: none !important;
 		width: 98% !important;
 	}
-	
+
 	.refButton{
 		min-width: 50px;
 		width: 20% !important;

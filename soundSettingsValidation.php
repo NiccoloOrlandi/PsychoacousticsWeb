@@ -10,7 +10,7 @@
 				throw new Exception('DB connection failed');
 			mysqli_set_charset($conn, "utf8");
 			
-			$sql = "SELECT Type, Amplitude as amp, Frequency as freq, Duration as dur, blocks, Delta, nAFC, 
+			$sql = "SELECT Type, Amplitude as amp, Frequency as freq, Duration as dur, Modulation as modu, blocks, Delta, nAFC, 
 					ISI, ITI, Factor as fact, Reversal as rev, SecFactor as secfact, SecReversal as secrev, 
 					Threshold as thr, Algorithm as alg
 					
@@ -34,6 +34,7 @@
 			$_SESSION["amplitude"] = $row["amp"];
 			$_SESSION["frequency"] = $row["freq"];
 			$_SESSION["duration"] = $row["dur"];
+			$_SESSION["modulation"] = $row["modu"];
 			$_SESSION["blocks"] = $row["blocks"];
 			$_SESSION["nAFC"] = $row["nAFC"];
 			$_SESSION["ITI"] = $row["ITI"];
@@ -182,6 +183,7 @@
 			$_SESSION["amplitude"] = $_POST["amplitude"];
 			$_SESSION["frequency"] = $_POST["frequency"];
 			$_SESSION["duration"] = $_POST["duration"];
+            $_SESSION["modulation"] = $_POST["modulation"];
 			//$_SESSION["phase"] = $_POST["phase"];
 			$_SESSION["blocks"] = $_POST["blocks"];
 			$_SESSION["nAFC"] = $_POST["nAFC"];

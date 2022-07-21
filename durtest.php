@@ -18,7 +18,8 @@
 			var amp = parseFloat(<?php echo $_SESSION["amplitude"]; ?>);
 			var freq = parseFloat(<?php echo $_SESSION["frequency"]; ?>);
 			var dur = parseFloat(<?php echo $_SESSION["duration"]; ?>);
-			//var phase = <//?php echo $_SESSION["phase"]; ?>;
+            var mod = parseFloat(<?php echo $_SESSION["modulation"]; ?>);
+            //var phase = <//?php echo $_SESSION["phase"]; ?>;
 			var blocks = parseInt(<?php echo $_SESSION["blocks"]; ?>);
 			var delta = parseFloat(<?php echo $_SESSION["delta"]; ?>);
 			var nAFC = parseInt(<?php echo $_SESSION["nAFC"]; ?>);

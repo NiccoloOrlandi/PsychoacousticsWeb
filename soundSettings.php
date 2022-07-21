@@ -102,7 +102,7 @@
 						throw new Exception('DB connection failed');
 					mysqli_set_charset($conn, "utf8");
 					
-					$sql = "SELECT Type, Amplitude as amp, Frequency as freq, Duration as dur, blocks as blocks, Delta, nAFC, 
+					$sql = "SELECT Type, Amplitude as amp, Frequency as freq, Duration as dur, test.Modulation as modu, blocks as blocks, Delta, nAFC, 
 							ISI, ITI, Factor as fact, Reversal as rev, SecFactor as secfact, SecReversal as secrev, 
 							Threshold as thr, Algorithm as alg
 							
@@ -143,7 +143,7 @@
 						throw new Exception('DB connection failed');
 					mysqli_set_charset($conn, "utf8");
 					
-					$sql="SELECT test.Amplitude as amp, test.Frequency as freq, test.Duration as dur, test.blocks as blocks, 
+					$sql="SELECT test.Amplitude as amp, test.Frequency as freq, test.Duration as dur, test.Modulation as modu, test.blocks as blocks, 
 						test.nAFC, test.ITI, test.ISI, test.Factor as fact, test.Reversal as rev, 
 						test.SecFactor as secfact, test.SecReversal as secrev, test.Algorithm as alg
 										
@@ -219,6 +219,22 @@
 													>
 												<span class="input-group-text">ms</span>
 											</div>
+
+                                            <div class="input-group flex-nowrap" title="ms of the onset and offset ramp of the standard tone, a higher value makes the initial and final transition slower">
+                                                <span class="input-group-text">Onset/Offset Ramp</span>
+                                                <input type="text" class="form-control" name="modulation" id="modulation"
+                                                       value="<?php
+                                                       if($row)
+                                                           echo $row['modu'];
+                                                       else
+                                                           echo "10";
+                                                       ?>"
+                                                    <?php
+                                                    echo $readOnly;
+                                                    ?>
+                                                >
+                                                <span class="input-group-text">ms</span>
+                                            </div>
 
 											<!-- <div class="input-group flex-nowrap">
 												<span class="input-group-text">Starting phase</span>
