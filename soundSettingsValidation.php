@@ -2,7 +2,6 @@
 
 	session_start();
 	include "config.php";
-	
 	if(isset($_SESSION['test'])){
 		try{
 			$conn = new mysqli($host, $user, $password, $dbname);
@@ -26,6 +25,8 @@
 				$type="freq";
 			else if($row['Type']=='PURE_TONE_DURATION')
 				$type="dur";
+            else if($row['Type']=='WHITE_NOISE_GAP')
+                $type="gap";
 			
 			$checkFb = 0;
 			if(isset($_POST["checkFb"]))
@@ -60,7 +61,7 @@
 
 		$sound_irreg_exp = "/^([a-zA-Z])+$/";
 		//controlli su amplitude
-		if (($_POST["amplitude"]== "") || ($_POST["amplitude"]== "undefined"))    
+		if (($_POST["amplitude"]== "") || ($_POST["amplitude"]== "undefined"))
 			header("Location: soundSettings.php?test={$_GET['test']}&err=amp1");
 
 		else if(!is_numeric($_POST["amplitude"]))

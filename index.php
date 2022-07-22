@@ -108,6 +108,13 @@
 					<p>Click here to run the test</p>
 				</div>
 			</div>
+
+            <div class="card">
+                <div class="card-body" onclick="location.href='demographicData.php?test=gap'">
+                    <h5 class="card-title">White noise gap detection</h5>
+                    <p>Click here to run the test</p>
+                </div>
+            </div>
 		</div>
 		<!-- Option 1: Bootstrap Bundle with Popper -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

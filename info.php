@@ -42,6 +42,8 @@
 					$type="frequency";
 				else if($row['Type']=='PURE_TONE_DURATION')
 					$type="duration";
+                else if($row['Type']=='WHITE_NOISE_GAP')
+                    $type="gap";
 			}catch(Exception $e){
 				header("Location: index.php?err=db");
 			}
@@ -164,8 +166,10 @@
                                 echo "Which is the loudest tone?";
                             else if($type=="frequency")
                                 echo "Which is the highest pitch tone?";
-                            else if($type="duration")
+                            else if($type=="duration")
                                 echo "Which is the longest tone?";
+                            else if($type=="gap")
+                                echo "Which is the noise with the gap?";
                             ?></h1>
                         <button type="button" class="btn btn-success" id="button1" onclick = "select(1)" disabled>1° sound</button>
                         <button type="button" class="btn btn-danger" id="button2" onclick = "select(2)" disabled>2° sound</button>
