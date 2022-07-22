@@ -39,6 +39,10 @@
 					echo "<div class='alert alert-danger'>The duration field is required</div>";
 				else if($_GET['err']=="dur2")
 					echo "<div class='alert alert-danger'>The duration value must be a positive number</div>";
+                else if($_GET['err']=="mod1")
+                    echo "<div class='alert alert-danger'>The modulation field is required</div>";
+                else if($_GET['err']=="mod2")
+                    echo "<div class='alert alert-danger'>The modulation value must be a positive number</div>";
 				else if($_GET['err']=="numblock1")
 					echo "<div class='alert alert-danger'>The n. of blocks field is required</div>";
 				else if($_GET['err']=="numblock2")

@@ -203,7 +203,7 @@ input[type="checkbox"]:focus, input[type="radio"]:focus{
 	text-align: center;
 }
 
-.alert {
+#alert {
 	margin: 40%;
 	margin-top: 0px;
 	margin-bottom: 0px;

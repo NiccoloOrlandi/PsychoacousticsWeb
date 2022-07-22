@@ -83,6 +83,12 @@
 		else if (!is_numeric($_POST["duration"]) || $_POST["duration"]<0) 
 			header("Location: soundSettings.php?test={$_GET['test']}&err=dur2");
 
+        else if (($_POST["modulation"]== "") || ($_POST["modulation"]== "undefined"))
+            header("Location: soundSettings.php?test={$_GET['test']}&err=mod1");
+
+        else if (!is_numeric($_POST["modulation"]) || $_POST["modulation"]<0)
+            header("Location: soundSettings.php?test={$_GET['test']}&err=mod2");
+
 		/*controlli su phase
 		else if (($_POST["phase"]== "") || ($_POST["phase"]== "undefined")) 
 			header("Location: soundSettings.php?test={$_GET['test']}&err=phase1");

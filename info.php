@@ -171,7 +171,7 @@
                         <button type="button" class="btn btn-danger" id="button2" onclick = "select(2)" disabled>2° sound</button>
                         <?php
                         $colors = ["#198754", "#dc3545", "#0d6efd", "#e0b000", "#a000a0", "#ff8010", "#50a0f0", "#703000", "#606090"];
-                        for($i = 3; $i<=intval($_SESSION['nAFC']); $i++){
+                        for($i = 3; $i<=intval($row['nAFC']); $i++){
                             echo "<button type='button' class='btn btn-success' style='background-color:".$colors[($i-1)%count($colors)]."; border-color:".$colors[($i-1)%count($colors)]."' id='button{$i}' onclick = 'select({$i})' disabled>{$i}° sound</button>";
                         }
                         ?>
