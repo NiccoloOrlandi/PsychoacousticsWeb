@@ -46,10 +46,10 @@ function playVar(time) {
     console.log("delta: " + (varAmp - stdAmp));
     console.log("factor: " + currentFactor);
 
-	let start1 = 0;
-	let end1 = ((varDur / 1000) / 2) - ((delta / 1000) / 2);
-	let start2 = ((varDur / 1000) / 2) + ((delta / 1000) / 2);
-	let end2 = varDur / 1000;
+    let start1 = 0;
+    let end1 = ((varDur / 1000) / 2) - ((delta / 1000) / 2);
+    let start2 = ((varDur / 1000) / 2) + ((delta / 1000) / 2);
+    let end2 = varDur / 1000;
 
     var volume1 = context.createGain();
     volume1.gain.setValueAtTime(0, context.currentTime);
