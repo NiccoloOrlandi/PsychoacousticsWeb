@@ -46,6 +46,8 @@
             $type = "duration";
         else if ($row['Type'] == 'WHITE_NOISE_GAP')
             $type = "gap";
+        else if ($row['Type'] == 'WHITE_NOISE_DURATION')
+            $type = "nduration";
     } catch (Exception $e) {
         header("Location: index.php?err=db");
     }
@@ -182,6 +184,8 @@
                         echo "Which is the longest tone?";
                     else if ($type == "gap")
                         echo "Which is the noise with the gap?";
+                    else if ($type == "nduration")
+                        echo "Which is the longest noise?";
                     ?></h1>
                 <button type="button" class="btn btn-success" id="button1" onclick="select(1)" disabled>1° sound
                 </button>

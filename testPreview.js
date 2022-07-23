@@ -22,6 +22,9 @@ switch (type) {
     case "duration":
         varDur = dur + startingDelta;
         break;
+    case "nduration":
+        varDur = dur + startingDelta;
+        break;
 }
 
 var stdMod = mod;                   // onset and offset duration of ramp of the standard
@@ -42,7 +45,7 @@ for (let channel = 0; channel < channels; channel++) {  // imposto una duarata m
     }
 }
 
-//funzione per generare il primo suono
+//funzione per generare il suono variabile
 function playVarSound(time) {
     var volume1 = context.createGain();		//volume
     volume1.gain.setValueAtTime(0, context.currentTime + time); //imposto volume iniziale a 0
@@ -59,7 +62,7 @@ function playVarSound(time) {
     oscillator.stop(context.currentTime + time + (varDur / 1000));  //Fermiamo l'oscillatore dopo dur secondi
 }
 
-//funzione per generare il secondo suono
+//funzione per generare il suono standard
 function playStdSound(time) {
     var volume2 = context.createGain();		//volume
     volume2.gain.setValueAtTime(0, context.currentTime + time);	//imposto volume iniziale a 0
@@ -76,8 +79,8 @@ function playStdSound(time) {
     oscillator.stop(context.currentTime + time + (stdDur / 1000));//Fermiamo l'oscillatore dopo dur secondi
 }
 
-//funzione per generare il primo suono
-function playVarNoise(time) {
+//funzione per generare il rumore variabile con gap
+function playVarNoiseGap(time) {
     let start1 = 0;                                             // punto di partenza della prima metà del rumore
     let end1 = ((varDur / 1000) / 2) - ((delta / 1000) / 2);    // punto di stop della prima metà del rumore
     let start2 = ((varDur / 1000) / 2) + ((delta / 1000) / 2);  // punto di partenza della seconda metà del rumore
@@ -98,7 +101,22 @@ function playVarNoise(time) {
     source.stop(context.currentTime + time + end2); // fermo il rumore
 }
 
-//funzione per generare il secondo suono
+//funzione per generare il rumore variabile (no gap)
+function playVarNoise(time) {
+    var volume2 = context.createGain(); // creo volume
+    volume2.gain.setValueAtTime(0, context.currentTime);    // imposto volume iniziale a 0
+    volume2.connect(context.destination);   // connetto il volume all'uscita
+    volume2.gain.setTargetAtTime((10 ** (parseInt(amp) / 20)), context.currentTime + time, varMod / 1000);  // eseguo rampa onset iniziale
+    volume2.gain.setTargetAtTime(0, context.currentTime + time + (varDur / 1000) - 3 * (varMod / 1000), varMod / 1000);    // eseguo rampa offset finale
+
+    source = context.createBufferSource();  // creo sorgente
+    source.buffer = myArrayBuffer;  // collego i buffer
+    source.connect(volume2);    // connetto la sorgente al volume
+    source.start(context.currentTime + time);   // riproduco il rumore
+    source.stop(context.currentTime + time + (varDur / 1000));  // fermo il rumore
+}
+
+//funzione per generare il rumore standard
 function playStdNoise(time) {
     var volume2 = context.createGain(); // creo volume
     volume2.gain.setValueAtTime(0, context.currentTime);    // imposto volume iniziale a 0
@@ -139,16 +157,23 @@ function random() {
                 playStdSound(((j - 1) * (stdDur / 1000)) + (varDur / 1000) + j * (ISI / 1000));
         } else if (type == "gap") {
             if (j == rand)
-                playVarNoise((j * (dur / 1000)) + j * (ISI / 1000));
+                playVarNoiseGap((j * (dur / 1000)) + j * (ISI / 1000));
             else
                 playStdNoise((j * (dur / 1000)) + j * (ISI / 1000));
+        } else if (type == "nduration") {
+            if (j == rand)
+                playVarNoise((j * (stdDur / 1000)) + j * (ISI / 1000));
+            else if (j < rand)
+                playStdNoise((j * (stdDur / 1000)) + j * (ISI / 1000));
+            else if (j > rand)
+                playStdNoise(((j - 1) * (stdDur / 1000)) + (varDur / 1000) + j * (ISI / 1000));
         }
     }
 
     swap = rand + 1;
 
     //after playing the sound, the response buttons are reactivated
-    if (type != "gap") {
+    if (type != "gap" && type != "nduration") {
         oscillator.onended = () => { //quando l'oscillatore sta suonando il programma non si ferma, quindi serve questo per riattivare i pulsanti solo quando finisce
             for (var j = 1; j <= nAFC; j++)
                 document.getElementById("button" + j).disabled = false;

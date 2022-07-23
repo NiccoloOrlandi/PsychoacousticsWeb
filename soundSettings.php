@@ -125,7 +125,9 @@ if (isset($_SESSION['test'])) {
         else if ($row['Type'] == 'PURE_TONE_DURATION')
             $type = "dur";
         else if ($row['Type'] == 'WHITE_NOISE_GAP')
-            $type = "dur";
+            $type = "gap";
+        else if ($row['Type'] == 'WHITE_NOISE_DURATION')
+            $type = "ndur";
 
         //se il tipo di test non è lo stesso scelto inizialmente lo scrivo in un warning alert
         if (isset($_GET['test']) && $_GET['test'] != $type) {
@@ -138,6 +140,8 @@ if (isset($_SESSION['test'])) {
                 echo "a pure tone duration discrimination";
             else if ($type == "gap")
                 echo "a white noise gap detection";
+            else if ($type == "ndur")
+                echo "a white noise duration discrimination";
             echo " test</div>";
         }
 
@@ -202,7 +206,7 @@ if (isset($_SESSION['test'])) {
 
                                     <div class="input-group flex-nowrap"
                                          title="Hz of the standard tone, a higher frequency makes the sound sharper"
-                                         <?php if ($type == "gap") echo 'style = "display: none"'?>>
+                                         <?php if ($type == "gap" || $type == "ndur") echo 'style = "display: none"'?>>
                                         <span class="input-group-text">Frequency</span>
                                         <input type="text" class="form-control" name="frequency" id="frequency"
                                                value="<?php
@@ -349,7 +353,7 @@ if (isset($_SESSION['test'])) {
                                                    echo "12";
                                                else if ($type == "freq")
                                                    echo "200";
-                                               else if ($type == "dur")
+                                               else if ($type == "dur" || $type == "ndur")
                                                    echo "300";
                                                else if ($type == "gap")
                                                    echo "100";
@@ -364,7 +368,7 @@ if (isset($_SESSION['test'])) {
                                                 echo "dB";
                                             else if ($type == "freq")
                                                 echo "Hz";
-                                            else if ($type == "dur")
+                                            else if ($type == "dur" || $type == "ndur")
                                                 echo "ms";
                                             else if ($type == "gap")
                                                 echo "ms";

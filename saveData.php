@@ -19,6 +19,8 @@
 				$type = "PURE_TONE_DURATION";
             else if($_GET['type'] == "gap")
                 $type = "WHITE_NOISE_GAP";
+            else if($_GET['type'] == "ndur")
+                $type = "WHITE_NOISE_DURATION";
 
 			if(isset($_SESSION["score"]))
 				$_SESSION["score"] .= ";".$_GET['score'];

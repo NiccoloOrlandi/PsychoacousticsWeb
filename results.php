@@ -55,6 +55,10 @@
 										$page = "amp".$page;
 									if($_SESSION['type'] == "PURE_TONE_DURATION")
 										$page = "dur".$page;
+                                    if($_SESSION['type'] == "WHITE_NOISE_GAP")
+                                        $page = "gap".$page;
+                                    if($_SESSION['type'] == "WHITE_NOISE_DURATION")
+                                        $page = "ndur".$page;
 									echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"{$page}\"'>Continue</button>";
 								}
 							}

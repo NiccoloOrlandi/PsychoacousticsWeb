@@ -27,6 +27,8 @@
 				$type="dur";
             else if($row['Type']=='WHITE_NOISE_GAP')
                 $type="gap";
+            else if($row['Type']=='WHITE_NOISE_DURATION')
+                $type="ndur";
 			
 			$checkFb = 0;
 			if(isset($_POST["checkFb"]))
