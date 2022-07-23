@@ -48,6 +48,7 @@
 			$_SESSION["thr"] = $_GET['threshold'];
 			$_SESSION["alg"] = $_GET['alg'];
 			$_SESSION["currentBlock"] = $_GET['currentBlock'];
+            $_SESSION["sampleRate"] = $_GET['sampleRate'];
 
 			if($_GET['currentBlock']<$_GET['blocks']){
 				header("Location: results.php?continue=1");
@@ -82,7 +83,7 @@
 						$sql = "INSERT INTO test VALUES ('$id', '$count', '{$_GET['timestamp']}', '$type', ";
 						$sql .= "'{$_GET['amp']}', '{$_GET['freq']}', '{$_GET['dur']}', '{$_GET['modu']}', '{$_GET['blocks']}', '{$_GET['delta']}', ";
 						$sql .= "'{$_GET['nAFC']}', '{$_GET['ITI']}', '{$_GET['ISI']}', '{$_GET['fact']}', '{$_GET['rev']}', ";
-						$sql .= "'{$_GET['secFact']}', '{$_GET['secRev']}', '{$_GET['threshold']}', '{$_GET['alg']}', '{$_GET['result']}')";
+						$sql .= "'{$_GET['secFact']}', '{$_GET['secRev']}', '{$_GET['threshold']}', '{$_GET['alg']}', '{$_GET['result']}', '{$_GET['sampleRate']}')";
 						echo $sql;
 						$conn->query($sql);
 

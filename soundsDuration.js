@@ -153,7 +153,7 @@ function select(button){
 		//format description as a csv file
 		//prima tutti i nomi, poi tutti i dati
 		var description = "&amp="+amp+"&freq="+freq+"&dur="+dur+"&modu="+mod+/*"&phase="+phase+*/"&blocks="+blocks+"&delta="+startingDelta+"&nAFC="+nAFC+"&ISI="+ISI+"&ITI="+ITI;
-		description += "&fact="+factor+"&secFact="+secondFactor+"&rev="+reversals+"&secRev="+secondReversals+"&threshold="+reversalThreshold+"&alg="+algorithm;
+		description += "&fact="+factor+"&secFact="+secondFactor+"&rev="+reversals+"&secRev="+secondReversals+"&threshold="+reversalThreshold+"&alg="+algorithm + "&sampleRate=" + context.sampleRate;
 		
 		//pass the datas to the php file
 		location.href="saveData.php?result="+result+"&timestamp="+timestamp+"&type=dur"+description+"&currentBlock="+currentBlock+"&score="+score+"&saveSettings="+saveSettings;

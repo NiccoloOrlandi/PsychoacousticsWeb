@@ -34,7 +34,7 @@
 			fwrite($txt, chr(0xEF).chr(0xBB).chr(0xBF)); //utf8 encoding
 			
 			//scrivo il nome delle colonne
-			$line = "Name;Surname;Age;Gender;Test Count;Test Type;Timestamp;Amplitude;Frequency;Duration;n. of blocks;";
+			$line = "Name;Surname;Age;Gender;Test Count;Test Type;Timestamp;Sample Rate;Amplitude;Frequency;Duration;n. of blocks;";
 			$line .= "nAFC;ISI;ITI;First factor;First reversals;Second factor;Second reversals;reversal threshold;algorithm;";
 			$line .= "block;trials;delta;variable;Variable Position;Pressed button;correct?;reversals\n";
 			
@@ -43,7 +43,7 @@
 			//metto i dati dei guest collegati
 			$sql = "SELECT guest.Name as name, guest.Surname as surname, guest.Age as age, guest.Gender as gender, 
 					test.Test_count as count, test.Type as type, test.Timestamp as time, test.Amplitude as amp, 
-					test.Frequency as freq, test.Duration as dur, test.blocks as blocks, test.nAFC as nafc, 
+					test.Frequency as freq, test.Duration as dur, test.SampleRate as sampleRate, test.blocks as blocks, test.nAFC as nafc, 
 					test.ISI as isi, test.ITI as iti, test.Factor as fact, test.Reversal as rev, test.SecFactor as secfact, 
 					test.SecReversal as secrev, test.Threshold as thr, test.Algorithm as alg, test.Result as results, 
 					account.Date as date
@@ -62,7 +62,7 @@
 					$age = "";
 				
 				//valore della prima parte (quella fissa che va ripetuta)
-				$firstValues = $row["name"].";".$row["surname"].";".$age.";".$row["gender"].";".$row["count"].";".$row["type"].";".$row["time"].";";
+				$firstValues = $row["name"].";".$row["surname"].";".$age.";".$row["gender"].";".$row["count"].";".$row["type"].";".$row["time"].";".$row["sampleRate"].";";
 				$firstValues .= $row["amp"].";".$row["freq"].";".$row["dur"].";".$row["blocks"].";".$row["nafc"].";".$row["isi"].";".$row["iti"].";";
 				$firstValues .= $row["fact"].";".$row["rev"].";".$row["secfact"].";".$row["secrev"].";".$row["thr"].";".$row["alg"];
 					
