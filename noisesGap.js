@@ -31,63 +31,63 @@ var result = "";				// final results that will be saved on the db
 var timestamp = 0;				// timestamp of the starting of the test
 var pressedButton;
 
-var channels = 2;
-var frameCount = context.sampleRate * 10;
-var myArrayBuffer = context.createBuffer(channels, frameCount, context.sampleRate);
-for (let channel = 0; channel < channels; channel++) {
-    let nowBuffering = myArrayBuffer.getChannelData(channel);
+
+var maxDur = 15;                // durata massima rumore
+var betweenRampDur = 0.03       // durata rampa nel gap
+
+var channels = 2;  // numero canali di uscita
+var frameCount = context.sampleRate * maxDur;   // imposto una duarata massima del rumore di n (15) secondi
+var noiseBuffer = context.createBuffer(channels, frameCount, context.sampleRate);     // creo un nuovo buffer
+for (let channel = 0; channel < channels; channel++) {  // riempio il buffer con rumore [-1,+1]
+    let nowBuffering = noiseBuffer.getChannelData(channel);
     for (let i = 0; i < frameCount; i++) {
         nowBuffering[i] = Math.random() * 2 - 1;
     }
 }
 
-//funzione per generare il primo suono
+//funzione per generare il rumore con il gap
 function playVar(time) {
-    console.log("delta: " + (varAmp - stdAmp));
+    console.log("delta: " + delta);
     console.log("factor: " + currentFactor);
 
-    let start1 = 0;
-    let end1 = ((varDur / 1000) / 2) - ((delta / 1000) / 2);
-    let start2 = ((varDur / 1000) / 2) + ((delta / 1000) / 2);
-    let end2 = varDur / 1000;
+    let start1 = 0;                                                 // punto di partenza della prima metà del rumore
+    let end1 = ((varDur / 1000) / 2) - ((delta / 1000) / 2);        // punto di stop della prima metà del rumore
+    let start2 = ((varDur / 1000) / 2) + ((delta / 1000) / 2);      // punto di partenza della seconda metà del rumore
+    let end2 = varDur / 1000;                                       // punto di stop della seconda metà del rumore
 
-    var volume1 = context.createGain();
-    volume1.gain.setValueAtTime(0, context.currentTime);
-    volume1.connect(context.destination);
-    volume1.gain.setTargetAtTime((10 ** (parseInt(amp) / 20)), context.currentTime + time + start1, mod / 1000);
-    volume1.gain.setTargetAtTime(0, context.currentTime + time + end1 - 3 * (0.03 / 1000), 0.03);
-    volume1.gain.setTargetAtTime((10 ** (parseInt(amp) / 20)), context.currentTime + time + start2, 0.03);
-    volume1.gain.setTargetAtTime(0, context.currentTime + time + end2 - 3 * (mod / 1000), mod / 1000);
+    var volume1 = context.createGain();     // creo volume
+    volume1.gain.setValueAtTime(0, context.currentTime);    // imposto volume iniziale a 0
+    volume1.connect(context.destination);   // connetto il volume all'uscita
+    volume1.gain.setTargetAtTime((10 ** (parseInt(amp) / 20)), context.currentTime + time + start1, mod / 1000);   // eseguo rampa onset iniziale (inizia da start1 e dura mod ms)
+    volume1.gain.setTargetAtTime(0, context.currentTime + time + end1 - 3 * (betweenRampDur / 1000), betweenRampDur);   // eseguo rampa offset del gap (inizia a end1 e dura betweenRampDur s)
+    volume1.gain.setTargetAtTime((10 ** (parseInt(amp) / 20)), context.currentTime + time + start2, betweenRampDur);    // eseguo rampa onset del gap (inizia a start2 e dura betweenRampDur s)
+    volume1.gain.setTargetAtTime(0, context.currentTime + time + end2 - 3 * (mod / 1000), mod / 1000); // eseguo rampa offset finale (inizia da end2 e dura mod ms)
 
-
-    source = context.createBufferSource();
-    source.buffer = myArrayBuffer;
-    source.connect(volume1);
-
-    source.start(context.currentTime + time + start1);
-    source.stop(context.currentTime + time + end2);
+    source = context.createBufferSource();  // creo sorgente
+    source.buffer = noiseBuffer;  // collego i buffer
+    source.connect(volume1);    // connetto la sorgente al volume
+    source.start(context.currentTime + time + start1);  // riproduco il rumore
+    source.stop(context.currentTime + time + end2);     // fermo il rumore
 }
 
-//funzione per generare il secondo suono
+//funzione per generare il rumore senza gap
 function playStd(time) {
-    var volume2 = context.createGain();
-    volume2.gain.setValueAtTime(0, context.currentTime);
-    volume2.connect(context.destination);
+    var volume2 = context.createGain();     // creo volume
+    volume2.gain.setValueAtTime(0, context.currentTime);    // imposto volume iniziale a 0
+    volume2.connect(context.destination);   // connetto il volume all'uscita
+    volume2.gain.setTargetAtTime((10 ** (parseInt(amp) / 20)), context.currentTime + time, stdMod / 1000);  // eseguo rampa onset iniziale
+    volume2.gain.setTargetAtTime(0, context.currentTime + time + (stdDur / 1000) - 3 * (stdMod / 1000), mod / 1000);    // eseguo rampa offset finale
 
-    volume2.gain.setTargetAtTime((10 ** (parseInt(amp) / 20)), context.currentTime + time, stdMod / 1000);
-
-    volume2.gain.setTargetAtTime(0, context.currentTime + time + (stdDur / 1000) - 3 * (stdMod / 1000), mod / 1000);
-
-    source = context.createBufferSource();
-    source.buffer = myArrayBuffer;
-    source.connect(volume2);
-    source.start(context.currentTime + time);
-    source.stop(context.currentTime + time + (stdDur / 1000));
+    source = context.createBufferSource();  // creo sorgente
+    source.buffer = noiseBuffer;    // collego i buffer
+    source.connect(volume2);    // connetto la sorgente al volume
+    source.start(context.currentTime + time);   // riproduco il rumore
+    source.stop(context.currentTime + time + (stdDur / 1000));  // fermo il rumore
 }
 
 //funzione per randomizzare l'output
 function random() {
-    var rand = Math.floor(Math.random() * nAFC);// the variable sound will be the rand-th sound played
+    var rand = Math.floor(Math.random() * nAFC);    // the variable sound will be the rand-th sound played
 
     for (var j = 0; j < nAFC; j++) {
         if (j == rand)
