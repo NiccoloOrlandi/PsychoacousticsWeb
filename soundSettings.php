@@ -105,7 +105,7 @@
 
 				$sql = "SELECT test.Amplitude as amp, test.Frequency as freq, test.Duration as dur, test.Modulation as modu, test.blocks as blocks, 
 								test.nAFC, test.ITI, test.ISI, test.Factor as fact, test.Reversal as rev, 
-								test.SecFactor as secfact, test.SecReversal as secrev, test.Algorithm as alg
+								test.SecFactor as secfact, test.SecReversal as secrev, test.Algorithm as alg, test.Feedback as fb
 												
 								FROM test
 								INNER JOIN account ON account.fk_GuestTest=test.Guest_ID AND account.fk_TestCount=test.Test_count
@@ -441,7 +441,11 @@
 													<div class="form-check"
 														 title="if checked a message will tell if you choose the correct sound">
 														<input class="form-check-input" type="checkbox" id="cb" name="checkFb"
-															   checked>
+															<?php
+																if (($row && $row['fb']) || !$row)
+																	echo "checked";
+															?>
+														>
 														<label class="form-check-label" for="cb">
 															FeedBack
 														</label>

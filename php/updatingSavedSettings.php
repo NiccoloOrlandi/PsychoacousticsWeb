@@ -38,6 +38,8 @@
 		$sql = "UPDATE account SET fk_guestTest = '$id', fk_testCount = '$count' WHERE username = '{$_SESSION['usr']}' ";
 		$conn->query($sql);
 		
+		unset($_SESSION['updatingSavedSettings']);
+		
 		header("Location: ../userSettings.php?err=4");
 	}catch(Exception $e){
 		header("Location: ../index.php?err=db");
