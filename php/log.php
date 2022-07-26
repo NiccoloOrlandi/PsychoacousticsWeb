@@ -1,6 +1,6 @@
 <?php
 	try{
-		include "php/config.php";
+		include "config.php";
 		//apro la sessione per comunicare con le altre pagine del sito
 		session_start();
 		
@@ -15,7 +15,7 @@
 		}
 		
 		if($specialCharacters)
-			header("Location: login.php?&err=0");
+			header("Location: ../login.php?&err=0");
 		else{
 			//apro la connessione con il db
 			$conn = new mysqli($host, $user, $password, $dbname);
@@ -44,13 +44,13 @@
 				$_SESSION['idGuest'] = $row['Guest_ID'];
 				
 				$conn->close();
-				header('Location: index.php');
+				header('Location: ../index.php');
 			}else{
 				$conn->close();
-				header('Location: login.php?err=1');
+				header('Location: ../login.php?err=1');
 			}
 		}    
 	}catch(Exception $e){
-		header("Location: index.php?err=db");
+		header("Location: ../index.php?err=db");
 	}
 ?>

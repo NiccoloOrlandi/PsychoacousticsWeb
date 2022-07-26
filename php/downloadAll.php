@@ -10,7 +10,7 @@
 
 	try{
 		//apro la connessione con la sessione e col db
-		include "php/config.php";
+		include "config.php";
 		session_start();
 		
 		$conn = new mysqli($host, $user, $password, $dbname);
@@ -96,9 +96,9 @@
 			fwrite($txt, "\n");
 			
 			fclose($txt);
-			header("Location: index.php?err=1");
+			header("Location: ../index.php?err=1");
 		}
 	}catch(Exception $e){
-		header("Location: index.php?err=db");
+		header("Location: ../index.php?err=db");
 	}
 ?>
