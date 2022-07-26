@@ -1,7 +1,7 @@
 <?php
 	try{
 		session_start();
-		include "config.php";
+		include "php/config.php";
 		
 		//sql injections handling
 		$elements = ['oldPsw', 'newPsw'];
