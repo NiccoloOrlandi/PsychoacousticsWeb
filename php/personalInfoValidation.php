@@ -13,7 +13,7 @@
 			$ref = "";
 		
 		if(isset($_GET["test"]))
-			$type = "&test=".$_GET["test"];
+			$type = "test=".$_GET["test"];
 		else
 			$type = "";
 		
