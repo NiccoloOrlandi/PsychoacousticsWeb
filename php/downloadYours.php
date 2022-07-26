@@ -38,7 +38,7 @@
 
 	try{
 		//apro la connessione con la sessione e col db
-		include "config.php";
+		include "php/config.php";
 		session_start();
 		
 		$conn = new mysqli($host, $user, $password, $dbname);
