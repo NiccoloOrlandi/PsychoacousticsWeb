@@ -1,6 +1,6 @@
 <?php
 	try{
-		include "php/config.php";
+		include "config.php";
 		session_start();
 
 		if(isset($_GET['result']) && isset($_GET['timestamp']) && isset($_GET['type'])
@@ -53,7 +53,7 @@
             $_SESSION["sampleRate"] = $_GET['sampleRate'];
 
 			if($_GET['currentBlock']<$_GET['blocks']){
-				header("Location: results.php?continue=1");
+				header("Location: ../results.php?continue=1");
 			}else{
 				//apro la connessione con il db
 				$conn = new mysqli($host, $user, $password, $dbname);
@@ -68,7 +68,7 @@
 				//save the test, if it must be saved
 				if($_SESSION["checkSave"]){
 					if(!isset($_SESSION['idGuestTest'])){
-						header("Location: index.php?err=2");
+						header("Location: ../index.php?err=2");
 					}else{
 						//trovo l'id a cui associare il test
 						$id = $_SESSION['idGuestTest'];
@@ -97,14 +97,14 @@
 				}
 
 				if(!$_SESSION["checkSave"] && $_GET['saveSettings']){
-					header("Location: results.php?continue=0&err=1");
+					header("Location: ../results.php?continue=0&err=1");
 				}else{
-					header("Location: results.php?continue=0");
+					header("Location: ../results.php?continue=0");
 				}
 			}
 		}else
-			header("Location: index.php?err=2");
+			header("Location: ../index.php?err=2");
 	}catch(Exception $e){
-		header("Location: index.php?err=db");
+		header("Location: ../index.php?err=db");
 	}
 ?>
