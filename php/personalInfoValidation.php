@@ -1,6 +1,6 @@
 <?php
 	try{
-		include "config.php"; 
+		include "php/config.php"; 
 		//accesso alla sessione
 		session_start();
 		unset($_SESSION['idGuestTest']); //se c'erano stati altri guest temporanei, li elimino per evitare collisioni
