@@ -1,7 +1,7 @@
 <?php
 	try{
 		session_start(); 
-		include "php/config.php";
+		include "config.php";
 		
 		$conn = new mysqli($host, $user, $password, $dbname);
 		if ($conn->connect_errno)
@@ -20,8 +20,8 @@
 		$sql = "UPDATE account SET Referral='$newRef' WHERE Username='".$_SESSION['usr']."'";
 		$conn->query($sql);
 		
-		header("Location: userSettings.php");
+		header("Location: ../userSettings.php");
 	}catch(Exception $e){
-		header("Location: index.php?err=db");
+		header("Location: ../index.php?err=db");
 	}
 ?>
