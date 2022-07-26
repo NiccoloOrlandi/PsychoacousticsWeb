@@ -1,6 +1,6 @@
 <?php
 	try{
-		include "config.php";
+		include "php/config.php";
 		session_start();
 
 		if(isset($_GET['result']) && isset($_GET['timestamp']) && isset($_GET['type'])
