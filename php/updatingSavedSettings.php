@@ -32,15 +32,17 @@
 		$sql .= "'{$_POST["amplitude"]}', '{$_POST["frequency"]}', '{$_POST["duration"]}', ";
 		$sql .= "'{$_POST["modulation"]}', '{$_POST['blocks']}', '{$_POST['delta']}', ";
 		$sql .= "'{$_POST['nAFC']}', '{$_POST['ITI']}', '{$_POST['ISI']}', '{$_POST['factor']}', '{$_POST['reversals']}', ";
-		$sql .= "'{$_POST['secFactor']}', '{$_POST['secReversals']}', '{$_POST['threshold']}', '{$_POST['algorithm']}', '', '0', '$checkFb')";
+		$sql .= "'{$_POST['secFactor']}', '{$_POST['secReversals']}', '{$_POST['threshold']}', '{$_POST['algorithm']}', ' ', '0', '$checkFb')";
 		$conn->query($sql);
+		echo $sql;
 		
 		$sql = "UPDATE account SET fk_GuestTest = '$id', fk_TestCount = '$count' WHERE Username = '{$_SESSION['usr']}' ";
 		$conn->query($sql);
 		
 		unset($_SESSION['updatingSavedSettings']);
 		
-		header("Location: ../userSettings.php?err=4");
+		//header("Location: ../userSettings.php?err=4");
+		echo "<br><a href='../userSettings.php?err=4'>click here</a>";
 	}catch(Exception $e){
 		header("Location: ../index.php?err=db");
 	}
