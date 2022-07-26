@@ -19,14 +19,9 @@ function copy(id){
 	alert('copied to clipboard');
 }
 
-function updateLink(){
-	var link = document.getElementById('link').innerHTML;
+function updateLink(ref){
 	var test = document.getElementById('testType').value;
-	var testStart = link.indexOf("test=") + 5;
-	var testEnd = link.indexOf("&");
-	
-	link = link.substring(0,testStart) + test + link.substring(testEnd);
-	document.getElementById('link').innerHTML = link;
+	document.getElementById('link').innerHTML = "psychoacoustics.dpg.psy.unipd.it/sito/demographicData.php?ref="+ref+"&test="+test;
 }
 
 function updatePage(display){

@@ -48,6 +48,8 @@
 					echo "<div class='alert alert-danger'>Wrong password</div>";
 				if ($_GET['err']==3)
 					echo "<div class='alert alert-success'>Password changed</div>";
+				if ($_GET['err']==4)
+					echo "<div class='alert alert-success'>Test settings changed</div>";
 			}
 			try{
 				$conn = new mysqli($host, $user, $password, $dbname);
@@ -83,7 +85,16 @@
 					psychoacoustics.dpg.psy.unipd.it/sito/demographicData.php?ref=<?php echo $ref; ?>
 				</span>
 			</div>
+			
 			<button type="submit" class="btn btn-primary btn-lg m-3">Change invite code</button>
+			<select name='gender' class="form-select" onchange="updateLink('<?php echo $ref; ?>')" id="testType">
+				<option value='amp' selected>Pure tone intensity</option>
+				<option value='freq'>Pure tone frequency</option>
+				<option value='dur'>Pure tone duration</option>
+				<option value='gap'>Noise Gap</option>
+				<option value='ndur'>Noise Duration</option>
+			</select>
+			<button type="button" class="btn btn-primary btn-lg m-3" onclick="window.location='php/updateSavedSettings.php?test='+document.getElementById('testType').value">Change test settings</button>
 			
 		</form>
 		<?php

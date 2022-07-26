@@ -95,62 +95,8 @@
 
 		if (isset($_GET['test']))
 			$type = $_GET['test'];
-
-		$readOnly = "";
-		$disabled = "";
-
-		if (isset($_SESSION['test'])) {
-			//se $_SESSION['test'] è settato allora è stato usato un referral:
-			//	imposto i valori del test salvato nell'account proprietario del referral e impedisco la modifica
-			try {
-				$conn = new mysqli($host, $user, $password, $dbname);
-				if ($conn->connect_errno)
-					throw new Exception('DB connection failed');
-				mysqli_set_charset($conn, "utf8");
-
-				$sql = "SELECT Type, Amplitude as amp, Frequency as freq, Duration as dur, test.Modulation as modu, blocks as blocks, Delta, nAFC, 
-									ISI, ITI, Factor as fact, Reversal as rev, SecFactor as secfact, SecReversal as secrev, 
-									Threshold as thr, Algorithm as alg
-									
-									FROM test
-									
-									WHERE Guest_ID='{$_SESSION['test']['guest']}' AND Test_count='{$_SESSION['test']['count']}'";
-				$result = $conn->query($sql);
-				$row = $result->fetch_assoc();
-
-				if ($row['Type'] == 'PURE_TONE_INTENSITY')
-					$type = "amp";
-				else if ($row['Type'] == 'PURE_TONE_FREQUENCY')
-					$type = "freq";
-				else if ($row['Type'] == 'PURE_TONE_DURATION')
-					$type = "dur";
-				else if ($row['Type'] == 'WHITE_NOISE_GAP')
-					$type = "gap";
-				else if ($row['Type'] == 'WHITE_NOISE_DURATION')
-					$type = "ndur";
-
-				//se il tipo di test non è lo stesso scelto inizialmente lo scrivo in un warning alert
-				if (isset($_GET['test']) && $_GET['test'] != $type) {
-					echo "<div class='alert alert-warning'>This will be ";
-					if ($type == "amp")
-						echo "a pure tone intensity discrimination";
-					else if ($type == "freq")
-						echo "a pure tone frequency discrimination";
-					else if ($type == "dur")
-						echo "a pure tone duration discrimination";
-					else if ($type == "gap")
-						echo "a white noise gap detection";
-					else if ($type == "ndur")
-						echo "a white noise duration discrimination";
-					echo " test</div>";
-				}
-
-				$readOnly = " readonly ";
-				$disabled = " disabled ";
-			} catch (Exception $e) {
-				header("Location: index.php?err=db");
-			}
-		} else if (isset($_SESSION['usr'])) {
+		
+		if (isset($_SESSION['usr'])) {
 			try {
 				$conn = new mysqli($host, $user, $password, $dbname);
 				if ($conn->connect_errno)
@@ -178,7 +124,15 @@
 				<div class="col">
 					<div class=" p-3 border bg-light">
 						<h2>Set the characteristics of the experiment</h2>
-						<form action="php/soundSettingsValidation.php<?php echo "?test=" . $type; ?>" name="Settings" method="post">
+						<form action="
+							<?php
+								if(isset($_SESSION['updatingSavedSettings']) && $_SESSION['updatingSavedSettings']=true)
+									echo "php/updatingSavedSettings.php?test=".$type;
+								else
+									echo "php/soundSettingsValidation.php?test=".$type;
+							?>"
+						 name="Settings" method="post">
+						 
 							<!-- Primo slot di setting -->
 							<div class="container p-4">
 								<div class="row gx-4">
@@ -197,9 +151,7 @@
 													   else
 														   echo "-20";
 													   ?>"
-													<?php
-													echo $readOnly;
-													?>
+													
 												>
 												<span class="input-group-text">dB</span>
 											</div>
@@ -215,9 +167,7 @@
 													   else
 														   echo "1000";
 													   ?>"
-													<?php
-													echo $readOnly;
-													?>
+													
 												>
 												<span class="input-group-text">Hz</span>
 											</div>
@@ -232,9 +182,7 @@
 													   else
 														   echo "500";
 													   ?>"
-													<?php
-													echo $readOnly;
-													?>
+													
 												>
 												<span class="input-group-text">ms</span>
 											</div>
@@ -249,9 +197,7 @@
 													   else
 														   echo "10";
 													   ?>"
-													<?php
-													echo $readOnly;
-													?>
+													
 												>
 												<span class="input-group-text">ms</span>
 											</div>
@@ -288,9 +234,7 @@
 													   else
 														   echo "3";
 													   ?>"
-													<?php
-													echo $readOnly;
-													?>
+													
 												>
 											</div>
 
@@ -303,9 +247,7 @@
 													   else
 														   echo "2";
 													   ?>"
-													<?php
-													echo $readOnly;
-													?>
+													
 												>
 											</div>
 
@@ -319,9 +261,7 @@
 													   else
 														   echo "1000";
 													   ?>"
-													<?php
-													echo $readOnly;
-													?>
+													
 												>
 												<span class="input-group-text">ms</span>
 											</div>
@@ -335,9 +275,7 @@
 													   else
 														   echo "500";
 													   ?>"
-													<?php
-													echo $readOnly;
-													?>
+													
 												>
 												<span class="input-group-text">ms</span>
 											</div>
@@ -347,9 +285,7 @@
 												<span class="input-group-text">Delta</span>
 												<input type="text" class="form-control" name="delta" id="level"
 													   value="<?php
-													   if (isset($_SESSION['test']))
-														   echo $row['Delta'];
-													   else if ($type == "amp")
+													   if ($type == "amp")
 														   echo "12";
 													   else if ($type == "freq")
 														   echo "200";
@@ -358,9 +294,7 @@
 													   else if ($type == "gap")
 														   echo "100";
 													   ?>"
-													<?php
-													echo $readOnly;
-													?>
+													
 												>
 												<span class="input-group-text">
 													<?php
@@ -403,9 +337,6 @@
 															   else
 																   echo "2";
 															   ?>"
-															<?php
-															echo $readOnly;
-															?>
 														>
 													</div>
 													<div class="input-group flex-nowrap"
@@ -418,9 +349,6 @@
 															   else
 																   echo "4";
 															   ?>"
-															<?php
-															echo $readOnly;
-															?>
 														>
 													</div>
 												</div>
@@ -436,9 +364,6 @@
 															   else
 																   echo "1.414";
 															   ?>"
-															<?php
-															echo $readOnly;
-															?>
 														>
 													</div>
 													<div class="input-group flex-nowrap"
@@ -452,9 +377,6 @@
 															   else
 																   echo "8";
 															   ?>"
-															<?php
-															echo $readOnly;
-															?>
 														>
 													</div>
 												</div>
@@ -468,9 +390,6 @@
 														   else
 															   echo "8";
 														   ?>"
-														<?php
-														echo $readOnly;
-														?>
 													>
 												</div>
 											</div>
@@ -484,8 +403,6 @@
 														<?php
 														if ($row && $row['alg'] == "SimpleUpDown")
 															echo "checked";
-														else
-															echo $disabled;
 														?>
 													>
 													<label class="form-check-label" for="flexRadioDefault1">
@@ -499,8 +416,6 @@
 														<?php
 														if (($row && $row['alg'] == "TwoDownOneUp") || !$row)
 															echo "checked";
-														else
-															echo $disabled;
 														?>
 													>
 													<label class="form-check-label" for="flexRadioDefault1">
@@ -514,8 +429,6 @@
 														<?php
 														if ($row && $row['alg'] == "ThreeDownOneUp")
 															echo "checked";
-														else
-															echo $disabled;
 														?>>
 													<label class="form-check-label" for="flexRadioDefault1">
 														ThreeDownOneUp
@@ -525,14 +438,6 @@
 
 												<!-- Checkbox -->
 												<div class="form-check checkboxes">
-													<div class="form-check" title="if checked there will be background noise">
-														<input class="form-check-input" type="checkbox" id="cb"
-															   name="checkNoise"
-															   onclick="alert('The NOISE checkbox doesn\'t work yet, it\'s a work in progress')">
-														<label class="form-check-label" for="cb">
-															Noise
-														</label>
-													</div>
 													<div class="form-check"
 														 title="if checked a message will tell if you choose the correct sound">
 														<input class="form-check-input" type="checkbox" id="cb" name="checkFb"
@@ -542,7 +447,7 @@
 														</label>
 													</div>
 													<?php
-													if (isset($_SESSION['usr']))
+													if (isset($_SESSION['usr']) && !(isset($_SESSION['updatingSavedSettings']) && $_SESSION['updatingSavedSettings']=true))
 														echo '<div class="form-check" title="if checked the settings will be saved and used as default for the next tests">
 																	<input class="form-check-input" type="checkbox" id="saveSettings" name="saveSettings">
 																	<label class="form-check-label" for="saveSettings">
@@ -561,7 +466,14 @@
 							<button type="button" class="btn btn-primary btn-lg m-3 soundSettingsButton"
 									onclick="location.href='demographicData.php'">BACK
 							</button>
-							<button type="submit" class="btn btn-primary btn-lg m-3 soundSettingsButton">START</button>
+							<button type="submit" class="btn btn-primary btn-lg m-3 soundSettingsButton">
+								<?php
+									if(isset($_SESSION['updatingSavedSettings']) && $_SESSION['updatingSavedSettings']=true)
+										echo "SAVE SETTINGS";
+									else
+										echo "START";
+								?>
+							</button>
 						</form>
 					</div>
 				</div>
