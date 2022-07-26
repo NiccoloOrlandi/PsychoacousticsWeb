@@ -1,7 +1,7 @@
 <?php
 	try{
 		session_start(); 
-		include "php/config.php";
+		include "config.php";
 		
 		//sql injections handling
 		$elements = ['usr', 'email', "name", "surname", "notes"];
