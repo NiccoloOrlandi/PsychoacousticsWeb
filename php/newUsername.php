@@ -1,6 +1,6 @@
 <?php
 	try{
-		include "php/config.php";
+		include "config.php";
 		session_start();
 		
 		//sql injections handling
@@ -11,7 +11,7 @@
 			$specialCharacters |= is_numeric(strpos($_POST['username'], $char));
 		
 		if($specialCharacters)
-			header("Location: userSettings.php?&err=0");
+			header("Location: ../userSettings.php?&err=0");
 		else{
 			$conn = new mysqli($host, $user, $password, $dbname);
 			if ($conn->connect_errno)
@@ -32,9 +32,9 @@
 				$conn->query($sql);
 			}
 			
-			header("Location: userSettings.php");
+			header("Location: ../userSettings.php");
 		}
 	}catch(Exception $e){
-		header("Location: index.php?err=db");
+		header("Location: ../index.php?err=db");
 	}
 ?>
