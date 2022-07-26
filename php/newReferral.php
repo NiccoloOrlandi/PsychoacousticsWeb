@@ -1,7 +1,7 @@
 <?php
 	try{
 		session_start(); 
-		include "config.php";
+		include "php/config.php";
 		
 		$conn = new mysqli($host, $user, $password, $dbname);
 		if ($conn->connect_errno)
