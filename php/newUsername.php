@@ -1,6 +1,6 @@
 <?php
 	try{
-		include "config.php";
+		include "php/config.php";
 		session_start();
 		
 		//sql injections handling
