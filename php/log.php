@@ -1,6 +1,6 @@
 <?php
 	try{
-		include "config.php";
+		include "php/config.php";
 		//apro la sessione per comunicare con le altre pagine del sito
 		session_start();
 		
