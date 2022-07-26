@@ -34,7 +34,7 @@ legenda:
 		- aggiungere test preview per guest
 
 	- nuove feature per Andrea e Niccolò
-		- settings salvato prima di cominciare il test - N
+		- settings salvato prima di cominciare il test - Niccolo'
 		- possibilità di cambiare i settings salvati da impostazioni - A
 		- feedback scelto da chi manda il link -> va aggiunto al db
 
