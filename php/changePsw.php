@@ -1,7 +1,7 @@
 <?php
 	try{
 		session_start();
-		include "php/config.php";
+		include "config.php";
 		
 		//sql injections handling
 		$elements = ['oldPsw', 'newPsw'];
@@ -14,7 +14,7 @@
 		}
 		
 		if($specialCharacters)
-			header("Location: userSettings.php?&err=0");
+			header("Location: ../userSettings.php?&err=0");
 		else{
 			// connessione al database
 			$conn = new mysqli($host, $user, $password, $dbname);
@@ -34,13 +34,13 @@
 			   
 				$sql ="UPDATE account SET password = SHA2('$newPsw', 256)  WHERE username= '".$_SESSION['usr']."'";
 				$conn->query($sql);
-				header('Location: userSettings.php?err=3');
+				header('Location: ../userSettings.php?err=3');
 			}
 			else
-				header('Location: userSettings.php?err=2');
+				header('Location: ../userSettings.php?err=2');
 			mail($email,'Password changing','you have correctly changed the password');
 		}
 	}catch(Exception $e){
-		header("Location: index.php?err=db");
+		header("Location: ../index.php?err=db");
 	}
 ?>

@@ -1,6 +1,6 @@
 <?php
 	try{
-		include "php/config.php";
+		include "config.php";
 		session_start();
 		
 		if(!isset($_GET['format']) || ($_GET['format']!="complete" && $_GET['format']!="reduced"))
