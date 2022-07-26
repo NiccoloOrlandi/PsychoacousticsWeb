@@ -126,7 +126,7 @@
 						<h2>Set the characteristics of the experiment</h2>
 						<form action="
 							<?php
-								if(isset($_SESSION['updatingSavedSettings']) && $_SESSION['updatingSavedSettings']=true)
+								if(isset($_SESSION['updatingSavedSettings']) && $_SESSION['updatingSavedSettings']==true)
 									echo "php/updatingSavedSettings.php?test=".$type;
 								else
 									echo "php/soundSettingsValidation.php?test=".$type;
@@ -451,7 +451,7 @@
 														</label>
 													</div>
 													<?php
-													if (isset($_SESSION['usr']) && !(isset($_SESSION['updatingSavedSettings']) && $_SESSION['updatingSavedSettings']=true))
+													if (isset($_SESSION['usr']) && !(isset($_SESSION['updatingSavedSettings']) && $_SESSION['updatingSavedSettings']==true))
 														echo '<div class="form-check" title="if checked the settings will be saved and used as default for the next tests">
 																	<input class="form-check-input" type="checkbox" id="saveSettings" name="saveSettings">
 																	<label class="form-check-label" for="saveSettings">
@@ -472,7 +472,7 @@
 							</button>
 							<button type="submit" class="btn btn-primary btn-lg m-3 soundSettingsButton">
 								<?php
-									if(isset($_SESSION['updatingSavedSettings']) && $_SESSION['updatingSavedSettings']=true)
+									if(isset($_SESSION['updatingSavedSettings']) && $_SESSION['updatingSavedSettings']==true)
 										echo "SAVE SETTINGS";
 									else
 										echo "START";

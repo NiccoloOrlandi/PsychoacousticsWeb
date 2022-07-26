@@ -34,13 +34,15 @@
 		$sql .= "'{$_POST['nAFC']}', '{$_POST['ITI']}', '{$_POST['ISI']}', '{$_POST['factor']}', '{$_POST['reversals']}', ";
 		$sql .= "'{$_POST['secFactor']}', '{$_POST['secReversals']}', '{$_POST['threshold']}', '{$_POST['algorithm']}', '', '0', '$checkFb')";
 		$conn->query($sql);
-
+		echo $sql."<br>";
+		
 		$sql = "UPDATE account SET fk_guestTest = '$id', fk_testCount = '$count' WHERE username = '{$_SESSION['usr']}' ";
 		$conn->query($sql);
+		echo $sql."<br>";
 		
 		unset($_SESSION['updatingSavedSettings']);
 		
-		header("Location: ../userSettings.php?err=4");
+		//header("Location: ../userSettings.php?err=4");
 	}catch(Exception $e){
 		header("Location: ../index.php?err=db");
 	}
