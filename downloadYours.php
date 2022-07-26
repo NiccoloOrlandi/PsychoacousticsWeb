@@ -20,7 +20,7 @@
 			$age = date_diff(date_create($row['date']), date_create('now'))->y;
 			$firstValues = $row["name"].";".$row["surname"].";".$age.";".$row["gender"].";".$row["count"].";".$row["type"].";".$row["time"].";".$row["sampleRate"].";";
 			$firstValues .= $row["amp"].";".$row["freq"].";".$row["dur"].";".$row["blocks"].";".$row["nafc"].";".$row["isi"].";".$row["iti"].";";
-			$firstValues .= $_SESSION["fact"].";".$_SESSION["rev"].";".$_SESSION["secFact"].";".$_SESSION["secRev"].";".$_SESSION["thr"].";".$_SESSION["alg"];
+			$firstValues .= $row["fact"].";".$row["rev"].";".$row["secfact"].";".$row["secrev"].";".$row["thr"].";".$row["alg"];
 			
 			$results = explode(",", $row["results"]);
 			writeResults($txt, $firstValues, $results);
