@@ -1,6 +1,6 @@
 <?php
 	try{
-		include "php/config.php"; 
+		include "config.php"; 
 		//accesso alla sessione
 		session_start();
 		unset($_SESSION['idGuestTest']); //se c'erano stati altri guest temporanei, li elimino per evitare collisioni
@@ -29,7 +29,7 @@
 		$specialCharacters |= (!is_numeric($_POST["age"]) && $_POST["age"]!="");
 		
 		if($specialCharacters){
-			header("Location: demographicData.php?".$type.$ref."&err=0");
+			header("Location: ../demographicData.php?".$type.$ref."&err=0");
 		}else{
 			//connessione al db
 			$conn = new mysqli($host, $user, $password, $dbname);
@@ -46,7 +46,7 @@
 			$_SESSION["checkSave"] = $checkSave;
 			
 			if($checkSave==0){
-				header("Location: soundSettings.php?".$type);
+				header("Location: ../soundSettings.php?".$type);
 			
 			}else{
 				//scrivo la query di creazione del guest
@@ -86,7 +86,7 @@
 				}
 				
 				if($_POST["name"]=="" && !isset($_SESSION["idGuest"])){ //niente log in e nome mancante (errore)
-					header("Location: demographicData.php?".$type.$ref."&err=1");
+					header("Location: ../demographicData.php?".$type.$ref."&err=1");
 				
 				}else if (!isset($_SESSION["idGuest"])){ //niente log in ma c'è il nome (creo il guest)
 					$_SESSION["name"] = $_POST["name"];
@@ -117,14 +117,14 @@
 					$id = $row['id'];
 					$_SESSION['idGuestTest']=$id;
 					if(isset($_SESSION['test']))
-						header("Location: info.php");
+						header("Location: ../info.php");
 					else
-						header("Location: soundSettings.php?".$type);
+						header("Location: ../soundSettings.php?".$type);
 				}
 				else{ //è stato fatto il log in
 					if($_POST["name"]=="" && $_POST['ref']==""){//log in ma niente nome e niente referral, il test va collegato all'account che ha fatto il log in
 						$_SESSION['idGuestTest'] = $_SESSION['idGuest'];
-						header("Location: soundSettings.php?".$type);
+						header("Location: ../soundSettings.php?".$type);
 					}else if($_POST["name"]!="" && $_POST['ref']==""){//log in e nome ma niente referral, va creato un nuovo guest e va collegato all'account che ha fatto il log in
 						$_SESSION["name"] = $_POST["name"];
 						
@@ -148,11 +148,11 @@
 						);
 						
 						if(isset($_SESSION['test']))
-							header("Location: info.php");
+							header("Location: ../info.php");
 						else
-							header("Location: soundSettings.php?".$type);
+							header("Location: ../soundSettings.php?".$type);
 					}else if($_POST["name"]=="" && $_POST['ref']!=""){//log in e referral ma niente nome, va lanciato un errore (nome obbligatorio col referral)
-						header("Location: demographicData.php?".$type.$ref."&err=2");
+						header("Location: ../demographicData.php?".$type.$ref."&err=2");
 					}else if($_POST["name"]!="" && $_POST['ref']!=""){//log in, referral e nome, va creato un nuovo guest e va collegato all'account del referral
 						$_SESSION["name"] = $_POST["name"];
 						
@@ -163,7 +163,7 @@
 						$row = $result->fetch_assoc();	// dopo aver fatto la query controllo se il risultato é nullo, se lo é, il referral non é valido
 						if (!isset($row['Username'])) {
 
-							header("Location: demographicData.php?".$type.$ref."&err=3");
+							header("Location: ../demographicData.php?".$type.$ref."&err=3");
 						}
 						else{
 							$sql .= "'".$row['Username']."');SELECT LAST_INSERT_ID() as id;";
@@ -186,9 +186,9 @@
 							);
 							
 							if(isset($_SESSION['test']))
-								header("Location: info.php");
+								header("Location: ../info.php");
 							else
-								header("Location: soundSettings.php?".$type);
+								header("Location: ../soundSettings.php?".$type);
 						}
 					}
 					
@@ -196,6 +196,6 @@
 			}
 		}
 	}catch(Exception $e){
-		header("Location: index.php?err=db");
+		header("Location: ../index.php?err=db");
 	}
 ?>
