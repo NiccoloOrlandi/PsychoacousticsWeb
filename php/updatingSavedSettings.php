@@ -40,7 +40,7 @@
 		
 		unset($_SESSION['updatingSavedSettings']);
 		
-		//header("Location: ../userSettings.php?err=4");
+		header("Location: ../userSettings.php?err=4");
 	}catch(Exception $e){
 		header("Location: ../index.php?err=db");
 	}
