@@ -88,7 +88,7 @@
 			date_default_timezone_set('Europe/Rome');
 			$date = date('Y/m/d h:i:s a', time());
 			
-			$txt = fopen("log.txt", "a") or die("Unable to open file!");
+			$txt = fopen("files/log.txt", "a") or die("Unable to open file!");
 			
 			fwrite($txt, "Attempt to access downloadAll.php without permission - timestamp: ".$date);
 			if(isset($_SESSION['usr']))

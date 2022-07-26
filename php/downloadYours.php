@@ -38,7 +38,7 @@
 
 	try{
 		//apro la connessione con la sessione e col db
-		include "php/config.php";
+		include "config.php";
 		session_start();
 		
 		$conn = new mysqli($host, $user, $password, $dbname);
@@ -103,6 +103,6 @@
 		//*/
 		unlink($path);//elimino il file dal server
 	}catch(Exception $e){
-		header("Location: index.php?err=db");
+		header("Location: ../index.php?err=db");
 	}
 ?>
