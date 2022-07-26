@@ -14,7 +14,7 @@
 		}
 		
 		if($specialCharacters)
-			header("Location: userSettings.php?&err=0");
+			header("Location: ../userSettings.php?&err=0");
 		else{
 			$conn = new mysqli($host, $user, $password, $dbname);
 			if ($conn->connect_errno)
@@ -35,7 +35,7 @@
 				$userControl = "SELECT username FROM account WHERE username='{$_POST['usr']}';";
 				$result = $conn->query($sql);
 				if($result->num_rows!=0){
-					header("Location: userSettings.php?&err=1");
+					header("Location: ../userSettings.php?&err=1");
 				}else{
 					$sql.="username = '{$_POST['usr']}', ";
 					$_SESSION['usr'] = $_POST['usr'];
@@ -88,9 +88,9 @@
 			if($somethingChanged)
 				$conn->query($sql);
 			
-			header("Location: userSettings.php");
+			header("Location: ../userSettings.php");
 		}
 	}catch(Exception $e){
-		header("Location: index.php?err=db");
+		header("Location: ../index.php?err=db");
 	}
 ?>
