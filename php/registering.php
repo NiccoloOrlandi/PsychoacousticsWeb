@@ -1,6 +1,6 @@
 <?php
 	try{
-		include "config.php";
+		include "php/config.php";
 		//apro la sessione per comunicare con le altre pagine del sito
 		session_start();
 
@@ -15,7 +15,7 @@
 		}
 		
 		if($specialCharacters)
-			header("Location: registrazione.php?&err=0");
+			header("Location: register.php?&err=0");
 		else{
 			//apro la connessione con il db
 			$conn = new mysqli($host, $user, $password, $dbname);
@@ -34,7 +34,7 @@
 			$sql = "SELECT * FROM account WHERE Username='$usr'";
 			$result=$conn->query($sql);
 			if($result->num_rows>0)  
-				header('Location: registrazione.php?err=1'); //errore 1: lo definisco come errore di username già esistente
+				header('Location: register.php?err=1'); //errore 1: lo definisco come errore di username già esistente
 
 			//se non esiste eseguo la registrazione
 			else{
