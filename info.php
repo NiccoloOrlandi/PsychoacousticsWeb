@@ -166,7 +166,7 @@
         each test,
         if you are logged in with an account).
         <br><br>
-        Check the 'Feedback' checkbox if you want to know when you give a correct or a wrong answer.
+       <?php if ($checkFb) echo " You will recieve a feedback to advice whether the response is correct or not."; ?>
     </p>
     <div class="info test">
         <div class="info test-title">
@@ -201,11 +201,6 @@
         </div>
     </div>
     <form action="php/soundSettingsValidation.php" name="Settings" method="post">
-
-        <div class="info Checkbox">
-            <input class="form-check-input" type="checkbox" id="cb" name="checkFb" checked>
-            <label class="form-check-label" for="cb">Feedback</label>
-        </div>
 
         <button type="button" class="btn btn-primary btn-lg m-3 soundSettingsButton"
                 onclick="location.href='demographicData.php'">BACK

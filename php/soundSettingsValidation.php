@@ -55,7 +55,7 @@
 			unset($_SESSION['currentBlock']);
 			unset($_SESSION['results']);
 			
-			header("Location: {$type}test.php");
+			header("Location: ../{$type}test.php");
 		}catch(Exception $e){
 			header("Location: ../index.php?err=db");
 		}
@@ -210,8 +210,54 @@
 			unset($_SESSION['score']);
 			unset($_SESSION['currentBlock']);
 			unset($_SESSION['results']);
+
+			try{
+			$conn = new mysqli($host, $user, $password, $dbname);
+			if ($conn->connect_errno)
+				throw new Exception('DB connection failed');
+			mysqli_set_charset($conn, "utf8");
+
+			$id = $_SESSION['idGuestTest'];
+			$type = "";
+			if($_GET['test'] == "freq")
+				$type = "PURE_TONE_FREQUENCY";
+			else if($_GET['test'] == "amp")
+				$type = "PURE_TONE_INTENSITY";
+			else if($_GET['test'] == "dur")
+				$type = "PURE_TONE_DURATION";
+            else if($_GET['test'] == "gap")
+                $type = "WHITE_NOISE_GAP";
+            else if($_GET['test'] == "ndur")
+                $type = "WHITE_NOISE_DURATION";
+
+			$sql = "SELECT Max(Test_count) as count FROM test WHERE Guest_ID='$id'";
+						$result = $conn->query($sql);
+						$row = $result->fetch_assoc();
+
+						//il test corrente è il numero di test già effettuati + 1
+						$count = $row['count']+1;
 			
+
+			$sql = "INSERT INTO test VALUES ('$id', '$count', current_timestamp(), '$type', ";
+						$sql .= "'{$_POST['amplitude']}', '{$_POST['frequency']}', '{$_POST['duration']}', '{$_POST['modulation']}', '{$_POST['blocks']}', '{$_POST['delta']}', ";
+						$sql .= "'{$_POST['nAFC']}', '{$_POST['ITI']}', '{$_POST['ISI']}', '{$_POST['factor']}', '{$_POST['reversals']}', ";
+						$sql .= "'{$_POST['secFactor']}', '{$_POST['secReversals']}', '{$_POST['threshold']}', '{$_POST['algorithm']}', '', '0','$checkFb')";
+						
+						$conn->query($sql);
+			if($checkSave){
+
+				
+				$sql = "UPDATE account SET fk_guestTest = '$id', fk_testCount = '$count' WHERE username = '{$_SESSION['usr']}' ";
+				$conn->query($sql);
+			}
 			header("Location: ../{$_GET['test']}test.php");
+			
+			}catch(Exception $e){
+				echo'sono nel catch'; 
+			header("Location: ../index.php?err=db");
+			}
+
+			
 		}
 	}
 

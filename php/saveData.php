@@ -78,21 +78,23 @@
 						$result = $conn->query($sql);
 						$row = $result->fetch_assoc();
 
-						//il test corrente è il numero di test già effettuati + 1
-						$count = $row['count']+1;
+						/*il test corrente è il numero di test già effettuati + 1
+						$count = $row['count']+1;*/
 
 						//inserisci i dati del nuovo test
-						$sql = "INSERT INTO test VALUES ('$id', '$count', '{$_GET['timestamp']}', '$type', ";
+						$sql = "UPDATE test SET Result = '{$_GET['result']}', `Timestamp`='{$_GET['timestamp']}', `Sample Rate`='{$_GET['sampleRate']}'";
+						/* ('$id', '$count', '{$_GET['timestamp']}', '$type', ";
 						$sql .= "'{$_GET['amp']}', '{$_GET['freq']}', '{$_GET['dur']}', '{$_GET['modu']}', '{$_GET['blocks']}', '{$_GET['delta']}', ";
 						$sql .= "'{$_GET['nAFC']}', '{$_GET['ITI']}', '{$_GET['ISI']}', '{$_GET['fact']}', '{$_GET['rev']}', ";
 						$sql .= "'{$_GET['secFact']}', '{$_GET['secRev']}', '{$_GET['threshold']}', '{$_GET['alg']}', '{$_GET['result']}', '{$_GET['sampleRate']}')";
+						*/
 						echo $sql;
 						$conn->query($sql);
 
-						if($_GET['saveSettings']){
-							$sql = "UPDATE account SET fk_guestTest = '$id', fk_testCount = '$count' WHERE username = '{$_SESSION['usr']}' ";
-							$conn->query($sql);
-						}
+						// if($_GET['saveSettings']){
+						// 	$sql = "UPDATE account SET fk_guestTest = '$id', fk_testCount = '$count' WHERE username = '{$_SESSION['usr']}' ";
+						// 	$conn->query($sql);
+						// }
 					}
 				}
 
