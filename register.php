@@ -2,18 +2,18 @@
 <html>
     <head>
 		<?php 
-			include "config.php"; 
+			include "php/config.php"; 
 			session_start()
 		?>
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
-		<link rel="icon" type="image/x-icon" href="logo.png">
+		<link rel="icon" type="image/x-icon" href="files/logo.png">
         <title>Psychoacoustics-web - Register</title>
 		
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-		<link rel="stylesheet" href="formStyle.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>"> 
+		<link rel="stylesheet" href="css/formStyle.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>"> 
     </head>
     <body>
 		<?php
@@ -25,7 +25,7 @@
 					echo "<div class='alert alert-danger'>Username already taken</div>";
 			}
 		?>
-        <form method="post" action="registering.php" onsubmit="validation()">
+        <form method="post" action="php/registering.php" onsubmit="validation()">
             <h1>Registrazione</h1>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Username*</span>

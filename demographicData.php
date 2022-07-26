@@ -3,7 +3,7 @@
 	<head>
 
 		<?php 
-			include "config.php"; 
+			include "php/config.php"; 
 			session_start();
 			if(!isset($_GET["test"]) && !isset($_GET['ref']))
 				header("Location: index.php");
@@ -13,12 +13,12 @@
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="icon" type="image/x-icon" href="logo.png">
+		<link rel="icon" type="image/x-icon" href="files/logo.png">
 
 		<!-- Bootstrap CSS -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-		<link rel="stylesheet" href="staircaseStyle.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
-		<script type="text/javascript" src="funzioni.js<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>"></script>
+		<link rel="stylesheet" href="css/staircaseStyle.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
+		<script type="text/javascript" src="js/funzioni.js<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>"></script>
 
 		<title>Psychoacoustics-web - Personal info</title>
 		
@@ -81,7 +81,7 @@
 			<div class="row gx-4">
 				<div class="col">
 					<div class=" p-3 border bg-light">
-					  <form name="staircase" method="post" action="personalInfoValidation.php<?php 
+					  <form name="staircase" method="post" action="php/personalInfoValidation.php<?php 
 						if(isset($_GET["test"]))
 							echo "?test=".$_GET["test"];
 						?>">

@@ -5,11 +5,11 @@
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="icon" type="image/x-icon" href="logo.png">
+		<link rel="icon" type="image/x-icon" href="files/logo.png">
 
 		<!-- Bootstrap CSS -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-		<link rel ="stylesheet" href="test.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
+		<link rel ="stylesheet" href="css/test.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
 
 		<title>Psychoacoustics-web - Duration test</title>
 
@@ -36,7 +36,7 @@
 			var currentBlock = parseInt(<?php if(isset($_SESSION["currentBlock"])) echo $_SESSION["currentBlock"]+1; else echo "1"?>);
 
 		</script>
-		<script type="text/javascript" src="noisesDuration.js<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>" defer></script>
+		<script type="text/javascript" src="js/noisesDuration.js<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>" defer></script>
 	</head>
 	
 	<body>

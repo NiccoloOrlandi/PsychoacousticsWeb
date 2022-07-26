@@ -6,17 +6,17 @@
 			session_start();
 			if(!isset($_SESSION['usr']) || !isset($_SESSION['idGuest'])) 
 				header("Location: index.php");
-			include "config.php";
+			include "php/config.php";
 		?>
 		
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="icon" type="image/x-icon" href="logo.png">
+		<link rel="icon" type="image/x-icon" href="files/logo.png">
 
 		<!-- Bootstrap CSS -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-		<link rel ="stylesheet" href="style.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
+		<link rel ="stylesheet" href="css/style.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
 
 		<title>Psychoacoustics-web - Test results</title>
 	</head>
@@ -25,14 +25,14 @@
 		<nav class="navbar navbar-dark bg-dark">
 			<div class="container-fluid" >
 			  <a class="navbar-brand" href="index.php" >
-				<img src="logo.png" alt="" width="25" height="25" class="d-inline-block align-text-top" >
+				<img src="files/logo.png" alt="" width="25" height="25" class="d-inline-block align-text-top" >
 				PSYCHOACOUSTICS
 				
 			  </a>
 			  <form class="container-fluid logButtons">
 				<?php				
 					echo "<label class='welcomeMessage'>Welcome ".$_SESSION['usr']."</label>";
-					echo "<button class=\"btn btn-outline-danger logout\" type=\"button\" onclick=\"location.href='logout.php'\">Log Out</button>";
+					echo "<button class=\"btn btn-outline-danger logout\" type=\"button\" onclick=\"location.href='php/logout.php'\">Log Out</button>";
 				?>
 			  </form>
 			 
@@ -41,8 +41,8 @@
 		
 		<h1>Welcome <?php echo $_SESSION['usr'];?></h1>
 		
-		<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href="downloadYours.php?all=1"'>Download all your data</button>
-		<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href="downloadYours.php?all=0"'>Download all your guest's data</button>
+		<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href="php/downloadYours.php?all=1"'>Download all your data</button>
+		<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href="php/downloadYours.php?all=0"'>Download all your guest's data</button>
 		
 		<?php
 			try{
@@ -60,7 +60,7 @@
 				$result=$conn->query($sql);
 				$row=$result->fetch_assoc();
 				if($row['Type'] == 1){
-					echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"downloadAll.php\"'>Download all the data in the database</button>";
+					echo "<button type='button' class='btn btn-primary btn-lg m-3' onclick='location.href=\"php/downloadAll.php\"'>Download all the data in the database</button>";
 				}
 			}catch(Exception $e){
 				header("Location: index.php?err=db");

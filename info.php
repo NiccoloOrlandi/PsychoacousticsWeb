@@ -3,7 +3,7 @@
 <head>
     <?php
     session_start();
-    include "config.php";
+    include "php/config.php";
     if (!isset($_GET["test"]) && !isset($_SESSION['test']))
         header("Location: index.php");
     ?>
@@ -11,14 +11,14 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="logo.png">
+    <link rel="icon" type="image/x-icon" href="files/logo.png">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link rel="stylesheet"
-          href="staircaseStyle.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
+          href="css/staircaseStyle.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
     <title>Psychoacoustics-web - Test settings</title>
 
     <?php
@@ -64,11 +64,11 @@
     </script>
 
     <script type="text/javascript"
-            src="testPreview.js<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>"
+            src="js/testPreview.js<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>"
             defer></script>
 </head>
 <body>
-<img src="wallpaper1.jpg" class="wallpaper">
+<img src="files/wallpaper1.jpg" class="wallpaper">
 
 <div class="info container">
     <h2 class="info title">Hi <?php echo $_SESSION['name']; ?></h2>
@@ -200,7 +200,7 @@
             <div class='alert' id="alert"></div>
         </div>
     </div>
-    <form action="soundSettingsValidation.php" name="Settings" method="post">
+    <form action="php/soundSettingsValidation.php" name="Settings" method="post">
 
         <div class="info Checkbox">
             <input class="form-check-input" type="checkbox" id="cb" name="checkFb" checked>
