@@ -4,5 +4,5 @@
 	unset($_SESSION['usr']);
 	unset($_SESSION['idGuest']);
 	
-	header("Location: index.php");
+	header("Location: ../index.php");
 ?>

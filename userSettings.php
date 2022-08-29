@@ -3,18 +3,18 @@
 	<head>
 		<?php 
 			session_start(); 
-			include "config.php";
+			include "php/config.php";
 		?>
 		
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="icon" type="image/x-icon" href="logo.png">
+		<link rel="icon" type="image/x-icon" href="files/logo.png">
 
 		<!-- Bootstrap CSS -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-		<link rel ="stylesheet" href="style.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
-		<script type="text/javascript" src="funzioni.js<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>"></script>
+		<link rel ="stylesheet" href="css/style.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
+		<script type="text/javascript" src="js/funzioni.js<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>"></script>
 
 		<title>Psychoacoustics-web - User settings</title>
 
@@ -26,13 +26,13 @@
 		<nav class="navbar navbar-dark bg-dark">
 			<div class="container-fluid" >
 			  <a class="navbar-brand" href="index.php" >
-				<img src="logo.png" alt="" width="25" height="25" class="d-inline-block align-text-top" >
+				<img src="files/logo.png" alt="" width="25" height="25" class="d-inline-block align-text-top" >
 				PSYCHOACOUSTICS
 			  </a>
 			  <form class="container-fluid logButtons">
 				<label class='welcomeMessage'>Welcome <?php echo $_SESSION['usr'];?></label>
 				<button class="btn btn-outline-primary yourTests" type="button" onclick="location.href='yourTests.php'">Your tests</button>
-				<button class="btn btn-outline-danger logout" type="button" onclick="location.href='logout.php'">Log Out</button>
+				<button class="btn btn-outline-danger logout" type="button" onclick="location.href='php/logout.php'">Log Out</button>
 			  </form>
 			</div>
 		</nav>
@@ -48,6 +48,8 @@
 					echo "<div class='alert alert-danger'>Wrong password</div>";
 				if ($_GET['err']==3)
 					echo "<div class='alert alert-success'>Password changed</div>";
+				if ($_GET['err']==4)
+					echo "<div class='alert alert-success'>Test settings changed</div>";
 			}
 			try{
 				$conn = new mysqli($host, $user, $password, $dbname);
@@ -72,7 +74,7 @@
 			}
 		?>
 		
-		<form action="newReferral.php" class="settingForm ref">
+		<form action="php/newReferral.php" class="settingForm ref">
 			<div class="input-group mb-3">
 				<span class="input-group-text title" onclick="copy('ref')" title="click to copy">Invite code</span>
 				<span class="input-group-text link" id="ref" onclick="copy('ref')" title="click to copy"><?php echo $ref; ?></span>
@@ -83,7 +85,16 @@
 					psychoacoustics.dpg.psy.unipd.it/sito/demographicData.php?ref=<?php echo $ref; ?>
 				</span>
 			</div>
+			
 			<button type="submit" class="btn btn-primary btn-lg m-3">Change invite code</button>
+			<select name='gender' class="form-select" onchange="updateLink('<?php echo $ref; ?>')" id="testType">
+				<option value='amp' selected>Pure tone intensity</option>
+				<option value='freq'>Pure tone frequency</option>
+				<option value='dur'>Pure tone duration</option>
+				<option value='gap'>Noise Gap</option>
+				<option value='ndur'>Noise Duration</option>
+			</select>
+			<button type="button" class="btn btn-primary btn-lg m-3" onclick="window.location='php/updateSavedSettings.php?test='+document.getElementById('testType').value">Change test settings</button>
 			
 		</form>
 		<?php
@@ -92,7 +103,7 @@
 				$result=$conn->query($sql);
 				$row=$result->fetch_assoc();
 				if($row['Type'] == 1){
-					echo '<form action="newUsername.php" method="POST" class="settingForm ref">
+					echo '<form action="php/newUsername.php" method="POST" class="settingForm ref">
 						<div class="input-group mb-3">
 							<span class="input-group-text title" onclick="copy(\'ref\')" title="Username">Username</span>
 							<input type="text" class="form-control" placeholder="Username"  name="username">
@@ -106,7 +117,7 @@
 			}
 		?>
 
-		<form action="changePsw.php" method= "post" class="settingForm">
+		<form action="php/changePsw.php" method= "post" class="settingForm">
 			<div class="input-group mb-3">
 				<span class="input-group-text">Old password</span>
 				<input type="password" class="form-control" placeholder="Old password" name="oldPsw">
@@ -118,7 +129,7 @@
 			<button type="submit" class="btn btn-primary btn-lg m-3">Change Password</button>
 		</form>
 
-		<form method="post" action="saveSettings.php" class="settingForm">
+		<form method="post" action="php/saveSettings.php" class="settingForm">
 			<div class="input-group mb-3">
 				<span class="input-group-text">Username</span>
 				<input type="text" class="form-control" name="usr" value="<?php echo $_SESSION['usr']; ?>">

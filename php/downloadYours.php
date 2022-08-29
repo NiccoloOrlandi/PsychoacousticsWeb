@@ -103,6 +103,6 @@
 		//*/
 		unlink($path);//elimino il file dal server
 	}catch(Exception $e){
-		header("Location: index.php?err=db");
+		header("Location: ../index.php?err=db");
 	}
 ?>

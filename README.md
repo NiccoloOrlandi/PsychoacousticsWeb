@@ -26,17 +26,16 @@ legenda:
 
 - nuove features
 	- nuove features per Mattia
-        - sistemare click
-        - test con rumore per amp e dur
-        - aggiungere rampa onset / offset
-        - aggiungere sample rate e sample size al database
-        - implementare esperimento di gap detection di rumori
-        - aggiungere test preview per guest
+		- sistemare click
+		- test con rumore per amp e dur
+		- aggiungere rampa onset / offset
+		- aggiungere sample rate e sample size al database
+		- implementare esperimento di gap detection di rumori
+		- aggiungere test preview per guest
 
 	- nuove feature per Andrea e Niccolò
-		- save settings funziona anche senza fare il test
-		- feedback scelto da chi manda il link -> va aggiunto al db
 		- aggiornare manuale (lista errori + pdf aggiornato su github)
+		- aggiungere commenti
 
 - migliorie per il futuro
 	- modificare la fase del suono

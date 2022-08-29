@@ -20,8 +20,8 @@
 		$sql = "UPDATE account SET Referral='$newRef' WHERE Username='".$_SESSION['usr']."'";
 		$conn->query($sql);
 		
-		header("Location: userSettings.php");
+		header("Location: ../userSettings.php");
 	}catch(Exception $e){
-		header("Location: index.php?err=db");
+		header("Location: ../index.php?err=db");
 	}
 ?>

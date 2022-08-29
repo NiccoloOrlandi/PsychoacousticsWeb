@@ -55,42 +55,42 @@
 			unset($_SESSION['currentBlock']);
 			unset($_SESSION['results']);
 			
-			header("Location: {$type}test.php");
+			header("Location: ../{$type}test.php");
 		}catch(Exception $e){
-			header("Location: index.php?err=db");
+			header("Location: ../index.php?err=db");
 		}
 	}else{
 
 		$sound_irreg_exp = "/^([a-zA-Z])+$/";
 		//controlli su amplitude
 		if (($_POST["amplitude"]== "") || ($_POST["amplitude"]== "undefined"))
-			header("Location: soundSettings.php?test={$_GET['test']}&err=amp1");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=amp1");
 
 		else if(!is_numeric($_POST["amplitude"]))
-		   header("Location: soundSettings.php?test={$_GET['test']}&err=amp2");
+		   header("Location: ../soundSettings.php?test={$_GET['test']}&err=amp2");
 
 		else if(intval($_POST["amplitude"])>0)
-		header("Location: soundSettings.php?test={$_GET['test']}&err=amp3");
+		header("Location: ../soundSettings.php?test={$_GET['test']}&err=amp3");
 
 		//controlli su frequency
 		else if (($_POST["frequency"]== "") || ($_POST["frequency"]== "undefined")) 
-			header("Location: soundSettings.php?test={$_GET['test']}&err=freq1");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=freq1");
 
 		else if (!is_numeric($_POST["frequency"]) || intval($_POST["frequency"])<0)
-			header("Location: soundSettings.php?test={$_GET['test']}&err=freq2");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=freq2");
 
 		//Controlli su duration
 		else if (($_POST["duration"]== "") || ($_POST["duration"]== "undefined")) 
-			header("Location: soundSettings.php?test={$_GET['test']}&err=dur1");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=dur1");
 
 		else if (!is_numeric($_POST["duration"]) || $_POST["duration"]<0) 
-			header("Location: soundSettings.php?test={$_GET['test']}&err=dur2");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=dur2");
 
         else if (($_POST["modulation"]== "") || ($_POST["modulation"]== "undefined"))
-            header("Location: soundSettings.php?test={$_GET['test']}&err=mod1");
+            header("Location: ../soundSettings.php?test={$_GET['test']}&err=mod1");
 
         else if (!is_numeric($_POST["modulation"]) || $_POST["modulation"]<0)
-            header("Location: soundSettings.php?test={$_GET['test']}&err=mod2");
+            header("Location: ../soundSettings.php?test={$_GET['test']}&err=mod2");
 
 		/*controlli su phase
 		else if (($_POST["phase"]== "") || ($_POST["phase"]== "undefined")) 
@@ -101,84 +101,84 @@
 		*/
 		//controlli su number of blocks
 		else if (($_POST["blocks"]== "") || ($_POST["blocks"]== "undefined")) 
-			header("Location: soundSettings.php?test={$_GET['test']}&err=numblock1");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=numblock1");
 
 		else if (!is_numeric($_POST["blocks"]) || $_POST["blocks"]<0)
-			header("Location: soundSettings.php?test={$_GET['test']}&err=numblock2");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=numblock2");
 
 		//controlli su delta
 		else if (($_POST["delta"]== "") || ($_POST["delta"]== "undefined")) 
-			header("Location: soundSettings.php?test={$_GET['test']}&err=delta1");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=delta1");
 
 		else if (!is_numeric($_POST["delta"]) || $_POST["delta"]<0)
-			header("Location: soundSettings.php?test={$_GET['test']}&err=delta2");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=delta2");
 
 		else if ($_GET['test']=="amp" && $_POST["amplitude"]+$_POST["delta"]>0)
-			header("Location: soundSettings.php?test={$_GET['test']}&err=delta3");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=delta3");
 
 		//controlli su ITI
 		else if (($_POST["ITI"]== "") || ($_POST["ITI"]== "undefined")) 
-			header("Location: soundSettings.php?test={$_GET['test']}&err=ITI1");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=ITI1");
 
 		else if (!is_numeric($_POST["ITI"]) || $_POST["ITI"]<1000)
-			header("Location: soundSettings.php?test={$_GET['test']}&err=ITI2");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=ITI2");
 
 		//controlli su ISI
 		else if (($_POST["ISI"]== "") || ($_POST["ISI"]== "undefined")) 
-			header("Location: soundSettings.php?test={$_GET['test']}&err=ISI1");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=ISI1");
 
 		else if (!is_numeric($_POST["ISI"]) || $_POST["ISI"]<0)
-			header("Location: soundSettings.php?test={$_GET['test']}&err=ISI2");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=ISI2");
 
 		//controlli su nAFC
 		else if (($_POST["nAFC"]== "") || ($_POST["nAFC"]== "undefined")) 
-			header("Location: soundSettings.php?test={$_GET['test']}&err=nAFC1");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=nAFC1");
 
 		else if (!is_numeric($_POST["nAFC"]) || $_POST["nAFC"]<2)
-			header("Location: soundSettings.php?test={$_GET['test']}&err=nAFC2");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=nAFC2");
 
 		else if ($_POST["nAFC"]>9)
-			header("Location: soundSettings.php?test={$_GET['test']}&err=nAFC3");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=nAFC3");
 
 		//controlli sul factor
 		else if (($_POST["factor"]== "") || ($_POST["factor"]== "undefined")) 
-			header("Location: soundSettings.php?test={$_GET['test']}&err=factor1");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=factor1");
 
 
 		else if (!is_numeric($_POST["factor"]) || $_POST["factor"]< $_POST["secFactor"])
-			header("Location: soundSettings.php?test={$_GET['test']}&err=factor2");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=factor2");
 
 		//controlli sul factor
 		else if (($_POST["secFactor"]== "") || ($_POST["secFactor"]== "undefined")) 
-			header("Location: soundSettings.php?test={$_GET['test']}&err=secFactor1");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=secFactor1");
 
 
 		else if (!is_numeric($_POST["secFactor"]) || $_POST["secFactor"]< 1)
-			header("Location: soundSettings.php?test={$_GET['test']}&err=secFactor2");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=secFactor2");
 
 		//controlli su starting rev
 		else if (($_POST["reversals"]== "") || ($_POST["reversals"]== "undefined")) 
-			header("Location: soundSettings.php?test={$_GET['test']}&err=rev1");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=rev1");
 
 		else if (!is_numeric($_POST["reversals"]) || $_POST["reversals"]<0)
-			header("Location: soundSettings.php?test={$_GET['test']}&err=rev2");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=rev2");
 
 		// controlli su secreversal
 		else if (($_POST["secReversals"]== "") || ($_POST["secReversals"]== "undefined")) 
-			header("Location: soundSettings.php?test={$_GET['test']}&err=secRev1");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=secRev1");
 
 		else if (!is_numeric($_POST["secReversals"]) || $_POST["secReversals"]<0)
-			header("Location: soundSettings.php?test={$_GET['test']}&err=secRev2");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=secRev2");
 
 		//controlli su revTh
 		else if (($_POST["threshold"]== "") || ($_POST["threshold"]== "undefined")) 
-			header("Location: soundSettings.php?test={$_GET['test']}&err=threshold1");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=threshold1");
 
 		else if (!is_numeric($_POST["threshold"]) || $_POST["threshold"]<0)
-			header("Location: soundSettings.php?test={$_GET['test']}&err=threshold2");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=threshold2");
 
 		else if ($_POST["threshold"]>$_POST["reversals"]+$_POST["secReversals"])
-			header("Location: soundSettings.php?test={$_GET['test']}&err=threshold3");
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=threshold3");
 
 		else{
 			$checkFb = 0;
@@ -210,8 +210,54 @@
 			unset($_SESSION['score']);
 			unset($_SESSION['currentBlock']);
 			unset($_SESSION['results']);
+
+			try{
+			$conn = new mysqli($host, $user, $password, $dbname);
+			if ($conn->connect_errno)
+				throw new Exception('DB connection failed');
+			mysqli_set_charset($conn, "utf8");
+
+			$id = $_SESSION['idGuestTest'];
+			$type = "";
+			if($_GET['test'] == "freq")
+				$type = "PURE_TONE_FREQUENCY";
+			else if($_GET['test'] == "amp")
+				$type = "PURE_TONE_INTENSITY";
+			else if($_GET['test'] == "dur")
+				$type = "PURE_TONE_DURATION";
+            else if($_GET['test'] == "gap")
+                $type = "WHITE_NOISE_GAP";
+            else if($_GET['test'] == "ndur")
+                $type = "WHITE_NOISE_DURATION";
+
+			$sql = "SELECT Max(Test_count) as count FROM test WHERE Guest_ID='$id'";
+						$result = $conn->query($sql);
+						$row = $result->fetch_assoc();
+
+						//il test corrente è il numero di test già effettuati + 1
+						$count = $row['count']+1;
 			
-			header("Location: {$_GET['test']}test.php");
+
+			$sql = "INSERT INTO test VALUES ('$id', '$count', current_timestamp(), '$type', ";
+						$sql .= "'{$_POST['amplitude']}', '{$_POST['frequency']}', '{$_POST['duration']}', '{$_POST['modulation']}', '{$_POST['blocks']}', '{$_POST['delta']}', ";
+						$sql .= "'{$_POST['nAFC']}', '{$_POST['ITI']}', '{$_POST['ISI']}', '{$_POST['factor']}', '{$_POST['reversals']}', ";
+						$sql .= "'{$_POST['secFactor']}', '{$_POST['secReversals']}', '{$_POST['threshold']}', '{$_POST['algorithm']}', '', '0','$checkFb')";
+						
+						$conn->query($sql);
+			if($checkSave){
+
+				
+				$sql = "UPDATE account SET fk_guestTest = '$id', fk_testCount = '$count' WHERE username = '{$_SESSION['usr']}' ";
+				$conn->query($sql);
+			}
+			header("Location: ../{$_GET['test']}test.php");
+			
+			}catch(Exception $e){
+				echo'sono nel catch'; 
+			header("Location: ../index.php?err=db");
+			}
+
+			
 		}
 	}
 

@@ -3,32 +3,32 @@
 	<head>
 		<?php 
 			session_start(); 
-			$_SESSION['version'] = 3; //change this number to force cache update
+			$_SESSION['version'] = 4; //change this number to force cache update
 		?>
 		
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="icon" type="image/x-icon" href="logo.png">
+		<link rel="icon" type="image/x-icon" href="files/logo.png">
 
 		<!-- Bootstrap CSS -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		
-		<link rel ="stylesheet" href="style.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
-		<script type="text/javascript" src="funzioni.js<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>"></script>
+		<link rel ="stylesheet" href="css/style.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
+		<script type="text/javascript" src="js/funzioni.js<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>"></script>
 
 		<title>Psychoacoustics-web</title>
 
 	</head>
 
 	<body>
-		<img src="wallpaper1.jpg" class="wallpaper">
+		<img src="files/wallpaper1.jpg" class="wallpaper">
 		<!-- Barra navigazione -->
 		<nav class="navbar navbar-dark bg-dark">
 			<div class="container-fluid" >
 			  <a class="navbar-brand" href="index.php" >
-				<img src="logo.png" alt="" width="25" height="25" class="d-inline-block align-text-top" >
+				<img src="files/logo.png" alt="" width="25" height="25" class="d-inline-block align-text-top" >
 				PSYCHOACOUSTICS-WEB
 				
 			  </a>
@@ -43,7 +43,7 @@
 						echo "<label class='welcomeMessage'>Welcome ".$_SESSION['usr']."</label>";
 						echo "<a class='settings' href='userSettings.php'><i class='material-icons rotate'>settings</i></a>";
 						echo "<button class=\"btn btn-outline-primary yourTests\" type=\"button\" onclick=\"location.href='yourTests.php'\">Your tests</button>";
-						echo "<button class=\"btn btn-outline-danger logout\" type=\"button\" onclick=\"location.href='logout.php'\">Log Out</button>";
+						echo "<button class=\"btn btn-outline-danger logout\" type=\"button\" onclick=\"location.href='php/logout.php'\">Log Out</button>";
 					}
 				?>
 			  </form>
@@ -71,7 +71,7 @@
 			<h5 class="display-8 description"> 
 				PSYCHOACOUSTICS-WEB is a web developed tool to measure auditory sensory thresholds for a 
 				variety of classic tasks. You can run each test as a guest or you can create your personal 
-				account and costumize the toolbox for your own research. Please refer to the <a href="PSYCHOACOUSTICS-WEB_manual.pdf">instruction 
+				account and costumize the toolbox for your own research. Please refer to the <a href="files/PSYCHOACOUSTICS-WEB_manual.pdf">instruction 
 				manual</a> for further info on how to use the toolbox.
 				<br><br>
 				The tasks estimate the intensity, frequency and duration discrimination threshold for a pure tone. 

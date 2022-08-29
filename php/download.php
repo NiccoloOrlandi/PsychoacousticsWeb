@@ -4,7 +4,7 @@
 		session_start();
 		
 		if(!isset($_GET['format']) || ($_GET['format']!="complete" && $_GET['format']!="reduced"))
-			header("Location: index.php");
+			header("Location: ../index.php");
 		else{
 			//apro la connessione con la sessione e col db
 			$conn = new mysqli($host, $user, $password, $dbname);
@@ -14,7 +14,7 @@
 			
 			//prendo i dati del guest
 			if(!isset($_SESSION['idGuestTest']) && !isset($_SESSION['idGuest'])){
-				header("Location: index.php?err=2");
+				header("Location: ../index.php?err=2");
 			}else{
 				if(isset($_SESSION['idGuest']))
 					$id = $_SESSION['idGuest'];
@@ -91,6 +91,6 @@
 			}
 		}
 	}catch(Exception $e){
-		header("Location: index.php?err=db");
+		header("Location: ../index.php?err=db");
 	}
 ?>

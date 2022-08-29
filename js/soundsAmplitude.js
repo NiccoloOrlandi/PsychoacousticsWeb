@@ -154,7 +154,7 @@ function select(button){
 		description += "&fact="+factor+"&secFact="+secondFactor+"&rev="+reversals+"&secRev="+secondReversals+"&threshold="+reversalThreshold+"&alg="+algorithm + "&sampleRate=" + context.sampleRate;
 
 		//pass the datas to the php file
-		location.href="saveData.php?result="+result+"&timestamp="+timestamp+"&type=amp"+description+"&currentBlock="+currentBlock+"&score="+score+"&saveSettings="+saveSettings;
+		location.href="php/saveData.php?result="+result+"&timestamp="+timestamp+"&type=amp"+description+"&currentBlock="+currentBlock+"&score="+score+"&saveSettings="+saveSettings;
 	}
 	//if the test is not ended
 	else{

@@ -2,15 +2,15 @@
 var context= new AudioContext();
 
 // minimum initial variation
-var varFreq = freq;					// frequency of the variable 
+var varFreq = freq + delta;			// frequency of the variable 
 var stdFreq = freq;					// frequency of the standard
 var startingDelta = delta;
 
 var stdDur = dur;					// duration of the standard 
-var varDur = dur+delta;				// duration of the variable 
+var varDur = dur;					// duration of the variable 
 
-var stdAmp = amp;					// intensity of the variable
-var varAmp = amp;					// intensity of the standard 
+var stdAmp = amp;					// intensity of the standard
+var varAmp = amp;					// intensity of the variable
 
 var stdMod = mod;                   // onset and offset duration of ramp of the standard
 var varMod = mod;                   // onset and offset duration of ramp of the variable
@@ -76,11 +76,9 @@ function random(){
 	
 	for(var j=0;j<nAFC;j++){
 		if(j==rand)
-			playVar((j*(stdDur/1000)) + j*(ISI/1000));
-		else if(j<rand)
-			playStd((j*(stdDur/1000)) + j*(ISI/1000));
-		else if(j>rand)
-			playStd(((j-1)*(stdDur/1000)) + (varDur/1000) + j*(ISI/1000));
+			playVar((j*(dur/1000)) + j*(ISI/1000));
+		else
+			playStd((j*(dur/1000)) + j*(ISI/1000));
 	}
 	
 	swap = rand+1;
@@ -96,8 +94,8 @@ function saveResults(){
 	//save new data
 	results[0][i] = currentBlock;				// block
 	results[1][i] = i+1;						// trial
-	results[2][i] = parseFloat(parseInt((varDur-stdDur)*1000)/1000); 	// approximated delta
-	results[3][i] = parseFloat(parseInt(varDur*1000)/1000);				// approximated variable value
+	results[2][i] = parseFloat(parseInt((varFreq-stdFreq)*1000)/1000); 	// approximated delta
+	results[3][i] = parseFloat(parseInt(varFreq*1000)/1000);			// approximated variable value
 	results[4][i] = swap;						// variable position
 	results[5][i] = pressedButton; 				// pressed button
 	results[6][i] = pressedButton==swap? 1:0;	// is the answer correct? 1->yes, 0->no
@@ -156,7 +154,7 @@ function select(button){
 		description += "&fact="+factor+"&secFact="+secondFactor+"&rev="+reversals+"&secRev="+secondReversals+"&threshold="+reversalThreshold+"&alg="+algorithm + "&sampleRate=" + context.sampleRate;
 		
 		//pass the datas to the php file
-		location.href="saveData.php?result="+result+"&timestamp="+timestamp+"&type=dur"+description+"&currentBlock="+currentBlock+"&score="+score+"&saveSettings="+saveSettings;
+		location.href="php/saveData.php?result="+result+"&timestamp="+timestamp+"&type=freq"+description+"&currentBlock="+currentBlock+"&score="+score+"&saveSettings="+saveSettings;
 	}
 	//if the test is not ended
 	else{
@@ -181,13 +179,13 @@ document.addEventListener('keypress', function keypress(event){
 
 //funzione per implementare l'algoritmo nD1U
 function nDOWNoneUP(n){
-	delta = varDur-stdDur;
+	delta = varFreq-stdFreq;
 	
 	if(pressedButton == swap){ //correct answer
 		history[i] = 1;
 		correctAnsw += 1;
 		if(correctAnsw == n){ //if there are n consegutive correct answers
-			varDur = stdDur + (delta/currentFactor);
+			varFreq = stdFreq + (delta/currentFactor);
 			correctAnsw = 0;
 			if(positiveStrike == 0){
 				//there was a reversal
@@ -205,7 +203,7 @@ function nDOWNoneUP(n){
 	}else{ //wrong answer
 		history[i] = 0;
 		correctAnsw = 0;
-		varDur = stdDur + (delta*currentFactor);
+		varFreq = stdFreq + (delta*currentFactor);
 		
 		if(positiveStrike == 1){
 			//there was a reversal
@@ -218,6 +216,7 @@ function nDOWNoneUP(n){
 			document.getElementById("correct").style.display="none";
 			document.getElementById("wrong").style.display="inherit";
 			window.setTimeout("timer()", 500);
+
 		}
 	}
 }

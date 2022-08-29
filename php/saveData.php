@@ -53,7 +53,7 @@
             $_SESSION["sampleRate"] = $_GET['sampleRate'];
 
 			if($_GET['currentBlock']<$_GET['blocks']){
-				header("Location: results.php?continue=1");
+				header("Location: ../results.php?continue=1");
 			}else{
 				//apro la connessione con il db
 				$conn = new mysqli($host, $user, $password, $dbname);
@@ -68,7 +68,7 @@
 				//save the test, if it must be saved
 				if($_SESSION["checkSave"]){
 					if(!isset($_SESSION['idGuestTest'])){
-						header("Location: index.php?err=2");
+						header("Location: ../index.php?err=2");
 					}else{
 						//trovo l'id a cui associare il test
 						$id = $_SESSION['idGuestTest'];
@@ -78,33 +78,35 @@
 						$result = $conn->query($sql);
 						$row = $result->fetch_assoc();
 
-						//il test corrente è il numero di test già effettuati + 1
-						$count = $row['count']+1;
+						/*il test corrente è il numero di test già effettuati + 1
+						$count = $row['count']+1;*/
 
 						//inserisci i dati del nuovo test
-						$sql = "INSERT INTO test VALUES ('$id', '$count', '{$_GET['timestamp']}', '$type', ";
+						$sql = "UPDATE test SET Result = '{$_GET['result']}', `Timestamp`='{$_GET['timestamp']}', `Sample Rate`='{$_GET['sampleRate']}'";
+						/* ('$id', '$count', '{$_GET['timestamp']}', '$type', ";
 						$sql .= "'{$_GET['amp']}', '{$_GET['freq']}', '{$_GET['dur']}', '{$_GET['modu']}', '{$_GET['blocks']}', '{$_GET['delta']}', ";
 						$sql .= "'{$_GET['nAFC']}', '{$_GET['ITI']}', '{$_GET['ISI']}', '{$_GET['fact']}', '{$_GET['rev']}', ";
 						$sql .= "'{$_GET['secFact']}', '{$_GET['secRev']}', '{$_GET['threshold']}', '{$_GET['alg']}', '{$_GET['result']}', '{$_GET['sampleRate']}')";
+						*/
 						echo $sql;
 						$conn->query($sql);
 
-						if($_GET['saveSettings']){
-							$sql = "UPDATE account SET fk_guestTest = '$id', fk_testCount = '$count' WHERE username = '{$_SESSION['usr']}' ";
-							$conn->query($sql);
-						}
+						// if($_GET['saveSettings']){
+						// 	$sql = "UPDATE account SET fk_guestTest = '$id', fk_testCount = '$count' WHERE username = '{$_SESSION['usr']}' ";
+						// 	$conn->query($sql);
+						// }
 					}
 				}
 
 				if(!$_SESSION["checkSave"] && $_GET['saveSettings']){
-					header("Location: results.php?continue=0&err=1");
+					header("Location: ../results.php?continue=0&err=1");
 				}else{
-					header("Location: results.php?continue=0");
+					header("Location: ../results.php?continue=0");
 				}
 			}
 		}else
-			header("Location: index.php?err=2");
+			header("Location: ../index.php?err=2");
 	}catch(Exception $e){
-		header("Location: index.php?err=db");
+		header("Location: ../index.php?err=db");
 	}
 ?>
