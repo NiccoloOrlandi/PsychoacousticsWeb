@@ -32,18 +32,8 @@ var timestamp = 0;				// timestamp of the starting of the test
 var pressedButton;
 
 
-var maxDur = 15;                // durata massima rumore
+var maxDur = 5;                // durata massima rumore
 var betweenRampDur = 0.03       // durata rampa nel gap
-
-var channels = 2;  // numero canali di uscita
-var frameCount = context.sampleRate * maxDur;   // imposto una duarata massima del rumore di n (15) secondi
-var noiseBuffer = context.createBuffer(channels, frameCount, context.sampleRate);     // creo un nuovo buffer
-for (let channel = 0; channel < channels; channel++) {  // riempio il buffer con rumore [-1,+1]
-    let nowBuffering = noiseBuffer.getChannelData(channel);
-    for (let i = 0; i < frameCount; i++) {
-        nowBuffering[i] = Math.random() * 2 - 1;
-    }
-}
 
 //funzione per generare il rumore con il gap
 function playVar(time) {
@@ -57,12 +47,21 @@ function playVar(time) {
 
     var volume1 = context.createGain();     // creo volume
     volume1.gain.setValueAtTime(0, context.currentTime);    // imposto volume iniziale a 0
-    volume1.connect(context.destination);   // connetto il volume all'uscita
     volume1.gain.setTargetAtTime((10 ** (parseInt(amp) / 20)), context.currentTime + time + start1, mod / 1000);   // eseguo rampa onset iniziale (inizia da start1 e dura mod ms)
     volume1.gain.setTargetAtTime(0, context.currentTime + time + end1 - 3 * (betweenRampDur / 1000), betweenRampDur);   // eseguo rampa offset del gap (inizia a end1 e dura betweenRampDur s)
     volume1.gain.setTargetAtTime((10 ** (parseInt(amp) / 20)), context.currentTime + time + start2, betweenRampDur);    // eseguo rampa onset del gap (inizia a start2 e dura betweenRampDur s)
     volume1.gain.setTargetAtTime(0, context.currentTime + time + end2 - 3 * (mod / 1000), mod / 1000); // eseguo rampa offset finale (inizia da end2 e dura mod ms)
+    volume1.connect(context.destination);   // connetto il volume all'uscita
 
+    var channels = 2;  // numero canali di uscita
+    var frameCount = context.sampleRate * maxDur;   // imposto una durata massima del rumore di n secondi
+    var noiseBuffer = context.createBuffer(channels, frameCount, context.sampleRate);     // creo un nuovo buffer
+    for (let channel = 0; channel < channels; channel++) {  // riempio il buffer con rumore [-1,+1]
+        let nowBuffering = noiseBuffer.getChannelData(channel);
+        for (let i = 0; i < frameCount; i++) {
+            nowBuffering[i] = Math.random() * 2 - 1;
+        }
+    }
     source = context.createBufferSource();  // creo sorgente
     source.buffer = noiseBuffer;  // collego i buffer
     source.connect(volume1);    // connetto la sorgente al volume
@@ -78,6 +77,15 @@ function playStd(time) {
     volume2.gain.setTargetAtTime((10 ** (parseInt(amp) / 20)), context.currentTime + time, stdMod / 1000);  // eseguo rampa onset iniziale
     volume2.gain.setTargetAtTime(0, context.currentTime + time + (stdDur / 1000) - 3 * (stdMod / 1000), mod / 1000);    // eseguo rampa offset finale
 
+    var channels = 2;  // numero canali di uscita
+    var frameCount = context.sampleRate * maxDur;   // imposto una duarata massima del rumore di n secondi
+    var noiseBuffer = context.createBuffer(channels, frameCount, context.sampleRate);     // creo un nuovo buffer
+    for (let channel = 0; channel < channels; channel++) {  // riempio il buffer con rumore [-1,+1]
+        let nowBuffering = noiseBuffer.getChannelData(channel);
+        for (let i = 0; i < frameCount; i++) {
+            nowBuffering[i] = Math.random() * 2 - 1;
+        }
+    }
     source = context.createBufferSource();  // creo sorgente
     source.buffer = noiseBuffer;    // collego i buffer
     source.connect(volume2);    // connetto la sorgente al volume

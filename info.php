@@ -166,7 +166,9 @@
         each test,
         if you are logged in with an account).
         <br><br>
-       <?php if ($checkFb) echo " You will recieve a feedback to advice whether the response is correct or not."; ?>
+<!--        -->
+<!--       --><?php //if ($checkFb) echo " You will recieve a feedback to advice whether the response is correct or not."; ?>
+<!--        -->
     </p>
     <div class="info test">
         <div class="info test-title">

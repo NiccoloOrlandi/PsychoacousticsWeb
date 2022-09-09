@@ -189,7 +189,7 @@
 
 											<div class="input-group flex-nowrap"
 												 title="ms of the onset and offset ramp of the standard tone, a higher value makes the initial and final transition slower">
-												<span class="input-group-text">Onset/Offset Ramp</span>
+												<span class="input-group-text">Duration offset and onset ramp</span>
 												<input type="text" class="form-control" name="modulation" id="modulation"
 													   value="<?php
 													   if ($row)
@@ -282,15 +282,24 @@
 
 											<div class="input-group flex-nowrap"
 												 title="the starting difference between the sounds">
-												<span class="input-group-text">Delta</span>
+												<span class="input-group-text">
+                                                    <?php
+                                                    if ($type == "gap")
+                                                        echo "Gap duration";
+                                                    else
+                                                        echo "Delta";
+                                                    ?>
+                                                </span>
 												<input type="text" class="form-control" name="delta" id="level"
 													   value="<?php
 													   if ($type == "amp")
 														   echo "12";
 													   else if ($type == "freq")
 														   echo "200";
-													   else if ($type == "dur" || $type == "ndur")
+													   else if ($type == "dur")
 														   echo "300";
+                                                       else if ($type == "ndur")
+                                                           echo "375";
 													   else if ($type == "gap")
 														   echo "100";
 													   ?>"
@@ -447,7 +456,7 @@
 															?>
 														>
 														<label class="form-check-label" for="cb">
-															FeedBack
+															Feedback after response
 														</label>
 													</div>
 													<?php
