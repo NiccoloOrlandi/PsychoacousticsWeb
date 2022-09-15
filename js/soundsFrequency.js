@@ -6,14 +6,16 @@ var varFreq = freq + delta;			// frequency of the variable
 var stdFreq = freq;					// frequency of the standard
 var startingDelta = delta;
 
-var stdDur = dur;					// duration of the standard 
-var varDur = dur;					// duration of the variable 
+dur /= 1000;                        // cambio unità di misura in secondi
+var stdDur = dur;					// duration of the standard
+var varDur = dur;					// duration of the variable
 
 var stdAmp = amp;					// intensity of the standard
 var varAmp = amp;					// intensity of the variable
 
-var stdMod = mod;                   // onset and offset duration of ramp of the standard
-var varMod = mod;                   // onset and offset duration of ramp of the variable
+mod /= 1000;                        // cambio unità di misura in secondi
+var stdRamp = mod;                  // onset and offset duration of ramp of the standard
+var varRamp = mod;                  // onset and offset duration of ramp of the variable
 
 var swap = -1;						// position of variable sound
 var correctAnsw = 0;				// number of correct answers
@@ -33,68 +35,44 @@ var result = "";				// final results that will be saved on the db
 var timestamp = 0;				// timestamp of the starting of the test
 var pressedButton;
 
-var maxDur = 5;                // durata massima rumore
-
-//funzione per generare il primo suono
-function playVar(time) {
-    console.log("delta: " + (varFreq - stdFreq));
-    console.log("factor: " + currentFactor);
-
-    var volume1 = context.createGain();		//volume
-    volume1.gain.setValueAtTime(0, context.currentTime + time); //imposto volume iniziale a 0
-    volume1.gain.setTargetAtTime(1, context.currentTime + time, varMod / 1000);   //implemento onset ramp
-    volume1.gain.setTargetAtTime(0, context.currentTime + time + (varDur / 1000) - 3 * (varMod / 1000), varMod / 1000); //implemento offset ramp (l'espressione "3 * (Mod/1000)" serve a garantire un raggiungimento del target del 95% circa, guardare documentazione di setTargetAtTime, in particolare la tabella del timecostant)
-    volume1.connect(context.destination);	//collego all'uscita audio
+function playSound(time, freq, amp, dur, ramp) { // funzione per generare suoni
+    var vol = context.createGain(); // creo volume
+    vol.gain.value = 1;
+    vol.connect(context.destination);   // collego volume all'uscita audio
 
     var channels = 1;  // numero canali di uscita
-    var frameCount = context.sampleRate * maxDur;   // imposto una duarata massima del suono di n secondi
+    var frameCount = context.sampleRate * dur;   // imposto una duarata massima del suono di n secondi
     var soundBuffer = context.createBuffer(channels, frameCount, context.sampleRate);     // creo un nuovo buffer
+    let rampArr = [];
     for (let channel = 0; channel < channels; channel++) {  // riempio il buffer con il suono
         let nowBuffering = soundBuffer.getChannelData(channel);
         for (let i = 0; i < frameCount; i++) {
-            nowBuffering[i] = (10 ** (parseInt(varAmp) / 20)) * Math.sin(i * 2 * Math.PI * varFreq / context.sampleRate);   // t = i / context.sampleRate
+            t = i / context.sampleRate;
+            if (t < ramp) {
+                rampArr[i] = (1 + Math.sin((t * Math.PI / ramp) - (Math.PI / 2))) / 2;    // onset ramp
+            } else if (t > dur - ramp) {
+                rampArr[i] = (1 + Math.sin(((t - (dur - ramp)) * Math.PI / ramp) + (Math.PI / 2))) / 2; // offset ramp
+            } else {
+                rampArr[i] = 1; // central zone
+            }
+            nowBuffering[i] = ((10 ** (parseInt(amp) / 20)) * Math.sin(2 * Math.PI * freq * t)) * rampArr[i];   // t = i / context.sampleRate
         }
     }
     source = context.createBufferSource();  // creo sorgente
     source.buffer = soundBuffer;    // collego i buffer
-    source.connect(volume1);    // connetto la sorgente al volume
+    source.connect(vol);    // connetto la sorgente al volume
     source.start(context.currentTime + time);   // riproduco il suono
-    source.stop(context.currentTime + time + (varDur / 1000));  // fermo il suono
-}
-
-//funzione per generare il secondo suono
-function playStd(time) {
-    var volume2 = context.createGain();		//volume
-    volume2.gain.setValueAtTime(0, context.currentTime + time);	//imposto volume iniziale a 0
-    volume2.gain.setTargetAtTime(1, context.currentTime + time, stdMod / 1000);   //implemento onset ramp
-    volume2.gain.setTargetAtTime(0, context.currentTime + time + (stdDur / 1000) - 3 * (stdMod / 1000), stdMod / 1000); //implemento offset ramp (l'espressione "3 * (Mod/1000)" serve a garantire un raggiungimento del target del 95% circa, guardare documentazione di setTargetAtTime, in particolare la tabella del timecostant)
-    volume2.connect(context.destination);	//collego all'uscita audio
-
-    var channels = 1;  // numero canali di uscita
-    var frameCount = context.sampleRate * maxDur;   // imposto una duarata massima del suono di n secondi
-    var soundBuffer = context.createBuffer(channels, frameCount, context.sampleRate);     // creo un nuovo buffer
-    for (let channel = 0; channel < channels; channel++) {  // riempio il buffer con il suono
-        let nowBuffering = soundBuffer.getChannelData(channel);
-        for (let i = 0; i < frameCount; i++) {
-            nowBuffering[i] = (10 ** (parseInt(stdAmp) / 20)) * Math.sin(i * 2 * Math.PI * stdFreq / context.sampleRate);   // t = i / context.sampleRate
-        }
-    }
-    source = context.createBufferSource();  // creo sorgente
-    source.buffer = soundBuffer;    // collego i buffer
-    source.connect(volume2);    // connetto la sorgente al volume
-    source.start(context.currentTime + time);   // riproduco il suono
-    source.stop(context.currentTime + time + (stdDur / 1000));  // fermo il suono
+    source.stop(context.currentTime + time + dur);  // fermo il suono
 }
 
 //funzione per randomizzare l'output
 function random() {
     var rand = Math.floor(Math.random() * nAFC);// the variable sound will be the rand-th sound played
-
     for (var j = 0; j < nAFC; j++) {
         if (j == rand)
-            playVar((j * (dur / 1000)) + j * (ISI / 1000));
+            playSound((j * varDur) + j * (ISI / 1000), varFreq, varAmp, varDur, varRamp);
         else
-            playStd((j * (dur / 1000)) + j * (ISI / 1000));
+            playSound((j * stdDur) + j * (ISI / 1000), stdFreq, stdAmp, stdDur, stdRamp);
     }
 
     swap = rand + 1;
