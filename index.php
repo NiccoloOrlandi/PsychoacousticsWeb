@@ -110,6 +110,13 @@
 			</div>
 
             <div class="card">
+                <div class="card-body" onclick="location.href='demographicData.php?test=nmod'">
+                    <h5 class="card-title">White noise modulation discrimination</h5>
+                    <p>Click here to run the test</p>
+                </div>
+            </div>
+
+            <div class="card">
                 <div class="card-body" onclick="location.href='demographicData.php?test=gap'">
                     <h5 class="card-title">White noise gap detection</h5>
                     <p>Click here to run the test</p>

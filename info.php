@@ -57,7 +57,7 @@
         var amp = parseFloat(<?php echo $row["amp"]; ?>);
         var freq = parseFloat(<?php echo $row["freq"]; ?>);
         var dur = parseFloat(<?php echo $row["dur"]; ?>);
-        var mod = parseFloat(<?php echo $row["modu"]; ?>);
+        var ramp = parseFloat(<?php echo $row["ramp"]; ?>);
         var delta = parseFloat(<?php echo $row["Delta"]; ?>);
         var ISI = parseInt(<?php echo $row["ISI"]; ?>);
         var nAFC = parseInt(<?php echo $row["nAFC"]; ?>);

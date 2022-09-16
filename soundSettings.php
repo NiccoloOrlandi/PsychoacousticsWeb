@@ -41,10 +41,10 @@
 				echo "<div class='alert alert-danger'>The duration field is required</div>";
 			else if ($_GET['err'] == "dur2")
 				echo "<div class='alert alert-danger'>The duration value must be a positive number</div>";
-			else if ($_GET['err'] == "mod1")
-				echo "<div class='alert alert-danger'>The modulation field is required</div>";
-			else if ($_GET['err'] == "mod2")
-				echo "<div class='alert alert-danger'>The modulation value must be a positive number</div>";
+			else if ($_GET['err'] == "ramp1")
+				echo "<div class='alert alert-danger'>The ramp field is required</div>";
+			else if ($_GET['err'] == "ramp2")
+				echo "<div class='alert alert-danger'>The ramp value must be a positive number</div>";
 			else if ($_GET['err'] == "numblock1")
 				echo "<div class='alert alert-danger'>The n. of blocks field is required</div>";
 			else if ($_GET['err'] == "numblock2")
@@ -95,7 +95,7 @@
 
 		if (isset($_GET['test']))
 			$type = $_GET['test'];
-		
+
 		if (isset($_SESSION['usr'])) {
 			try {
 				$conn = new mysqli($host, $user, $password, $dbname);
@@ -103,7 +103,7 @@
 					throw new Exception('DB connection failed');
 				mysqli_set_charset($conn, "utf8");
 
-				$sql = "SELECT test.Amplitude as amp, test.Frequency as freq, test.Duration as dur, test.Modulation as modu, test.blocks as blocks, 
+				$sql = "SELECT test.Amplitude as amp, test.Frequency as freq, test.Duration as dur, test.Ramp as ramp, test.blocks as blocks, 
 								test.nAFC, test.ITI, test.ISI, test.Factor as fact, test.Reversal as rev, 
 								test.SecFactor as secfact, test.SecReversal as secrev, test.Algorithm as alg, test.Feedback as fb
 												
@@ -132,7 +132,7 @@
 									echo "php/soundSettingsValidation.php?test=".$type;
 							?>"
 						 name="Settings" method="post">
-						 
+
 							<!-- Primo slot di setting -->
 							<div class="container p-4">
 								<div class="row gx-4">
@@ -151,7 +151,7 @@
 													   else
 														   echo "-20";
 													   ?>"
-													
+
 												>
 												<span class="input-group-text">dB</span>
 											</div>
@@ -167,7 +167,7 @@
 													   else
 														   echo "1000";
 													   ?>"
-													
+
 												>
 												<span class="input-group-text">Hz</span>
 											</div>
@@ -182,7 +182,7 @@
 													   else
 														   echo "500";
 													   ?>"
-													
+
 												>
 												<span class="input-group-text">ms</span>
 											</div>
@@ -190,14 +190,14 @@
 											<div class="input-group flex-nowrap"
 												 title="ms of the onset and offset ramp of the standard tone, a higher value makes the initial and final transition slower">
 												<span class="input-group-text">Duration offset and onset ramp</span>
-												<input type="text" class="form-control" name="modulation" id="modulation"
+												<input type="text" class="form-control" name="ramp" id="ramp"
 													   value="<?php
 													   if ($row)
-														   echo $row['modu'];
+														   echo $row['ramp'];
 													   else
 														   echo "10";
 													   ?>"
-													
+
 												>
 												<span class="input-group-text">ms</span>
 											</div>
@@ -234,7 +234,7 @@
 													   else
 														   echo "3";
 													   ?>"
-													
+
 												>
 											</div>
 
@@ -247,7 +247,7 @@
 													   else
 														   echo "2";
 													   ?>"
-													
+
 												>
 											</div>
 
@@ -261,7 +261,7 @@
 													   else
 														   echo "1000";
 													   ?>"
-													
+
 												>
 												<span class="input-group-text">ms</span>
 											</div>
@@ -275,7 +275,7 @@
 													   else
 														   echo "500";
 													   ?>"
-													
+
 												>
 												<span class="input-group-text">ms</span>
 											</div>
@@ -303,7 +303,7 @@
 													   else if ($type == "gap")
 														   echo "100";
 													   ?>"
-													
+
 												>
 												<span class="input-group-text">
 													<?php

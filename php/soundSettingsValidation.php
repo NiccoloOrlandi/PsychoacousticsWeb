@@ -9,7 +9,7 @@
 				throw new Exception('DB connection failed');
 			mysqli_set_charset($conn, "utf8");
 			
-			$sql = "SELECT Type, Amplitude as amp, Frequency as freq, Duration as dur, Modulation as modu, blocks, Delta, nAFC, 
+			$sql = "SELECT Type, Amplitude as amp, Frequency as freq, Duration as dur, Ramp as ramp, blocks, Delta, nAFC, 
 					ISI, ITI, Factor as fact, Reversal as rev, SecFactor as secfact, SecReversal as secrev, 
 					Threshold as thr, Algorithm as alg
 					
@@ -37,7 +37,7 @@
 			$_SESSION["amplitude"] = $row["amp"];
 			$_SESSION["frequency"] = $row["freq"];
 			$_SESSION["duration"] = $row["dur"];
-			$_SESSION["modulation"] = $row["modu"];
+			$_SESSION["ramp"] = $row["ramp"];
 			$_SESSION["blocks"] = $row["blocks"];
 			$_SESSION["nAFC"] = $row["nAFC"];
 			$_SESSION["ITI"] = $row["ITI"];
@@ -86,11 +86,11 @@
 		else if (!is_numeric($_POST["duration"]) || $_POST["duration"]<0) 
 			header("Location: ../soundSettings.php?test={$_GET['test']}&err=dur2");
 
-        else if (($_POST["modulation"]== "") || ($_POST["modulation"]== "undefined"))
-            header("Location: ../soundSettings.php?test={$_GET['test']}&err=mod1");
+        else if (($_POST["ramp"]== "") || ($_POST["ramp"]== "undefined"))
+            header("Location: ../soundSettings.php?test={$_GET['test']}&err=ramp1");
 
-        else if (!is_numeric($_POST["modulation"]) || $_POST["modulation"]<0)
-            header("Location: ../soundSettings.php?test={$_GET['test']}&err=mod2");
+        else if (!is_numeric($_POST["ramp"]) || $_POST["ramp"]<0)
+            header("Location: ../soundSettings.php?test={$_GET['test']}&err=ramp2");
 
 		/*controlli su phase
 		else if (($_POST["phase"]== "") || ($_POST["phase"]== "undefined")) 
@@ -192,7 +192,7 @@
 			$_SESSION["amplitude"] = $_POST["amplitude"];
 			$_SESSION["frequency"] = $_POST["frequency"];
 			$_SESSION["duration"] = $_POST["duration"];
-            $_SESSION["modulation"] = $_POST["modulation"];
+            $_SESSION["ramp"] = $_POST["ramp"];
 			//$_SESSION["phase"] = $_POST["phase"];
 			$_SESSION["blocks"] = $_POST["blocks"];
 			$_SESSION["nAFC"] = $_POST["nAFC"];
@@ -239,7 +239,7 @@
 			
 
 			$sql = "INSERT INTO test VALUES ('$id', '$count', current_timestamp(), '$type', ";
-						$sql .= "'{$_POST['amplitude']}', '{$_POST['frequency']}', '{$_POST['duration']}', '{$_POST['modulation']}', '{$_POST['blocks']}', '{$_POST['delta']}', ";
+						$sql .= "'{$_POST['amplitude']}', '{$_POST['frequency']}', '{$_POST['duration']}', '{$_POST['ramp']}', '{$_POST['blocks']}', '{$_POST['delta']}', ";
 						$sql .= "'{$_POST['nAFC']}', '{$_POST['ITI']}', '{$_POST['ISI']}', '{$_POST['factor']}', '{$_POST['reversals']}', ";
 						$sql .= "'{$_POST['secFactor']}', '{$_POST['secReversals']}', '{$_POST['threshold']}', '{$_POST['algorithm']}', '', '0','$checkFb')";
 						

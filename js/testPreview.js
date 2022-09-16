@@ -12,6 +12,9 @@ var varDur = dur;					// duration of the variable
 var stdAmp = amp;					// intensity of the standard
 var varAmp = amp;				    // intensity of the variable
 
+var stdMod = ramp;                   // onset and offset duration of ramp of the standard
+var varMod = ramp;                   // onset and offset duration of ramp of the variable
+
 switch (type) {
     case "amplitude":
         varAmp = amp + startingDelta;
@@ -26,9 +29,6 @@ switch (type) {
         varDur = dur + startingDelta;
         break;
 }
-
-var stdMod = mod;                   // onset and offset duration of ramp of the standard
-var varMod = mod;                   // onset and offset duration of ramp of the variable
 
 var swap = -1;						// position of variable sound
 

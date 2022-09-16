@@ -12,9 +12,9 @@ var varDur = dur + delta;				// duration of the variable
 var stdAmp = amp;					// intensity of the variable
 var varAmp = amp;					// intensity of the standard 
 
-mod /= 1000;                        // cambio unità di misura in secondi
-var stdRamp = mod;                  // onset and offset duration of ramp of the standard
-var varRamp = mod;                  // onset and offset duration of ramp of the variable
+ramp /= 1000;                        // cambio unità di misura in secondi
+var stdRamp = ramp;                  // onset and offset duration of ramp of the standard
+var varRamp = ramp;                  // onset and offset duration of ramp of the variable
 
 var swap = -1;						// position of variable sound
 var correctAnsw = 0;				// number of correct answers
@@ -145,7 +145,7 @@ function select(button) {
 
         //format description as a csv file
         //prima tutti i nomi, poi tutti i dati
-        var description = "&amp=" + amp + "&freq=" + freq + "&dur=" + dur + "&modu=" + mod +/*"&phase="+phase+*/"&blocks=" + blocks + "&delta=" + startingDelta + "&nAFC=" + nAFC + "&ISI=" + ISI + "&ITI=" + ITI;
+        var description = "&amp=" + amp + "&freq=" + freq + "&dur=" + dur + "&ramp=" + ramp +/*"&phase="+phase+*/"&blocks=" + blocks + "&delta=" + startingDelta + "&nAFC=" + nAFC + "&ISI=" + ISI + "&ITI=" + ITI;
         description += "&fact=" + factor + "&secFact=" + secondFactor + "&rev=" + reversals + "&secRev=" + secondReversals + "&threshold=" + reversalThreshold + "&alg=" + algorithm + "&sampleRate=" + context.sampleRate;
 
         //pass the datas to the php file
