@@ -29,6 +29,8 @@
                 $type="gap";
             else if($row['Type']=='WHITE_NOISE_DURATION')
                 $type="ndur";
+			else if($row['Type']=='WHITE_NOISE_MODULATION')
+				$type="nmod";
 			
 			$checkFb = 0;
 			if(isset($_POST["checkFb"]))
@@ -38,6 +40,9 @@
 			$_SESSION["frequency"] = $row["freq"];
 			$_SESSION["duration"] = $row["dur"];
 			$_SESSION["ramp"] = $row["ramp"];
+			$_SESSION["modAmplitude"] = $row["modAmplitude"];
+			$_SESSION["modFrequency"] = $row["modFrequency"];
+			$_SESSION["modPhase"] = $row["modPhase"];
 			$_SESSION["blocks"] = $row["blocks"];
 			$_SESSION["nAFC"] = $row["nAFC"];
 			$_SESSION["ITI"] = $row["ITI"];
@@ -86,11 +91,33 @@
 		else if (!is_numeric($_POST["duration"]) || $_POST["duration"]<0) 
 			header("Location: ../soundSettings.php?test={$_GET['test']}&err=dur2");
 
+		//controlli su ramp
         else if (($_POST["ramp"]== "") || ($_POST["ramp"]== "undefined"))
             header("Location: ../soundSettings.php?test={$_GET['test']}&err=ramp1");
 
         else if (!is_numeric($_POST["ramp"]) || $_POST["ramp"]<0)
             header("Location: ../soundSettings.php?test={$_GET['test']}&err=ramp2");
+
+//		//controlli su modAmplitude
+//		else if (($_POST["modAmplitude"]== "") || ($_POST["modAmplitude"]== "undefined"))
+//			header("Location: ../soundSettings.php?test={$_GET['test']}&err=modAmp1");
+//
+//		else if (!is_numeric($_POST["modAmplitude"]) || $_POST["modAmplitude"]<0)
+//			header("Location: ../soundSettings.php?test={$_GET['test']}&err=modAmp2");
+//
+//		//controlli su modFrequency
+//		else if (($_POST["modFrequency"]== "") || ($_POST["modFrequency"]== "undefined"))
+//			header("Location: ../soundSettings.php?test={$_GET['test']}&err=modFreq1");
+//
+//		else if (!is_numeric($_POST["modFrequency"]) || $_POST["modFrequency"]<0)
+//			header("Location: ../soundSettings.php?test={$_GET['test']}&err=modFreq2");
+//
+//		//controlli su modPhase
+//		else if (($_POST["modPhase"]== "") || ($_POST["modPhase"]== "undefined"))
+//			header("Location: ../soundSettings.php?test={$_GET['test']}&err=modPhase1");
+//
+//		else if (!is_numeric($_POST["modPhase"]) || $_POST["modPhase"]<0)
+//			header("Location: ../soundSettings.php?test={$_GET['test']}&err=modPhase2");
 
 		/*controlli su phase
 		else if (($_POST["phase"]== "") || ($_POST["phase"]== "undefined")) 
@@ -99,6 +126,7 @@
 		else if ($_POST["phase"]<0)
 			header("Location: soundSettings.php?test={$_GET['test']}&err=phase2");
 		*/
+
 		//controlli su number of blocks
 		else if (($_POST["blocks"]== "") || ($_POST["blocks"]== "undefined")) 
 			header("Location: ../soundSettings.php?test={$_GET['test']}&err=numblock1");
@@ -193,6 +221,9 @@
 			$_SESSION["frequency"] = $_POST["frequency"];
 			$_SESSION["duration"] = $_POST["duration"];
             $_SESSION["ramp"] = $_POST["ramp"];
+            $_SESSION["modAmplitude"] = $_POST["modAmplitude"];
+            $_SESSION["modFrequency"] = $_POST["modFrequency"];
+            $_SESSION["modPhase"] = $_POST["modPhase"];
 			//$_SESSION["phase"] = $_POST["phase"];
 			$_SESSION["blocks"] = $_POST["blocks"];
 			$_SESSION["nAFC"] = $_POST["nAFC"];
@@ -229,6 +260,8 @@
                 $type = "WHITE_NOISE_GAP";
             else if($_GET['test'] == "ndur")
                 $type = "WHITE_NOISE_DURATION";
+			else if($_GET['test'] == "nmod")
+				$type = "WHITE_NOISE_MODULATION";
 
 			$sql = "SELECT Max(Test_count) as count FROM test WHERE Guest_ID='$id'";
 						$result = $conn->query($sql);

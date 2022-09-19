@@ -12,7 +12,7 @@
 		<link rel="icon" type="image/x-icon" href="files/logo.png">
 
 		<!-- Bootstrap CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		
 		<link rel ="stylesheet" href="css/style.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
@@ -64,11 +64,10 @@
 		<!-- Descrizione e presentazione -->
 
 		<div class="container-fluid">
-
 			<h3 class="display-3 descriptionTitle"> 
 				Welcome to PSYCHOACOUSTICS-WEB
 			</h3>  
-			<h5 class="display-8 description"> 
+			<h5 class="display-8 description">
 				PSYCHOACOUSTICS-WEB is a web developed tool to measure auditory sensory thresholds for a 
 				variety of classic tasks. You can run each test as a guest or you can create your personal 
 				account and costumize the toolbox for your own research. Please refer to the <a href="files/PSYCHOACOUSTICS-WEB_manual.pdf">instruction 
@@ -91,7 +90,6 @@
 					<p>Click here to run the test</p>
 				</div>
 			</div>
-
 
 
 			<div class="card">

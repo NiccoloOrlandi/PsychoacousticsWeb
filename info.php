@@ -14,11 +14,11 @@
     <link rel="icon" type="image/x-icon" href="files/logo.png">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="stylesheet"
           href="css/staircaseStyle.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
+
     <title>Psychoacoustics-web - Test settings</title>
 
     <?php
@@ -28,7 +28,7 @@
             throw new Exception('DB connection failed');
         mysqli_set_charset($conn, "utf8");
 
-        $sql = "SELECT Type, Amplitude as amp, Frequency as freq, Duration as dur, Modulation as modu, ISI, blocks, Delta, nAFC, 
+        $sql = "SELECT Type, Amplitude as amp, Frequency as freq, Duration as dur, Ramp as ramp, ISI, blocks, Delta, nAFC, 
 						Factor as fact, Reversal as rev, SecFactor as secfact, SecReversal as secrev, 
 						Threshold as thr, Algorithm as alg
 						
@@ -70,9 +70,9 @@
 <body>
 <img src="files/wallpaper1.jpg" class="wallpaper">
 
-<div class="info container">
-    <h2 class="info title">Hi <?php echo $_SESSION['name']; ?></h2>
-    <p class="info text">
+<div class="container my-5 p-5 border rounded rounded-4 bg-white-transparent">
+    <h2 class="">Hi <?php echo $_SESSION['name']; ?></h2>
+    <p class="">
         You will now do an acoustic test that will measure your sensibility to the <?php echo $type; ?> of a sound.
         <br><br>
         During the test you will be asked a series of questions. In each question you will
@@ -166,48 +166,71 @@
         each test,
         if you are logged in with an account).
         <br><br>
-<!--        -->
-<!--       --><?php //if ($checkFb) echo " You will recieve a feedback to advice whether the response is correct or not."; ?>
-<!--        -->
+        <!--        -->
+        <!--       --><?php //if ($checkFb) echo " You will recieve a feedback to advice whether the response is correct or not."; ?>
+        <!--        -->
     </p>
-    <div class="info test">
-        <div class="info test-title">
-            <h5>Test preview</h5>
-            <button id="playTest" class="btn btn-light" onclick="random()">Start test preview</button>
-        </div>
-        <div class="info test-preview">
-            <form action="" class="info test-preview-form" id="PlayForm">
-                <h1><?php
-                    if ($type == 'amplitude')
-                        echo "Which is the loudest tone?";
-                    else if ($type == "frequency")
-                        echo "Which is the highest pitch tone?";
-                    else if ($type == "duration")
-                        echo "Which is the longest tone?";
-                    else if ($type == "gap")
-                        echo "Which is the noise with the gap?";
-                    else if ($type == "nduration")
-                        echo "Which is the longest noise?";
-                    ?></h1>
-                <button type="button" class="btn btn-success" id="button1" onclick="select(1)" disabled>1° sound
-                </button>
-                <button type="button" class="btn btn-danger" id="button2" onclick="select(2)" disabled>2° sound</button>
-                <?php
-                $colors = ["#198754", "#dc3545", "#0d6efd", "#e0b000", "#a000a0", "#ff8010", "#50a0f0", "#703000", "#606090"];
-                for ($i = 3; $i <= intval($row['nAFC']); $i++) {
-                    echo "<button type='button' class='btn btn-success' style='background-color:" . $colors[($i - 1) % count($colors)] . "; border-color:" . $colors[($i - 1) % count($colors)] . "' id='button{$i}' onclick = 'select({$i})' disabled>{$i}° sound</button>";
-                }
-                ?>
-            </form>
-            <div class='alert' id="alert"></div>
+
+    <div class="d-flex align-items-center">
+        <h5 class="m-0">Test preview</h5>
+        <button id="playTest" class="btn btn-dark ms-4" onclick="random()">Start test preview</button>
+    </div>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-7 col-lg-5">
+                <div class="bg-white border border-2 rounded rounded-5 p-5 mt-4 mx-auto">
+                    <form action="" class="" id="PlayForm">
+                        <h1 class="text-center mb-4"><?php
+                            if ($type == 'amplitude')
+                                echo "Which is the loudest tone?";
+                            else if ($type == "frequency")
+                                echo "Which is the highest pitch tone?";
+                            else if ($type == "duration")
+                                echo "Which is the longest tone?";
+                            else if ($type == "gap")
+                                echo "Which is the noise with the gap?";
+                            else if ($type == "nduration")
+                                echo "Which is the longest noise?";
+                            ?></h1>
+                        <div class="d-flex justify-content-around">
+                            <button type="button" class="btn btn-lg btn-success" id="button1" onclick="select(1)"
+                                    disabled>
+                                1° sound
+                            </button>
+                            <button type="button" class="btn btn-lg btn-danger" id="button2" onclick="select(2)"
+                                    disabled>
+                                2° sound
+                            </button>
+                            <?php
+                            $colors = ["#198754", "#dc3545", "#0d6efd", "#e0b000", "#a000a0", "#ff8010", "#50a0f0", "#703000", "#606090"];
+                            for ($i = 3; $i <= intval($row['nAFC']); $i++) {
+                                echo "<button type='button' class='btn btn-success' style='background-color:" . $colors[($i - 1) % count($colors)] . "; border-color:" . $colors[($i - 1) % count($colors)] . "' id='button{$i}' onclick = 'select({$i})' disabled>{$i}° sound</button>";
+                            }
+                            ?>
+                        </div>
+                    </form>
+                </div>
+                <div class='alert w-50 mx-auto' id="alert"></div>
+            </div>
         </div>
     </div>
-    <form action="php/soundSettingsValidation.php" name="Settings" method="post">
 
-        <button type="button" class="btn btn-primary btn-lg m-3 soundSettingsButton"
-                onclick="location.href='demographicData.php'">BACK
-        </button>
-        <button type="submit" class="btn btn-primary btn-lg m-3 soundSettingsButton">START</button>
+    <form action="php/soundSettingsValidation.php" name="Settings" method="post">
+        <div class="container">
+            <div class="row row-cols-2 gy-2">
+                <div class="col d-grid">
+                    <button type="button" class="btn btn-primary btn-lg btn-red"
+                            onclick="location.href='demographicData.php'">
+                        BACK
+                    </button>
+                </div>
+                <div class="col d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg btn-red">
+                        START
+                    </button>
+                </div>
+            </div>
+        </div>
     </form>
 </div>
 </body>
