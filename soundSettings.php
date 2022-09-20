@@ -329,7 +329,7 @@ if (isset($_SESSION['usr'])) {
                                else if ($type == "ndur")
                                    echo "375";
                                else if ($type == "gap")
-                                   echo "100";
+                                   echo "50";
                                else if ($type == "nmod")
                                    echo "12";
                                ?>">

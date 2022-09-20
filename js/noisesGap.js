@@ -34,7 +34,7 @@ var result = "";				// final results that will be saved on the db
 var timestamp = 0;				// timestamp of the starting of the test
 var pressedButton;
 
-var betweenRampDur = 0.01       // durata rampa nel gap
+var betweenRampDur = 0.001;       // durata rampa nel gap
 
 function playNoise(time, amp, dur, ramp) { // funzione per generare suoni
     var vol = context.createGain(); // creo volume
