@@ -4,7 +4,7 @@
 		session_start();
 
 		if(isset($_GET['result']) && isset($_GET['timestamp']) && isset($_GET['type'])
-			&& isset($_GET['amp']) && isset($_GET['freq']) && isset($_GET['dur']) && isset($_GET['ramp']) && isset($_GET['blocks']) && isset($_GET['delta'])
+			&& isset($_GET['amp']) && isset($_GET['freq']) && isset($_GET['dur']) && isset($_GET['onRamp']) && isset($_GET['offRamp']) && isset($_GET['blocks']) && isset($_GET['delta'])
 			&& isset($_GET['nAFC']) && isset($_GET['ITI']) && isset($_GET['ISI']) && isset($_GET['fact']) && isset($_GET['secFact']) && isset($_GET['rev'])
 			&& isset($_GET['secRev'])&& isset($_GET['threshold']) && isset($_GET['alg']) && isset($_GET['score'])
 			&& isset($_GET['saveSettings']) && isset($_GET['currentBlock'])){
@@ -37,7 +37,8 @@
 			$_SESSION["amp"] = $_GET['amp'];
 			$_SESSION["freq"] = $_GET['freq'];
             $_SESSION["dur"] = $_GET['dur'];
-            $_SESSION["ramp"] = $_GET['ramp'];
+            $_SESSION["onRamp"] = $_GET['onRamp'];
+            $_SESSION["offRamp"] = $_GET['offRamp'];
 			$_SESSION["blocks"] = $_GET['blocks'];
 			//$_SESSION["delta"] = $_GET['delta'];
 			$_SESSION["nAFC"] = $_GET['nAFC'];

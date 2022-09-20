@@ -28,7 +28,7 @@
             throw new Exception('DB connection failed');
         mysqli_set_charset($conn, "utf8");
 
-        $sql = "SELECT Type, Amplitude as amp, Frequency as freq, Duration as dur, Ramp as ramp, ISI, blocks, Delta, nAFC, 
+        $sql = "SELECT Type, Amplitude as amp, Frequency as freq, Duration as dur, OnRamp as onRamp, OffRamp as offRamp, ISI, blocks, Delta, nAFC, 
 						Factor as fact, Reversal as rev, SecFactor as secfact, SecReversal as secrev, 
 						Threshold as thr, Algorithm as alg
 						
@@ -57,12 +57,15 @@
         var amp = parseFloat(<?php echo $row["amp"]; ?>);
         var freq = parseFloat(<?php echo $row["freq"]; ?>);
         var dur = parseFloat(<?php echo $row["dur"]; ?>);
-        var ramp = parseFloat(<?php echo $row["ramp"]; ?>);
+        var onRamp = parseFloat(<?php echo $row["onRamp"]; ?>);
+        var offRamp = parseFloat(<?php echo $row["offRamp"]; ?>);
         var delta = parseFloat(<?php echo $row["Delta"]; ?>);
         var ISI = parseInt(<?php echo $row["ISI"]; ?>);
         var nAFC = parseInt(<?php echo $row["nAFC"]; ?>);
     </script>
-
+    <script type="text/javascript"
+            src="js/generatorSoundAndNoise.js<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>"
+            defer></script>
     <script type="text/javascript"
             src="js/testPreview.js<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>"
             defer></script>

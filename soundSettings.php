@@ -40,10 +40,14 @@ if (isset($_GET['err'])) {
         echo "<div class='alert alert-danger'>The duration field is required</div>";
     else if ($_GET['err'] == "dur2")
         echo "<div class='alert alert-danger'>The duration value must be a positive number</div>";
-    else if ($_GET['err'] == "ramp1")
-        echo "<div class='alert alert-danger'>The ramp field is required</div>";
-    else if ($_GET['err'] == "ramp2")
-        echo "<div class='alert alert-danger'>The ramp value must be a positive number</div>";
+    else if ($_GET['err'] == "onRamp1")
+        echo "<div class='alert alert-danger'>The onset ramp field is required</div>";
+    else if ($_GET['err'] == "onRamp2")
+        echo "<div class='alert alert-danger'>The onset ramp value must be a positive number</div>";
+    else if ($_GET['err'] == "offRamp1")
+        echo "<div class='alert alert-danger'>The offset ramp field is required</div>";
+    else if ($_GET['err'] == "offRamp2")
+        echo "<div class='alert alert-danger'>The offset ramp value must be a positive number</div>";
     else if ($_GET['err'] == "numblock1")
         echo "<div class='alert alert-danger'>The n. of blocks field is required</div>";
     else if ($_GET['err'] == "numblock2")
@@ -102,7 +106,7 @@ if (isset($_SESSION['usr'])) {
             throw new Exception('DB connection failed');
         mysqli_set_charset($conn, "utf8");
 
-        $sql = "SELECT test.Amplitude as amp, test.Frequency as freq, test.Duration as dur, test.Ramp as ramp, test.blocks as blocks, 
+        $sql = "SELECT test.Amplitude as amp, test.Frequency as freq, test.Duration as dur, test.OnRamp as onRamp, test.OffRamp as offRamp, test.blocks as blocks, 
 								test.nAFC, test.ITI, test.ISI, test.Factor as fact, test.Reversal as rev, 
 								test.SecFactor as secfact, test.SecReversal as secrev, test.Algorithm as alg, test.Feedback as fb
 												
@@ -178,12 +182,26 @@ if (isset($_SESSION['usr'])) {
                 </div>
                 <div class="col">
                     <div class="input-group flex-nowrap"
-                         title="ms of the onset and offset ramp of the standard tone, a higher value makes the initial and final transition slower">
-                        <span class="input-group-text">Duration offset and onset ramp</span>
-                        <input type="text" class="form-control" name="ramp" id="ramp"
+                         title="ms of the onset ramp of the standard tone, a higher value makes the initial transition slower">
+                        <span class="input-group-text">Duration onset ramp</span>
+                        <input type="text" class="form-control" name="onRamp" id="onRamp"
                                value="<?php
                                if ($row)
-                                   echo $row['ramp'];
+                                   echo $row['onRamp'];
+                               else
+                                   echo "10";
+                               ?>">
+                        <span class="input-group-text">ms</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group flex-nowrap"
+                         title="ms of the offset ramp of the standard tone, a higher value makes the final transition slower">
+                        <span class="input-group-text">Duration offset ramp</span>
+                        <input type="text" class="form-control" name="offRamp" id="offRamp"
+                               value="<?php
+                               if ($row)
+                                   echo $row['offRamp'];
                                else
                                    echo "10";
                                ?>">
@@ -440,19 +458,6 @@ if (isset($_SESSION['usr'])) {
                             </div>
                             <div class="col-12 col-lg-6">
                                 <div class="input-group flex-nowrap"
-                                     title="for how many reversals the algorithm will use the first factor">
-                                    <span class="input-group-text">First reversals</span>
-                                    <input type="text" class="form-control" name="reversals" id="reversals"
-                                           value="<?php
-                                           if ($row)
-                                               echo $row['rev'];
-                                           else
-                                               echo "4";
-                                           ?>">
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <div class="input-group flex-nowrap"
                                      title="the changing factor for the second raversals">
                                     <span class="input-group-text">Second factor</span>
                                     <input type="text" class="form-control" name="secFactor" id="secondFactor"
@@ -461,6 +466,19 @@ if (isset($_SESSION['usr'])) {
                                                echo $row['secfact'];
                                            else
                                                echo "1.414";
+                                           ?>">
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="input-group flex-nowrap"
+                                     title="for how many reversals the algorithm will use the first factor">
+                                    <span class="input-group-text">First reversals</span>
+                                    <input type="text" class="form-control" name="reversals" id="reversals"
+                                           value="<?php
+                                           if ($row)
+                                               echo $row['rev'];
+                                           else
+                                               echo "4";
                                            ?>">
                                 </div>
                             </div>

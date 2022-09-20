@@ -43,7 +43,7 @@
 		//inserisci i dati del nuovo test
 		$sql = "INSERT INTO test VALUES ('$id', '$count', current_timestamp(), '$type', ";
 		$sql .= "'{$_POST["amplitude"]}', '{$_POST["frequency"]}', '{$_POST["duration"]}', ";
-		$sql .= "'{$_POST["ramp"]}', '{$_POST['blocks']}', '{$_POST['delta']}', ";
+		$sql .= "'{$_POST["onRamp"]}', '{$_POST["offRamp"]}', '{$_POST['blocks']}', '{$_POST['delta']}', ";
 		$sql .= "'{$_POST['nAFC']}', '{$_POST['ITI']}', '{$_POST['ISI']}', '{$_POST['factor']}', '{$_POST['reversals']}', ";
 		$sql .= "'{$_POST['secFactor']}', '{$_POST['secReversals']}', '{$_POST['threshold']}', '{$_POST['algorithm']}', ' ', '0', '$checkFb')";
 		$conn->query($sql);

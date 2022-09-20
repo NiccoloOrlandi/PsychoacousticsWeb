@@ -9,7 +9,7 @@
 				throw new Exception('DB connection failed');
 			mysqli_set_charset($conn, "utf8");
 			
-			$sql = "SELECT Type, Amplitude as amp, Frequency as freq, Duration as dur, Ramp as ramp, blocks, Delta, nAFC, 
+			$sql = "SELECT Type, Amplitude as amp, Frequency as freq, Duration as dur, OnRamp as onRamp, OffRamp as offRamp, blocks, Delta, nAFC, 
 					ISI, ITI, Factor as fact, Reversal as rev, SecFactor as secfact, SecReversal as secrev, 
 					Threshold as thr, Algorithm as alg
 					
@@ -39,7 +39,8 @@
 			$_SESSION["amplitude"] = $row["amp"];
 			$_SESSION["frequency"] = $row["freq"];
 			$_SESSION["duration"] = $row["dur"];
-			$_SESSION["ramp"] = $row["ramp"];
+			$_SESSION["onRamp"] = $row["onRamp"];
+			$_SESSION["offRamp"] = $row["offRamp"];
 			$_SESSION["modAmplitude"] = $row["modAmplitude"];
 			$_SESSION["modFrequency"] = $row["modFrequency"];
 			$_SESSION["modPhase"] = $row["modPhase"];
@@ -91,12 +92,20 @@
 		else if (!is_numeric($_POST["duration"]) || $_POST["duration"]<0) 
 			header("Location: ../soundSettings.php?test={$_GET['test']}&err=dur2");
 
-		//controlli su ramp
-        else if (($_POST["ramp"]== "") || ($_POST["ramp"]== "undefined"))
-            header("Location: ../soundSettings.php?test={$_GET['test']}&err=ramp1");
+		//controlli su onRamp
+        else if (($_POST["onRamp"]== "") || ($_POST["onRamp"]== "undefined"))
+            header("Location: ../soundSettings.php?test={$_GET['test']}&err=onRamp1");
 
-        else if (!is_numeric($_POST["ramp"]) || $_POST["ramp"]<0)
-            header("Location: ../soundSettings.php?test={$_GET['test']}&err=ramp2");
+        else if (!is_numeric($_POST["onRamp"]) || $_POST["onRamp"]<0)
+            header("Location: ../soundSettings.php?test={$_GET['test']}&err=onRamp2");
+
+		//controlli su offRamp
+		else if (($_POST["offRamp"]== "") || ($_POST["offRamp"]== "undefined"))
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=offRamp1");
+
+		else if (!is_numeric($_POST["offRamp"]) || $_POST["offRamp"]<0)
+			header("Location: ../soundSettings.php?test={$_GET['test']}&err=offRamp2");
+
 
 //		//controlli su modAmplitude
 //		else if (($_POST["modAmplitude"]== "") || ($_POST["modAmplitude"]== "undefined"))
@@ -220,7 +229,8 @@
 			$_SESSION["amplitude"] = $_POST["amplitude"];
 			$_SESSION["frequency"] = $_POST["frequency"];
 			$_SESSION["duration"] = $_POST["duration"];
-            $_SESSION["ramp"] = $_POST["ramp"];
+            $_SESSION["onRamp"] = $_POST["onRamp"];
+            $_SESSION["offRamp"] = $_POST["offRamp"];
             $_SESSION["modAmplitude"] = $_POST["modAmplitude"];
             $_SESSION["modFrequency"] = $_POST["modFrequency"];
             $_SESSION["modPhase"] = $_POST["modPhase"];
@@ -272,7 +282,7 @@
 			
 
 			$sql = "INSERT INTO test VALUES ('$id', '$count', current_timestamp(), '$type', ";
-						$sql .= "'{$_POST['amplitude']}', '{$_POST['frequency']}', '{$_POST['duration']}', '{$_POST['ramp']}', '{$_POST['blocks']}', '{$_POST['delta']}', ";
+						$sql .= "'{$_POST['amplitude']}', '{$_POST['frequency']}', '{$_POST['duration']}', '{$_POST['onRamp']}', '{$_POST['offRamp']}', '{$_POST['blocks']}', '{$_POST['delta']}', ";
 						$sql .= "'{$_POST['nAFC']}', '{$_POST['ITI']}', '{$_POST['ISI']}', '{$_POST['factor']}', '{$_POST['reversals']}', ";
 						$sql .= "'{$_POST['secFactor']}', '{$_POST['secReversals']}', '{$_POST['threshold']}', '{$_POST['algorithm']}', '', '0','$checkFb')";
 						

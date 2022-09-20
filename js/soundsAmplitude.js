@@ -13,9 +13,8 @@ var varDur = dur;					// duration of the variable
 var stdAmp = amp;					// intensity of the standard
 var varAmp = amp + delta;           // intensity of the variable
 
-ramp /= 1000;                        // cambio unità di misura in secondi
-var stdRamp = ramp;                  // onset and offset duration of ramp of the standard
-var varRamp = ramp;                  // onset and offset duration of ramp of the variable
+onRamp /= 1000;                        // cambio unità di misura in secondi
+offRamp /= 1000;                        // cambio unità di misura in secondi
 
 var swap = -1;						// position of variable sound
 var correctAnsw = 0;				// number of correct answers
@@ -35,44 +34,14 @@ var result = "";				// final results that will be saved on the db
 var timestamp = 0;				// timestamp of the starting of the test
 var pressedButton;
 
-function playSound(time, freq, amp, dur, ramp) { // funzione per generare suoni
-    var vol = context.createGain(); // creo volume
-    vol.gain.value = 1;
-    vol.connect(context.destination);   // collego volume all'uscita audio
-
-    var channels = 1;  // numero canali di uscita
-    var frameCount = context.sampleRate * dur;   // imposto una duarata massima del suono di n secondi
-    var soundBuffer = context.createBuffer(channels, frameCount, context.sampleRate);     // creo un nuovo buffer
-    let rampArr = [];
-    for (let channel = 0; channel < channels; channel++) {  // riempio il buffer con il suono
-        let nowBuffering = soundBuffer.getChannelData(channel);
-        for (let i = 0; i < frameCount; i++) {
-            t = i / context.sampleRate;
-            if (t < ramp) {
-                rampArr[i] = (1 + Math.sin((t * Math.PI / ramp) - (Math.PI / 2))) / 2;    // onset ramp
-            } else if (t > dur - ramp) {
-                rampArr[i] = (1 + Math.sin(((t - (dur - ramp)) * Math.PI / ramp) + (Math.PI / 2))) / 2; // offset ramp
-            } else {
-                rampArr[i] = 1; // central zone
-            }
-            nowBuffering[i] = ((10 ** (parseInt(amp) / 20)) * Math.sin(2 * Math.PI * freq * t)) * rampArr[i];   // t = i / context.sampleRate
-        }
-    }
-    source = context.createBufferSource();  // creo sorgente
-    source.buffer = soundBuffer;    // collego i buffer
-    source.connect(vol);    // connetto la sorgente al volume
-    source.start(context.currentTime + time);   // riproduco il suono
-    source.stop(context.currentTime + time + dur);  // fermo il suono
-}
-
 //funzione per randomizzare l'output
 function random() {
     var rand = Math.floor(Math.random() * nAFC);    // the variable sound will be the rand-th sound played
     for (var j = 0; j < nAFC; j++) {
         if (j == rand)
-            playSound((j * varDur) + j * (ISI / 1000), varFreq, varAmp, varDur, varRamp);
+            playSound((j * varDur) + j * (ISI / 1000), varFreq, varAmp, varDur, onRamp, offRamp);
         else
-            playSound((j * stdDur) + j * (ISI / 1000), stdFreq, stdAmp, stdDur, stdRamp);
+            playSound((j * stdDur) + j * (ISI / 1000), stdFreq, stdAmp, stdDur, onRamp, offRamp);
     }
 
     swap = rand + 1;
@@ -144,7 +113,7 @@ function select(button) {
 
         //format description as a csv file
         //prima tutti i nomi, poi tutti i dati
-        var description = "&amp=" + amp + "&freq=" + freq + "&dur=" + dur + "&ramp=" + ramp +/*"&phase="+phase+*/"&blocks=" + blocks + "&delta=" + startingDelta + "&nAFC=" + nAFC + "&ISI=" + ISI + "&ITI=" + ITI;
+        var description = "&amp=" + amp + "&freq=" + freq + "&dur=" + dur + "&onRamp=" + onRamp + "&offRamp=" + offRamp +/*"&phase="+phase+*/"&blocks=" + blocks + "&delta=" + startingDelta + "&nAFC=" + nAFC + "&ISI=" + ISI + "&ITI=" + ITI;
         description += "&fact=" + factor + "&secFact=" + secondFactor + "&rev=" + reversals + "&secRev=" + secondReversals + "&threshold=" + reversalThreshold + "&alg=" + algorithm + "&sampleRate=" + context.sampleRate;
 
         //pass the datas to the php file

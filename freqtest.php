@@ -18,7 +18,8 @@
 			var amp = parseFloat(<?php echo $_SESSION["amplitude"]; ?>);
 			var freq = parseFloat(<?php echo $_SESSION["frequency"]; ?>);
 			var dur = parseFloat(<?php echo $_SESSION["duration"]; ?>);
-            var ramp = parseFloat(<?php echo $_SESSION["ramp"]; ?>);
+            var onRamp = parseFloat(<?php echo $_SESSION["onRamp"]; ?>);
+            var offRamp = parseFloat(<?php echo $_SESSION["offRamp"]; ?>);
             //var phase = <//?php echo $_SESSION["phase"]; ?>;
 			var blocks = parseInt(<?php echo $_SESSION["blocks"]; ?>);
 			var delta = parseFloat(<?php echo $_SESSION["delta"]; ?>);
@@ -37,7 +38,8 @@
 			var currentBlock = parseInt(<?php if(isset($_SESSION["currentBlock"])) echo $_SESSION["currentBlock"]+1; else echo "1"?>);
 
 		</script>
-		<script type="text/javascript" src="js/soundsFrequency.js<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>" defer></script>
+        <script type="text/javascript" src="js/generatorSoundAndNoise.js<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>" defer></script>
+        <script type="text/javascript" src="js/soundsFrequency.js<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>" defer></script>
 	</head>
 	
 	<body>
