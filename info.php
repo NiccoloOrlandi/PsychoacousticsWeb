@@ -80,7 +80,7 @@
 <body>
 <img src="files/wallpaper1.jpg" class="wallpaper">
 
-<div class="container my-5 p-5 border rounded rounded-4 bg-white-transparent">
+<div class="container my-5 p-5 rounded rounded-4 bg-white-transparent">
     <h2 class="">Hi <?php echo $_SESSION['name']; ?></h2>
     <p class="">
         You will now do an acoustic test that will measure your sensibility to the <?php echo $type; ?> of a sound.
