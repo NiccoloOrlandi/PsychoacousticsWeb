@@ -48,6 +48,18 @@ if (isset($_GET['err'])) {
         echo "<div class='alert alert-danger'>The offset ramp field is required</div>";
     else if ($_GET['err'] == "offRamp2")
         echo "<div class='alert alert-danger'>The offset ramp value must be a positive number</div>";
+    else if ($_GET['err'] == "modAmp1")
+        echo "<div class='alert alert-danger'>The modulator amplitude field is required</div>";
+    else if ($_GET['err'] == "modAmp2")
+        echo "<div class='alert alert-danger'>The modulator amplitude must be a negative number</div>";
+    else if ($_GET['err'] == "modFreq1")
+        echo "<div class='alert alert-danger'>The modulator frequency field is required</div>";
+    else if ($_GET['err'] == "modFreq2")
+        echo "<div class='alert alert-danger'>The modulator frecuency must be a positive number</div>";
+    else if ($_GET['err'] == "modPhase1")
+        echo "<div class='alert alert-danger'>The modulator phase field is required</div>";
+    else if ($_GET['err'] == "modPhase2")
+        echo "<div class='alert alert-danger'>The modulator phase must be a number</div>";
     else if ($_GET['err'] == "numblock1")
         echo "<div class='alert alert-danger'>The n. of blocks field is required</div>";
     else if ($_GET['err'] == "numblock2")
@@ -108,7 +120,8 @@ if (isset($_SESSION['usr'])) {
 
         $sql = "SELECT test.Amplitude as amp, test.Frequency as freq, test.Duration as dur, test.OnRamp as onRamp, test.OffRamp as offRamp, test.blocks as blocks, 
 								test.nAFC, test.ITI, test.ISI, test.Factor as fact, test.Reversal as rev, 
-								test.SecFactor as secfact, test.SecReversal as secrev, test.Algorithm as alg, test.Feedback as fb
+								test.SecFactor as secfact, test.SecReversal as secrev, test.Algorithm as alg, test.Feedback as fb,
+                                test.ModAmplitude as modAmp, test.ModFrequency as modFreq, test.ModPhase as modPhase
 												
 								FROM test
 								INNER JOIN account ON account.fk_GuestTest=test.Guest_ID AND account.fk_TestCount=test.Test_count
@@ -122,7 +135,7 @@ if (isset($_SESSION['usr'])) {
 } else
     $row = false;
 ?>
-<div class="container my-5 p-5 border rounded rounded-4 bg-light">
+<div class="container my-5 px-5 py-4 border rounded rounded-4 bg-light">
     <h2>Set the characteristics of the experiment</h2>
     <form action="<?php
     if (isset($_SESSION['updatingSavedSettings']) && $_SESSION['updatingSavedSettings'] == true)
@@ -134,111 +147,177 @@ if (isset($_SESSION['usr'])) {
         <!-- Primo slot di setting -->
         <div class="container mt-3 p-3 border rounded-4 bg-light">
             <h5>Set the characteristics of the standard tone</h5>
-            <?php if ($type == "nmod") echo '<h6>Carrier settings</h6>'; ?>
-            <div class="row row-cols-1 row-cols-lg-3 gy-3">
-                <div class="col">
-                    <!-- Contenuto dello slot, qui vanno inseriti tutti i bottoni e i check box del primo slot -->
-                    <div class="input-group flex-nowrap"
-                         title="dB of the standard tone, 0dB = 1 is the maximum value">
-                        <span class="input-group-text">Amplitude</span>
-                        <input type="text" class="form-control" name="amplitude" id="amplitude"
-                               value="<?php
-                               if ($row)
-                                   echo $row['amp'];
-                               else
-                                   echo "-20";
-                               ?>">
-                        <span class="input-group-text">dB</span>
-                    </div>
-                </div>
-                <div class="col"
-                    <?php if ($type == "gap" || $type == "ndur" || $type == "nmod") echo 'style = "display: none"' ?>>
-                    <div class="input-group flex-nowrap"
-                         title="Hz of the standard tone, a higher frequency makes the sound sharper">
-                        <span class="input-group-text">Frequency</span>
-                        <input type="text" class="form-control" name="frequency" id="frequency"
-                               value="<?php
-                               if ($row)
-                                   echo $row['freq'];
-                               else
-                                   echo "1000";
-                               ?>">
-                        <span class="input-group-text">Hz</span>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="input-group flex-nowrap"
-                         title="ms of the standard tone, a higher value makes the sound last longer">
-                        <span class="input-group-text">Duration</span>
-                        <input type="text" class="form-control" name="duration" id="duration"
-                               value="<?php
-                               if ($row)
-                                   echo $row['dur'];
-                               else
-                                   echo "500";
-                               ?>">
-                        <span class="input-group-text">ms</span>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="input-group flex-nowrap"
-                         title="ms of the onset ramp of the standard tone, a higher value makes the initial transition slower">
-                        <span class="input-group-text">Duration onset ramp</span>
-                        <input type="text" class="form-control" name="onRamp" id="onRamp"
-                               value="<?php
-                               if ($row)
-                                   echo $row['onRamp'];
-                               else
-                                   echo "10";
-                               ?>">
-                        <span class="input-group-text">ms</span>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="input-group flex-nowrap"
-                         title="ms of the offset ramp of the standard tone, a higher value makes the final transition slower">
-                        <span class="input-group-text">Duration offset ramp</span>
-                        <input type="text" class="form-control" name="offRamp" id="offRamp"
-                               value="<?php
-                               if ($row)
-                                   echo $row['offRamp'];
-                               else
-                                   echo "10";
-                               ?>">
-                        <span class="input-group-text">ms</span>
-                    </div>
-                </div>
-                <!-- <div class="input-group flex-nowrap">
-                    <span class="input-group-text">Starting phase</span>
-                    <input type="text" class="form-control" name="phase" id="phase" placeholder="Standard" aria-label="Username" aria-describedBy="addon-wrapping" value="0">
-                    <span class="input-group-text">°</span>
-                </div> -->
-            </div>
-            <?php if ($type == "nmod") { ?>
-                <h6 class="mt-2">Modulator settings</h6>
+            <?php if ($type != "nmod") { ?>
                 <div class="row row-cols-1 row-cols-lg-3 gy-3">
                     <div class="col">
+                        <!-- Contenuto dello slot, qui vanno inseriti tutti i bottoni e i check box del primo slot -->
                         <div class="input-group flex-nowrap"
-                             title="">
+                             title="dB of the standard tone, 0dB = 1 is the maximum value">
                             <span class="input-group-text">Amplitude</span>
-                            <input type="text" class="form-control" name="modAmplitude" id="modAmplitude"
+                            <input type="text" class="form-control" name="amplitude" id="amplitude"
+                                   value="<?php
+                                   if ($row)
+                                       echo $row['amp'];
+                                   else
+                                       echo "-20";
+                                   ?>">
+                            <span class="input-group-text">dB</span>
+                        </div>
+                    </div>
+                    <div class="col"
+                        <?php if ($type == "gap" || $type == "ndur") echo 'style = "display: none"' ?>>
+                        <div class="input-group flex-nowrap"
+                             title="Hz of the standard tone, a higher frequency makes the sound sharper">
+                            <span class="input-group-text">Frequency</span>
+                            <input type="text" class="form-control" name="frequency" id="frequency"
+                                   value="<?php
+                                   if ($row)
+                                       echo $row['freq'];
+                                   else
+                                       echo "1000";
+                                   ?>">
+                            <span class="input-group-text">Hz</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group flex-nowrap"
+                             title="ms of the standard tone, a higher value makes the sound last longer">
+                            <span class="input-group-text">Duration</span>
+                            <input type="text" class="form-control" name="duration" id="duration"
                                    value="<?php
                                    if ($row)
                                        echo $row['dur'];
                                    else
-                                       echo "-7,95";
+                                       echo "500";
+                                   ?>">
+                            <span class="input-group-text">ms</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group flex-nowrap"
+                             title="ms of the onset ramp of the standard tone, a higher value makes the initial transition slower">
+                            <span class="input-group-text">Duration onset ramp</span>
+                            <input type="text" class="form-control" name="onRamp" id="onRamp"
+                                   value="<?php
+                                   if ($row)
+                                       echo $row['onRamp'];
+                                   else
+                                       echo "10";
+                                   ?>">
+                            <span class="input-group-text">ms</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group flex-nowrap"
+                             title="ms of the offset ramp of the standard tone, a higher value makes the final transition slower">
+                            <span class="input-group-text">Duration offset ramp</span>
+                            <input type="text" class="form-control" name="offRamp" id="offRamp"
+                                   value="<?php
+                                   if ($row)
+                                       echo $row['offRamp'];
+                                   else
+                                       echo "10";
+                                   ?>">
+                            <span class="input-group-text">ms</span>
+                        </div>
+                    </div>
+                </div>
+            <?php } else { ?>
+                <h6 class="mt-2">Master settings</h6>
+                <div class="row row-cols-1 row-cols-lg-3 gy-3">
+                    <div class="col">
+                        <div class="input-group flex-nowrap"
+                             title="ms of the onset ramp of the standard tone, a higher value makes the initial transition slower">
+                            <span class="input-group-text">Duration onset ramp</span>
+                            <input type="text" class="form-control" name="onRamp" id="onRamp"
+                                   value="<?php
+                                   if ($row)
+                                       echo $row['onRamp'];
+                                   else
+                                       echo "10";
+                                   ?>">
+                            <span class="input-group-text">ms</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group flex-nowrap"
+                             title="ms of the offset ramp of the standard tone, a higher value makes the final transition slower">
+                            <span class="input-group-text">Duration offset ramp</span>
+                            <input type="text" class="form-control" name="offRamp" id="offRamp"
+                                   value="<?php
+                                   if ($row)
+                                       echo $row['offRamp'];
+                                   else
+                                       echo "10";
+                                   ?>">
+                            <span class="input-group-text">ms</span>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="mt-2">Carrier settings</h6>
+                <div class="row row-cols-1 row-cols-lg-3 gy-3">
+                    <div class="col">
+                        <div class="input-group flex-nowrap"
+                             title="dB of the carrier, 0dB = 1 is the maximum value">
+                            <span class="input-group-text">Amplitude</span>
+                            <input type="text" class="form-control" name="amplitude" id="amplitude"
+                                   value="<?php
+                                   if ($row)
+                                       echo $row['amp'];
+                                   else
+                                       echo "-20";
+                                   ?>">
+                            <span class="input-group-text">dB</span>
+                        </div>
+                    </div>
+                    <div class="col" style="display: none">
+                        <div class="input-group flex-nowrap"
+                             title="">
+                            <span class="input-group-text">Frequency</span>
+                            <input type="text" class="form-control" name="frequency" id="frequency"
+                                   value="0">
+                            <span class="input-group-text">Hz</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group flex-nowrap"
+                             title="ms of the carrier tone, a higher value makes the sound last longer">
+                            <span class="input-group-text">Duration</span>
+                            <input type="text" class="form-control" name="duration" id="duration"
+                                   value="<?php
+                                   if ($row)
+                                       echo $row['dur'];
+                                   else
+                                       echo "500";
+                                   ?>">
+                            <span class="input-group-text">ms</span>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="mt-2">Modulator settings</h6>
+                <div class="row row-cols-1 row-cols-lg-3 gy-3">
+                    <div class="col">
+                        <div class="input-group flex-nowrap"
+                             title="dB of the modulator, 0dB = 1 is the maximum value">
+                            <span class="input-group-text">Amplitude</span>
+                            <input type="text" class="form-control" name="modAmplitude" id="modAmplitude"
+                                   value="<?php
+                                   if ($row)
+                                       echo $row['modAmp'];
+                                   else
+                                       echo "-7.95";
                                    ?>">
                             <span class="input-group-text">dB</span>
                         </div>
                     </div>
                     <div class="col">
                         <div class="input-group flex-nowrap"
-                             title="">
+                             title="Hz of the modulator">
                             <span class="input-group-text">Frequency</span>
                             <input type="text" class="form-control" name="modFrequency" id="modFrequency"
                                    value="<?php
                                    if ($row)
-                                       echo $row['dur'];
+                                       echo $row['modFreq'];
                                    else
                                        echo "10";
                                    ?>">
@@ -247,12 +326,12 @@ if (isset($_SESSION['usr'])) {
                     </div>
                     <div class="col">
                         <div class="input-group flex-nowrap"
-                             title="">
+                             title="phase of the modulator">
                             <span class="input-group-text">Phase</span>
                             <input type="text" class="form-control" name="modPhase" id="modPhase"
                                    value="<?php
                                    if ($row)
-                                       echo $row['dur'];
+                                       echo $row['modPhase'];
                                    else
                                        echo "0";
                                    ?>">
@@ -324,8 +403,8 @@ if (isset($_SESSION['usr'])) {
                         <span class="input-group-text">ms</span>
                     </div>
                 </div>
-
-                <div class="col">
+                <div class="col"
+                    <?php if ($type == "nmod") echo 'style = "display: none"' ?>>
                     <div class="input-group flex-nowrap"
                          title="the starting difference between the sounds">
                         <span class="input-group-text">
@@ -353,7 +432,7 @@ if (isset($_SESSION['usr'])) {
                                ?>">
                         <span class="input-group-text">
                             <?php
-                            if ($type == "amp")
+                            if ($type == "amp" || $type == "nmod")
                                 echo "dB";
                             else if ($type == "freq")
                                 echo "Hz";
@@ -536,8 +615,6 @@ if (isset($_SESSION['usr'])) {
     </form>
 </div>
 <!-- Bootstrap Bundle with Popper -->
-<script src="bootstrap/js/bootstrap.min.js"
-</script>
-
+<script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

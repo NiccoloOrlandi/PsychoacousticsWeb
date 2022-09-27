@@ -98,3 +98,40 @@ function playGapNoise(time, amp, dur, onRamp, offRamp, gap) { // funzione per ge
     source.start(context.currentTime + time);   // riproduco il suono
     source.stop(context.currentTime + time + dur);  // fermo il suono
 }
+
+function playModulatedNoise(time, carAmp, carDur, modAmp, modFreq, modPhase, onRamp, offRamp) { // funzione per generare rumori
+    console.log(modAmp);
+    console.log()
+
+    var vol = context.createGain(); // creo volume
+    vol.gain.value = 1;
+    vol.connect(context.destination);   // collego volume all'uscita audio
+
+    let channels = 1;
+    var frameCount = context.sampleRate * carDur;
+    let noiseBuffer = context.createBuffer(channels, frameCount, context.sampleRate);
+    for (let channel = 0; channel < channels; channel++) {
+        let master = noiseBuffer.getChannelData(channel);
+        let carrier = [];
+        let modulator = [];
+        let ramp = [];
+        for (let i = 0; i < frameCount; i++) {
+            t = i / context.sampleRate;
+            if (t < onRamp) {
+                ramp[i] = (1 + Math.sin((t * Math.PI / onRamp) - (Math.PI / 2))) / 2;
+            } else if (t > carDur - offRamp) {
+                ramp[i] = (1 + Math.sin(((t - (carDur - offRamp)) * Math.PI / offRamp) + (Math.PI / 2))) / 2;
+            } else {
+                ramp[i] = 1;
+            }
+            carrier[i] = carAmp * (Math.random() * 2 - 1);
+            modulator[i] = modAmp * Math.sin(i * 2 * Math.PI * modFreq / context.sampleRate + modPhase); // t = i / sampleRate
+            master[i] = (((carAmp / (carAmp + modAmp)) + (modulator[i] / (carAmp + modAmp))) * carrier[i]) * ramp[i];
+        }
+    }
+    source = context.createBufferSource();  // creo sorgente
+    source.buffer = noiseBuffer;    // collego i buffer
+    source.connect(vol);    // connetto la sorgente al volume
+    source.start(context.currentTime + time);   // riproduco il suono
+    source.stop(context.currentTime + time + carDur);  // fermo il suono
+}

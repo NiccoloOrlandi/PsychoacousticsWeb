@@ -30,7 +30,7 @@
 
         $sql = "SELECT Type, Amplitude as amp, Frequency as freq, Duration as dur, OnRamp as onRamp, OffRamp as offRamp, ISI, blocks, Delta, nAFC, 
 						Factor as fact, Reversal as rev, SecFactor as secfact, SecReversal as secrev, 
-						Threshold as thr, Algorithm as alg
+						Threshold as thr, Algorithm as alg, ModAmplitude as modAmp, ModFrequency as modFreq, ModPhase as modPhase
 						
 						FROM test
 						
@@ -48,6 +48,8 @@
             $type = "gap";
         else if ($row['Type'] == 'WHITE_NOISE_DURATION')
             $type = "nduration";
+        else if ($row['Type'] == 'WHITE_NOISE_MODULATION')
+            $type = "nmodulation";
     } catch (Exception $e) {
         header("Location: index.php?err=db");
     }
@@ -57,6 +59,11 @@
         var amp = parseFloat(<?php echo $row["amp"]; ?>);
         var freq = parseFloat(<?php echo $row["freq"]; ?>);
         var dur = parseFloat(<?php echo $row["dur"]; ?>);
+        if (type == "nmodulation") {
+            var modAmp = parseFloat(<?php echo $row["modAmp"]; ?>);
+            var modFreq = parseFloat(<?php echo $row["modFreq"]; ?>);
+            var modPhase = parseFloat(<?php echo $row["modPhase"]; ?>);
+        }
         var onRamp = parseFloat(<?php echo $row["onRamp"]; ?>);
         var offRamp = parseFloat(<?php echo $row["offRamp"]; ?>);
         var delta = parseFloat(<?php echo $row["Delta"]; ?>);
@@ -194,6 +201,8 @@
                                 echo "Which is the noise with the gap?";
                             else if ($type == "nduration")
                                 echo "Which is the longest noise?";
+                            else if ($type == "nmodulation")
+                                echo "Which is the modulated noise?";
                             ?></h1>
                         <div class="d-flex justify-content-around">
                             <button type="button" class="btn btn-lg btn-success" id="button1" onclick="select(1)"

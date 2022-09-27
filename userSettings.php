@@ -93,6 +93,7 @@
 				<option value='dur'>Pure tone duration</option>
 				<option value='gap'>Noise Gap</option>
 				<option value='ndur'>Noise Duration</option>
+				<option value='nmod'>Noise Modulation</option>
 			</select>
 			<button type="button" class="btn btn-primary btn-lg m-3" onclick="window.location='php/updateSavedSettings.php?test='+document.getElementById('testType').value">Change test settings</button>
 			

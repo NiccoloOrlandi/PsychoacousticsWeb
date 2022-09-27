@@ -21,6 +21,8 @@
                 $type = "WHITE_NOISE_GAP";
             else if($_GET['type'] == "ndur")
                 $type = "WHITE_NOISE_DURATION";
+			else if($_GET['type'] == "nmod")
+				$type = "WHITE_NOISE_MODULATION";
 
 			if(isset($_SESSION["score"]))
 				$_SESSION["score"] .= ";".$_GET['score'];
@@ -39,6 +41,11 @@
             $_SESSION["dur"] = $_GET['dur'];
             $_SESSION["onRamp"] = $_GET['onRamp'];
             $_SESSION["offRamp"] = $_GET['offRamp'];
+			if ($_GET['type'] == "nmod") {
+				$_SESSION["modAmp"] = $_GET["modAmp"];
+				$_SESSION["modFreq"] = $_GET["modFreq"];
+				$_SESSION["modPhase"] = $_GET["modPhase"];
+			}
 			$_SESSION["blocks"] = $_GET['blocks'];
 			//$_SESSION["delta"] = $_GET['delta'];
 			$_SESSION["nAFC"] = $_GET['nAFC'];
@@ -79,11 +86,11 @@
 						$result = $conn->query($sql);
 						$row = $result->fetch_assoc();
 
-						/*il test corrente è il numero di test già effettuati + 1
-						$count = $row['count']+1;*/
+						//il test corrente è il numero di test già effettuati + 1
+						$count = $row['count'];
 
 						//inserisci i dati del nuovo test
-						$sql = "UPDATE test SET Result = '{$_GET['result']}', `Timestamp`='{$_GET['timestamp']}', `Sample Rate`='{$_GET['sampleRate']}'";
+						$sql = "UPDATE test SET Result = '{$_GET['result']}', Timestamp='{$_GET['timestamp']}', SampleRate='{$_GET['sampleRate']}' WHERE Guest_ID = '$id' and Test_count = '$count'";
 						/* ('$id', '$count', '{$_GET['timestamp']}', '$type', ";
 						$sql .= "'{$_GET['amp']}', '{$_GET['freq']}', '{$_GET['dur']}', '{$_GET['ramp']}', '{$_GET['blocks']}', '{$_GET['delta']}', ";
 						$sql .= "'{$_GET['nAFC']}', '{$_GET['ITI']}', '{$_GET['ISI']}', '{$_GET['fact']}', '{$_GET['rev']}', ";

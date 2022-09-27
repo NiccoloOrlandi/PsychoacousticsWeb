@@ -39,13 +39,26 @@
 			$type = "WHITE_NOISE_GAP";
 		else if($_GET['test'] == "ndur")
 			$type = "WHITE_NOISE_DURATION";
+		else if($_GET['test'] == "nmod")
+			$type = "WHITE_NOISE_MODULATION";
 
 		//inserisci i dati del nuovo test
-		$sql = "INSERT INTO test VALUES ('$id', '$count', current_timestamp(), '$type', ";
-		$sql .= "'{$_POST["amplitude"]}', '{$_POST["frequency"]}', '{$_POST["duration"]}', ";
-		$sql .= "'{$_POST["onRamp"]}', '{$_POST["offRamp"]}', '{$_POST['blocks']}', '{$_POST['delta']}', ";
-		$sql .= "'{$_POST['nAFC']}', '{$_POST['ITI']}', '{$_POST['ISI']}', '{$_POST['factor']}', '{$_POST['reversals']}', ";
-		$sql .= "'{$_POST['secFactor']}', '{$_POST['secReversals']}', '{$_POST['threshold']}', '{$_POST['algorithm']}', ' ', '0', '$checkFb')";
+		if ($_GET['test'] == "gap" || $_GET['test'] == "ndur") {
+			$sql = "INSERT INTO test VALUES ('$id', '$count', current_timestamp(), '$type', ";
+			$sql .= "'{$_POST['amplitude']}', NULL, '{$_POST['duration']}', '{$_POST['onRamp']}', '{$_POST['offRamp']}', '{$_POST['blocks']}', '{$_POST['delta']}', ";
+			$sql .= "'{$_POST['nAFC']}', '{$_POST['ITI']}', '{$_POST['ISI']}', '{$_POST['factor']}', '{$_POST['reversals']}', ";
+			$sql .= "'{$_POST['secFactor']}', '{$_POST['secReversals']}', '{$_POST['threshold']}', '{$_POST['algorithm']}', '', '0','$checkFb', NULL, NULL, NULL)";
+		} else if ($_GET['test'] == "nmod") {
+			$sql = "INSERT INTO test VALUES ('$id', '$count', current_timestamp(), '$type', ";
+			$sql .= "'{$_POST['amplitude']}', NULL, '{$_POST['duration']}', '{$_POST['onRamp']}', '{$_POST['offRamp']}', '{$_POST['blocks']}', '{$_POST['delta']}', ";
+			$sql .= "'{$_POST['nAFC']}', '{$_POST['ITI']}', '{$_POST['ISI']}', '{$_POST['factor']}', '{$_POST['reversals']}', ";
+			$sql .= "'{$_POST['secFactor']}', '{$_POST['secReversals']}', '{$_POST['threshold']}', '{$_POST['algorithm']}', '', '0','$checkFb', '" . floatval($_POST["modAmplitude"]) . "', '{$_POST["modFrequency"]}', '{$_POST["modPhase"]}')";
+		} else {
+			$sql = "INSERT INTO test VALUES ('$id', '$count', current_timestamp(), '$type', ";
+			$sql .= "'{$_POST['amplitude']}', '{$_POST['frequency']}', '{$_POST['duration']}', '{$_POST['onRamp']}', '{$_POST['offRamp']}', '{$_POST['blocks']}', '{$_POST['delta']}', ";
+			$sql .= "'{$_POST['nAFC']}', '{$_POST['ITI']}', '{$_POST['ISI']}', '{$_POST['factor']}', '{$_POST['reversals']}', ";
+			$sql .= "'{$_POST['secFactor']}', '{$_POST['secReversals']}', '{$_POST['threshold']}', '{$_POST['algorithm']}', '', '0','$checkFb', NULL, NULL, NULL)";
+		}
 		$conn->query($sql);
 		
 		$sql = "UPDATE account SET fk_GuestTest = '$id', fk_TestCount = '$count' WHERE Username = '{$_SESSION['usr']}' ";

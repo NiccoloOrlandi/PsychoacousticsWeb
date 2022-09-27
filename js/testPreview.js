@@ -13,6 +13,9 @@ var varDur = dur;					// duration of the variable
 var stdAmp = amp;					// intensity of the standard
 var varAmp = amp;				    // intensity of the variable
 
+var carAmp = amp;
+var carDur = dur;
+
 onRamp /= 1000;                        // cambio unità di misura in secondi
 offRamp /= 1000;                        // cambio unità di misura in secondi
 
@@ -31,6 +34,9 @@ switch (type) {
         break;
     case "gap":
         delta = (startingDelta / 1000);
+        break;
+    case "nmodulation":
+        delta = modAmp;
         break;
 }
 
@@ -72,6 +78,11 @@ function random() {
                 playNoise((j * stdDur) + j * (ISI / 1000), stdAmp, stdDur, onRamp, offRamp);
             else if (j > rand)
                 playNoise(((j - 1) * stdDur) + varDur + j * (ISI / 1000), stdAmp, stdDur, onRamp, offRamp);
+        } else if (type == "nmodulation") {
+            if (j == rand)
+                playModulatedNoise((j * carDur) + j * (ISI / 1000),   10 ** (carAmp / 20), carDur, 10 ** (modAmp / 20), modFreq, modPhase, onRamp, offRamp);
+            else
+                playNoise((j * carDur) + j * (ISI / 1000), carAmp, carDur, onRamp, offRamp);
         }
     }
 
