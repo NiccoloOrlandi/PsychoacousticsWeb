@@ -454,7 +454,7 @@ if (isset($_SESSION['usr'])) {
                 <!-- Contenuto dello slot, qui vanno inseriti tutti i componenti del terzo slot -->
                 <!-- Radios, sono raggruppati in un div che sta sulla sinistra-->
                 <div class="col">
-                    <div class="row gy-2">
+                    <div class="row gy-3">
                         <div class="col-12">
                             <div class="form-check"
                                  title="every correct answer increases the difficulty of the test, every wrong answer makes it easier">
@@ -520,71 +520,69 @@ if (isset($_SESSION['usr'])) {
 
                 <!-- input boxes, sono raggruppati in un div che sta sulla destra-->
                 <div class="col">
-                    <div class="container-fluid">
-                        <div class="row gy-3">
-                            <div class="col-12 col-lg-6">
-                                <div class="input-group flex-nowrap"
-                                     title="the changing factor for the first raversals">
-                                    <span class="input-group-text">First factor</span>
-                                    <input type="text" class="form-control" name="factor" id="factor"
-                                           value="<?php
-                                           if ($row)
-                                               echo $row['fact'];
-                                           else
-                                               echo "2";
-                                           ?>">
-                                </div>
+                    <div class="row gy-3">
+                        <div class="col-12 col-lg-6">
+                            <div class="input-group flex-nowrap"
+                                 title="the changing factor for the first raversals">
+                                <span class="input-group-text">First factor</span>
+                                <input type="text" class="form-control" name="factor" id="factor"
+                                       value="<?php
+                                       if ($row)
+                                           echo $row['fact'];
+                                       else
+                                           echo "2";
+                                       ?>">
                             </div>
-                            <div class="col-12 col-lg-6">
-                                <div class="input-group flex-nowrap"
-                                     title="the changing factor for the second raversals">
-                                    <span class="input-group-text">Second factor</span>
-                                    <input type="text" class="form-control" name="secFactor" id="secondFactor"
-                                           value="<?php
-                                           if ($row)
-                                               echo $row['secfact'];
-                                           else
-                                               echo "1.414";
-                                           ?>">
-                                </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="input-group flex-nowrap"
+                                 title="the changing factor for the second raversals">
+                                <span class="input-group-text">Second factor</span>
+                                <input type="text" class="form-control" name="secFactor" id="secondFactor"
+                                       value="<?php
+                                       if ($row)
+                                           echo $row['secfact'];
+                                       else
+                                           echo "1.414";
+                                       ?>">
                             </div>
-                            <div class="col-12 col-lg-6">
-                                <div class="input-group flex-nowrap"
-                                     title="for how many reversals the algorithm will use the first factor">
-                                    <span class="input-group-text">First reversals</span>
-                                    <input type="text" class="form-control" name="reversals" id="reversals"
-                                           value="<?php
-                                           if ($row)
-                                               echo $row['rev'];
-                                           else
-                                               echo "4";
-                                           ?>">
-                                </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="input-group flex-nowrap"
+                                 title="for how many reversals the algorithm will use the first factor">
+                                <span class="input-group-text">First reversals</span>
+                                <input type="text" class="form-control" name="reversals" id="reversals"
+                                       value="<?php
+                                       if ($row)
+                                           echo $row['rev'];
+                                       else
+                                           echo "4";
+                                       ?>">
                             </div>
-                            <div class="col-12 col-lg-6">
-                                <div class="input-group flex-nowrap"
-                                     title="for how many reversals the algorithm will use the second factor">
-                                    <span class="input-group-text">Second reversals</span>
-                                    <input type="text" class="form-control" name="secReversals" id="reversals"
-                                           value="<?php
-                                           if ($row)
-                                               echo $row['secrev'];
-                                           else
-                                               echo "8";
-                                           ?>">
-                                </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="input-group flex-nowrap"
+                                 title="for how many reversals the algorithm will use the second factor">
+                                <span class="input-group-text">Second reversals</span>
+                                <input type="text" class="form-control" name="secReversals" id="reversals"
+                                       value="<?php
+                                       if ($row)
+                                           echo $row['secrev'];
+                                       else
+                                           echo "8";
+                                       ?>">
                             </div>
-                            <div class="col 12">
-                                <div class="input-group flex-nowrap">
-                                    <span class="input-group-text">Reversal threshold</span>
-                                    <input type="text" class="form-control" name="threshold" id="reversalsTh"
-                                           value="<?php
-                                           if ($row)
-                                               echo $row['secrev'];
-                                           else
-                                               echo "8";
-                                           ?>">
-                                </div>
+                        </div>
+                        <div class="col 12">
+                            <div class="input-group flex-nowrap">
+                                <span class="input-group-text">Reversal threshold</span>
+                                <input type="text" class="form-control" name="threshold" id="reversalsTh"
+                                       value="<?php
+                                       if ($row)
+                                           echo $row['secrev'];
+                                       else
+                                           echo "8";
+                                       ?>">
                             </div>
                         </div>
                     </div>
@@ -593,23 +591,21 @@ if (isset($_SESSION['usr'])) {
         </div>
 
         <!-- i bottoni sono fuori dal terzo slot -->
-        <div class="container mt-3">
-            <div class="row row-cols-2 gy-2">
-                <div class="col d-grid">
-                    <button type="button" class="btn btn-primary btn-lg btn-red"
-                            onclick="location.href='demographicData.php'">BACK
-                    </button>
-                </div>
-                <div class="col d-grid">
-                    <button type="submit" class="btn btn-primary btn-lg btn-red">
-                        <?php
-                        if (isset($_SESSION['updatingSavedSettings']) && $_SESSION['updatingSavedSettings'] == true)
-                            echo "SAVE SETTINGS";
-                        else
-                            echo "START";
-                        ?>
-                    </button>
-                </div>
+        <div class="row row-cols-2 gy-2 mt-3">
+            <div class="col d-grid">
+                <button type="button" class="btn btn-primary btn-lg btn-red"
+                        onclick="location.href='demographicData.php'">BACK
+                </button>
+            </div>
+            <div class="col d-grid">
+                <button type="submit" class="btn btn-primary btn-lg btn-red">
+                    <?php
+                    if (isset($_SESSION['updatingSavedSettings']) && $_SESSION['updatingSavedSettings'] == true)
+                        echo "SAVE SETTINGS";
+                    else
+                        echo "START";
+                    ?>
+                </button>
             </div>
         </div>
     </form>

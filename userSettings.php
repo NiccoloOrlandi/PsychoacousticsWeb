@@ -88,7 +88,8 @@ try {
 ?>
 
 <div class="container my-5">
-    <div class="container-fluid p-5 border rounded-4 bg-light">
+    <div class="container-fluid p-4 border rounded-4 bg-light">
+        <h4 class="mb-3">Test settings</h4>
         <form action="php/newReferral.php" class="settingForm ref">
             <div class="row row-cols-1 row-cols-lg-2 g-3 justify-content-center align-items-center">
                 <div class="col">
@@ -134,7 +135,8 @@ try {
         </form>
     </div>
 
-    <div class="container-fluid p-5 border rounded-4 bg-light mt-5">
+    <div class="container-fluid p-4 border rounded-4 bg-light mt-5">
+        <h4 class="mb-3">Create new superuser</h4>
         <?php
         try {
             $sql = "SELECT Type FROM account WHERE Guest_ID='{$_SESSION['idGuest']}' AND Username='{$_SESSION['usr']}'";
@@ -162,7 +164,8 @@ try {
         ?>
     </div>
 
-    <div class="container-fluid p-5 border rounded-4 bg-light mt-5">
+    <div class="container-fluid p-4 border rounded-4 bg-light mt-5">
+        <h4 class="mb-3">Change password</h4>
         <form action="php/changePsw.php" method="post" class="settingForm">
             <div class="row row-cols-1 row-cols-lg-3 g-3 justify-content-center align-items-center">
                 <div class="col">
@@ -184,7 +187,8 @@ try {
         </form>
     </div>
 
-    <div class="container-fluid p-5 border rounded-4 bg-light mt-5">
+    <div class="container-fluid p-4 border rounded-4 bg-light mt-5">
+        <h4 class="mb-3">Change user settings</h4>
         <form method="post" action="php/saveSettings.php" class="settingForm">
             <div class="row row-cols-1 row-cols-lg-2 g-3 justify-content-center align-items-center">
                 <div class="col">

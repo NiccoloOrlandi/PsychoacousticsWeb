@@ -86,7 +86,7 @@ if (isset($_GET['err'])) {
         echo "?test=" . $_GET["test"];
     ?>">
         <!-- Contenuto dello slot, qui vanno inseriti tutti i bottoni e i check box del primo slot -->
-        <div class="row g-4">
+        <div class="row align-items-center g-4">
             <div class="col-12 col-lg-3">
                 <div class="input-group flex-nowrap conditionalDisplay">
                         <span class="input-group-text"
@@ -152,25 +152,23 @@ if (isset($_GET['err'])) {
                 </div>
             </div>
             <div class="col-12 col-lg-6">
-                <div class="container-fluid">
-                    <div class="row align-items-center justify-content-between">
-                        <div class="col">
-                            <div class="input-group flex-nowrap referral">
-                                <span class="input-group-text" id="notes">Invite code</span>
-                                <input type="text" class="form-control" id="ref" name="ref" onkeyup="verifyRef()"
-                                       value="<?php if (isset($_GET['ref'])) {
-                                           echo $_GET['ref'];
-                                       } ?>">
-                            </div>
+                <div class="row align-items-center justify-content-between g-4">
+                    <div class="col-12 col-lg-6">
+                        <div class="input-group flex-nowrap referral">
+                            <span class="input-group-text" id="notes">Invite code</span>
+                            <input type="text" class="form-control" id="ref" name="ref" onkeyup="verifyRef()"
+                                   value="<?php if (isset($_GET['ref'])) {
+                                       echo $_GET['ref'];
+                                   } ?>">
                         </div>
-                        <div class="col">
-                            <?php if (isset($_SESSION['usr'])) { ?>
-                                <button type="button" class="btn btn-primary btn-lg btn-red refButton"
-                                        onclick="insertRef()">
-                                    USE MINE
-                                </button>
-                            <?php } ?>
-                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 d-grid">
+                        <?php if (isset($_SESSION['usr'])) { ?>
+                            <button type="button" class="btn btn-primary btn-red refButton"
+                                    onclick="insertRef()">
+                                USE MINE
+                            </button>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
