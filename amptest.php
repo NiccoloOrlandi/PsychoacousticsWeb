@@ -9,7 +9,8 @@
 
     <!-- Bootstrap CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/test.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
+    <!--    <link rel="stylesheet" href="css/test.css-->
+    <?php //if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?><!--">-->
 
     <title>Psychoacoustics-web - Amplitude test</title>
 
@@ -50,23 +51,35 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 
-<div class="window" id="StartingWindow">
-    <h2>Ready?</h2>
-    <button type="button" class="btn btn-success" id="start" onclick="start()">Let's start!</button>
-</div>
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-12 col-md-4 bg-light p-5 rounded-4 border mt-5" id="StartingWindow">
+            <h2 class="text-center mb-5">Ready?</h2>
+            <div class="d-grid">
+                <button type="button" class="btn btn-lg btn-success btn-block" id="start" onclick="start()">
+                    Let's start!
+                </button>
+            </div>
+        </div>
 
-<form action="" id="PlayForm">
-    <H1>Which is the loudest tone?</H1>
-    <button type="button" class="btn btn-success" id="button1" onclick="select(1)" disabled>1° sound</button>
-    <button type="button" class="btn btn-danger" id="button2" onclick="select(2)" disabled>2° sound</button>
-    <?php
-    $colors = ["#198754", "#dc3545", "#0d6efd", "#e0b000", "#a000a0", "#ff8010", "#50a0f0", "#703000", "#606090"];
-    for ($i = 3; $i <= intval($_SESSION['nAFC']); $i++) {
-        echo "<button type='button' class='btn btn-success' style='background-color:" . $colors[($i - 1) % count($colors)] . ";' id='button{$i}' onclick = 'select({$i})' disabled>{$i}° sound</button>";
-    }
-    ?>
-</form>
-<div class='alert alert-danger' id="wrong">Wrong!</div>
-<div class='alert alert-success' id="correct">Correct!</div>
+        <div class="col-12 col-md-5 bg-light p-5 rounded-4 border mt-5" id="PlayForm" style="display: none">
+            <div class="row gy-3 justify-content-between align-items-center">
+                <h2 class="col-12 text-center mb-3">Which is the highest pitch tone?</h2>
+                <?php
+                $colors = ["#198754", "#dc3545", "#0d6efd", "#e0b000", "#a000a0", "#ff8010", "#50a0f0", "#703000", "#606090"];
+                for ($i = 1; $i <= intval($_SESSION['nAFC']); $i++) { ?>
+                    <div class="col-4 d-grid">
+                        <?php echo "<button type='button' class='btn btn-lg btn-success' style='background-color:" . $colors[($i - 1) % count($colors)] . "; border-color: " . $colors[($i - 1) % count($colors)] . ";' id='button{$i}' onclick = 'select({$i})' disabled>{$i}° sound</button>"; ?>
+                    </div>
+                <?php }
+                ?>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <div class='col-12 col-md-5 alert alert-danger mt-5' id="wrong" style="display: none">Wrong!</div>
+        <div class='col-12 col-md-5 alert alert-success mt-5' id="correct" style="display: none">Correct!</div>
+    </div>
+</div>
 </body>
 </html>
