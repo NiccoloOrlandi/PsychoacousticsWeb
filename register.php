@@ -31,7 +31,7 @@ if (isset($_GET['err'])) {
     <div class="row justify-content-center">
         <div class="col-12 col-md-6">
             <div class="p-5 border rounded rounded-4 bg-light">
-                <h2>Registrazione</h2>
+                <h2>Sign Up</h2>
                 <form method="post" action="php/registering.php" onsubmit="validation()">
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Username*</span>

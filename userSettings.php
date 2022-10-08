@@ -135,14 +135,15 @@ try {
         </form>
     </div>
 
-    <div class="container-fluid p-4 border rounded-4 bg-light mt-5">
-        <h4 class="mb-3">Create new superuser</h4>
-        <?php
-        try {
-            $sql = "SELECT Type FROM account WHERE Guest_ID='{$_SESSION['idGuest']}' AND Username='{$_SESSION['usr']}'";
-            $result = $conn->query($sql);
-            $row = $result->fetch_assoc();
-            if ($row['Type'] == 1) { ?>
+
+    <?php
+    try {
+        $sql = "SELECT Type FROM account WHERE Guest_ID='{$_SESSION['idGuest']}' AND Username='{$_SESSION['usr']}'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        if ($row['Type'] == 1) { ?>
+            <div class="container-fluid p-4 border rounded-4 bg-light mt-5">
+                <h4 class="mb-3">Create new superuser</h4>
                 <form action="php/newUsername.php" method="POST" class="settingForm ref">
                     <div class="row row-cols-1 row-cols-lg-2 g-3 justify-content-center align-items-center">
                         <div class="col">
@@ -157,12 +158,12 @@ try {
                         </div>
                     </div>
                 </form>
-            <?php }
-        } catch (Exception $e) {
-            header("Location: index.php?err=db");
-        }
-        ?>
-    </div>
+            </div>
+        <?php }
+    } catch (Exception $e) {
+        header("Location: index.php?err=db");
+    }
+    ?>
 
     <div class="container-fluid p-4 border rounded-4 bg-light mt-5">
         <h4 class="mb-3">Change password</h4>
