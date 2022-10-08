@@ -61,7 +61,63 @@ if (isset($_SESSION['test'])) {
         unset($_SESSION['currentBlock']);
         unset($_SESSION['results']);
 
-        header("Location: ../{$type}test.php");
+        echo $_SESSION['idGuestTest'];
+        try {
+            $conn = new mysqli($host, $user, $password, $dbname);
+            if ($conn->connect_errno)
+                throw new Exception('DB connection failed');
+            mysqli_set_charset($conn, "utf8");
+
+            $id = $_SESSION['idGuestTest'];
+            if ($type == "freq")
+                $t_type = "PURE_TONE_FREQUENCY";
+            else if ($type == "amp")
+                $t_type = "PURE_TONE_INTENSITY";
+            else if ($type == "dur")
+                $t_type = "PURE_TONE_DURATION";
+            else if ($type == "gap")
+                $t_type = "WHITE_NOISE_GAP";
+            else if ($type == "ndur")
+                $t_type = "WHITE_NOISE_DURATION";
+            else if ($type == "nmod")
+                $t_type = "WHITE_NOISE_MODULATION";
+
+            $sql = "SELECT Max(Test_count) as count FROM test WHERE Guest_ID='$id'";
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+
+            //il test corrente è il numero di test già effettuati + 1
+            $count = $row['count'] + 1;
+
+            if ($type == "gap" || $type == "ndur") {
+                $sql = "INSERT INTO test VALUES ('$id', '$count', current_timestamp(), '$t_type', ";
+                $sql .= "'{$_SESSION['amplitude']}', NULL, '{$_SESSION['duration']}', '{$_SESSION['onRamp']}', '{$_SESSION['offRamp']}', '{$_SESSION['blocks']}', '{$_SESSION['delta']}', ";
+                $sql .= "'{$_SESSION['nAFC']}', '{$_SESSION['ITI']}', '{$_SESSION['ISI']}', '{$_SESSION['factor']}', '{$_SESSION['reversals']}', ";
+                $sql .= "'{$_SESSION['secFactor']}', '{$_SESSION['secReversals']}', '{$_SESSION['threshold']}', '{$_SESSION['algorithm']}', '', '0','$checkFb', NULL, NULL, NULL)";
+            } else if ($type == "nmod") {
+                $sql = "INSERT INTO test VALUES ('$id', '$count', current_timestamp(), '$t_type', ";
+                $sql .= "'{$_SESSION['amplitude']}', NULL, '{$_SESSION['duration']}', '{$_SESSION['onRamp']}', '{$_SESSION['offRamp']}', '{$_SESSION['blocks']}', '{$_SESSION['delta']}', ";
+                $sql .= "'{$_SESSION['nAFC']}', '{$_SESSION['ITI']}', '{$_SESSION['ISI']}', '{$_SESSION['factor']}', '{$_SESSION['reversals']}', ";
+                $sql .= "'{$_SESSION['secFactor']}', '{$_SESSION['secReversals']}', '{$_SESSION['threshold']}', '{$_SESSION['algorithm']}', '', '0','$checkFb', '" . floatval($_SESSION["modAmplitude"]) . "', '{$_SESSION["modFrequency"]}', '{$_SESSION["modPhase"]}')";
+            } else {
+                $sql = "INSERT INTO test VALUES ('$id', '$count', current_timestamp(), '$t_type', ";
+                $sql .= "'{$_SESSION['amplitude']}', '{$_SESSION['frequency']}', '{$_SESSION['duration']}', '{$_SESSION['onRamp']}', '{$_SESSION['offRamp']}', '{$_SESSION['blocks']}', '{$_SESSION['delta']}', ";
+                $sql .= "'{$_SESSION['nAFC']}', '{$_SESSION['ITI']}', '{$_SESSION['ISI']}', '{$_SESSION['factor']}', '{$_SESSION['reversals']}', ";
+                $sql .= "'{$_SESSION['secFactor']}', '{$_SESSION['secReversals']}', '{$_SESSION['threshold']}', '{$_SESSION['algorithm']}', '', '0','$checkFb', NULL, NULL, NULL)";
+            }
+
+            $conn->query($sql);
+
+            if (!$conn->query($sql)) {
+                echo "SQLSTATE error: " . $conn->sqlstate;
+                echo $sql;
+            }
+
+            header("Location: ../{$type}test.php");
+        } catch (Exception $e) {
+            echo 'sono nel catch';
+            header("Location: ../index.php?err=db");
+        }
     } catch (Exception $e) {
         header("Location: ../index.php?err=db");
     }
@@ -306,8 +362,6 @@ if (isset($_SESSION['test'])) {
             echo 'sono nel catch';
             header("Location: ../index.php?err=db");
         }
-
-
     }
 }
 
