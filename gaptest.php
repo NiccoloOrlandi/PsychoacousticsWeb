@@ -9,7 +9,8 @@
 
     <!-- Bootstrap CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<!--    <link rel="stylesheet" href="css/test.css--><?php //if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?><!--">-->
+    <!--    <link rel="stylesheet" href="css/test.css-->
+    <?php //if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?><!--">-->
 
     <title>Psychoacoustics-web - Amplitude test</title>
 
@@ -79,6 +80,10 @@
         <div class='col-12 col-md-5 alert alert-danger mt-5' id="wrong" style="display: none">Wrong!</div>
         <div class='col-12 col-md-5 alert alert-success mt-5' id="correct" style="display: none">Correct!</div>
     </div>
+    <button type="button" class="btn btn-outline-secondary btn-lg rounded-4 position-fixed bottom-0 end-0 m-5"
+            id="downloadData" onclick="downloadData('gap')" style="display: none" disabled>
+        Download Data (only for debug!)
+    </button>
 </div>
 </body>
 </html>

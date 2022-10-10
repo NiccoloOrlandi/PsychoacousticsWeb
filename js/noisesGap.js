@@ -40,7 +40,7 @@ function random() {
     var rand = Math.floor(Math.random() * nAFC);    // the variable sound will be the rand-th sound played
     for (var j = 0; j < nAFC; j++) {
         if (j == rand)
-            playGapNoise((j * varDur) + j * (ISI / 1000), varAmp, varDur, onRamp, offRamp, delta);
+            playGapNoise((j * varDur) + j * (ISI / 1000), varAmp, varDur, onRamp, offRamp, delta, false);
         else
             playNoise((j * stdDur) + j * (ISI / 1000), stdAmp, stdDur, onRamp, offRamp);
     }
@@ -51,6 +51,7 @@ function random() {
     source.onended = () => { //quando l'oscillatore sta suonando il programma non si ferma, quindi serve questo per riattivare i pulsanti solo quando finisce
         for (var j = 1; j <= nAFC; j++)
             document.getElementById("button" + j).disabled = false;
+        document.getElementById("downloadData").disabled = false;
     }
 }
 
@@ -180,12 +181,15 @@ function nDOWNoneUP(n) {
             window.setTimeout("timer()", 500);
         }
     }
+    document.getElementById("downloadData").disabled = true;
+    stimulusData = "";
 }
 
 //starting function
 function start() {
     document.getElementById("StartingWindow").style.display = "none"; //starting window becomes invisible
     document.getElementById("PlayForm").style.display = "inherit"; //test interface becomes visible
+    document.getElementById("downloadData").style.display = "inherit"; //test interface becomes visible
 
     // take the timestamp when the test starts
     var currentdate = new Date();
