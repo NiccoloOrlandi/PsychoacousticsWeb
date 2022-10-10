@@ -171,7 +171,7 @@ if (isset($_SESSION['usr'])) {
                             <span class="input-group-text">Frequency</span>
                             <input type="text" class="form-control" name="frequency" id="frequency"
                                    value="<?php
-                                   if ($row)
+                                   if ($row && $row['freq'] != "")
                                        echo $row['freq'];
                                    else
                                        echo "1000";
@@ -302,7 +302,7 @@ if (isset($_SESSION['usr'])) {
                             <span class="input-group-text">Amplitude</span>
                             <input type="text" class="form-control" name="modAmplitude" id="modAmplitude"
                                    value="<?php
-                                   if ($row)
+                                   if ($row && $row["modAmp"] != "")
                                        echo $row['modAmp'];
                                    else
                                        echo "-7.95";
@@ -316,7 +316,7 @@ if (isset($_SESSION['usr'])) {
                             <span class="input-group-text">Frequency</span>
                             <input type="text" class="form-control" name="modFrequency" id="modFrequency"
                                    value="<?php
-                                   if ($row)
+                                   if ($row && $row["modFreq"] != "")
                                        echo $row['modFreq'];
                                    else
                                        echo "10";
@@ -330,7 +330,7 @@ if (isset($_SESSION['usr'])) {
                             <span class="input-group-text">Phase</span>
                             <input type="text" class="form-control" name="modPhase" id="modPhase"
                                    value="<?php
-                                   if ($row)
+                                   if ($row && $row["modPhase"] != "")
                                        echo $row['modPhase'];
                                    else
                                        echo "0";
