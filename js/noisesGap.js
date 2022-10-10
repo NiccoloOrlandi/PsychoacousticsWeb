@@ -162,7 +162,6 @@ function nDOWNoneUP(n) {
             document.getElementById("wrong").style.display = "none";
             window.setTimeout("timer()", 500);
         }
-
     } else { //wrong answer
         history[i] = 0;
         correctAnsw = 0;
