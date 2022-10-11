@@ -37,7 +37,8 @@ var betweenRampDur = 0.001;       // durata rampa nel gap
 
 //funzione per randomizzare l'output
 function random() {
-    var rand = Math.floor(Math.random() * nAFC);    // the variable sound will be the rand-th sound played
+    //var rand = Math.floor(Math.random() * nAFC);    // the variable sound will be the rand-th sound played
+    var rand = 0;
     for (var j = 0; j < nAFC; j++) {
         if (j == rand)
             playGapNoise((j * varDur) + j * (ISI / 1000), varAmp, varDur, onRamp, offRamp, delta, false);

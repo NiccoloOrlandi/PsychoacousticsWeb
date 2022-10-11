@@ -33,7 +33,8 @@ var pressedButton;
 
 //funzione per randomizzare l'output
 function random() {
-    var rand = Math.floor(Math.random() * nAFC);// the variable sound will be the rand-th sound played
+    //var rand = Math.floor(Math.random() * nAFC);// the variable sound will be the rand-th sound played
+    var rand = 0;
     for (var j = 0; j < nAFC; j++) {
         if (j == rand)
             playModulatedNoise((j * carDur) + j * (ISI / 1000), carAmp, carDur, modAmp, modFreq, modPhase, onRamp, offRamp, false);
