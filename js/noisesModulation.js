@@ -1,8 +1,8 @@
 //contesto e dichiarazione variabili da cambiare durante il test, probabilmente andranno tolte molte variabili globali da qui una volta terminato l'algoritmo
 var context = new AudioContext();
 
-var carAmp = 10 ** (carAmpDb / 20); // cambio unità di misura
-var modAmp = 10 ** (modAmpDb / 20); // cambio unità di misura
+var carAmp = carAmpDb;
+var modAmp = modAmpDb;
 
 // minimum initial variation
 var startingDelta = modAmp;
@@ -39,7 +39,7 @@ function random() {
         if (j == rand)
             playModulatedNoise((j * carDur) + j * (ISI / 1000), carAmp, carDur, modAmp, modFreq, modPhase, onRamp, offRamp, false);
         else
-            playNoise((j * carDur) + j * (ISI / 1000), carAmpDb, carDur, onRamp, offRamp);
+            playNoise((j * carDur) + j * (ISI / 1000), carAmp, carDur, onRamp, offRamp);
     }
 
     swap = rand + 1;
@@ -119,7 +119,6 @@ function select(button) {
     }
     //if the test is not ended
     else {
-
         // disable the response buttons until the new sounds are heared
         for (var j = 1; j <= nAFC; j++) document.getElementById("button" + j).disabled = true;
 
@@ -145,7 +144,7 @@ function nDOWNoneUP(n) {
         history[i] = 1;
         correctAnsw += 1;
         if (correctAnsw == n) { //if there are n consegutive correct answers
-            modAmp /= currentFactor;
+            modAmp *= currentFactor;
             correctAnsw = 0;
             if (positiveStrike == 0) {
                 //there was a reversal
@@ -163,7 +162,7 @@ function nDOWNoneUP(n) {
     } else { //wrong answer
         history[i] = 0;
         correctAnsw = 0;
-        modAmp *= currentFactor;
+        modAmp /= currentFactor;
 
         if (positiveStrike == 1) {
             //there was a reversal
@@ -179,7 +178,7 @@ function nDOWNoneUP(n) {
         }
     }
     document.getElementById("downloadData").disabled = true;
-    stimulusData = "";
+    stimulus = []; // debug
 }
 
 //starting function

@@ -1,4 +1,4 @@
-var stimulusData = "";
+var stimulus = [];
 var info = "";
 var csvString;
 
@@ -22,7 +22,7 @@ function playSound(time, freq, amp, dur, onRamp, offRamp, isStandard = true) { /
             } else {
                 rampArr[i] = 1; // central zone
             }
-            nowBuffering[i] = ((10 ** (parseInt(amp) / 20)) * Math.sin(2 * Math.PI * freq * t)) * rampArr[i];   // t = i / context.sampleRate
+            nowBuffering[i] = ((10 ** (amp / 20)) * Math.sin(2 * Math.PI * freq * t)) * rampArr[i];   // t = i / context.sampleRate
         }
     }
     source = context.createBufferSource();  // creo sorgente
@@ -30,10 +30,10 @@ function playSound(time, freq, amp, dur, onRamp, offRamp, isStandard = true) { /
     source.connect(vol);    // connetto la sorgente al volume
     source.start(context.currentTime + time);   // riproduco il suono
     source.stop(context.currentTime + time + dur);  // fermo il suono
-    if (isStandard)
-        stimulusData += "Standard stimulus\n" + source.buffer.getChannelData(0).join(",") + "\n";
-    else
-        stimulusData += "Variable stimulus\n" + source.buffer.getChannelData(0).join(",") + "\n";
+    stimulus.push({
+        type: isStandard ? "standard stimulus samples" : "variable stimulus samples",
+        sample: source.buffer.getChannelData(0)
+    })
 }
 
 function playNoise(time, amp, dur, onRamp, offRamp, isStandard = true) { // funzione per generare rumori
@@ -56,7 +56,7 @@ function playNoise(time, amp, dur, onRamp, offRamp, isStandard = true) { // funz
             } else {
                 rampArr[i] = 1; // central zone
             }
-            nowBuffering[i] = ((10 ** (parseInt(amp) / 20)) * (Math.random() * 2 - 1)) * rampArr[i];
+            nowBuffering[i] = ((10 ** (amp / 20)) * (Math.random() * 2 - 1)) * rampArr[i];
         }
     }
     source = context.createBufferSource();  // creo sorgente
@@ -64,14 +64,13 @@ function playNoise(time, amp, dur, onRamp, offRamp, isStandard = true) { // funz
     source.connect(vol);    // connetto la sorgente al volume
     source.start(context.currentTime + time);   // riproduco il suono
     source.stop(context.currentTime + time + dur);  // fermo il suono
-    if (isStandard)
-        stimulusData += "Standard stimulus\n" + source.buffer.getChannelData(0).join(",") + "\n";
-    else
-        stimulusData += "Variable stimulus\n" + source.buffer.getChannelData(0).join(",") + "\n";
+    stimulus.push({
+        type: isStandard ? "standard stimulus samples" : "variable stimulus samples",
+        sample: source.buffer.getChannelData(0)
+    })
 }
 
 function playGapNoise(time, amp, dur, onRamp, offRamp, gap, isStandard = true) { // funzione per generare suoni
-    console.log(delta);
     var vol = context.createGain(); // creo volume
     vol.gain.value = 1;
     vol.connect(context.destination);   // collego volume all'uscita audio
@@ -101,7 +100,7 @@ function playGapNoise(time, amp, dur, onRamp, offRamp, gap, isStandard = true) {
             } else {
                 console.log("errore");
             }
-            nowBuffering[i] = ((10 ** (parseInt(amp) / 20)) * (Math.random() * 2 - 1)) * rampArr[i];   // t = i / context.sampleRate
+            nowBuffering[i] = ((10 ** (amp / 20)) * (Math.random() * 2 - 1)) * rampArr[i];   // t = i / context.sampleRate
         }
     }
     source = context.createBufferSource();  // creo sorgente
@@ -109,19 +108,19 @@ function playGapNoise(time, amp, dur, onRamp, offRamp, gap, isStandard = true) {
     source.connect(vol);    // connetto la sorgente al volume
     source.start(context.currentTime + time);   // riproduco il suono
     source.stop(context.currentTime + time + dur);  // fermo il suono
-    if (isStandard)
-        stimulusData += "Standard stimulus\n" + source.buffer.getChannelData(0).join(",") + "\n";
-    else
-        stimulusData += "Variable stimulus\n" + source.buffer.getChannelData(0).join(",") + "\n";
+    stimulus.push({
+        type: isStandard ? "standard stimulus samples" : "variable stimulus samples",
+        sample: source.buffer.getChannelData(0)
+    })
 }
 
-function playModulatedNoise(time, carAmp, carDur, modAmp, modFreq, modPhase, onRamp, offRamp, isStandard = true) { // funzione per generare rumori
-    console.log(modAmp);
-    console.log()
-
+function playModulatedNoise(time, carAmpDb, carDur, modAmpDb, modFreq, modPhase, onRamp, offRamp, isStandard = true) { // funzione per generare rumori
     var vol = context.createGain(); // creo volume
     vol.gain.value = 1;
     vol.connect(context.destination);   // collego volume all'uscita audio
+
+    var carAmp = (10 ** (carAmpDb / 20)); // cambio unità di misura
+    var modAmp = (10 ** (modAmpDb / 20)); // cambio unità di misura
 
     let channels = 1;
     var frameCount = context.sampleRate * carDur;
@@ -150,43 +149,62 @@ function playModulatedNoise(time, carAmp, carDur, modAmp, modFreq, modPhase, onR
     source.connect(vol);    // connetto la sorgente al volume
     source.start(context.currentTime + time);   // riproduco il suono
     source.stop(context.currentTime + time + carDur);  // fermo il suono
-    if (isStandard)
-        stimulusData += "Standard stimulus\n" + source.buffer.getChannelData(0).join(",") + "\n";
-    else
-        stimulusData += "Variable stimulus\n" + source.buffer.getChannelData(0).join(",") + "\n";
+    stimulus.push({
+        type: isStandard ? "standard stimulus samples" : "variable stimulus samples",
+        sample: source.buffer.getChannelData(0)
+    })
 }
 
-function downloadData(type) {
+function downloadData(type) { //debug
     if (type == "amp" || type == "freq" || type == "dur")
-        info = "frequency of standard stimulus," + stdFreq + ",frequency of variable stimulus," + varFreq + "\n" +
-            "amplitude of standard stimulus," + stdAmp + ",amplitude of variable stimulus," + varAmp + "\n" +
-            "duration of standard stimulus," + stdDur + ",duration of variable stimulus," + varDur + "\n" +
-            "onset ramp," + onRamp + ",offset ramp," + offRamp + "\n" +
+        info = "frequency of standard stimulus," + stdFreq + ",,frequency of variable stimulus," + varFreq + "\n" +
+            "amplitude of standard stimulus," + stdAmp + ",,amplitude of variable stimulus," + varAmp + "\n" +
+            "duration of standard stimulus," + stdDur + ",,duration of variable stimulus," + varDur + "\n" + "\n" +
+            "onset ramp," + onRamp + ",,offset ramp," + offRamp + "\n" +
             "current factor," + currentFactor + "\n";
     else if (type == "ndur")
-        info = "amplitude of standard stimulus," + stdAmp + ",amplitude of variable stimulus," + varAmp + "\n" +
-            "duration of standard stimulus," + stdDur + ",duration of variable stimulus," + varDur + "\n" +
-            "onset ramp," + onRamp + ",offset ramp," + offRamp + "\n" +
+        info = "amplitude of standard stimulus," + stdAmp + ",,amplitude of variable stimulus," + varAmp + "\n" +
+            "duration of standard stimulus," + stdDur + ",,duration of variable stimulus," + varDur + "\n" + "\n" +
+            "onset ramp," + onRamp + ",,offset ramp," + offRamp + "\n" +
             "current factor," + currentFactor + "\n";
     else if (type == "gap")
-        info = "amplitude of standard stimulus," + stdAmp + ",amplitude of variable stimulus," + varAmp + "\n" +
-            "duration of standard stimulus," + stdDur + ",duration of variable stimulus," + varDur + "\n" +
-            "onset ramp," + onRamp + ",offset ramp," + offRamp + "\n" +
+        info = "amplitude of standard stimulus," + stdAmp + ",,amplitude of variable stimulus," + varAmp + "\n" +
+            "duration of standard stimulus," + stdDur + ",,duration of variable stimulus," + varDur + "\n" + "\n" +
+            "onset ramp," + onRamp + ",,offset ramp," + offRamp + "\n" +
             "current factor," + currentFactor + ",gap," + delta + "\n";
     else if (type == "nmod")
-        info = "amplitude of standard stimulus," + carAmpDb + ",duration of standard stimulus," + carDur + "\n" +
-            "amplitude of carrier (variable stimulus)," + carAmpDb + ",duration of carrier (variable stimulus)," + carDur +
-            ",amplitude of modulator (variable stimulus)," + modAmpDb + ",frequency of modulator (variable stimulus)," + modFreq + ",phase of modulator (variable stimulus)," + modPhase + "\n" +
-            "onset ramp," + onRamp + ",offset ramp," + offRamp + "\n" +
+        info = "amplitude of standard stimulus," + carAmp + ",,amplitude of carrier (variable stimulus)," + carAmp + "\n" +
+            "duration of standard stimulus," + carDur + ",,duration of carrier (variable stimulus)," + carDur + "\n" +
+            ",,,amplitude of modulator (variable stimulus)," + modAmp + "\n" +
+            ",,,frequency of modulator (variable stimulus)," + modFreq + "\n" +
+            ",,,phase of modulator (variable stimulus)," + modPhase + "\n" + "\n" +
+            "onset ramp," + onRamp + ",,offset ramp," + offRamp + "\n" +
             "current factor," + currentFactor + "\n";
     else
         info = "errore";
-    csvString = info + stimulusData + "\n\n\n";
+
+    var types = [];
+    var maxsamplelength = 0;
+    var samples = [];
+    for (var i = 0; i < stimulus.length; i++) {
+        types.push(stimulus[i].type);
+        if (stimulus[i].sample.length > maxsamplelength)
+            maxsamplelength = stimulus[i].sample.length;
+    }
+    var s = [];
+    for (var i = 0; i < maxsamplelength; i++) {
+        for (var j = 0; j < stimulus.length; j++) {
+            s.push(stimulus[j].sample[i]);
+        }
+        samples.push(s.join(",,,"));
+        s = [];
+    }
+    csvString = info + "\n\n\n" + types.join(",,,") + "\n" + samples.join('\n');
     let csvContent = "data:text/csv;charset=utf-8," + csvString;
     var encodedUri = encodeURI(csvContent);
     var link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "my_data.csv");
+    link.setAttribute("download", "stimulusData.csv");
     document.body.appendChild(link);
     link.click();
 }

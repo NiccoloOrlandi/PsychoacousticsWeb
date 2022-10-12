@@ -185,7 +185,7 @@ function nDOWNoneUP(n) {
         }
     }
     document.getElementById("downloadData").disabled = true;
-    stimulusData = "";
+    stimulus = []; // debug
 }
 
 //starting function

@@ -37,7 +37,7 @@ var pressedButton;
 //funzione per randomizzare l'output
 function random() {
     //var rand = Math.floor(Math.random() * nAFC);    // the variable sound will be the rand-th sound played
-    var rand = 0;
+    var rand = 0;   // debug
     for (var j = 0; j < nAFC; j++) {
         if (j == rand)
             playSound((j * varDur) + j * (ISI / 1000), varFreq, varAmp, varDur, onRamp, offRamp, false);
@@ -51,7 +51,7 @@ function random() {
     source.onended = () => { //quando l'oscillatore sta suonando il programma non si ferma, quindi serve questo per riattivare i pulsanti solo quando finisce
         for (var j = 1; j <= nAFC; j++)
             document.getElementById("button" + j).disabled = false;
-        document.getElementById("downloadData").disabled = false;
+        document.getElementById("downloadData").disabled = false; // debug
     }
 }
 
@@ -186,15 +186,15 @@ function nDOWNoneUP(n) {
             window.setTimeout("timer()", 500);
         }
     }
-    document.getElementById("downloadData").disabled = true;
-    stimulusData = "";
+    document.getElementById("downloadData").disabled = true; // debug
+    stimulus = []; // debug
 }
 
 //starting function
 function start() {
     document.getElementById("StartingWindow").style.display = "none"; //starting window becomes invisible
     document.getElementById("PlayForm").style.display = "inherit"; //test interface becomes visible
-    document.getElementById("downloadData").style.display = "inherit"; //test interface becomes visible
+    document.getElementById("downloadData").style.display = "inherit"; //test interface becomes visible (debug)
 
     // take the timestamp when the test starts
     var currentdate = new Date();
