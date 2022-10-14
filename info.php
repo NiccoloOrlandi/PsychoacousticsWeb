@@ -188,7 +188,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12 col-md-7 col-lg-5">
-                <div class="bg-white border border-2 rounded rounded-5 p-5 mt-4 mx-auto">
+                <div class="bg-white border-2 rounded-4 p-5 mt-4 mx-auto">
                     <form action="" class="" id="PlayForm">
                         <h1 class="text-center mb-4"><?php
                             if ($type == 'amplitude')
@@ -204,21 +204,14 @@
                             else if ($type == "nmodulation")
                                 echo "Which is the modulated noise?";
                             ?></h1>
-                        <div class="d-flex justify-content-around">
-                            <button type="button" class="btn btn-lg btn-success" id="button1" onclick="select(1)"
-                                    disabled>
-                                1° sound
-                            </button>
-                            <button type="button" class="btn btn-lg btn-danger" id="button2" onclick="select(2)"
-                                    disabled>
-                                2° sound
-                            </button>
+                        <div class="row gy-3 justify-content-between align-items-center">
                             <?php
                             $colors = ["#198754", "#dc3545", "#0d6efd", "#e0b000", "#a000a0", "#ff8010", "#50a0f0", "#703000", "#606090"];
-                            for ($i = 3; $i <= intval($row['nAFC']); $i++) {
-                                echo "<button type='button' class='btn btn-success' style='background-color:" . $colors[($i - 1) % count($colors)] . "; border-color:" . $colors[($i - 1) % count($colors)] . "' id='button{$i}' onclick = 'select({$i})' disabled>{$i}° sound</button>";
-                            }
-                            ?>
+                            for ($i = 1; $i <= intval($row['nAFC']); $i++) { ?>
+                                <div class="col-4 d-grid">
+                                    <?php echo "<button type='button' class='btn btn-lg btn-success' style='background-color:" . $colors[($i - 1) % count($colors)] . "; border-color:" . $colors[($i - 1) % count($colors)] . "' id='button{$i}' onclick = 'select({$i})' disabled>{$i}° sound</button>"; ?>
+                                </div>
+                            <?php } ?>
                         </div>
                     </form>
                 </div>
