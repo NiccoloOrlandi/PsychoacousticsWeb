@@ -10,9 +10,6 @@ delta = modAmp;
 
 carDur /= 1000;             // cambio unità di misura in secondi
 
-onRamp /= 1000;                        // cambio unità di misura in secondi
-offRamp /= 1000;                        // cambio unità di misura in secondi
-
 var swap = -1;						// position of variable sound
 var correctAnsw = 0;				// number of correct answers
 
@@ -37,9 +34,9 @@ function random() {
     var rand = 0;
     for (var j = 0; j < nAFC; j++) {
         if (j == rand)
-            playModulatedNoise((j * carDur) + j * (ISI / 1000), carAmp, carDur, modAmp, modFreq, modPhase, onRamp, offRamp, false);
+            playModulatedNoise((j * carDur) + j * (ISI / 1000), carAmp, carDur, modAmp, modFreq, modPhase, onRamp / 1000, offRamp / 1000, false);
         else
-            playNoise((j * carDur) + j * (ISI / 1000), carAmp, carDur, onRamp, offRamp);
+            playNoise((j * carDur) + j * (ISI / 1000), carAmp, carDur, onRamp / 1000, offRamp / 1000);
     }
 
     swap = rand + 1;

@@ -100,6 +100,7 @@ try {
 
                     $id = $row['id'];
                     $_SESSION['idGuest'] = $id;
+                    $_SESSION['idGuestTest'] = $id;
                     header("Location: ../soundSettings.php?" . $type);
                 } else { //c'è il referral
                     $_SESSION["ref"] = $_POST["ref"];

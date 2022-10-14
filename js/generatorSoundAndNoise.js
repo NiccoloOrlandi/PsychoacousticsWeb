@@ -8,7 +8,7 @@ function playSound(time, freq, amp, dur, onRamp, offRamp, isStandard = true) { /
     vol.connect(context.destination);   // collego volume all'uscita audio
 
     var channels = 1;  // numero canali di uscita
-    var frameCount = context.sampleRate * dur;   // imposto una duarata massima del suono di n secondi
+    var frameCount = context.sampleRate * dur;   // imposto una durata massima del suono di n secondi
     var soundBuffer = context.createBuffer(channels, frameCount, context.sampleRate);     // creo un nuovo buffer
     let rampArr = [];
     for (let channel = 0; channel < channels; channel++) {  // riempio il buffer con il suono
@@ -42,7 +42,7 @@ function playNoise(time, amp, dur, onRamp, offRamp, isStandard = true) { // funz
     vol.connect(context.destination);   // collego volume all'uscita audio
 
     var channels = 1;  // numero canali di uscita
-    var frameCount = context.sampleRate * dur;   // imposto una duarata massima del suono di n secondi
+    var frameCount = context.sampleRate * dur;   // imposto una durata massima del suono di n secondi
     var soundBuffer = context.createBuffer(channels, frameCount, context.sampleRate);     // creo un nuovo buffer
     let rampArr = [];
     for (let channel = 0; channel < channels; channel++) {  // riempio il buffer con il suono
@@ -76,7 +76,7 @@ function playGapNoise(time, amp, dur, onRamp, offRamp, gap, isStandard = true) {
     vol.connect(context.destination);   // collego volume all'uscita audio
 
     var channels = 1;  // numero canali di uscita
-    var frameCount = context.sampleRate * dur;   // imposto una duarata massima del suono di n secondi
+    var frameCount = context.sampleRate * dur;   // imposto una durata massima del suono di n secondi
     var soundBuffer = context.createBuffer(channels, frameCount, context.sampleRate);     // creo un nuovo buffer
     let rampArr = [];
     for (let channel = 0; channel < channels; channel++) {  // riempio il buffer con il suono

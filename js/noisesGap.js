@@ -12,9 +12,6 @@ var varDur = dur;					// duration of the variable
 var stdAmp = amp;					// intensity of the variable
 var varAmp = amp;					// intensity of the standard 
 
-onRamp /= 1000;                        // cambio unità di misura in secondi
-offRamp /= 1000;                        // cambio unità di misura in secondi
-
 var swap = -1;						// position of variable sound
 var correctAnsw = 0;				// number of correct answers
 
@@ -41,9 +38,9 @@ function random() {
     var rand = 0;
     for (var j = 0; j < nAFC; j++) {
         if (j == rand)
-            playGapNoise((j * varDur) + j * (ISI / 1000), varAmp, varDur, onRamp, offRamp, delta, false);
+            playGapNoise((j * varDur) + j * (ISI / 1000), varAmp, varDur, onRamp / 1000, offRamp / 1000, delta, false);
         else
-            playNoise((j * stdDur) + j * (ISI / 1000), stdAmp, stdDur, onRamp, offRamp);
+            playNoise((j * stdDur) + j * (ISI / 1000), stdAmp, stdDur, onRamp / 1000, offRamp / 1000);
     }
 
     swap = rand + 1;
