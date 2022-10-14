@@ -64,29 +64,30 @@ if (isset($_GET['err'])) {
                                     Home
                                 </button>
                             </div>
-                        <?php }
-                    } else {
-//                        $page = "test.php";
-//                        if ($_SESSION['type'] == "PURE_TONE_FREQUENCY")
-//                            $page = "freq" . $page;
-//                        if ($_SESSION['type'] == "PURE_TONE_INTENSITY")
-//                            $page = "amp" . $page;
-//                        if ($_SESSION['type'] == "PURE_TONE_DURATION")
-//                            $page = "dur" . $page;
-//                        if ($_SESSION['type'] == "WHITE_NOISE_GAP")
-//                            $page = "gap" . $page;
-//                        if ($_SESSION['type'] == "WHITE_NOISE_DURATION")
-//                            $page = "ndur" . $page;
-//                        if ($_SESSION['type'] == "WHITE_NOISE_MODULATION")
-//                            $page = "nmod" . $page;
-                        ?>
-                        <div class='col d-grid'>
-                            <button type='button' class='btn btn-primary btn-lg btn-red'
-                                    onclick='location.href="index.php"'>
-                                Continue
-                            </button>
-                        </div>
-                        <?php
+                            <?php
+                        } else {
+                            $page = "test.php";
+                            if ($_SESSION['type'] == "PURE_TONE_FREQUENCY")
+                                $page = "freq" . $page;
+                            if ($_SESSION['type'] == "PURE_TONE_INTENSITY")
+                                $page = "amp" . $page;
+                            if ($_SESSION['type'] == "PURE_TONE_DURATION")
+                                $page = "dur" . $page;
+                            if ($_SESSION['type'] == "WHITE_NOISE_GAP")
+                                $page = "gap" . $page;
+                            if ($_SESSION['type'] == "WHITE_NOISE_DURATION")
+                                $page = "ndur" . $page;
+                            if ($_SESSION['type'] == "WHITE_NOISE_MODULATION")
+                                $page = "nmod" . $page;
+                            ?>
+                            <div class='col d-grid'>
+                                <button type='button' class='btn btn-primary btn-lg btn-red'
+                                        onclick='location.href="<?php echo $page; ?>"'>
+                                    Continue
+                                </button>
+                            </div>
+                            <?php
+                        }
                     }
                     ?>
                 </div>
