@@ -93,6 +93,13 @@ try {
                 if ($_POST["ref"] == "") { //niente referral
                     $_SESSION["ref"] = null;
                     $sql .= "NULL);SELECT LAST_INSERT_ID() as id;";
+                    $conn->multi_query($sql);
+                    $conn->next_result();
+                    $result = $conn->store_result();
+                    $row = $result->fetch_assoc();
+
+                    $id = $row['id'];
+                    $_SESSION['idGuest'] = $id;
                     header("Location: ../soundSettings.php?" . $type);
                 } else { //c'è il referral
                     $_SESSION["ref"] = $_POST["ref"];

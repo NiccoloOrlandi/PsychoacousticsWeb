@@ -18,10 +18,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/staircaseStyle.css">
-    <!--    <link rel="stylesheet"-->
-    <!--          href="css/style.css-->
-    <?php //if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?><!--">-->
-
     <title>Psychoacoustics-web - Test results</title>
 </head>
 <body>
