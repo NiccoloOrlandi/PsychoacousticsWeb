@@ -2,7 +2,6 @@
 var context = new AudioContext();
 
 // minimum initial variation
-delta /= 1000;                      // cambio unità di misura in secondi
 var startingDelta = delta;
 
 dur /= 1000;                        // cambio unità di misura in secondi
@@ -38,7 +37,7 @@ function random() {
     var rand = 0;
     for (var j = 0; j < nAFC; j++) {
         if (j == rand)
-            playGapNoise((j * varDur) + j * (ISI / 1000), varAmp, varDur, onRamp / 1000, offRamp / 1000, delta, false);
+            playGapNoise((j * varDur) + j * (ISI / 1000), varAmp, varDur, onRamp / 1000, offRamp / 1000, delta / 1000, false);
         else
             playNoise((j * stdDur) + j * (ISI / 1000), stdAmp, stdDur, onRamp / 1000, offRamp / 1000);
     }
