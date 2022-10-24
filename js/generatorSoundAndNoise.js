@@ -43,10 +43,10 @@ function playNoise(time, amp, dur, onRamp, offRamp, isStandard = true) { // funz
 
     var channels = 1;  // numero canali di uscita
     var frameCount = context.sampleRate * dur;   // imposto una durata massima del suono di n secondi
-    var soundBuffer = context.createBuffer(channels, frameCount, context.sampleRate);     // creo un nuovo buffer
+    var noiseBuffer = context.createBuffer(channels, frameCount, context.sampleRate);     // creo un nuovo buffer
     let rampArr = [];
     for (let channel = 0; channel < channels; channel++) {  // riempio il buffer con il suono
-        let nowBuffering = soundBuffer.getChannelData(channel);
+        let nowBuffering = noiseBuffer.getChannelData(channel);
         for (let i = 0; i < frameCount; i++) {
             t = i / context.sampleRate;
             if (t < onRamp) {
@@ -60,7 +60,7 @@ function playNoise(time, amp, dur, onRamp, offRamp, isStandard = true) { // funz
         }
     }
     source = context.createBufferSource();  // creo sorgente
-    source.buffer = soundBuffer;    // collego i buffer
+    source.buffer = noiseBuffer;    // collego i buffer
     source.connect(vol);    // connetto la sorgente al volume
     source.start(context.currentTime + time);   // riproduco il suono
     source.stop(context.currentTime + time + dur);  // fermo il suono
@@ -77,10 +77,10 @@ function playGapNoise(time, amp, dur, onRamp, offRamp, gap, isStandard = true) {
 
     var channels = 1;  // numero canali di uscita
     var frameCount = context.sampleRate * dur;   // imposto una durata massima del suono di n secondi
-    var soundBuffer = context.createBuffer(channels, frameCount, context.sampleRate);     // creo un nuovo buffer
+    var noiseBuffer = context.createBuffer(channels, frameCount, context.sampleRate);     // creo un nuovo buffer
     let rampArr = [];
     for (let channel = 0; channel < channels; channel++) {  // riempio il buffer con il suono
-        let nowBuffering = soundBuffer.getChannelData(channel);
+        let nowBuffering = noiseBuffer.getChannelData(channel);
         for (let i = 0; i < frameCount; i++) {
             t = i / context.sampleRate;
             if (t < onRamp) {
@@ -104,7 +104,7 @@ function playGapNoise(time, amp, dur, onRamp, offRamp, gap, isStandard = true) {
         }
     }
     source = context.createBufferSource();  // creo sorgente
-    source.buffer = soundBuffer;    // collego i buffer
+    source.buffer = noiseBuffer;    // collego i buffer
     source.connect(vol);    // connetto la sorgente al volume
     source.start(context.currentTime + time);   // riproduco il suono
     source.stop(context.currentTime + time + dur);  // fermo il suono

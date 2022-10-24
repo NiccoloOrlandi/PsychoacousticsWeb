@@ -34,9 +34,9 @@ function random() {
     var rand = 0;
     for (var j = 0; j < nAFC; j++) {
         if (j == rand)
-            playModulatedNoise((j * carDur) + j * (ISI / 1000), carAmp, carDur, modAmp, modFreq, modPhase, onRamp / 1000, offRamp / 1000, false);
+            playModulatedNoise((ITI / 1000) + (j * carDur) + j * (ISI / 1000), carAmp, carDur, modAmp, modFreq, modPhase, onRamp / 1000, offRamp / 1000, false);
         else
-            playNoise((j * carDur) + j * (ISI / 1000), carAmp, carDur, onRamp / 1000, offRamp / 1000);
+            playNoise((ITI / 1000) + (j * carDur) + j * (ISI / 1000), carAmp, carDur, onRamp / 1000, offRamp / 1000);
     }
 
     swap = rand + 1;
@@ -120,7 +120,8 @@ function select(button) {
         for (var j = 1; j <= nAFC; j++) document.getElementById("button" + j).disabled = true;
 
         //randomize and play the next sounds
-        window.setTimeout("random()", ITI); //next sounds after interTrialInterval ms
+        random();
+        //window.setTimeout("random()", ITI); //next sounds after interTrialInterval ms
     }
 }
 
@@ -188,7 +189,8 @@ function start() {
     var currentdate = new Date();
     timestamp = currentdate.getFullYear() + "-" + (currentdate.getMonth() + 1) + "-" + currentdate.getDate() + " " + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
 
-    window.setTimeout("random()", ITI); //test starts after interTrialInterval ms
+    random();
+    //window.setTimeout("random()", ITI); //test starts after interTrialInterval ms
 }
 
 function timer() {

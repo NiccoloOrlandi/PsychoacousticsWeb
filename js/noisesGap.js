@@ -37,9 +37,9 @@ function random() {
     var rand = 0;
     for (var j = 0; j < nAFC; j++) {
         if (j == rand)
-            playGapNoise((j * varDur) + j * (ISI / 1000), varAmp, varDur, onRamp / 1000, offRamp / 1000, delta / 1000, false);
+            playGapNoise((ITI / 1000) + (j * varDur) + j * (ISI / 1000), varAmp, varDur, onRamp / 1000, offRamp / 1000, delta / 1000, false);
         else
-            playNoise((j * stdDur) + j * (ISI / 1000), stdAmp, stdDur, onRamp / 1000, offRamp / 1000);
+            playNoise((ITI / 1000) + (j * stdDur) + j * (ISI / 1000), stdAmp, stdDur, onRamp / 1000, offRamp / 1000);
     }
 
     swap = rand + 1;
@@ -126,7 +126,8 @@ function select(button) {
             document.getElementById("button" + j).disabled = true;
 
         //randomize and play the next sounds
-        window.setTimeout("random()", ITI); //next sounds after interTrialInterval ms
+        random();
+        //window.setTimeout("random()", ITI); //next sounds after interTrialInterval ms
     }
 }
 
@@ -191,7 +192,8 @@ function start() {
     var currentdate = new Date();
     timestamp = currentdate.getFullYear() + "-" + (currentdate.getMonth() + 1) + "-" + currentdate.getDate() + " " + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
 
-    window.setTimeout("random()", ITI); //test starts after interTrialInterval ms
+    random();
+    //window.setTimeout("random()", ITI); //test starts after interTrialInterval ms
 }
 
 function timer() {

@@ -39,11 +39,11 @@ function random() {
     var rand = 0;
     for (var j = 0; j < nAFC; j++) {
         if (j == rand)
-            playSound((j * stdDur) + j * (ISI / 1000), varFreq, varAmp, varDur, onRamp / 1000, offRamp / 1000, false);
+            playSound((ITI / 1000) + (j * stdDur) + j * (ISI / 1000), varFreq, varAmp, varDur, onRamp / 1000, offRamp / 1000, false);
         else if (j < rand)
-            playSound((j * stdDur) + j * (ISI / 1000), stdFreq, stdAmp, stdDur, onRamp / 1000, offRamp / 1000);
+            playSound((ITI / 1000) + (j * stdDur) + j * (ISI / 1000), stdFreq, stdAmp, stdDur, onRamp / 1000, offRamp / 1000);
         else if (j > rand)
-            playSound(((j - 1) * stdDur) + varDur + j * (ISI / 1000), stdFreq, stdAmp, stdDur, onRamp / 1000, offRamp / 1000);
+            playSound(((ITI / 1000) + (j - 1) * stdDur) + varDur + j * (ISI / 1000), stdFreq, stdAmp, stdDur, onRamp / 1000, offRamp / 1000);
     }
 
     swap = rand + 1;
@@ -130,7 +130,8 @@ function select(button) {
             document.getElementById("button" + j).disabled = true;
 
         //randomize and play the next sounds
-        window.setTimeout("random()", ITI); //next sounds after interTrialInterval ms
+        random();
+        //window.setTimeout("random()", ITI); //next sounds after interTrialInterval ms
     }
 }
 
@@ -198,7 +199,8 @@ function start() {
     var currentdate = new Date();
     timestamp = currentdate.getFullYear() + "-" + (currentdate.getMonth() + 1) + "-" + currentdate.getDate() + " " + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
 
-    window.setTimeout("random()", ITI); //test starts after interTrialInterval ms
+    random();
+    //window.setTimeout("random()", ITI); //test starts after interTrialInterval ms
 }
 
 function timer() {
