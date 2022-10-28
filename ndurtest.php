@@ -14,6 +14,8 @@
 
     <title>Psychoacoustics-web - Duration test</title>
 
+    <script type="text/javascript" src="js/fetchTexts.js"></script>
+
     <script>
         // pass info from php session to js
         var amp = parseFloat(<?php echo $_SESSION["amplitude"]; ?>);
@@ -64,7 +66,7 @@
 
         <div class="col-12 col-md-5 bg-light p-5 rounded-4 border mt-5" id="PlayForm" style="display: none">
             <div class="row gy-3 justify-content-between align-items-center">
-                <h2 class="col-12 text-center mb-3">Which is the longest noise?</h2>
+                <h2 class="col-12 text-center mb-3" id="answerWhitenoisedurationdiscrimination">Which is the longest noise?</h2>
                 <?php
                 $colors = ["#198754", "#dc3545", "#0d6efd", "#e0b000", "#a000a0", "#ff8010", "#50a0f0", "#703000", "#606090"];
                 for ($i = 1; $i <= intval($_SESSION['nAFC']); $i++) { ?>

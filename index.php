@@ -17,6 +17,8 @@
     <link rel="stylesheet"
           href="css/staircaseStyle.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
 
+    <script type="text/javascript" src="js/fetchTexts.js"></script>
+
     <script type="text/javascript"
             src="js/funzioni.js<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>"></script>
 
@@ -31,7 +33,7 @@
     <div class="container">
         <a class="navbar-brand" href="index.php">
             <img src="files/logo.png" alt="" width="25" height="25" class="d-inline-block align-text-top">
-            PSYCHOACOUSTICS-WEB
+            <span id="menuTitle">PSYCHOACOUSTICS-WEB</span>
         </a>
         <form class="d-flex align-items-center">
             <?php
@@ -39,18 +41,18 @@
                 if (isset($_SESSION["idGuest"]))
                     unset($_SESSION["idGuest"]);
                 ?>
-                <button class="btn btn-outline-light me-3" type="button" onclick="location.href='register.php'">
+                <button id="menuSignUp" class="btn btn-outline-light me-3" type="button" onclick="location.href='register.php'">
                     Sign Up
                 </button>
-                <button class="btn btn-outline-light me-3" type="button" onclick="location.href='login.php'">
+                <button id="menuLogIn" class="btn btn-outline-light me-3" type="button" onclick="location.href='login.php'">
                     Log In
                 </button>
             <?php } else { ?>
-                <label class='text-white navbar-text me-3'>Welcome <?php echo $_SESSION['usr'] ?></label>
-                <button class="btn btn-outline-light me-3" type="button" onclick="location.href='yourTests.php'">
+                <label id="menuWelcome" class='text-white navbar-text me-3'>Welcome <?php echo $_SESSION['usr'] ?></label>
+                <button id="menuYourTests" class="btn btn-outline-light me-3" type="button" onclick="location.href='yourTests.php'">
                     Your tests
                 </button>
-                <button class="btn btn-outline-light me-3" type="button" onclick="location.href='php/logout.php'">
+                <button id="menuLogOut" class="btn btn-outline-light me-3" type="button" onclick="location.href='php/logout.php'">
                     Log Out
                 </button>
                 <a class='settings navbar-text' href='userSettings.php'>
@@ -74,10 +76,10 @@ if (isset($_GET['err'])) {
 <!-- Descrizione e presentazione -->
 
 <div class="container">
-    <h1 class="text-center my-5">
+    <h1 class="text-center my-5" id="indexTitle">
         Welcome to PSYCHOACOUSTICS-WEB
     </h1>
-    <p class="p-5 bg-white-transparent rounded-5 fs-5">
+    <p class="p-5 bg-white-transparent rounded-5 fs-5" id="indexDescription">
         PSYCHOACOUSTICS-WEB is a web developed tool to measure auditory sensory thresholds for a
         variety of classic tasks. You can run each test as a guest or you can create your personal
         account and costumize the toolbox for your own research. Please refer to the <a
@@ -99,8 +101,8 @@ if (isset($_GET['err'])) {
         <div class="col">
             <a href="demographicData.php?test=amp" class="text-decoration-none text-white">
                 <div class="bg-light rounded-3 p-4 text-center shadow-lg card bg-dark">
-                    <h5 class="bg-light-title">Pure tone intensity discrimination</h5>
-                    <p>Click here to run the test</p>
+                    <h5 class="bg-light-title" id="indexButtonPuretoneintensitydiscrimination">Pure tone intensity discrimination</h5>
+                    <p id="indexButtonsDescription">Click here to run the test</p>
                 </div>
             </a>
         </div>
@@ -109,8 +111,8 @@ if (isset($_GET['err'])) {
         <div class="col">
             <a href="demographicData.php?test=freq" class="text-decoration-none text-white">
                 <div class="bg-light rounded-3 p-4 text-center shadow-lg card bg-dark">
-                    <h5 class="bg-light-title">Pure tone frequency discrimination</h5>
-                    <p>Click here to run the test</p>
+                    <h5 class="bg-light-title" id="indexButtonPuretonefrequencydiscrimination">Pure tone frequency discrimination</h5>
+                    <p id="indexButtonsDescription">Click here to run the test</p>
                 </div>
             </a>
         </div>
@@ -119,8 +121,8 @@ if (isset($_GET['err'])) {
         <div class="col">
             <a href="demographicData.php?test=dur" class="text-decoration-none text-white">
                 <div class="bg-light rounded-3 p-4 text-center shadow-lg card bg-dark">
-                    <h5 class="bg-light-title">Pure tone duration discrimination</h5>
-                    <p>Click here to run the test</p>
+                    <h5 class="bg-light-title" id="indexButtonPuretonedurationdiscrimination">Pure tone duration discrimination</h5>
+                    <p id="indexButtonsDescription">Click here to run the test</p>
                 </div>
             </a>
         </div>
@@ -128,8 +130,8 @@ if (isset($_GET['err'])) {
         <div class="col">
             <a href="demographicData.php?test=nmod" class="text-decoration-none text-white">
                 <div class="bg-light rounded-3 p-4 text-center shadow-lg card bg-dark">
-                    <h5 class="bg-light-title">White noise amplitude modulation detection</h5>
-                    <p>Click here to run the test</p>
+                    <h5 class="bg-light-title" id="indexButtonWhitenoiseamplitudemodulationdetection">White noise amplitude modulation detection</h5>
+                    <p id="indexButtonsDescription">Click here to run the test</p>
                 </div>
             </a>
         </div>
@@ -137,8 +139,8 @@ if (isset($_GET['err'])) {
         <div class="col">
             <a href="demographicData.php?test=gap" class="text-decoration-none text-white">
                 <div class="bg-light rounded-3 p-4 text-center shadow-lg card bg-dark">
-                    <h5 class="bg-light-title">White noise gap detection</h5>
-                    <p>Click here to run the test</p>
+                    <h5 class="bg-light-title" id="indexButtonWhitenoisegapdetection">White noise gap detection</h5>
+                    <p id="indexButtonsDescription">Click here to run the test</p>
                 </div>
             </a>
         </div>
@@ -146,8 +148,8 @@ if (isset($_GET['err'])) {
         <div class="col">
             <a href="demographicData.php?test=ndur" class="text-decoration-none text-white">
                 <div class="bg-light rounded-3 p-4 text-center shadow-lg card bg-dark">
-                    <h5 class="bg-light-title">White noise duration discrimination</h5>
-                    <p>Click here to run the test</p>
+                    <h5 class="bg-light-title" id="indexButtonWhitenoisedurationdiscrimination">White noise duration discrimination</h5>
+                    <p id="indexButtonsDescription">Click here to run the test</p>
                 </div>
             </a>
         </div>

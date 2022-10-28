@@ -19,6 +19,8 @@
     <link rel="stylesheet"
           href="css/staircaseStyle.css<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>">
 
+    <script type="text/javascript" src="js/fetchTexts.js"></script>
+
     <title>Psychoacoustics-web - Test settings</title>
 
     <?php
@@ -82,60 +84,89 @@
 
 <div class="container my-5 p-5 rounded rounded-4 bg-white-transparent">
     <h2 class="">Hi <?php echo $_SESSION['name']; ?></h2>
-    <p class="">
-        You will now do an acoustic test that will measure your sensibility to the <?php echo $type; ?> of a sound.
+    <p id="infoDescription" class="">
+        You will now do an acoustic test that will measure your sensibility to the <?php
+        if ($type == 'amplitude')
+            echo "amplitude of a sound";
+        else if ($type == 'frequency')
+            echo "frequency of a sound";
+        else if ($type == 'duration')
+            echo "duration of a sound";
+        else if ($type == 'gap')
+            echo "detect a gap of a noise";
+        else if ($type == 'nduration')
+            echo "duration of a noise";
+        else if ($type == 'nmodulation')
+            echo "amplitude modulation of a noise";
+        ?>.
         <br><br>
         During the test you will be asked a series of questions. In each question you will
-        hear <?php echo $row['nAFC']; ?> sounds
-        and will have to choose which of them was the
-        <?php
+        hear <?php echo $row['nAFC']; ?> sounds and will have to choose which of them was the <?php
         if ($type == 'amplitude')
             echo "loudest";
         else if ($type == 'frequency')
             echo "highest pitch";
         else if ($type == 'duration')
             echo "longest";
+        else if ($type == 'gap')
+            echo "one with a gap in the middle";
+        else if ($type == 'nduration')
+            echo "longest";
+        else if ($type == 'nmodulation')
+            echo "modulated";
         ?>.
-        <br><br>
-        <?php
+        <br><br><?php
         if ($row['nAFC'] > 2)
             echo "Only o";
         else
             echo "O";
-        ?>ne of the sounds will be
-        <?php
+        ?>ne of the sounds will be <?php
         if ($type == 'amplitude')
             echo "louder";
         else if ($type == 'frequency')
             echo "higher pitch";
         else if ($type == 'duration')
             echo "longer";
-        ?>
-        than the other<?php
+        else if ($type == 'gap')
+            echo "with a gap in the middle";
+        else if ($type == 'nduration')
+            echo "longer";
+        else if ($type == 'nmodulation')
+            echo "modulated";
+        ?> than the other<?php
         if ($row['nAFC'] > 2)
             echo "s";
-        ?>.
-        It will have a<?php
+        ?>. It will have a <?php
         if ($type == 'amplitude')
             echo "n intensity of " . (floatval($row['amp']) + floatval($row['Delta'])) . " dB";
         else if ($type == 'frequency')
-            echo " frequency of " . (floatval($row['freq']) + floatval($row['Delta'])) . " Hz";
+            echo "frequency of " . (floatval($row['freq']) + floatval($row['Delta'])) . " Hz";
         else if ($type == 'duration')
-            echo " duration of " . (floatval($row['dur']) + floatval($row['Delta'])) . " ms";
-        ?>,
-        while the other<?php
+            echo "duration of " . (floatval($row['dur']) + floatval($row['Delta'])) . " ms";
+        else if ($type == 'gap')
+            echo "gap of " . floatval($row['Delta']) . " ms";
+        else if ($type == 'nduration')
+            echo "duration of " . (floatval($row['dur']) + floatval($row['Delta'])) . " ms";
+        else if ($type == 'nmodulation')
+            echo "modulation of " . floatval($row["modAmp"]) . " dB";
+        ?>, while the other<?php
         if ($row['nAFC'] > 2)
             echo "s";
-        ?>
-        will have a<?php
+        ?> will have a <?php
         if ($type == 'amplitude')
             echo "n intensity of " . floatval($row['amp']) . " dB (the maximum amplitude is 0dB, which corresponds to 
 							'1' in decimal, while a negative number in decibel corresponds to a number near '0' in decimal 
 							(the higher is the absolute value, the nearest is to 0))";
         else if ($type == 'frequency')
-            echo " frequency of " . floatval($row['freq']) . " Hz";
+            echo "frequency of " . floatval($row['freq']) . " Hz";
         else if ($type == 'duration')
-            echo " duration of " . floatval($row['dur']) . " ms";
+            echo "duration of " . floatval($row['dur']) . " ms";
+        else if ($type == 'gap')
+            echo "no gap";
+        else if ($type == 'nduration')
+            echo "duration of " . floatval($row['dur']) . " ms";
+        else if ($type == 'nmodulation')
+            echo "no modulation";
         ?>.
         <br><br>
         The number of questions that will be asked depends on the number of reversals that was set.
@@ -149,16 +180,14 @@
         <br>
         But what are these factors?
         <br>
-        Every time you give
-        <?php
+        Every time you give <?php
         if ($row['alg'] == 'SimpleUpDown')
             echo "1";
         else if ($row['alg'] == 'TwoDownOneUp')
             echo "2";
         else if ($row['alg'] == 'ThreeDownOneUp')
             echo "3";
-        ?>
-        right answer<?php
+        ?> right answer<?php
         if ($row['alg'] != 'SimpleUpDown')
             echo "s";
         ?>
@@ -167,14 +196,11 @@
         correct sound and the wrong one, the wrong answers make it easier, increasing the difference.
         <br><br>
         The test will be repeated <?php echo $row['blocks']; ?> time<?php if ($row['blocks'] > 1) echo "s"; ?>. Each
-        time you will see your threshold,
-        a number that summarizes your level of sensibility. It is calculated only using the
-        last <?php echo $row['thr']; ?>
-        reversal<?php if ($row['rev'] > 1) echo "s"; ?>.
+        time you will see your threshold, a number that summarizes your level of sensibility. It is calculated only
+        using the last <?php echo $row['thr']; ?> reversal<?php if ($row['rev'] > 1) echo "s"; ?>.
         <br>
         At the end you can download a csv file that summarizes all the tests done (and also a file with the details of
-        each test,
-        if you are logged in with an account).
+        each test, if you are logged in with an account).
         <br><br>
         <!--        -->
         <!--       --><?php //if ($checkFb) echo " You will recieve a feedback to advice whether the response is correct or not."; ?>
