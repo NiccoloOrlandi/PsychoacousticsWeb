@@ -90,7 +90,7 @@
 						$count = $row['count'];
 
 						//inserisci i dati del nuovo test
-						$sql = "UPDATE test SET Result = '{$_GET['result']}', Timestamp='{$_GET['timestamp']}', SampleRate='{$_GET['sampleRate']}' WHERE Guest_ID = '$id' and Test_count = '$count'";
+						$sql = "UPDATE test SET Result = '{$_SESSION['results']}', Timestamp='{$_GET['timestamp']}', SampleRate='{$_GET['sampleRate']}' WHERE Guest_ID = '$id' and Test_count = '$count'";
 						/* ('$id', '$count', '{$_GET['timestamp']}', '$type', ";
 						$sql .= "'{$_GET['amp']}', '{$_GET['freq']}', '{$_GET['dur']}', '{$_GET['ramp']}', '{$_GET['blocks']}', '{$_GET['delta']}', ";
 						$sql .= "'{$_GET['nAFC']}', '{$_GET['ITI']}', '{$_GET['ISI']}', '{$_GET['fact']}', '{$_GET['rev']}', ";
