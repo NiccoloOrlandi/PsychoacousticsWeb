@@ -83,7 +83,7 @@
 		while($row = $result->fetch_assoc()){
 			//valore della prima parte (quella fissa che va ripetuta)
 			$firstValues = $row["name"].";".$row["surname"].";".$row["age"].";".$row["gender"].";".$row["count"].";".$row["type"].";";
-			$firstValues .= $row["time"].";".$row["sampleRate"].$row["deviceInfo"].";".";".$row["amp"].";".$row["freq"].";".$row["dur"].";".$row["onRamp"].";".$row["offRamp"].";".$row["modAmp"].";".$row["modFreq"].";".$row["modPhase"].";".$row["blocks"].";".$row["nafc"].";".$row["isi"].";".$row["iti"].";";
+			$firstValues .= $row["time"].";".$row["sampleRate"].";".$row["deviceInfo"].";".";".$row["amp"].";".$row["freq"].";".$row["dur"].";".$row["onRamp"].";".$row["offRamp"].";".$row["modAmp"].";".$row["modFreq"].";".$row["modPhase"].";".$row["blocks"].";".$row["nafc"].";".$row["isi"].";".$row["iti"].";";
 			$firstValues .= $row["fact"].";".$row["rev"].";".$row["secfact"].";".$row["secrev"].";".$row["thr"].";".$row["alg"];
 
 			//parte variabile e scrittura su file
