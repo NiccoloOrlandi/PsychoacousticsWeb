@@ -207,4 +207,15 @@ function downloadData(type) { //debug
     link.setAttribute("download", "stimulusData.csv");
     document.body.appendChild(link);
     link.click();
+
+    for (var i = 0; i < stimulus.length; i++) {
+        txtString = ";" + stimulus[i].type + "\n" + stimulus[i].sample.join("\n");
+        let txtContent = "data:text/plain;charset=utf-8," + txtString;
+        encodedUri = encodeURI(txtContent);
+        link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", stimulus[i].type + ".txt");
+        document.body.appendChild(link);
+        link.click();
+    }
 }
