@@ -242,8 +242,9 @@ try {
                             $list = explode(",", $values);//divido in una lista in base alle virgole
 
                             //creo un'opzione per ogni possibile valore
-                            foreach ($list as $elem)
-                                echo "<option value='" . strtoupper($elem) . "'>" . strtoupper($elem) . "</option>";
+                            foreach ($list as $elem) { ?>
+                                <option <?php if (strcmp($elem, $gender) == 0) echo "selected"?> value="<?php echo strtoupper($elem); ?>"><?php echo strtoupper($elem); ?></option>
+                            <?php }
                         } catch (Exception $e) {
                             header("Location: index.php?err=db");
                         }
