@@ -225,10 +225,9 @@ try {
                 </div>
                 <div class="col">
                     <select name='gender' class="form-select">
-                        <option disabled="disabled" value="null"
-                                id="NullGender" <?php if ($gender == "NULL") echo "selected"; ?>>
-                            Select
-                            your gender
+                        <option value="null"
+                                id="NullGender" <?php if ($gender == null) echo "selected"; else echo "disabled"; ?>>
+                            Select your gender
                         </option>
                         <?php
                         try {
@@ -243,7 +242,8 @@ try {
 
                             //creo un'opzione per ogni possibile valore
                             foreach ($list as $elem) { ?>
-                                <option <?php if (strcmp($elem, $gender) == 0) echo "selected"?> value="<?php echo strtoupper($elem); ?>"><?php echo strtoupper($elem); ?></option>
+                                <option <?php if (strcmp($elem, $gender) == 0) echo "selected" ?>
+                                        value="<?php echo strtoupper($elem); ?>"><?php echo strtoupper($elem); ?></option>
                             <?php }
                         } catch (Exception $e) {
                             header("Location: index.php?err=db");
