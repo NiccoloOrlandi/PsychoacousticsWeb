@@ -33,8 +33,7 @@ var pressedButton;
 
 //funzione per randomizzare l'output
 function random() {
-    //var rand = Math.floor(Math.random() * nAFC);    // the variable sound will be the rand-th sound played
-    var rand = 0;   // debug
+    var rand = Math.floor(Math.random() * nAFC);    // the variable sound will be the rand-th sound played
     for (var j = 0; j < nAFC; j++) {
         if (j == rand)
             playSound((ITI / 1000) + (j * varDur) + j * (ISI / 1000), varFreq, varAmp, varDur, onRamp / 1000, offRamp / 1000, false);
@@ -47,7 +46,7 @@ function random() {
     source.onended = () => { //quando l'oscillatore sta suonando il programma non si ferma, quindi serve questo per riattivare i pulsanti solo quando finisce
         for (var j = 1; j <= nAFC; j++)
             document.getElementById("button" + j).disabled = false;
-        document.getElementById("downloadData").disabled = false; // debug
+        // document.getElementById("downloadData").disabled = false; // debug
     }
 }
 
@@ -183,7 +182,7 @@ function nDOWNoneUP(n) {
             window.setTimeout("timer()", 500);
         }
     }
-    document.getElementById("downloadData").disabled = true; // debug
+    // document.getElementById("downloadData").disabled = true; // debug
     stimulus = []; // debug
 }
 
@@ -191,7 +190,7 @@ function nDOWNoneUP(n) {
 function start() {
     document.getElementById("StartingWindow").style.display = "none"; //starting window becomes invisible
     document.getElementById("PlayForm").style.display = "inherit"; //test interface becomes visible
-    document.getElementById("downloadData").style.display = "inherit"; //test interface becomes visible (debug)
+    // document.getElementById("downloadData").style.display = "inherit"; //test interface becomes visible (debug)
 
     // take the timestamp when the test starts
     var currentdate = new Date();
