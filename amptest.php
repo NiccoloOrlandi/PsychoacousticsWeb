@@ -64,13 +64,13 @@
             </div>
         </div>
 
-        <div class="col-12 col-md-5 bg-light p-5 rounded-4 border mt-5" id="PlayForm" style="display: none">
+        <div class="col-12 col-md-6 bg-light p-5 rounded-4 border mt-5" id="PlayForm" style="display: none">
             <div class="row gy-3 justify-content-between align-items-center">
                 <h2 class="col-12 text-center mb-3" id="answerPuretoneintensitydiscrimination">Which is the loudest tone?</h2>
                 <?php
                 $colors = ["#198754", "#dc3545", "#0d6efd", "#e0b000", "#a000a0", "#ff8010", "#50a0f0", "#703000", "#606090"];
                 for ($i = 1; $i <= intval($_SESSION['nAFC']); $i++) { ?>
-                    <div class="col-4 d-grid">
+                    <div class="col-12 col-sm-4 d-grid">
                         <?php echo "<button type='button' class='btn btn-lg btn-success' style='background-color:" . $colors[($i - 1) % count($colors)] . "; border-color: " . $colors[($i - 1) % count($colors)] . ";' id='button{$i}' onclick = 'select({$i})' disabled>{$i}° sound</button>"; ?>
                     </div>
                 <?php }
@@ -79,8 +79,8 @@
         </div>
     </div>
     <div class="row justify-content-center align-items-center">
-        <div class='col-12 col-md-5 alert alert-danger mt-5' id="wrong" style="display: none">Wrong!</div>
-        <div class='col-12 col-md-5 alert alert-success mt-5' id="correct" style="display: none">Correct!</div>
+        <div class='col-12 col-md-6 alert alert-danger mt-5' id="wrong" style="display: none">Wrong!</div>
+        <div class='col-12 col-md-6 alert alert-success mt-5' id="correct" style="display: none">Correct!</div>
     </div>
 <!--    <button type="button" class="btn btn-outline-secondary btn-lg rounded-4 position-fixed bottom-0 end-0 m-5"-->
 <!--            id="downloadData" onclick="downloadData('amp')" style="display: none" disabled>-->

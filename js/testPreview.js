@@ -80,7 +80,7 @@ function random() {
                 playNoise(((j - 1) * stdDur) + varDur + j * (ISI / 1000), stdAmp, stdDur, onRamp, offRamp);
         } else if (type == "nmodulation") {
             if (j == rand)
-                playModulatedNoise((j * carDur) + j * (ISI / 1000),   10 ** (carAmp / 20), carDur, 10 ** (modAmp / 20), modFreq, modPhase, onRamp, offRamp);
+                playModulatedNoise((j * carDur) + j * (ISI / 1000), 10 ** (carAmp / 20), carDur, 10 ** (modAmp / 20), modFreq, modPhase, onRamp, offRamp);
             else
                 playNoise((j * carDur) + j * (ISI / 1000), carAmp, carDur, onRamp, offRamp);
         }
@@ -102,14 +102,18 @@ function select(button) {
         document.getElementById("button" + j).disabled = true;
     let element = document.getElementById("alert")
     if (button == swap) {
-        element.style.visibility = "visible";
-        element.innerText = "Correct!"
-        element.classList.remove("alert-danger");
-        element.classList.add("alert-success");
+        //if (feedback) {
+            element.style.visibility = "visible";
+            element.innerText = "Correct!"
+            element.classList.remove("alert-danger");
+            element.classList.add("alert-success");
+        //}
     } else {
-        element.style.visibility = "visible";
-        element.innerText = "Wrong!"
-        element.classList.remove("alert-success");
-        element.classList.add("alert-danger");
+        //if (feedback) {
+            element.style.visibility = "visible";
+            element.innerText = "Wrong!"
+            element.classList.remove("alert-success");
+            element.classList.add("alert-danger");
+        //}
     }
 }

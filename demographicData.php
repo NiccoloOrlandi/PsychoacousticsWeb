@@ -79,7 +79,7 @@ if (isset($_GET['err'])) {
 ?>
 
 
-<div class="container my-5 p-5 border rounded rounded-4 bg-light">
+<div class="container my-5 p-4 p-sm-5 border rounded rounded-4 bg-light">
     <h2>Personal Informations</h2>
     <form name="staircase" method="post" action="php/personalInfoValidation.php<?php
     if (isset($_GET["test"]))

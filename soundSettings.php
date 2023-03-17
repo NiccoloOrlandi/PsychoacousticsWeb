@@ -135,7 +135,7 @@ if (isset($_SESSION['usr'])) {
 } else
     $row = false;
 ?>
-<div class="container my-5 px-5 py-4 border rounded rounded-4 bg-light">
+<div class="container my-5 p-4 p-sm-5 border rounded rounded-4 bg-light">
     <h2>Set the characteristics of the experiment</h2>
     <form action="<?php
     if (isset($_SESSION['updatingSavedSettings']) && $_SESSION['updatingSavedSettings'] == true)

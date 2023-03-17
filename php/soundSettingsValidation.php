@@ -11,7 +11,7 @@ if (isset($_SESSION['test'])) {
         mysqli_set_charset($conn, "utf8");
 
         $sql = "SELECT Type, Amplitude as amp, Frequency as freq, Duration as dur, OnRamp as onRamp, OffRamp as offRamp, blocks, Delta, nAFC, 
-					ISI, ITI, Factor as fact, Reversal as rev, SecFactor as secfact, SecReversal as secrev, 
+					ISI, ITI, Factor as fact, Reversal as rev, SecFactor as secfact, SecReversal as secrev, Feedback as feedback,
 					Threshold as thr, Algorithm as alg, ModAmplitude as modAmp, ModFrequency as modFreq, ModPhase as modPhase
 					
 					FROM test
@@ -50,7 +50,7 @@ if (isset($_SESSION['test'])) {
         $_SESSION["ITI"] = $row["ITI"];
         $_SESSION["ISI"] = $row["ISI"];
         $_SESSION["delta"] = $row["Delta"];
-        $_SESSION["checkFb"] = $checkFb;
+        $_SESSION["checkFb"] = $row["feedback"];
         $_SESSION["saveSettings"] = 0;
         $_SESSION["factor"] = $row["fact"];
         $_SESSION["secFactor"] = $row["secfact"];

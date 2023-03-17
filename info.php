@@ -31,7 +31,7 @@
         mysqli_set_charset($conn, "utf8");
 
         $sql = "SELECT Type, Amplitude as amp, Frequency as freq, Duration as dur, OnRamp as onRamp, OffRamp as offRamp, ISI, blocks, Delta, nAFC, 
-						Factor as fact, Reversal as rev, SecFactor as secfact, SecReversal as secrev, 
+						Factor as fact, Reversal as rev, SecFactor as secfact, SecReversal as secrev, Feedback as feedback,
 						Threshold as thr, Algorithm as alg, ModAmplitude as modAmp, ModFrequency as modFreq, ModPhase as modPhase
 						
 						FROM test
@@ -71,6 +71,7 @@
         var delta = parseFloat(<?php echo $row["Delta"]; ?>);
         var ISI = parseInt(<?php echo $row["ISI"]; ?>);
         var nAFC = parseInt(<?php echo $row["nAFC"]; ?>);
+        var feedback = <?php echo $row["feedback"]; ?>;
     </script>
     <script type="text/javascript"
             src="js/generatorSoundAndNoise.js<?php if (isset($_SESSION['version'])) echo "?{$_SESSION['version']}"; ?>"
@@ -202,9 +203,9 @@
         At the end you can download a csv file that summarizes all the tests done (and also a file with the details of
         each test, if you are logged in with an account).
         <br><br>
-        <!--        -->
-        <!--       --><?php //if ($checkFb) echo " You will recieve a feedback to advice whether the response is correct or not."; ?>
-        <!--        -->
+
+        <?php if ($row["feedback"]) echo " You will receive a feedback to advice whether the response is correct or not."; ?>
+
     </p>
 
     <div class="d-flex align-items-center">
@@ -213,7 +214,7 @@
     </div>
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-7 col-lg-5">
+            <div class="col-12 col-md-8 col-lg-6">
                 <div class="bg-white border-2 rounded-4 p-5 mt-4 mx-auto">
                     <form action="" class="" id="PlayForm">
                         <h1 class="text-center mb-4"><?php
@@ -234,7 +235,7 @@
                             <?php
                             $colors = ["#198754", "#dc3545", "#0d6efd", "#e0b000", "#a000a0", "#ff8010", "#50a0f0", "#703000", "#606090"];
                             for ($i = 1; $i <= intval($row['nAFC']); $i++) { ?>
-                                <div class="col-4 d-grid">
+                                <div class="col-12 col-sm-4 d-grid">
                                     <?php echo "<button type='button' class='btn btn-lg btn-success' style='background-color:" . $colors[($i - 1) % count($colors)] . "; border-color:" . $colors[($i - 1) % count($colors)] . "' id='button{$i}' onclick = 'select({$i})' disabled>{$i}° sound</button>"; ?>
                                 </div>
                             <?php } ?>
