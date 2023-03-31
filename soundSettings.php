@@ -118,7 +118,7 @@ if (isset($_SESSION['usr'])) {
             throw new Exception('DB connection failed');
         mysqli_set_charset($conn, "utf8");
 
-        $sql = "SELECT test.Amplitude as amp, test.Frequency as freq, test.Duration as dur, test.OnRamp as onRamp, test.OffRamp as offRamp, test.blocks as blocks, 
+        $sql = "SELECT test.Type as type, test.Amplitude as amp, test.Frequency as freq, test.Duration as dur, test.Delta as delta, test.OnRamp as onRamp, test.OffRamp as offRamp, test.blocks as blocks, 
 								test.nAFC, test.ITI, test.ISI, test.Factor as fact, test.Reversal as rev, 
 								test.SecFactor as secfact, test.SecReversal as secrev, test.Algorithm as alg, test.Feedback as fb,
                                 test.ModAmplitude as modAmp, test.ModFrequency as modFreq, test.ModPhase as modPhase
@@ -417,18 +417,37 @@ if (isset($_SESSION['usr'])) {
                         </span>
                         <input type="text" class="form-control" name="delta" id="level"
                                value="<?php
-                               if ($type == "amp")
-                                   echo "12";
-                               else if ($type == "freq")
-                                   echo "200";
-                               else if ($type == "dur")
-                                   echo "300";
-                               else if ($type == "ndur")
-                                   echo "375";
-                               else if ($type == "gap")
-                                   echo "50";
-                               else if ($type == "nmod")
-                                   echo "12";
+                               if ($type == "amp") {
+                                   if ($row && $row['type'] == 'PURE_TONE_INTENSITY')
+                                       echo $row['delta'];
+                                   else
+                                       echo "12";
+                               } else if ($type == "freq") {
+                                   if ($row && $row['type'] == 'PURE_TONE_FREQUENCY')
+                                       echo $row['delta'];
+                                   else
+                                       echo "200";
+                               } else if ($type == "dur") {
+                                   if ($row && $row['type'] == 'PURE_TONE_DURATION')
+                                       echo $row['delta'];
+                                   else
+                                       echo "300";
+                               } else if ($type == "ndur") {
+                                   if ($row && $row['type'] == 'WHITE_NOISE_DURATION')
+                                       echo $row['delta'];
+                                   else
+                                       echo "375";
+                               } else if ($type == "gap") {
+                                   if ($row && $row['type'] == 'WHITE_NOISE_GAP')
+                                       echo $row['delta'];
+                                   else
+                                       echo "50";
+                               } else if ($type == "nmod") {
+                                   if ($row && $row['type'] == 'WHITE_NOISE_MODULATION')
+                                       echo $row['delta'];
+                                   else
+                                       echo "12";
+                               }
                                ?>">
                         <span class="input-group-text">
                             <?php
